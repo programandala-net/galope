@@ -1,0 +1,31 @@
+= Galope
+:author: Marcos Cruz (programandala.net)
+:revdate: 2016-06-21
+
+== Description
+
+Galope is a Forth library under development. It started in 2012 in
+order to make the development of some Forth programs easier and
+faster.
+
+The library consists of more than 220 files. Many of them contain only
+one definition; some of them contain whole tools.
+
+Galope is focused on Gforth, but most of the code is
+sytem-independent.
+
+== The name
+
+"Galope" stands for "Gforth Accessory Library of Particular Elements".
+In Spanish, "galope" is a noun that means "gallop"; in Esperanto,
+"galope" is an adverb (the "-e" ending marks the adverbs in this
+language) that means "at a gallop".  "Galope" is pronounced as in
+Spanish or Esperanto (its pronounciation is the same in both
+languages).
+
+== The Git repository
+
+In order to resume the development and prepare the first public
+release, a Git repository was created on 2016-06-21, out of
+development and ordinary backups created since 2013 (one year after
+the beginning of the project).
