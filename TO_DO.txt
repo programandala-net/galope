@@ -1,0 +1,26 @@
+2012-09-14:
+
+Renombrar 'seconds' y 'microseconds':
+
+seconds/key ?
+seconds|key ?
+seconds_or_keypress ?
+seconds|keypress ?
+/seconds ?
+
+Después usar 'seconds' y 'microseconds' para las versiones que no
+se pueden acortar pulsando una tecla.
+
+2012-09-15:
+
+Eliminar ficheros de mdrop y 2mdrop, palabras que ya han sido
+renombradas. Buscar si hay programas que los usen.
+
+2013-01-04:
+
+: ?execute  ( xt | 0 -- )
+	?dup if  execute then
+	;
+: @execute  ( a -- )
+	@ ?execute
+	;
