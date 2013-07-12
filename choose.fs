@@ -19,7 +19,7 @@
 ) 
 
 require random.fs  \ Gforth's 'random'
-require galope/drops.fs
+require ./drops.fs
 
 : choose  ( x1..xn n -- xn' )
 

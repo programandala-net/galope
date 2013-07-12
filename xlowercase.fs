@@ -8,9 +8,9 @@
 
 \ 2012-12-02 First version.
 
-require galope/xbounds.fs
-require galope/xcase.fs
-require galope/x-c-store.fs
+require ./xbounds.fs
+require ./xcase.fs
+require ./x-c-store.fs
 
 : xlowercase  ( a u -- )
   \ Convert a UTF-8 string to lowercase.

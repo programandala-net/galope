@@ -11,8 +11,8 @@
 
 \ '[??]' was inspired by '??' by Neil Bawd (FORML 1986).
 
-require galope/bracket-gforth-question.fs  \ '[gforth?]'
-require galope/question-empty.fs  \ '?keep'
+require ./bracket-gforth-question.fs  \ '[gforth?]'
+require ./question-empty.fs  \ '?keep'
 
 : [??]  ( f "name" -- )
   [gforth?]

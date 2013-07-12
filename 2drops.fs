@@ -10,7 +10,7 @@
 \ 2012-04-30 Extracted from mdrop.fs.
 \ 2012-09-14 Renamed to '2drops'.
 
-require galope/drops.fs
+require ./drops.fs
 
 : 2drops ( d1 ... dn n -- )
   2* drops

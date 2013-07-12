@@ -62,8 +62,8 @@ words will be tried.
 \ Requirements
 
 \ From Galope
-require galope/module.fs
-require galope/between.fs
+require ./module.fs
+require ./between.fs
 
 \ From Forth Foundation Library
 require ffl/chr.fs  \ char data type

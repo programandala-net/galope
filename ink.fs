@@ -8,10 +8,10 @@
 \ (<http://programandala.net/es.programa.asalto_y_castigo.forth>).
 \ 2012-12-05 Comment; reformatted.
 
-require galope/sgr.fs
+require ./sgr.fs
 
 \ Recommended:
-\ require galope/colors.fs
+\ require ./colors.fs
 
 : ink ( u -- )
   \ Set the current ink (foreground) color.

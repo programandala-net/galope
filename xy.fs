@@ -17,34 +17,42 @@
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
 \ History
-\ 2012-04 Extracted from a app of mine.
+\ 2012-04 Extracted from a program of mine.
 \ 2012-04-29 Added 'at-x' and 'at-y'.
+\ 2012-05-08 'at-x' and 'at-y' moved to their own files.
+\ 2013-06-26 Fixed some comments. 
+\ 2013-06-26 Gforth's 'esc[' used instead of 'ansi_escape'.
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_xy
 
 base @ decimal
 
 : number<c>  ( c -- n )
-  \ Read a numeric entry delimited by character c.
+  \ Read a decimal numeric entry delimited by character c.
+  \ xxx todo move this word to its own file:
+  \ xxx todo choose a better name:
+  \ number/c
+  \ keys/c>decimal
+  \ keys>#
+  \ keys>number
+  \ keys>#number
+  \ xxx todo no final char: finish at the first non-digit instead
   >r 0
   begin   key dup r@ <>
-  while   swap 10 * swap [char] 0 - +
+  while   swap 10 * swap '0' - +
   repeat  r> 2drop
-  ;
-: ansi_escape  ( -- )
-  27 emit [char] [ emit
   ;
 
 export
 
 : xy  ( -- u1 u2 )
-  \ u1 = Current column.
-  \ u2 = Current line.
-  ansi_escape ." 6n"
-  key key 2drop  \ Erase: <esc> [
-  [char] ; number<c>  [char] R number<c>
+  \ u1 = current column
+  \ u2 = current line
+  esc[ ." 6n"
+  key key 2drop  \ erase: <esc> [
+  ';' number<c>  'R' number<c>
   1- swap 1-
   ;
 

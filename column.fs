@@ -9,7 +9,7 @@
 \ 2012-05-08 Extracted from 'xy.fs'.
 \ 2012-09-14 Code reformated.
 
-require galope/xy.fs
+require ./xy.fs
 
 : column  ( -- u )
   xy drop

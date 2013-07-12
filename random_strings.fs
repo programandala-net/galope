@@ -37,11 +37,11 @@ their names to galope/plus-plus.fs and galope/minus-minus.fs.
 
 require random.fs
 
-require galope/module.fs
-require galope/2choose.fs
-require galope/sb.fs
-require galope/plus-plus.fs
-require galope/minus-minus.fs
+require ./module.fs
+require ./2choose.fs
+require ./sb.fs
+require ./plus-plus.fs
+require ./minus-minus.fs
 
 module: galope_random_strings
 

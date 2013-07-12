@@ -48,7 +48,7 @@ along with this library; if not, see
 \ 2012-09-07 First version.
 \ 2012-09-08 Comments revised and completed.
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_sarray
 

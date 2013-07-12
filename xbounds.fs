@@ -7,10 +7,10 @@
 
 \ 2012-09-21 Copied from a program of the author.
 
-require galope/to-x-width.fs
+require ./to-x-width.fs
 
 : xbounds  ( a u -- a u' 0 )
-  \ Convert an UTF-8 string to the parameters needed
+  \ Convert a UTF-8 string to the parameters needed
   \ to explore it in a DO LOOP structure.
   >x-width 0
   ;

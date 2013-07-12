@@ -9,7 +9,7 @@
 \ 2012-06-18 Taken from the Autohipnosis program
 \ (http://programandala.net/es.programa.autohipnosis).
 
-require galope/microseconds.fs
+require ./microseconds.fs
 
 : seconds  ( u -- )
   \ Wait a number of seconds or until a key is pressed.

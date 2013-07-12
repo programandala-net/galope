@@ -11,7 +11,7 @@
 
 \ '??' was presented at FORML 1986 by Neil Bawd.
 
-require galope/bracket-gforth-question.fs  \ '[gforth?]'
+require ./bracket-gforth-question.fs  \ '[gforth?]'
 
 [undefined] ?? [if]
   : ??  ( "name" -- ) ( runtime: i*x f -- j*x )

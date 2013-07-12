@@ -17,7 +17,7 @@
 ) 
 
 require random.fs  \ Gforth's 'random'
-require galope/2drops.fs
+require ./2drops.fs
 
 : 2choose  ( d1...dn n -- dn' )
 

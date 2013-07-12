@@ -9,7 +9,7 @@
 \ 2012-05-08 Extracted from 'xy.fs'.
 \ 2012-09-14 Comments edited.
 
-require galope/row.fs
+require ./row.fs
 
 : at-x  ( u -- )
   \ Set the cursor

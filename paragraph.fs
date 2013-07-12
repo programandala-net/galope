@@ -22,7 +22,7 @@
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-require galope/print.fs
+require ./print.fs
 
 2 value indentation
 : (paragraph)  ( -- )

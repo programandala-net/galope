@@ -8,7 +8,7 @@
 
 \ 2012-09-30 Start.
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_minus-keys
 
