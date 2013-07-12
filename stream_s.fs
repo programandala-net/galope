@@ -7,10 +7,11 @@
 
 \ 2012-04-30 First version.
 \ 2012-09-14 The code was reformated.
+\ 2013-05-28 Typo in error message.
+\ 2013-05-28 Fix: 'require ./sb.fs' was unnecessary. 
 
-require galope/module.fs
-require galope/sb.fs
-require galope/svariable.fs
+require ./module.fs
+require ./svariable.fs
 
 module: galope_string_s
 
@@ -29,7 +30,7 @@ export
       then
     else
       2drop refill 0= 
-      abort" end of stream string missing" false
+      abort" End of stream string missing" false
     then
   until  2drop 1 /string
   ;

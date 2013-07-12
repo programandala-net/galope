@@ -7,7 +7,7 @@
 \ 2012-12-02 Refactored from the "Asalto y castigo" project
 \ (<http://programandala.net/es.programa.asalto_y_castigo.forth>).
 
-require galope/sgr.fs
+require ./sgr.fs
 
 : system_background_color  ( -- )
   \ Set the system default background color.

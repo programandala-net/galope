@@ -11,44 +11,9 @@
 \ the terms of the GNU General Public License
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ History
+\ Development history
 
-\ 2012-04-17 Words renamed and factorized. Adapted to Gforth.
-
-\ 2012-04-18 Added 'module.fs'. Name fixed. Added 'xy.fs'.
-\ First working version.
-
-\ 2012-05-01 Fix: '?cr' now checks not only the row, but the
-\ column.  Second, experimental version with 'column'.
-
-\ 2012-05-02 '?cr' removed; 'print_cr' and 'unhome?' used
-\ instead.  New words 'print_x+' and 'print_indentation' provide
-\ the low level interface for indentation.
-
-\ 2012-05-07 'print_indentation' moves the cursor instead of
-\ printing spaces (that changed the background color); the trm
-\ module from the Free Foundation Library is used.
-
-\ 2012-05-08 Exported 'no_printed'; added 'print_home' (a proper
-\ 'home').  'unhome?' renamed 'not_at_home?'.  New version of
-\ 'print_start_of_line', based on Forth Foundation Library's trm
-\ module.
-
-\ 2012-05-17 Removed the deprecated alternative slow version.
-\ Now 'cr' is defered by '(print_cr)', what makes it possible to
-\ achive some special effects in the application, e.g. coloring
-\ the new lines at the bottom of the screen.
-
-\ 2012-09-29 Fixed: a 'hide' was missing. A check was missing in
-\ 'print_indentation' because the FFL's 'trm+move-cursor-right'
-\ moves the cursor one column when the parameter is 1! The same
-\ happens with 'trm+move-cursor-left'. The author of FFL has
-\ been contacted.
-
-\ 2012-09-30 Fixed: 'at_last_start_of_line?' used the
-\ coordinates in the wrong order.
-
-\ 2012-11-30 Fixed: 'print_cr?'.
+\ At the end of this file.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ xxx todo
@@ -59,11 +24,11 @@
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-require galope/module.fs
-require galope/column.fs 
-require galope/home.fs 
-require galope/last_row.fs 
-require galope/question-question.fs 
+require ./module.fs
+require ./column.fs 
+require ./home.fs 
+require ./last_row.fs 
+require ./question-question.fs 
 
 require ffl/trm.fs
 
@@ -174,7 +139,9 @@ hide
 
 export
 
-\ : print_x+  ( u -- ) dup column + at-x printed+ ; \ xxx not used
+\ : print_x+  ( u -- )  \ xxx not used
+\   dup column + at-x printed+
+\   ;
 : print_indentation  ( u -- )
   ?dup ?? (print_indentation)
   ;
@@ -209,14 +176,56 @@ export
 
 0 [if]
 
-\ Suggested usage in the application
+\ Suggested usage in the application:
 
 4 value indentation
 : paragraph  ( a u -- )
   print_cr indentation print_indentation print
   ;
 
+\ The Galope module "paragraph" implements it.
+
 [then]
 
 ;module
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ Development history
+
+\ 2012-04-17 Words renamed and factorized. Adapted to Gforth.
+
+\ 2012-04-18 Added 'module.fs'. Name fixed. Added 'xy.fs'.
+\ First working version.
+
+\ 2012-05-01 Fix: '?cr' now checks not only the row, but the
+\ column.  Second, experimental version with 'column'.
+
+\ 2012-05-02 '?cr' removed; 'print_cr' and 'unhome?' used
+\ instead.  New words 'print_x+' and 'print_indentation' provide
+\ the low level interface for indentation.
+
+\ 2012-05-07 'print_indentation' moves the cursor instead of
+\ printing spaces (that changed the background color); the trm
+\ module from the Free Foundation Library is used.
+
+\ 2012-05-08 Exported 'no_printed'; added 'print_home' (a proper
+\ 'home').  'unhome?' renamed 'not_at_home?'.  New version of
+\ 'print_start_of_line', based on Forth Foundation Library's trm
+\ module.
+
+\ 2012-05-17 Removed the deprecated alternative slow version.
+\ Now 'cr' is defered by '(print_cr)', what makes it possible to
+\ achive some special effects in the application, e.g. coloring
+\ the new lines at the bottom of the screen.
+
+\ 2012-09-29 Fixed: a 'hide' was missing. A check was missing in
+\ 'print_indentation' because the FFL's 'trm+move-cursor-right'
+\ moves the cursor one column when the parameter is 1! The same
+\ happens with 'trm+move-cursor-left'. The author of FFL has
+\ been contacted.
+
+\ 2012-09-30 Fixed: 'at_last_start_of_line?' used the
+\ coordinates in the wrong order.
+
+\ 2012-11-30 Fixed: 'print_cr?'.
 

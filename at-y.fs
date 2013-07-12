@@ -9,7 +9,7 @@
 \ 2012-05-08 Extracted from 'xy.fs'.
 \ 2012-09-14 Comments edited.
 
-require galope/column.fs
+require ./column.fs
 
 : at-y  ( u -- )
   \ Set the cursor

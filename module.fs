@@ -8,6 +8,7 @@
 \ History
 \ 2012-04-17 First version.
 \ 2012-09-14 Code and comments reformated.
+\ 2013-06-02 New stack comments. 
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
@@ -47,9 +48,11 @@ vocabulary galope_module also galope_module definitions
   nip r> swap  set-order
   ;
 variable current-wid  \ Backup of the current wordlist.
-: save-current  get-current current-wid !  ;
+: save-current  ( -- )
+  get-current current-wid !
+  ;
 variable module-wid  \ Module wordlist.
-: do-latest
+: do-latest  ( -- )
   \ Execute the interpretation semantics of the latest word created.
   latest name>int execute 
   ;
@@ -63,11 +66,13 @@ variable module-wid  \ Module wordlist.
   \ Start a module and create a named wordlist (a vocabulary) for it.
   save-current vocabulary also do-latest definitions
   ;
-: :module
+: :module  ( -- )
   \ Start a module and create a wordlist for it.
   save-current wordlist dup module-wid ! set-wordlist definitions
   ;
-: export  current-wid @ set-current  ;
+: export  ( -- )
+  current-wid @ set-current
+  ;
 ' definitions alias hide
 ' previous alias ;module
 

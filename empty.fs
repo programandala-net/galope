@@ -10,7 +10,7 @@
 
 \ Taken from ToolBelt 2002 by Wil Baden.
 
-require galope/anew.fs
+require ./anew.fs
 
 \ empty  ( -- )
 

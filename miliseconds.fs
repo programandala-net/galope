@@ -10,7 +10,7 @@
 \ author (http://programandala.net/es.program.autohipnosis).
 \ 2012-09-14 Code reformated.
 
-require galope/microseconds.fs
+require ./microseconds.fs
 
 : miliseconds  ( u -- )
   \ Wait a number of miliseconds or until a key is pressed.

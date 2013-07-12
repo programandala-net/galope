@@ -9,7 +9,7 @@
 
 \ Taken and modified from Charscan by Wil Baden (2002-2003).
 
-require galope/fourth.fs
+require ./fourth.fs
 
 : ends? ( a1 u1 a2 u2 -- a1 u1 ff )
   \ Check end of string:

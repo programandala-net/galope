@@ -8,7 +8,7 @@
 \ 2012-09-21 Added. Unfinished.
 \ 2012-11-02 Finished.
 
-require galope/xcase.fs
+require ./xcase.fs
 
 xcase[
   char à char À

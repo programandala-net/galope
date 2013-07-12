@@ -10,7 +10,7 @@
 \ 2012-04-30 First version.
 \ 2012-09-14 Renamed to '2rolls' (formerly ' 2mroll').
 
-require galope/2roll.fs
+require ./2roll.fs
 
 : 2rolls ( d0 d1 ... dn n -- dn ... d1 d0 )
   1 u+do  i 2roll  loop

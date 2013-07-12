@@ -7,9 +7,11 @@
 
 \ 2012-04-30 First version.
 \ 2012-09-14 The code was reformated.
+\ 2013-05-28 Fix: 'require ./sb.fs' was missing.
 
-require module.fs
-require svariable.fs
+require ./module.fs
+require ./sb.fs
+require ./svariable.fs
 
 module: galope_string_bs
 

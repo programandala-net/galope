@@ -9,7 +9,7 @@
 
 \ Taken from ToolBelt 2002 by Wil Baden.
 
-require galope/possibly.fs
+require ./possibly.fs
 
 \  anew  ( "name" -- ) ( run: -- )
 

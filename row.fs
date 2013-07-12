@@ -8,7 +8,7 @@
 \ History
 \ 2012-05-08 Extracted from 'xy.fs'.
 
-require galope/xy.fs
+require ./xy.fs
 
 : row  ( -- u )
   xy nip

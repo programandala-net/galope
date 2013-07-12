@@ -7,7 +7,7 @@
 \ History
 \ 2012-05-07 Added.
 
-require galope/sb.fs
+require ./sb.fs
 
 : c>bs  ( c u -- a u )
   \ Make a string from a character and a length.

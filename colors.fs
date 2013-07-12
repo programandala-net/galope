@@ -13,12 +13,12 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 require ffl/trm.fs
-require galope/sgr.fs
-require galope/lighter.fs
+require ./sgr.fs
+require ./lighter.fs
 
 \ Recommended:
-\ require galope/ink.fs
-\ require galope/paper.fs
+\ require ./ink.fs
+\ require ./paper.fs
 
 (
 

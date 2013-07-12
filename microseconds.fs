@@ -10,7 +10,7 @@
 \ (http://programandala.net/es.programa.autohipnosis).
 \ 2012-09-24 'time?' renamed to 'overtime?'.
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_microseconds
 

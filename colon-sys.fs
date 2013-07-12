@@ -13,7 +13,7 @@
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_colon-sys
 

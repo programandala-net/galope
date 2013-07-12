@@ -44,6 +44,15 @@ s" galope/sb.fs" required
 [then]
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ Todo
+
+\ 2013-05-23:
+\ Make a new version A-02, with better word names. Save the new
+\ version as "sb_a-02.fs" to avoid compatibility problems.
+
+\ Other specific todos are marked in the code.
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
 
 0 [if]
@@ -69,12 +78,14 @@ changed to values.  Version A-01.
 
 2012-09-14 The code was reformated.
 
+2013-05-23 Revision. First todos.
+
 [then]
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-require galope/module.fs
-require galope/question-question.fs
+require ./module.fs
+require ./question-question.fs
 
 base @ decimal
 
@@ -92,7 +103,11 @@ variable sb#  \ Free chars in the buffer
 0 value 'sb  \ Buffer address
 0 value /sb  \ Buffer length
 
-: restart  /sb sb# !
+\ xxx todo remove or rename; these names are too general
+\ and probably will clash with application words: 
+
+: restart  ( -- )
+  /sb sb# !
   ;
 : full?  ( u -- ff )
   sb# @ >
@@ -112,10 +127,11 @@ variable sb#  \ Free chars in the buffer
 : pointer  ( -- a )
   'sb sb# @ +
   ;
-: smove ( a1 u1 a2 -- )
+: smove  ( a1 u1 a2 -- ) \ xxx todo make a galope file with this word
   swap chars move
   ;
-: release  0 to 'sb
+: release  ( -- )
+  0 to 'sb
   ;
 : active?  ( -- ff )
   'sb 0<>
@@ -208,7 +224,7 @@ export
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Creation of buffered strings
 
-\ hide
+\ hide \ xxx todo why removed the 'hide'?
 
 : (bs)  ( a1 u -- | a2 u )
   state @ if  postpone sliteral  else  >sb  then
@@ -232,7 +248,8 @@ export
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Concatenation of strings 
 
-\ hide
+\ hide \ xxx todo why removed the 'hide'?
+\ xxx todo make these independent in galope:
 
 : lengths  ( a1 u1 a2 u2 -- a1 u1 a2 u2 u1 u2 )
   2 pick over
@@ -256,7 +273,7 @@ export
   r> r>
   ;
 
-\ hide
+\ hide \ xxx todo why removed the 'hide'?
 
 true [if]
 

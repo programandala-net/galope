@@ -11,7 +11,7 @@
 \ http://c2.com/cgi/wiki?ForthReadability
 \ Author: Samuel Falvo
 
-require galope/module.fs
+require ./module.fs
 
 module: galope_repeated-colon
 

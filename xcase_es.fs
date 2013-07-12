@@ -7,7 +7,7 @@
 
 \ 2012-09-21 Added.
 
-require galope/xcase.fs
+require ./xcase.fs
 
 xcase[
   char á char Á
