@@ -1,0 +1,64 @@
+\ galope/constant_string_array_2.fs
+\ Constant string array, version 2
+
+\ This file is part of Galope
+
+\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+
+\ 2013-08-30 Written.
+
+\ Note 1: This code works because Gforth creates strings in the heap.
+
+\ Note 2: The file <galope/constant_string_arrays_1.fs> has a simpler
+\ version that requires explicit compilation of every string with
+\ '2,', what can be an advantage if the stack is short.
+
+require ./module.fs
+
+module: galope_constant_string_array_2
+
+variable depth0
+: #strings  ( -- n )
+  depth depth0 @ - 2/
+  ;
+: strings,  ( ca'1 len'1 ... ca'n len'n n -- )
+  \ Compile the addresses and lengths of the strings.
+  0 ?do  2,  loop 
+  ;
+: last!  ( dfa -- )
+  \ Store the address of the last string compiled.
+  here 2 cells - swap !
+  ;
+
+export
+
+: strings:  ( "name" -- dfa )
+  \ Start the definition of a constant string array.
+  \ dfa = data field address of the array,
+  \   that will keep the address of the last string compiled.
+  create  here  0 ,  depth depth0 ! 
+  does>   ( n -- ca len )
+    ( n dfa ) @ swap 2 cells * - 2@
+  ;
+: /strings  ( dfa ca'1 len'1 ... ca'n len'n -- n )
+  \ End the definition of a constant string array.
+  \ dfa = data field address of the array
+  \ n = number of strings compiled in the array
+  #strings dup >r strings, ( dfa ) last!  r>
+  ;
+
+false [if]
+
+\ Usage example
+
+strings: Esperanto-numbers
+
+  s" nul"
+  s" unu" s" du" s" tri" s" kvar" s" kvin"
+  s" ses" s" sep" s" ok" s" naŭ" s" dek"
+
+/strings . ." strings in the array" cr
+
+[then]
+
+;module

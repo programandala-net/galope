@@ -10,7 +10,7 @@
 \ 2012-05-05 First version.
 
 [undefined] between [if]
-  : between ( n n1 n2 -- )
+  : between  ( n n1 n2 -- )
     1+ within
     ;
 [then]

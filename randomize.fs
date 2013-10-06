@@ -5,9 +5,12 @@
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
+\ 2013-08-30 Change: 'utime' instead of 'time&date'.
+
 require random.fs  \ Gforth's 'random'
 
 : randomize
-  time&date 2drop 2drop * seed !
+  \ time&date 2drop 2drop * seed !
+  utime * seed !
   ;
 

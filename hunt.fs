@@ -7,7 +7,7 @@
 \ 2013-07-11 Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo)
 
-: hunt  ( ca1 len1 ca2 len2 -- ca3 len3 )  \ xxx not used
+: hunt  ( ca1 len1 ca2 len2 -- ca3 len3 )
   \ Search a string ca1 len1 for a substring ca2 len2.
   \ Return the part of ca1 len1 that starts with the first
   \ occurence of ca2 len2.
