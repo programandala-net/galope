@@ -19,6 +19,7 @@
 \ 2012-09-29 Start. A wrapper for galope/print.fs, based on its
 \ usage example.
 \ 2012-12-18 Module removed. '(paragraph)' refactored.
+\ 2013-08-30 Change: Stack notation.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -28,7 +29,7 @@ require ./print.fs
 : (paragraph)  ( -- )
   print_cr indentation print_indentation 
   ;
-: paragraph  ( a u -- )
+: paragraph  ( ca len -- )
   (paragraph) print
   ;
 

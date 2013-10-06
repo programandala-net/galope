@@ -8,7 +8,7 @@
 \ 2012-05-08 Extracted from an application by the author.
 \ 2012-09-14 Formated.
 
-: \eof ( -- )
+: \eof  ( -- )
   \ Ignore the rest of the source file.
   \ Inspired by SP-Forth.
   source-id if

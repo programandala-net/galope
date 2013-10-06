@@ -44,7 +44,7 @@ variable #indented   \ Indented chars in the current line.
 : indented+  ( u -- )
   #indented +!
   ;
-: (.word) ( a u -- )
+: (.word) ( ca len -- )
   dup printed+ type
   ;
 : .char  ( c -- )
@@ -97,7 +97,7 @@ hide
 : not_at_start_of_line?
   column 0<>
   ;
-: print_cr?  ( -- ff )
+: print_cr?  ( -- wf )
   not_at_home? not_at_start_of_line? and
   \ xxx fixme 2012-09-30 what this was for?:
   \ at_last_start_of_line? 0= or
@@ -117,7 +117,7 @@ variable print_width
 
 hide
 
-: previous_word?  ( -- ff )
+: previous_word?  ( -- wf )
   #printed @ #indented @ >
   ;
 : ?space
@@ -126,10 +126,10 @@ hide
 : current_print_width  ( -- u )
   print_width @ ?dup 0= ?? cols
   ;
-: too_long?  ( u -- ff )
+: too_long?  ( u -- wf )
   1+ #printed @ + current_print_width >
   ;
-: .word  ( a u -- )
+: .word  ( ca len -- )
   dup too_long? if  print_cr  else  ?space  then  (.word)
   ;
 
@@ -148,27 +148,27 @@ export
 
 hide
 
-: /word  ( a1 u1 -- a2 u2 a3 u3 )
-  \ a1 u1 = Text.
-  \ a2 u2 = Same text, from the start of its first word.
-  \ a3 u3 = Same text, from the char after its first word.
+: /word  ( ca1 len1 -- ca2 len2 ca3 len3 )
+  \ ca1 len1 = Text.
+  \ ca2 len2 = Same text, from the start of its first word.
+  \ ca3 len3 = Same text, from the char after its first word.
   bl skip 2dup bl scan
   ;
-: >word  ( a1 u1 a2 u2 -- a2 u2 a1 u4 )
-  \ a1 u1 = Text, from the start of its first word.
-  \ a2 u2 = Same text, from the char after its first word.
-  \ a1 u4 = First word of the text.
+: >word  ( ca1 len1 ca2 len2 -- ca2 len2 a1 u4 )
+  \ ca1 len1 = Text, from the start of its first word.
+  \ ca2 len2 = Same text, from the char after its first word.
+  \ ca1 len4 = First word of the text.
   tuck 2>r -  2r> 2swap ; 
-: first_word  ( a1 u1 -- a2 u2 a3 u3 )
+: first_word  ( ca1 len1 -- ca2 len2 ca3 len3 )
   /word >word
   ;
-: (print)  ( a1 u1 -- a2 u2 )
+: (print)  ( ca1 len1 -- ca2 len2 )
   first_word .word
   ;
 
 export
 
-: print  ( a u --)
+: print  ( ca len --)
   begin   dup
   while   (print)
   repeat  2drop
@@ -179,7 +179,7 @@ export
 \ Suggested usage in the application:
 
 4 value indentation
-: paragraph  ( a u -- )
+: paragraph  ( ca len -- )
   print_cr indentation print_indentation print
   ;
 
@@ -229,3 +229,4 @@ export
 
 \ 2012-11-30 Fixed: 'print_cr?'.
 
+\ 2013-08-30 Change: stack notation.

@@ -9,6 +9,7 @@
 \
 \ 2012-12-02 Refactored from the "Asalto y castigo" project
 \ (<http://programandala.net/es.programa.asalto_y_castigo.forth>).
+\ 2013-08-17 Rewritten with constants.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -36,6 +37,8 @@ Reference:
 
 )
 
+false [if]  \ old version
+
 : black  ( -- u )  trm.foreground-black  ;
 : blue  ( -- u )  trm.foreground-blue  ;
 : light_blue  ( -- u )  blue lighter  ;
@@ -52,3 +55,24 @@ Reference:
 : light_red  ( -- u )  red lighter  ;
 : white  ( -- u )  light_gray lighter  ;
 : yellow  ( -- u )  brown lighter  ;
+
+[else]  \ new version
+
+trm.foreground-black    constant black
+trm.foreground-blue     constant blue
+blue lighter            constant light_blue
+trm.foreground-brown    constant brown
+trm.foreground-cyan     constant cyan
+cyan lighter            constant light_cyan
+trm.foreground-green    constant green
+green lighter           constant light_green
+black lighter           constant gray
+trm.foreground-white    constant light_gray
+trm.foreground-magenta  constant magenta
+magenta lighter         constant light_magenta
+trm.foreground-red      constant red
+red lighter             constant light_red
+light_gray lighter      constant white
+brown lighter           constant yellow
+
+[then]
