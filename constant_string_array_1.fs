@@ -7,11 +7,14 @@
 
 \ 2013-08-30 Extracted from 'La isla del Coco', a program by the same
 \ author.
+\ 2013-11-11 Warning comment improved.
 
-\ Note 1: This code works because Gforth creates strings in the heap.
+\ Warning: This code works because Gforth creates strings in the heap
+\ (the dynamically allocated memory), that is not save in Forth system
+\ images.
 
-\ Note 2: The file <galope/constant_string_arrays_2.fs> has an
-\ improved version that transparently compiles the strings.
+\ Note: The file <galope/constant_string_arrays_2.fs> has an improved
+\ version that transparently compiles the strings.
 
 : strings:  ( "name" -- dfa )
   \ Start the definition of a constant string array.

@@ -9,6 +9,7 @@
 \ History
 \ 2012-04-29 First version.
 \ 2012-09-14 Removed unused mroll.fs. Code reformated.
+\ 2013-11-06 Changed the stack notation of flag.
 
 require module.fs
 require xy.fs
@@ -19,7 +20,7 @@ variable y variable x  \ top left coordinates
 variable heigth  \ rows of the headline
 variable width  \ max width that can be shown
 
-: +row?  ( u -- ff )
+: +row?  ( u -- wf )
   heigth @ 1- <
   ;
 : (+row)  cr x @ at-x

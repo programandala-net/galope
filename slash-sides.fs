@@ -7,10 +7,11 @@
 
 \ 2013-07-11 Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo)
+\ 2013-11-06 Changed the stack notation of flag.
 
 require ./sides.fs  \ 'sides'
 
-: /sides  { ca1 len1 ca2 len2 -- ca1 len1' ca3 len3 ff }
+: /sides  { ca1 len1 ca2 len2 -- ca1 len1' ca3 len3 wf }
   \ Search a string ca1 len1
   \ for the first occurence of a substring ca2 len2.
   \ Divide the string ca1 len1 in two parts: return both sides
@@ -23,8 +24,8 @@ require ./sides.fs  \ 'sides'
   \ ca2 len2  = substring
   \ ca1 len1' = left side (or whole string if not found)
   \ ca3 len3  = right side (or empty string if not found)
-  \ ff = found?
-  \ Note: ca3 len3 can be empty also when ff is true.
+  \ wf = found?
+  \ Note: ca3 len3 can be empty also when wf is true.
   ca1 len1 ca2 len2 search dup >r
   if    ca1 len1 len2 sides
   else  over 0  \ fake right side

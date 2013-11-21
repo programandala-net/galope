@@ -7,6 +7,7 @@
 \ History
 \ 2012-12-10 Added.
 \ 2013-05-18 Fixed: typo. 
+\ 2013-11-06 Changed the stack notation of flag.
 
 \ This word was inspired by Gforth's 'string-prefix?'. It's a
 \ modified version of Wil Baden's 'ends?' (from Charscan,
@@ -14,7 +15,7 @@
 
 require ./fourth.fs
 
-: string-suffix? ( a1 u1 a2 u2 -- ff )
+: string-suffix? ( a1 u1 a2 u2 -- wf )
   \ Check end of string:
   \ Is a2 u2 the end of a1 u1?
   \ a1 u1 = long string

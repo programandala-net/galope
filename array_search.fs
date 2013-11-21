@@ -36,27 +36,29 @@ version.  'key_drop' was refactored and defered. Testings.
 
 2012-09-21 Typos fixed.
 
+2013-11-06 Changed the stack notation of flag.
+
 )
 
 true value end_of_array  \ fake key
-defer key_found?  ( i*x a -- ff )
-defer key_drop  ( i*x a ff -- a ff )  \ remove the key searched for
+defer key_found?  ( i*x a -- wf )
+defer key_drop  ( i*x a wf -- a wf )  \ remove the key searched for
 
-: number_key_found?  ( n a -- ff )
+: number_key_found?  ( n a -- wf )
   @ =
   ;
 ' number_key_found? is key_found?
-: number_key_drop  ( n a ff -- a ff )
+: number_key_drop  ( n a wf -- a wf )
   rot drop
   ;
 ' number_key_drop is key_drop
 
-: array_search  ( n a u -- a' ff )
+: array_search  ( n a u -- a' wf )
   \ n = key searched for
   \ a = address of the first key to be searched
   \ u = number of cells in every element
   \ a' = address of the found key
-  \ ff = found?
+  \ wf = found?
   cells >r
   begin   dup @ end_of_array <> dup
   while   drop 2dup key_found? dup 0=
@@ -77,7 +79,7 @@ create array1 \ array with two fields (key and value)
 true , 1000 , \ default end of array (true) and optional default value (1000)
 
 : test1
-  5 array1 2 array_search ( a ff )  \ search for 5
+  5 array1 2 array_search ( a wf )  \ search for 5
   assert( dup )  \ found
   assert( over @ 5 = )  \ pointer to the found value
   2drop
@@ -95,7 +97,7 @@ create array2 \ array with three fields (value1, key and value2)
 
 : test2
   64 to end_of_array
-  32 array2 cell+ 3 array_search  ( a ff )  \ search for a missing key (32)
+  32 array2 cell+ 3 array_search  ( a wf )  \ search for a missing key (32)
   assert( dup 0= )  \ not found
   assert( over @ end_of_array = )  \ pointer to the end of array key
   2drop 

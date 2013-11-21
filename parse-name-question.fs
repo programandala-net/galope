@@ -6,11 +6,12 @@
 
 \ History
 \ 2013-07-09 Added. 
+\ 2013-11-06 Changed the stack notation of flag.
 
-: parse-name?  ( "name" -- ca len ff )
+: parse-name?  ( "name" -- ca len wf )
   \ Parse the next name in the source.
   \ ca len = parsed name 
-  \ ff = empty name?
+  \ wf = empty name?
   \ Typical usage:
   \   parse-name? abort" Missing name"
   parse-name dup 0=

@@ -9,12 +9,13 @@
 \ 2012-06-18 Taken from the Autohipnosis program
 \ (http://programandala.net/es.programa.autohipnosis).
 \ 2012-09-24 'time?' renamed to 'overtime?'.
+\ 2013-11-06 Changed the stack notation of flag.
 
 require ./module.fs
 
 module: galope_microseconds
 
-: overtime?  ( d -- ff )
+: overtime?  ( d -- wf )
   utime d<
   ;
 
