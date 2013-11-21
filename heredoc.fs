@@ -59,7 +59,7 @@ export
 
 \ Usage examples
 
-require ./heredoc.fs
+require ../galope/heredoc.fs
 
 ' heredoc alias <<<
 <<< EOT bla bla bla

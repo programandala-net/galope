@@ -8,7 +8,7 @@
 \ 2013-07-11 Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo)
 
-: str<>  ( ca1 len1 ca2 len2 -- ff )
+: str<>  ( ca1 len1 ca2 len2 -- wf )
   \ Are two strings different?
   compare 0<>
   ;

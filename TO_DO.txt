@@ -1,3 +1,4 @@
+
 2012-09-14:
 
 Renombrar 'seconds' y 'microseconds':
@@ -44,3 +45,7 @@ Andreas
 2013-05-28:
 
 Idea: reverse characters in a string, done in <~/ext/comp/lang/forth/prg/util/misc/units/>.
+
+2013-11-06:
+
+fix slash-sides.fs

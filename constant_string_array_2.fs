@@ -6,10 +6,13 @@
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
 \ 2013-08-30 Written.
+\ 2013-11-11 Warning comment improved.
 
-\ Note 1: This code works because Gforth creates strings in the heap.
+\ Warning: This code works because Gforth creates strings in the heap
+\ (the dynamically allocated memory), that is not save in Forth system
+\ images.
 
-\ Note 2: The file <galope/constant_string_arrays_1.fs> has a simpler
+\ Note: The file <galope/constant_string_arrays_1.fs> has a simpler
 \ version that requires explicit compilation of every string with
 \ '2,', what can be an advantage if the stack is short.
 

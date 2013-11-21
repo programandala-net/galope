@@ -31,6 +31,8 @@ their names to galope/plus-plus.fs and galope/minus-minus.fs.
 
 2012-09-14 Code reformated.
 
+2013-11-06 Changed the stack notation of flag.
+
 ) 
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -54,10 +56,10 @@ variable dstack_pointer
 : 'dstack_tos ( -- a )
   dstack_pointer dup @ cells +
   ;
-: dstack_full? ( -- ff )
+: dstack_full? ( -- wf )
   dstack_pointer @ /dstack =
   ;
-: dstack_empty? ( -- ff )
+: dstack_empty? ( -- wf )
   dstack_pointer @ 0=
   ;
 : ?abort_full

@@ -80,6 +80,11 @@ changed to values.  Version A-01.
 
 2013-05-23 Revision. First todos.
 
+2013-10-30 '(bs)' and '>(bs)' are hidden again. Besides, there's word
+called '(bs)' in Gforth.
+
+2013-11-06 Changed the stack notation of flag.
+
 [then]
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -109,7 +114,7 @@ variable sb#  \ Free chars in the buffer
 : restart  ( -- )
   /sb sb# !
   ;
-: full?  ( u -- ff )
+: full?  ( u -- wf )
   sb# @ >
   ;
 : ?restart  ( u -- )
@@ -133,10 +138,10 @@ variable sb#  \ Free chars in the buffer
 : release  ( -- )
   0 to 'sb
   ;
-: active?  ( -- ff )
+: active?  ( -- wf )
   'sb 0<>
   ;
-: bigger?  ( u -- ff )
+: bigger?  ( u -- wf )
   /sb >
   ;
 
@@ -224,7 +229,7 @@ export
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Creation of buffered strings
 
-\ hide \ xxx todo why removed the 'hide'?
+hide 
 
 : (bs)  ( a1 u -- | a2 u )
   state @ if  postpone sliteral  else  >sb  then
@@ -254,10 +259,10 @@ export
 : lengths  ( a1 u1 a2 u2 -- a1 u1 a2 u2 u1 u2 )
   2 pick over
   ;
-: any_zero?  ( u1 u2 -- ff )
+: any_zero?  ( u1 u2 -- wf )
   0= swap 0= or
   ;
-: any_empty?  ( a1 u1 a2 u2  -- a1 u1 a2 u2 ff )
+: any_empty?  ( a1 u1 a2 u2  -- a1 u1 a2 u2 wf )
   lengths any_zero?
   ;
 
