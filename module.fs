@@ -3,17 +3,38 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,214 Marcos Cruz (programandala.net)
 
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
-\ 2012-04-17 First version.
-\ 2012-09-14 Code and comments reformated.
-\ 2013-06-02 New stack comments. 
+
+\ 2012-04-17: First version.
+
+\ 2012-09-14: Code and comments reformated.
+
+\ 2013-06-02: New stack comments. 
+
+\ 2014-02-18: 'set-wordlist' is moved to its own file.
+
+\ 2014-02-18: 'do-latest' is renamed to 'execute-latest' and moved to
+\ its own file.
+
+\ 2014-02-18: Fix: 'vocs' and 'order' crashed in unclear conditions.
+\ These changes were made: 'vocabulary' and 'definitions' were
+\ removed; 'wordlist' was used instead; the code was factored and
+\ rewritten in orden to make sure the wordlists are restored at the
+\ end of any created module and at the end of this file too. Solved.
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ Requirements
+
+require ./set-wordlist.fs
+require ./execute-latest.fs
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
 
-(
+0 [if]
 
 Modules hide the internal implementation and leave visible the
 words of the outer interface. Example:
@@ -32,48 +53,47 @@ EXPORT
 
 As an alternative, the word ':module' starts an unnamed module.
 
-)
+[then]
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Inner
+\ Inner words
 
-get-current  ( wid )
-vocabulary galope_module also galope_module definitions
+get-order get-current
 
-: set-wordlist ( wid -- )
-  \ Replace the wordlist on the top of the search list.
-  \ Code from Gforth's compat/vocabulary.fs (public domain).
-  >r get-order
-  dup 0= -50 and throw \ Search-order underflow?
-  nip r> swap  set-order
-  ;
-variable current-wid  \ Backup of the current wordlist.
-: save-current  ( -- )
+wordlist  dup constant galope_module  dup set-current  >order
+
+variable current-wid
+variable module-wid
+
+: (module:)  ( "name" -- wid )
   get-current current-wid !
-  ;
-variable module-wid  \ Module wordlist.
-: do-latest  ( -- )
-  \ Execute the interpretation semantics of the latest word created.
-  latest name>int execute 
+  wordlist dup module-wid ! dup >order dup set-current
   ;
 
-( wid ) set-current \ Restore original (i.e., public) compilation wordlist.
+set-current
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Outer
+\ Interface words
 
 : module:  ( "name" -- )
-  \ Start a module and create a named wordlist (a vocabulary) for it.
-  save-current vocabulary also do-latest definitions
+  \ Start a named module.
+  (module:) constant
   ;
 : :module  ( -- )
-  \ Start a module and create a wordlist for it.
-  save-current wordlist dup module-wid ! set-wordlist definitions
+  \ Start an anonymous module.
+  (module:) drop
   ;
 : export  ( -- )
+  \ Public definitions follow.
   current-wid @ set-current
   ;
-' definitions alias hide
-' previous alias ;module
+: hide  ( -- )
+  \ Module definitions follow.
+  module-wid @ set-current  
+  ;
+: ;module  ( -- )
+  \ End a moduel.
+  export previous
+  ;
 
-previous \ Restore original search order (inner words become invisible).
+set-order
