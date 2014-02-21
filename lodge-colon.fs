@@ -1,4 +1,4 @@
-\ galope/lodge.fs
+\ galope/lodge-colon.fs
 
 \ This file is part of Galope
 
@@ -7,82 +7,70 @@
 \ --------------------------------------------------------------
 \ About
 
-\ This code provides words that create variables, values or any kind
-\ of data whose actual data are stored into a self-growing buffer. The
-\ variables and values store in their own body an offset to the actual
-\ data in the buffer.  This makes it possible to save the whole buffer
-\ to a binary file and restore it later (e.g. for game sessions), even
-\ if the actual absolute address of the buffer changes.
+\ This code provides words that create and manage self-growing buffers
+\ that hold variables, values or any kind of data space.  The
+\ variables and values work as the ordinary ones, but they store in
+\ their own body an offset to the actual data in the buffer.  This
+\ makes it possible to save a whole buffer to a binary file and
+\ restore it later (e.g.  game sessions), even if the actual absolute
+\ address of the buffer changes.
 
-\ There's an improved version that makes it possible to create
-\ different named buffers and change any of them at any moment.  See
-\ the file <galope/lodge-colon.fs>.  Both versions can not be loaded
-\ at the same time because most of the word names are the same.
-\ <galope/lodge.fs> should be a bit faster because of the simpler
-\ inner calculations.
-
-\ The first name of this code was "zbuffer"; then it was renamed to
-\ "pack", but unfortunately the name was already taken in Galope, by a
-\ simple one-liner; then it was renamed to "stow", just to discover
-\ (in The Collaborative International Dictionary of English v.0.48
-\ [gcide]) that "stow" is only a transitive verb, not a substantive,
-\ and some words didn't fit well; finally "lodge" was chosen...
+\ There's a simpler version with only one buffer.  See the file
+\ <galope/lodge.fs>.  Both versions can not be loaded at the same time
+\ because most of the word names are the same.  <galope/lodge.fs>
+\ should be a bit faster because of the simpler inner calculations.
 
 \ --------------------------------------------------------------
 \ History
 
-\ 2014-02-16 Written.
-\ 2014-02-17 New: 'lodge-value', 'lodge-to' and related words.
-\ 2014-02-19 New: 'lodge-address-value'.
-\ 2014-02-20 Change: "index" and "relative pointer" corrected to "offset"
-\   in the comments; additional comment in 'lodge-address-value';
-\   '(cell-lodge-value:)' factored out from 'lodge-value' and
-\   'lodge-address-value'; '>lodge' renamed to 'lodge+'.
-\ 2014-02-20 New: 'lodge-save-mem'.
-\ 2014-02-21 Fix: '[lodge-to]' and '[lodge-2to]' were wrong.
-\   '[lodge-to]', before the fix:
-\     ' postpone xt>lodge postpone literal postpone !
-\     \ first bug: 'xt>lodge' should not be postponed in this case.
-\     \ second bug: the absolute lodge address must not be compiled,
-\     \   because it may change.
-\   After the fix:
-\     ' postpone literal postpone xt>lodge postpone !
-\   Now the xt is compiled and the lodge address is calculated at run-time.
-\ 2014-02-21: Forked to <galope/lodge-colon.fs>.
+\ 2014-02-21: Forked from <galope/lodge.fs>, in order to make
+\   an improved version that can create different named buffers.
+\ 2014-02-21: Improvement: Several named lodges can be created.
+\   'get-lodge' and 'set-lodge' manage the current one.
+\ 2014-02-21: Change: Some core words are renamed.
 \ 2014-02-21: New: 'lodge-,' and 'lodge-2,'.
 \ 2014-02-21: Fix: 'lodge-resize' now can be used directly by the
 \   application. Solved by moving the trailing code of
 \   'lodge-allocate' to 'lodge-resize'.
 
 \ --------------------------------------------------------------
+\ To-do
+
+\ 2014-02-21: Update 'lodge-,' and 'lodge-2,' to the new system.
+
+\ --------------------------------------------------------------
 \ Buffer
 
-variable lodge  \ buffer address
-variable /lodge  \ length in address units
-0 /lodge !  \ [only for compatibility; Gforth doesn't need it]
-
-0 allocate throw lodge !  \ an empty buffer at first
+variable current-lodge  \ data field address of the current lodge
+: lodge-address  ( -- a )
+  \ Address of the start address of the current lodge space.
+  current-lodge @
+  ;
+: lodge-length  ( -- a )
+  \ Address of the length of the current lodge.
+  current-lodge @ cell+
+  ;
 
 : lodge+  ( +n -- a )
   \ Current absolute address of a lodge offset. 
-  lodge @ +
+  lodge-address @ +
   ;
 : lodge-update  ( u a -- +n )
   \ u = additional address units already allocated in the lodge
   \ a = new address of the lodge
   \ +n = offset to the new free space
   \      (it's the same than the previous length of the lodge)
-  lodge !  /lodge @  swap /lodge +!
+  lodge-address !  lodge-length @  swap lodge-length +!
   ;
 : lodge-resize  ( u -- +n wior )
   \ u = new size of the lodge
   \ +n = lodge offset to the additional free space
-  lodge @ swap resize >r lodge-update r>
+  lodge-address @ swap resize >r lodge-update r>
   ;
 : lodge-allocate  ( u -- +n wior )
   \ u = additional address units required in the lodge
   \ +n = lodge offset to the additional free space
-  dup /lodge @ + lodge-resize
+  dup lodge-length @ + lodge-resize 
   ;
 : (lodge-erase)  ( u +n -- )
   \ Erase u address units from a lodge offset.
@@ -93,16 +81,43 @@ variable /lodge  \ length in address units
   swap (lodge-erase)
   ;
 
+: get-lodge  ( -- dfa )
+  \ Return the current lodge.
+  current-lodge @
+  ;
+: set-lodge  ( dfa -- )
+  \ Set a lodge as current.
+  current-lodge ! 
+  ;
+: lodge:  ( "name" -- )
+  \ Create a new empty lodge and make it the current one.
+  \ When executed, a lodge returns the address of its body
+  \ (data field address), like an ordinary variable.
+  \ The body holds the address and length of the allocated space.
+  create  0 allocate throw , 0 ,
+  latestxt >body set-lodge
+  ;
+
 \ --------------------------------------------------------------
 \ Variables
 
+: body>lodge  ( dfa -- a )
+  \ Convert the body of a lodge-variable or a lodge-value
+  \ to the lodge address they point to.
+  \ The body (data field address) holds two cells:
+  \   0     = The address of the lodge's body
+  \           (that holds the actual address of the lodge).
+  \   cell+ = The offset in the lodge.
+  dup @ @ swap cell+ @ +
+  ;
+
 : lodge-variable-does>  ( -- a )
   \ Behaviour of a lodge variable. 
-  does> ( -- a ) ( dfa ) @ lodge+
+  does> ( -- a ) ( dfa ) body>lodge
   ;
 : (lodge-variable)  ( u -- )
   \ Compile a lodge variable of u address units.
-  dup lodge-allocate throw dup , (lodge-erase)
+  current-lodge @ , dup lodge-allocate throw dup , (lodge-erase)
   ;
 : lodge-variable  ( "name" -- )
   \ Create a lodge variable and init it with zero.
@@ -118,7 +133,7 @@ variable /lodge  \ length in address units
 
 : (lodge-value)  ( u -- a )
   \ Compile a lodge value of u address units.
-  lodge-allocate throw dup , lodge+
+  current-lodge @ , lodge-allocate throw dup , lodge+
   ;
 : (cell-lodge-value:)  ( x "name" -- )
   \ Create a 1-cell lodge value.
@@ -126,7 +141,8 @@ variable /lodge  \ length in address units
   ;
 : lodge-value  ( n "name" -- )
   \ Create a lodge value.
-  (cell-lodge-value:)  does> ( -- n ) ( dfa ) @ lodge+ @
+  (cell-lodge-value:)
+  does> ( -- n ) ( dfa ) body>lodge @
   ;
 : lodge-address-value  ( +n "name" -- )
   \ Create a lodge address value.
@@ -135,12 +151,15 @@ variable /lodge  \ length in address units
   \ corresponding absolute address.  This is useful for creating
   \ lodge-values that point to data space in the lodge but have to be
   \ used as ordinary Forth values.
-  (cell-lodge-value:)  does> ( -- a ) ( dfa ) @ lodge+ @ lodge+
+  (cell-lodge-value:)
+  does> ( -- n ) ( dfa )
+    dup @ @ dup rot cell+ @ + @ +
+    \ dup body>lodge @ swap @ @ +  \ not clearer, and certainly slower
   ;
 : lodge-2value  ( d "name" -- )
   \ Create a lodge value.
   create 2 cells (lodge-value) 2!
-  does> ( -- d ) ( dfa ) @ lodge+ 2@
+  does> ( -- n ) ( dfa ) body>lodge 2@
   ;
 
 \ --------------------------------------------------------------
@@ -149,7 +168,7 @@ variable /lodge  \ length in address units
 : xt>lodge  ( xt -- a )
   \ Absolute lodge address from the xt of a lodge-variable or a
   \ lodge-value.
-  >body @ lodge+  
+  >body body>lodge
   ;
 
 : <lodge-to>  ( x "name" -- )
