@@ -6,6 +6,8 @@
 
 \ History
 \ 2013-06-27 Added.
+\ 2014-02-18 Trivial change in the loop; '/heredoc?' factored out from
+\ the loop.
 
 require string.fs  \ Gforth's dynamic strings
 require ./module.fs  \ Galope's module
@@ -29,6 +31,10 @@ module: galope_heredoc
 
 variable /heredoc  \ delimiter, a dynamic string
 
+: /heredoc?  ( ca len -- wf )
+  /heredoc $@ str=
+  ;
+
 export
 
 : (heredoc)  ( ca len "text<name>" -- ca len )
@@ -36,12 +42,10 @@ export
   \ This word was inspired by PHP's heredoc notation.
   \ ca len = <name>, the delimiter
   /heredoc $!  s" "
-  begin   parse-name ?dup 
-    if    2dup /heredoc $@ str= dup >r
-          if    2drop
-          else  s+ s"  " s+
-          then  r>
-    else  drop refill 0= dup abort" Missing final heredoc's delimiter"
+  begin   parse-name dup 
+    if    2dup /heredoc? dup >r
+          if  2drop  else  s+ s"  " s+  then  r>
+    else  2drop refill 0= dup abort" Missing final heredoc's delimiter"
     then
   until   -trailing
   ;

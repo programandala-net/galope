@@ -1,5 +1,5 @@
 \ galope/at-x.fs
-\ Set the cursor at certain colum.
+\ Set the cursor at certain column.
 
 \ This file is part of Galope
 

@@ -5,17 +5,21 @@
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
 \ History
-\ 2012-12-10 Added.
-\ 2013-11-06 Changed the stack notation of flag.
+\ 2012-12-10: Copied and modified from Charscan by Wil Baden (2002-2003).
+\ 2013-11-06: Changed the stack notation of flag.
+\ 2014-05-29: Changed the stack notation of strings. Note about
+\ 'string-suffix?'.
 
-\ Taken and modified from Charscan by Wil Baden (2002-2003).
+\ There's a similar word 'string-suffix?' (in
+\ <string-suffix-question.fs>) that consumes all parameters, what
+\ makes it recommended.
 
 require ./fourth.fs
 
-: ends? ( a1 u1 a2 u2 -- a1 u1 wf )
+: ends? ( ca1 len1 ca2 len2 -- ca1 len1 wf )
   \ Check end of string:
-  \ Is a2 u2 the end of a1 u1?
-  \ a1 u1 = long string
-  \ a2 u2 = end to check
+  \ Is ca2 len2 the end of ca1 len1?
+  \ ca1 len1 = long string
+  \ ca2 len2 = end to check
   2over  dup fourth - /string  compare 0=
   ;

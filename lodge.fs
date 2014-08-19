@@ -31,7 +31,8 @@
 \ --------------------------------------------------------------
 \ History
 
-\ 2014-02-16 Written.
+\ 2014-02-16 Written for Finto 
+\   (<http://programandala.net/en.program.finto.html>).
 \ 2014-02-17 New: 'lodge-value', 'lodge-to' and related words.
 \ 2014-02-19 New: 'lodge-address-value'.
 \ 2014-02-20 Change: "index" and "relative pointer" corrected to "offset"

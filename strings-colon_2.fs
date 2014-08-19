@@ -1,20 +1,26 @@
-\ galope/constant_string_array_2.fs
+\ galope/strings-colon_2.fs
 \ Constant string array, version 2
 
 \ This file is part of Galope
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 
-\ 2013-08-30 Written.
-\ 2013-11-11 Warning comment improved.
+\ 2013-08-30: Written.
+\ 2013-11-11: Warning comment improved.
+\ 2013-11-30: File renamed. Note about ';strings'.
+\ 2014-01-08: Fix: Header filename.
+\ 2014-03-05: Typo in comment.
 
 \ Warning: This code works because Gforth creates strings in the heap
 \ (the dynamically allocated memory), that is not save in Forth system
 \ images.
 
-\ Note: The file <galope/constant_string_arrays_1.fs> has a simpler
+\ Note:
+\ The file <galope/constant_string_arrays_1.fs> has a simpler
 \ version that requires explicit compilation of every string with
 \ '2,', what can be an advantage if the stack is short.
+\ The file <galope/semicolon-strings.fs> defines an alternative
+\ ending.
 
 require ./module.fs
 

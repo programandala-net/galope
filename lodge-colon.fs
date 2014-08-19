@@ -25,6 +25,8 @@
 
 \ 2014-02-21: Forked from <galope/lodge.fs>, in order to make
 \   an improved version that can create different named buffers.
+\   This feature is needed for Finto 
+\   (<http://programandala.net/en.program.finto.html>).
 \ 2014-02-21: Improvement: Several named lodges can be created.
 \   'get-lodge' and 'set-lodge' manage the current one.
 \ 2014-02-21: Change: Some core words are renamed.

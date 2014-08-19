@@ -5,11 +5,13 @@
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
+\ 2012 First version.
+\ 2013-11-25 Factored out with '/counted-string'.
+\ 2014-01-29 Fix: "./" path for 'require'.
+
+require ./slash-counted-string.fs
+
 : svariable  ( "name" -- )
   \ Create a string variable.
-  create 0 c,
-  [
-    s" /COUNTED-STRING" environment? 0=
-    [if] 255 [then] chars
-  ] literal allot align
+  create 0 c, /counted-string allot align
   ;
