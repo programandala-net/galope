@@ -23,6 +23,6 @@ require ./possibly.fs
 \ word.
 
 : anew  ( "name" -- ) ( run: -- )
-  >in @ possibly  >in ! marker
+  >in @ possibly >in ! marker
   ;
 

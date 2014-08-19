@@ -1,6 +1,6 @@
 \ galope/xcase.fs
 \ Tools to convert xchars to lowercase or uppercase.
-\ Version A-03-20130827
+\ Version A-03-20131208
 
 \ This file is part of Galope
 
@@ -33,17 +33,21 @@ The table is erased before using it.
 pair of chars in the table. Now only the counterpart char is stored in
 the table, at the position of the index char.
 
-2013-08-27 Some changes in comments, stack notations and source
+2013-08-27 Some changes in comments, stack and source
 format.
+
+2013-12-08 Fix: stack comment of 'pair,' and '(pair,)'.
 
 [then]
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ TODO
 
-\ For a new version: the translation table could be updated with
-\ more chars; both the table and the bit array would be resized
-\ transparently; the limits would be updated.
+\ The translation table could be updated with more chars; both the
+\ table and the bit array would be resized transparently; the limits
+\ would be updated.
+\
+\ The caseness bit array could be created at compile time.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
@@ -122,24 +126,23 @@ variable xcase_depth  \ depth before creating the table
   \ Return the address of an xchar in the translation table.
   xchar># cells xtable @ +
   ;
-: counterpart  ( xc -- xc' )
+: counterpart  ( xc1 -- xc2 )
   \ Return the counterpart of an xchar.
   'xchar @
   ;
-: (pair,)  ( xc xc' -- )
+: (pair,)  ( xc1 xc2 -- )
   \ Store a pair of chars in the translation table,
   \ one direction only.
   \ xc1 = index xchar
   \ xc2 = counterpart xchar
   swap 'xchar !
   ;
-: pair,  ( xc xc' -- )
+: pair,  ( xc1 xc2 -- )
   \ Store a pair of chars in the translation table,
   \ both directions.
   \ xc1 = lowercase xchar
   \ xc2 = uppercase xchar
-  over lowercase
-  2dup swap (pair,) (pair,)
+  over lowercase  2dup swap (pair,) (pair,)
   ;
 : xtable!  ( xc1 xc1' ... xcn xcn' n -- )
   \ Store all pairs of chars in the translation table.
