@@ -4,41 +4,12 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013 Marcos Cruz (programandala.net)
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
 
-0 [if]
-
-2012-09-17 Start. Version A-00.
-
-2012-09-18 First working version. Char pairs are stored twice in the
-translation table: lower-upper and upper-lower. The case is changed
-using the char as table index, but there's no way to force the
-direction of the change. It's not practical.
-
-2012-09-18 Start of version A-01. New method: a bit array stores the
-caseness of every char.
-
-2012-09-19 Start of version A-02. Data is kept in independent files
-and stored in the heap, not in the dictionary.
-
-2012-09-21 Some words are renamed. 'xlower?' and 'xupper?' are moved
-to the interface, and work with ASCII chars if needed.  'xace[' is
-fixed. The check done by 'tabled?' is fixed (only the range was used).
-The table is erased before using it.
-
-2012-09-21 Start of version A-03. There was no need to store every
-pair of chars in the table. Now only the counterpart char is stored in
-the table, at the position of the index char.
-
-2013-08-27 Some changes in comments, stack and source
-format.
-
-2013-12-08 Fix: stack comment of 'pair,' and '(pair,)'.
-
-[then]
+\ See at the end of the file.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ TODO
@@ -52,21 +23,17 @@ format.
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
 
-0 [if]
-
-First, a char translation table must be created with all chars
-used by the program; it can not be updated later.  Examples can
-be found in the following files:
-
-galope/xcase_ca.fs (Catalan letters)
-galope/xcase_eo.fs (Esperanto letters)
-galope/xcase_es.fs (Spanish letters)
-
-Then the interface words can be used to check or change any
-char. If the xchar is not in the table, the usual ASCII chars
-words will be tried.
-
-[then]
+\ First, a char translation table must be created with all chars used
+\ by the program; it can not be updated later.  Examples can be found
+\ in the following files:
+ 
+\   galope/xcase_ca.fs ( Catalan letters )
+\   galope/xcase_eo.fs ( Esperanto letters )
+\   galope/xcase_es.fs ( Spanish letters )
+ 
+\ Then the interface words can be used to check or change any char. If
+\ the xchar is not in the table, the usual ASCII chars words will be
+\ tried.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Requirements
@@ -82,7 +49,7 @@ require ffl/bar.fs  \ bit array
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Inner words
 
-module: galope_xcase
+module: galope_xcase_module
 
 variable xtable  \ translation table address
 variable caseness  \ bit array id
@@ -223,3 +190,33 @@ export
 
 ;module
 
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ History
+
+\ 2012-09-17 Start. Version A-00.
+\ 
+\ 2012-09-18 First working version. Char pairs are stored twice in the
+\ translation table: lower-upper and upper-lower. The case is changed
+\ using the char as table index, but there's no way to force the
+\ direction of the change. It's not practical.
+\ 
+\ 2012-09-18 Start of version A-01. New method: a bit array stores the
+\ caseness of every char.
+\ 
+\ 2012-09-19 Start of version A-02. Data is kept in independent files
+\ and stored in the heap, not in the dictionary.
+\ 
+\ 2012-09-21 Some words are renamed. 'xlower?' and 'xupper?' are moved
+\ to the interface, and work with ASCII chars if needed.  'xace[' is
+\ fixed. The check done by 'tabled?' is fixed (only the range was
+\ used).  The table is erased before using it.
+\ 
+\ 2012-09-21 Start of version A-03. There was no need to store every
+\ pair of chars in the table. Now only the counterpart char is stored
+\ in the table, at the position of the index char.
+\ 
+\ 2013-08-27 Some changes in comments, stack and source format.
+\ 
+\ 2013-12-08 Fix: stack comment of 'pair,' and '(pair,)'.
+\
+\ 2014-11-17: Module name updated.

@@ -45,12 +45,13 @@ along with this library; if not, see
 \ expressions.
 
 \ History
-\ 2012-09-07 First version.
-\ 2012-09-08 Comments revised and completed.
+\ 2012-09-07: First version.
+\ 2012-09-08: Comments revised and completed.
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 
-module: galope_sarray
+module: galope_sarray_module
 
 variable start_depth
 

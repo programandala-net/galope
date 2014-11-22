@@ -5,9 +5,9 @@
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
-\ 2012 First version.
-\ 2013-11-25 Factored out with '/counted-string'.
-\ 2014-01-29 Fix: "./" path for 'require'.
+\ 2012: First version.
+\ 2013-11-25: Factored out with '/counted-string'.
+\ 2014-01-29: Fix: "./" path for 'require'.
 
 require ./slash-counted-string.fs
 

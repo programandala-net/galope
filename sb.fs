@@ -26,66 +26,35 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
 
-0 [if]
-
 \ First, include this module into your program: 
-s" galope/sb.fs" required
-
-\ Then create a string buffer in the common heap,
-\ for example with space for 1024 chars:
-1024 heap_sb
-
+\
+\    s" galope/sb.fs" required
+\
+\ Then create a string buffer in the common heap, for example with
+\ space for 1024 chars:
+\
+\    1024 heap_sb
+\
 \ It's possible to use the dictionary instead (with less features):
-1024 dictionary_sb
-
-\ The public words of the module are defined after every
-\ 'export'.
-
-[then]
+\
+\    1024 dictionary_sb
+\
+\ The public words of the module are defined after every 'export'.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Todo
 
-\ 2013-05-23:
-\ Make a new version A-02, with better word names. Save the new
-\ version as "sb_a-02.fs" to avoid compatibility problems.
-
+\ 2013-05-23: Make a new version A-02, with better word names. Save
+\ the new version as "sb_a-02.fs" to avoid compatibility problems.
+\
+\ 2014-11-17: Update the stack notation.
+\
 \ Other specific todos are marked in the code.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
 
-0 [if]
-
-This program is based on csb2 by the same author:
-<http://programandala.net/es.programa.csb2>.
-
-2012-04-16 First changes in csb2. Version A-00.
-
-2012-04-17 More changes.
-
-2012-04-18 More changes. Added the new 'module.fs'.
-
-2012-04-19 Simplified: '?free_sb' not needed.  Simpler
-alternative version of 'sb&'.  The ''sb' and '/sb' variables are
-changed to values.  Version A-01.
-
-2012-04-30 Added 'chars' where needed, for portability.
-
-2012-07-04 '??' used.
-
-2012-07-09 All 'hide' are temporary removed, for debugging.
-
-2012-09-14 The code was reformated.
-
-2013-05-23 Revision. First todos.
-
-2013-10-30 '(bs)' and '>(bs)' are hidden again. Besides, there's word
-called '(bs)' in Gforth.
-
-2013-11-06 Changed the stack notation of flag.
-
-[then]
+\ See at the end of the file.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -94,7 +63,7 @@ require ./question-question.fs
 
 base @ decimal
 
-module: galope_sb
+module: galope_sb_module
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Inner
@@ -313,4 +282,37 @@ export
   ;
 
 ;module  base !
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ History
+
+\ This program is based on csb2 by the same author:
+\ <http://programandala.net/es.programa.csb2>.
+\ 
+\ 2012-04-16 First changes in csb2. Version A-00.
+\ 
+\ 2012-04-17 More changes.
+\ 
+\ 2012-04-18 More changes. Added the new 'module.fs'.
+\ 
+\ 2012-04-19 Simplified: '?free_sb' not needed.  Simpler alternative
+\ version of 'sb&'.  The ''sb' and '/sb' variables are changed to
+\ values.  Version A-01.
+\ 
+\ 2012-04-30 Added 'chars' where needed, for portability.
+\ 
+\ 2012-07-04 '??' used.
+\ 
+\ 2012-07-09 All 'hide' are temporary removed, for debugging.
+\ 
+\ 2012-09-14 The code was reformated.
+\ 
+\ 2013-05-23 Revision. First todos.
+\ 
+\ 2013-10-30 '(bs)' and '>(bs)' are hidden again. Besides, there's
+\ word called '(bs)' in Gforth.
+\
+\ 2013-11-06 Changed the stack notation of flag.
+\
+\ 2014-11-17: Module name updated.
 

@@ -10,14 +10,20 @@
 \ History
 
 \ 2013-12-12 Written, based on <galope/translated.fs>, as a better
-\   alternative to ftrac (<http://programandala.net/es.program.ftrac.html>).
+\ alternative to ftrac
+\ (<http://programandala.net/es.program.ftrac.html>).
+\
+\ 2014-11-17: Module name updated.
 
 \ --------------------------------------------------------------
 
 require ./module.fs
 require ffl/str.fs
 
-module: galope_uncodepaged
+\ --------------------------------------------------------------
+\ Core
+
+module: galope_uncodepaged_module
 
 str-create uncodepaged-str
 variable depth0

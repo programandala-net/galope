@@ -14,18 +14,19 @@
 \ --------------------------------------------------------------
 
 \ Modifications:
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 
 \ History
-\ 2012-04 Extracted from a program of mine.
-\ 2012-04-29 Added 'at-x' and 'at-y'.
-\ 2012-05-08 'at-x' and 'at-y' moved to their own files.
-\ 2013-06-26 Fixed some comments. 
-\ 2013-06-26 Gforth's 'esc[' used instead of 'ansi_escape'.
+\ 2012-04: Extracted from a program of mine.
+\ 2012-04-29: Added 'at-x' and 'at-y'.
+\ 2012-05-08: 'at-x' and 'at-y' moved to their own files.
+\ 2013-06-26: Fixed some comments. 
+\ 2013-06-26: Gforth's 'esc[' used instead of 'ansi_escape'.
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 
-module: galope_xy
+module: galope_xy_module
 
 base @ decimal
 

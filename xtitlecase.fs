@@ -5,9 +5,11 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 
-\ 2013-08-27 Written, based on 'xuppercase'.
+\ History
+\ 2013-08-27: Written, based on 'xuppercase'.
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 require ./xbounds.fs
@@ -15,7 +17,7 @@ require ./xcase.fs
 require ./x-c-store.fs
 require ./tilde-tilde.fs
 
-module: galope_xtitlecase
+module: galope_xtitlecase_module
 
 variable apart?
 : ?word_separation  ( xc -- )

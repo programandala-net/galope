@@ -3,17 +3,19 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 
-\ 2012-04-30 First version.
-\ 2012-09-14 The code was reformated.
-\ 2013-05-28 Fix: 'require ./sb.fs' was missing.
+\ History
+\ 2012-04-30: First version.
+\ 2012-09-14: The code was reformated.
+\ 2013-05-28: Fix: 'require ./sb.fs' was missing.
+\ 2014-11-17: Module name fixed.
 
 require ./module.fs
 require ./sb.fs
 require ./svariable.fs
 
-module: galope_string_bs
+module: galope_stream_bs_module
 
 svariable end_of_stream
 

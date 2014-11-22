@@ -7,9 +7,10 @@
 
 \ History
 
-\ 2012-05-01 Extracted from and application of the author.
+\ 2012-05-01: Extracted from and application of the author.
+\ 2014-11-02: Change: Stack comments.
 
-: sconstant  (  a1 u1 "name" -- )
+: sconstant  (  a len "name" -- )
   create  s,
-  does>  ( pfa -- a2 u1 )  count
+  does>  ( -- a len ) ( pfa ) count
   ;

@@ -6,14 +6,15 @@
 
 \ History
 
-\ 2012-06-18 Taken from the Autohipnosis program
+\ 2012-06-18: Taken from the Autohipnosis program
 \ (http://programandala.net/es.programa.autohipnosis).
-\ 2012-09-24 'time?' renamed to 'overtime?'.
-\ 2013-11-06 Changed the stack notation of flag.
+\ 2012-09-24: 'time?' renamed to 'overtime?'.
+\ 2013-11-06: Changed the stack notation of flag.
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 
-module: galope_microseconds
+module: galope_microseconds_module
 
 : overtime?  ( d -- wf )
   utime d<

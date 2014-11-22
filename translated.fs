@@ -5,14 +5,16 @@
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ 2013-12-10 Written.
+\ History
+\ 2013-12-10: Written.
+\ 2014-11-17: Module name updated.
 
 require ./paren-star.fs  \ '(*'
 require ./module.fs
 
 require ffl/str.fs
 
-module: galope_translated
+module: galope_translated_module
 
 str-create translated-str
 variable depth0
