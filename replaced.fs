@@ -17,9 +17,9 @@ str-create tmp-str
 export
 : replaced ( ca1 len1 ca2 len2 ca3 len3 -- ca1' len1' )
   \ Replaces all ocurrences of ca3 len3 with ca2 len2 in ca1 len1.
-  \ ca1 len1 = string to modify
+  \ ca1 len1 = string to modify ("haystack")
   \ ca2 len2 = substring to replace with
-  \ ca3 len3 = substring to be replaced
+  \ ca3 len3 = substring to be replaced ("needle")
   2rot tmp-str str-set  tmp-str str-replace  tmp-str str-get
   ;
 ;module

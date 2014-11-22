@@ -4,18 +4,20 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 
-\ 2012-04-30 First version.
-\ 2012-09-14 The code was reformated.
-\ 2013-05-28 Typo in error message.
-\ 2013-05-28 Fix: 'require ./sb.fs' was unnecessary. 
-\ 2013-09-28 File renamed from "stream_s.fs" to "stream-to-string.fs".
+\ History
+\ 2012-04-30: First version.
+\ 2012-09-14: The code was reformated.
+\ 2013-05-28: Typo in error message.
+\ 2013-05-28: Fix: 'require ./sb.fs' was unnecessary. 
+\ 2013-09-28: File renamed from "stream_s.fs" to "stream-to-string.fs".
+\ 2014-11-17: Module name fixed. 
 
 require ./module.fs
 require ./svariable.fs
 
-module: galope_string_s
+module: galope_stream_to_s_module
 
 svariable end_of_stream
 

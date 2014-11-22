@@ -5,22 +5,22 @@
 
 \ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 
+\ History
 \ 2013-08-30: Extracted from 'La isla del Coco', a program by the same
 \ author.
 \ 2013-11-11: Warning comment improved.
 \ 2013-11-30: File renamed. Note about ';strings'.
 \ 2014-01-08: Fix: Header filename.
 \ 2014-03-05: Typo in comment.
+\ 2014-11-02: Comments fixed and updated.
 
-\ Warning: This code works because Gforth creates strings in the heap
-\ (the dynamically allocated memory), that is not save in Forth system
+\ WARNING: This code works because Gforth creates strings in the heap
+\ (the dynamically allocated memory); it is not saved in Forth system
 \ images.
 
-\ Notes:
-\ The file <galope/constant_string_arrays_2.fs> has an improved
-\ version that transparently compiles the strings.
-\ The file <galope/semicolon-strings.fs> defines an alternative
-\ ending.
+\ NOTE: The file <galope/strings-colon_2.fs> has an improved version
+\ that transparently compiles the strings.  The file
+\ <galope/semicolon-strings.fs> defines an alternative ending.
 
 : strings:  ( "name" -- dfa )
   \ Start the definition of a constant string array.

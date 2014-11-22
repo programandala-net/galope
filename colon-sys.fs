@@ -8,14 +8,15 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
 
-\ 2012-12-01 First version, needed for the Finto project
+\ 2012-12-01: First version, needed for the Finto project
 \ (<http://programandala.net/en.program.finto>).
+\ 2014-11-17: Module name updated.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 require ./module.fs
 
-module: galope_colon-sys
+module: galope_colon-sys_module
 
 variable tmp
 

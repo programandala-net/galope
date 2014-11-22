@@ -5,7 +5,8 @@
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
 \ History
-\ 2012-06-07 Added.
+\ 2012-06-07: Added.
+\ 2014-11-17: Module name updated.
 
 \ Taken from:
 \ http://c2.com/cgi/wiki?ForthReadability
@@ -13,7 +14,7 @@
 
 require ./module.fs
 
-module: galope_repeated-colon
+module: galope_repeated-colon_module
 
 : invoke  ( a -- )  >r  ; 
 

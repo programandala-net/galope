@@ -5,14 +5,20 @@
 \ Copyright (C) 2006,2013 Marcos Cruz (programandala.net)
 
 \ History
-\ 2013-05-18: Taken from fhp (http://programandala.net/en.program.fhp).
-\   Rewritten in a much simpler way.
-\ 2014-07-14: code common to 'day>iso' and 'month>iso' is factored out.
+
+\ 2013-05-18: Taken from fhp
+\ (http://programandala.net/en.program.fhp).  Rewritten in a much
+\ simpler way.
+\
+\ 2014-07-14: code common to 'day>iso' and 'month>iso' is factored
+\ out.
+\
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 require ./buffer-colon.fs
 
-module: galope_yyyymmdd-to-iso
+module: galope_yyyymmdd-to-iso_module
 
 10 chars constant /iso-date
 /iso-date 1+ chars buffer: iso-date

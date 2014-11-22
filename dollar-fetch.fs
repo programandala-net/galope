@@ -5,7 +5,7 @@
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ 2013-08-30 Extracted from Fungo, by the same author.
+\ 2013-08-30: Extracted from Fungo, by the same author.
 
 require string.fs  \ Gforth's dynamic strings
 

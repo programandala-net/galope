@@ -8,32 +8,30 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
 
-(
-
-2012-04-07 In order to reuse this code, it was extracted from
-the project it was developed for
-[http://programandala.net/es.programa.asalto_y_castigo.forth].
-The abort messages are translated to English.
-
-2012-04-22 The original Spanish comments are moved to the end of
-the file.  More compact source layout. 
-
-2012-04-30 Added 's?{' and '}s{'.
-
-2012-05-02 Fixed some stack comments.
-
-2012-05-05 Added the new files galope/increment.fs and
-galope/decrement.fs, instead of defining '++' and '--'.  Added
-'}s&?'.
-
-2012-05-08 galope/increment.fs and galope/decrement.fs changed
-their names to galope/plus-plus.fs and galope/minus-minus.fs.
-
-2012-09-14 Code reformated.
-
-2013-11-06 Changed the stack notation of flag.
-
-) 
+\ 2012-04-07: In order to reuse this code, it was extracted from the
+\ project it was developed for
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth).  The
+\ abort messages are translated to English.
+\ 
+\ 2012-04-22: The original Spanish comments are moved to the end of the
+\ file.  More compact source layout. 
+\ 
+\ 2012-04-30: Added 's?{' and '}s{'.
+\ 
+\ 2012-05-02: Fixed some stack comments.
+\ 
+\ 2012-05-05: Added the new files galope/increment.fs and
+\ galope/decrement.fs, instead of defining '++' and '--'.  Added
+\ '}s&?'.
+\ 
+\ 2012-05-08: galope/increment.fs and galope/decrement.fs changed their
+\ names to galope/plus-plus.fs and galope/minus-minus.fs.
+\ 
+\ 2012-09-14: Code reformated.
+\ 
+\ 2013-11-06: Changed the stack notation of flag.
+\ 
+\ 2014-11-17: Module name updated.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -45,7 +43,7 @@ require ./sb.fs
 require ./plus-plus.fs
 require ./minus-minus.fs
 
-module: galope_random_strings
+module: galope_random_strings_module
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Depth stack

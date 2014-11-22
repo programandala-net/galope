@@ -1,20 +1,22 @@
 \ galope/headline.fs
 
-\ xxx todo unfinished
-
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 
 \ History
 \ 2012-04-29 First version.
 \ 2012-09-14 Removed unused mroll.fs. Code reformated.
 \ 2013-11-06 Changed the stack notation of flag.
+\ 2014-11-17: Module name updated.
+
+\ XXX TODO -- finish!
+\ XXX TODO -- update the stack notation
 
 require module.fs
 require xy.fs
 
-module: galope_headline
+module: galope_headline_module
 
 variable y variable x  \ top left coordinates
 variable heigth  \ rows of the headline

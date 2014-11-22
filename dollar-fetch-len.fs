@@ -1,4 +1,4 @@
-\ galope/dolar-fetch-len.fs
+\ galope/dollar-fetch-len.fs
 \ Alternative definiton for Gforth's '$@len'
 
 \ This file is part of Galope

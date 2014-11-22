@@ -14,6 +14,8 @@ require ffl/rgx.fs
   \ Match case-sensitive a whole string with the given regular
   \ expression; return match result.
   \ rgx = regex id
-  2dup 2>r rgx-cmatch?
-  2r> 0 swap rgx-result 0= rot rot = and  and
+  2dup 2>r rgx-cmatch?  \ match?
+  2r> 0 swap rgx-result 0=  \ start=0?
+  rot rot =  \ end=len?
+  and and
   ;

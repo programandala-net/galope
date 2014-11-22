@@ -5,14 +5,16 @@
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
 \ History
-\ 2013-06-27 Added.
-\ 2014-02-18 Trivial change in the loop; '/heredoc?' factored out from
-\ the loop.
+\ 2013-06-27: Added.
+\ 2014-02-18: Trivial change in the loop; '/heredoc?' factored out from
+\   the loop.
+\ 2014-10-26: Fix: stack comment of '(heredoc)'.
+\ 2014-11-17: Module name updated.
 
 require string.fs  \ Gforth's dynamic strings
 require ./module.fs  \ Galope's module
 
-module: galope_heredoc
+module: galope_heredoc_module
 
 0 [if]  \ xxx old, first version
 : <<<  ( "text>>>" -- ca len )
@@ -37,10 +39,11 @@ variable /heredoc  \ delimiter, a dynamic string
 
 export
 
-: (heredoc)  ( ca len "text<name>" -- ca len )
+: (heredoc)  ( ca1 len1 "text<name>" -- ca2 len2 )
   \ Read text from the input stream until a certain <name> is found.
   \ This word was inspired by PHP's heredoc notation.
-  \ ca len = <name>, the delimiter
+  \ ca1 len1 = <name>, the delimiter
+  \ ca2 len2 = text from the input stream, until <name> is found
   /heredoc $!  s" "
   begin   parse-name dup 
     if    2dup /heredoc? dup >r

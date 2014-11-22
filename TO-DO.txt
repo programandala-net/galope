@@ -4,11 +4,12 @@ Pending tasks and raw ideas for Galope.
 
 Use comment marks, to make automatic lists of the modules:
 
-\ galope-tag: string
+\ galope-tag: strings
 \ galope-tag: time&date
-\ galope-tag: time&date
-\ galope-tag: control_structure
 \ galope-tag: control_structures
+\ galope-tag: text_output
+\ galope-tag: data_stack
+\ galope-tag: return_stack
 
 2014-04-22:
 

@@ -6,11 +6,12 @@
 
 \ History
 
-\ 2012-09-30 Start.
+\ 2012-09-30: Start.
+\ 2014-11-17: Module name updated.
 
 require ./module.fs
 
-module: galope_minus-keys
+module: galope_minus-keys_module
 
 export 
 
