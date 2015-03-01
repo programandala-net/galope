@@ -52,6 +52,7 @@
   ;
 : queue_off  ( queue -- )
   \ Empty a queue.
+  \ XXX TODO better name
   queue>len off
   ;
 : resize_queue  ( queue n -- )
