@@ -8,6 +8,8 @@
 \ 2012-09-21 Added. Unfinished.
 \ 2012-11-02 Finished.
 
+\ XXX TODO letter "l.l"?
+
 require ./xcase.fs
 
 xcase[

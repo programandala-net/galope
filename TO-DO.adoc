@@ -1,23 +1,36 @@
+= To-do list of Galope
+:author: Marcos Cruz (programandala.net)
+:revdate: 2015-02-03
+
 Pending tasks and raw ideas for Galope.
 
-2014-07-13:
+.2015-02-03:
+
+Rename all modules?:
+
+galope_blabla_module --> galope.blabla
+
+.2014-07-13:
 
 Use comment marks, to make automatic lists of the modules:
 
+----
 \ galope-tag: strings
 \ galope-tag: time&date
 \ galope-tag: control_structures
 \ galope-tag: text_output
 \ galope-tag: data_stack
 \ galope-tag: return_stack
+----
 
-2014-04-22:
+.2014-04-22:
 
 A word to add new words to a module.
 
-2014-03-19:
+.2014-03-19:
 
 
+----
 ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
 
 \  *******************************************************************
@@ -30,53 +43,62 @@ ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
     2SWAP BOUNDS ?DO
         over I C@ = IF  dup I C!  THEN
     LOOP 2DROP ;
+----
 
 Write 'replace-xchar' too.
 
-2014-03-13:
+.2014-03-13:
 
 'among-of' ( run-time: x0 x'1...x'n n )
 
+----
 x case
   a b c 3 among-of ... endof
   d e 2 among-of ... endof
   f g h i 4 among-of ... endof
 endcase
+----
 
 
-2014-03-12:
+.2014-03-12:
 
 rename 'greater-of' to '>of' or 'greater-than-of'?
 rename 'less-of' to '<of' or 'less-than-of'?
 write '<>of'?
 
-2012-09-20:
+.2012-09-20:
 
-r.s
+r.s  [ 2015-02-03: better name: .rs ]
 
 Idea: 
 
+----
 : copy-name  ( "name" -- ca len )
   >in @ >r parse-name r> >in !
   ;
+----
 
-2012-09-14:
+.2012-09-14:
 
 Rename 'seconds' and 'microseconds':
 
+----
 seconds/key ?
 seconds|key ?
 seconds_or_keypress ?
 seconds|keypress ?
 /seconds ?
+----
 
 Then use 'seconds' and 'microseconds' for versions where the pause that can
 not be shortened with a keypress.
-2013-05-15:
+
+.2013-05-15:
 
 Idea found in 
 (<http://groups.google.com/group/comp.lang.forth/browse_thread/thread/7367894d3a9ac280/2829422a2a58b349>):
 
+____
 I use: 
 BEGIN-PRIVATE   \ remember dp #1 
 < definitions > 
@@ -86,42 +108,47 @@ MAKE-PRIVATE  \ decapitate all definitions between dp #1 & #2
 Clean and simple. Decapitate means, convert those defs to real nonames, 
 thereby freeing additional namespace. 
 Andreas 
+____
 
-2013-05-28:
+.2013-05-28:
 
 Idea: reverse characters in a string,
 done in <~/ext/comp/lang/forth/prg/util/misc/units/>.
 
-2013-11-06:
+.2013-11-06:
 
 fix slash-sides.fs
 
-2014-02-17:
+.2014-02-17:
 
 Create word sections, after Gforth, and mark them in the sources with some conventional notation.
 This way the files could be searched (e.g. with 'grep')
 for words of specific sections.
 
-2014-02-18:
+.2014-02-18:
 
 '2pick', 'picks', '2picks'.
 
-2014-02-23:
+.2014-02-23:
  
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own files,
 when a similar word will need them.
 
-2014-02-27:
+.2014-02-27:
 
 Rename 'drops' to 'ndrop', and related.
 
 de comp.lang.forth:
 
+----
 : [:  postpone ahead
       here ; immediate
 : ;]  postpone exit
       postpone then
       postpone literal ; immediate
+----
+
+____
 From: "Alex McDonald" <blog@rivadpm.com>
 Newsgroups: comp.lang.forth
 Subject: Re: What about code blocks (not Forth blocks)?
@@ -129,13 +156,16 @@ Date: Thu, 19 Dec 2013 20:07:50 GMT
 Organization: A noiseless patient Spider
 Lines: 46
 Message-ID: <l8vjmk$l6a$1@dont-email.me>
+____
 
-2014-03-09:
+.2014-03-09:
 
+----
 random-string{
 s" string1"
 s" string3"
 s" string3"
 }random-string: name$
+----
 
 Pero se puede hacer igual con <galope/random-strings>.

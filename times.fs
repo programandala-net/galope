@@ -5,12 +5,14 @@
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ 2013-08-08 Taken from:
+\ 2013-08-08: Code taken from:
 \
 \ Newsgroups: comp.lang.forth
-\ From: Rob Sciuk <rob@controlq.com>
+\ From: Rob Sciuk (rob at controlq dot com)
 \ Date: Wed, 7 Aug 2013 18:39:48 -0400
 \ Message-ID: <alpine.BSF.2.00.1308071836490.16825@yoko.controlq.com>
+
+\ 2015-01-29: Alternative version without locals.
 
 0 [if]
 
@@ -40,10 +42,38 @@
 
 [then]
 
-\ Improved version; the stack is usable by the xt:
+
+1 [if]
+
+\ Improved version: the stack is usable by the xt:
 
 : times  ( i*x xt n -- j*x )
   \ Execute xt n times.
   { xt n }  begin  n  while  xt execute  n 1- to n  repeat
   ;
 
+[then]
+
+0 [if]
+
+\ Alternative version without locals.
+
+require ./module.fs
+
+module: galope_times_module
+
+variable times-count
+variable times-xt
+
+export
+
+: times  ( i*x xt n -- j*x )
+  \ Execute xt n times.
+  times-count !  times-xt !
+  begin  times-count @
+  while  times-xt perform  -1 times-count +!
+  repeat
+  ;
+
+;module
+[then]

@@ -9,7 +9,7 @@
 
 [undefined] nr> [if]
 
-: nr>  ( -- i×n +n -- ) ( R: j×n +n -- )
+: nr>  ( -- i×n +n ) ( R: j×n +n -- )
   r> r> { a n }  \ save n and the return address
   n  begin  dup  while  r> swap 1-  repeat  drop n
   a >r  \ restore the return address

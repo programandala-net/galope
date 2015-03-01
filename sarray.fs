@@ -48,6 +48,7 @@ along with this library; if not, see
 \ 2012-09-07: First version.
 \ 2012-09-08: Comments revised and completed.
 \ 2014-11-17: Module name updated.
+\ 2015-01-25: Typo.
 
 require ./module.fs
 
@@ -83,14 +84,14 @@ export
   2* cells + 
   ;
 : }s@  ( a1 u -- a2 u2 )
-  \ Fetch an string from an array.
+  \ Fetch a string from an array.
   \ a1 = array address 
   \ u = string number
   \ a2 u2 = string
   '{}s 2@
   ;
 : }s!  ( a1 u1 a2 u -- )
-  \ Store an string into an array.
+  \ Store a string into an array.
   \ a1 u1 = string
   \ a2 = array string
   \ u = string number

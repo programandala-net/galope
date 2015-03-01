@@ -3,7 +3,7 @@
 
 \ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 
-\ 2013-11-28: First version, 'unslurp, after Gforth's 'slurp-file'.
+\ 2013-11-28: First version, 'unslurp', after Gforth's 'slurp-file'.
 \ 2014-02-21: Renamed to 'unslurp-file'.
 
 : unslurp-file  ( ca1 len1 ca2 len2 -- )

@@ -7,11 +7,11 @@
 \ This file is public domain.
 
 \ History
-\ 2012-05-06 First version.
-\ 2012-09-14 Code reformated.
+\ 2012-05-06: First version.
+\ 2012-09-14: Code reformated.
 
 [undefined] home [if]
-  : home
+  : home  ( -- )
     0 dup at-xy
     ;
 [then]
