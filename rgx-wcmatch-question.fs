@@ -5,8 +5,9 @@
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ 2013-12-10 Written for an addon of the application Fendo, as a
-\ complement of FFL's rgx module.
+\ 2013-12-10 Written for an addon of Fendo
+\ (http://programandala.net/en.program.fendo.html), as a complement of
+\ Forth Foundation Library's rgx module.
 
 require ffl/rgx.fs
 

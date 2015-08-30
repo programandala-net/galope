@@ -3,7 +3,7 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012,2013,214 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 
 \ This code was inspired by, and partly based on:
 \
@@ -19,7 +19,7 @@
 \     (i.e.  all files in src) under the terms of GNU GPL
 \     [http://www.fsf.org/licensing/licenses/gpl.html] as published by
 \     FSF [http://www.fsf.org/]. All other files, including
-\     contrubuted code in devel, are licensed under [22]GNU LGPL by
+\     contributed code in devel, are licensed under [22]GNU LGPL by
 \     default (if not stated otherwise).
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

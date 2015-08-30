@@ -5,15 +5,16 @@
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
 \ History
-\ 2013-05-18 Added.
+\ 2013-05-18: Added.
+\ 2015-08-07: Updated the stack notation.
 
 require ./string-suffix-question.fs
 
-: -suffix ( a1 u1 a2 u2 -- a1 u1 | a3 u3 )
+: -suffix ( ca1 len1 ca2 len2 -- ca1 len1 | ca3 len3 )
   \ Remove a suffix from a string.
-  \ a1 u1 = string
-  \ a2 u2 = suffix to be removed
-  \ a3 u3 = string without the suffix
+  \ ca1 len1 = string
+  \ ca2 len2 = suffix to be removed
+  \ ca3 len3 = string without the suffix
   dup >r 2over 2swap string-suffix?
   if  r> -  else  rdrop  then 
   ;
