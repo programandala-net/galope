@@ -1,4 +1,4 @@
-\ galope/4drop.fs
+\ galope/four-drop.fs
 
 \ This file is part of Galope
 

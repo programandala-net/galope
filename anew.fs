@@ -5,7 +5,7 @@
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
 \ History
-\ 2012-05-18 Added.
+\ 2012-05-18: Added.
 
 \ Taken from ToolBelt 2002 by Wil Baden.
 

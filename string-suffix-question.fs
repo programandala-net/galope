@@ -12,6 +12,7 @@
 \ 2013-11-06: Changed the stack notation of flag.
 \ 2014-03-23: Changed the stack notation of strings.
 \ 2014-05-29: Updated the stack notation of strings.
+\ 2015-10-14: `str=` instead of `compare 0=`.
 
 \ The word 'ends?' (in <ends-question.fs>) does the same but doesn't
 \ consume the first string. 'string-suffix?' is recommended.
@@ -23,6 +24,6 @@ require ./fourth.fs
   \ Is ca2 len2 the end of ca1 len1?
   \ ca1 len1 = long string
   \ ca2 len2 = suffix to check
-  2swap dup fourth - /string  compare 0=
+  2swap dup fourth - /string  str=
   ;
 

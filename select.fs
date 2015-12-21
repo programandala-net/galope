@@ -12,7 +12,7 @@ require ./between.fs
 
 \ This control structure has been taken from:
  
-\     http://www.netbay.com.au/~dxforth/miser.html
+\     http://dxforth.netbay.com.au/miser.html
 \     Miser's CASE - A general purpose Forth CASE statement
 \     Revision 3  2008-11-30
 \     Public domain
@@ -35,6 +35,8 @@ require ./between.fs
 
 2013-08-17: Corrected the title of the test.  Note: 'thens' is not
 immediate; Wil Baden's 'thens' is equivalent but immediate.
+
+2015-10-25: Fixed the usage example.
 
 [then]
 
@@ -107,7 +109,7 @@ false [if]
 
 hex
 
-: select test ( n -- )
+: select-test ( n -- )
   space
   select
     cond  00 1F range

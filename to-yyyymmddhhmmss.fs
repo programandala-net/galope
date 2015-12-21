@@ -11,8 +11,9 @@
 \ 2014-02-23: Fix: Some changes done to adapt the code were wrong.
 \ 2014-02-23: Change: The original code used a circular string buffer;
 \   '<<#' are '#>>' are added; tool words are renamed.
+\ 2015-10-15: Updated the name of the module <n-to-str.fs>.
 
-require ./number-to-string-plus.fs
+require ./n-to-str-plus.fs  \ `n>str+`
 require ./module.fs
 
 module: galope_to-yyyymmddhhmmss_module

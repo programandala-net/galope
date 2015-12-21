@@ -8,5 +8,5 @@
 
 : execute-latest  ( -- )
   \ Execute the interpretation semantics of the latest word created.
-  latest name>int execute 
+  latest name>int execute
   ;

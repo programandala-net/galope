@@ -14,7 +14,7 @@
 \ Date: Fri, 17 Oct 2014 19:20:12 +0200
 
 require ./chop.fs
-require ./4drop.fs
+require ./four-drop.fs
 
 : wild-match?  ( ca1 len1 ca2 len2 -- wf )
   \ ca1 len1 = string

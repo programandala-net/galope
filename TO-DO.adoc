@@ -4,80 +4,6 @@
 
 Pending tasks and raw ideas for Galope.
 
-.2015-02-03:
-
-Rename all modules?:
-
-galope_blabla_module --> galope.blabla
-
-.2014-07-13:
-
-Use comment marks, to make automatic lists of the modules:
-
-----
-\ galope-tag: strings
-\ galope-tag: time&date
-\ galope-tag: control_structures
-\ galope-tag: text_output
-\ galope-tag: data_stack
-\ galope-tag: return_stack
-----
-
-.2014-04-22:
-
-A word to add new words to a module.
-
-.2014-03-19:
-
-
-----
-ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
-
-\  *******************************************************************
-\  *                                                                 *
-\  *  Wil Baden  2003-02-17                                          *
-\  *                                                                 *
-\  *      String Handling with Generalization of SKIP and SCAN       *
-
-: Replace-Char                  ( str /str char char_2 -- )
-    2SWAP BOUNDS ?DO
-        over I C@ = IF  dup I C!  THEN
-    LOOP 2DROP ;
-----
-
-Write 'replace-xchar' too.
-
-.2014-03-13:
-
-'among-of' ( run-time: x0 x'1...x'n n )
-
-----
-x case
-  a b c 3 among-of ... endof
-  d e 2 among-of ... endof
-  f g h i 4 among-of ... endof
-endcase
-----
-
-
-.2014-03-12:
-
-rename 'greater-of' to '>of' or 'greater-than-of'?
-rename 'less-of' to '<of' or 'less-than-of'?
-write '<>of'?
-
-.2012-09-20:
-
-r.s  [ 2015-02-03: better name: .rs ]
-
-Idea: 
-
-----
-: copy-name  ( "name" -- ca len )
-  >in @ >r parse-name r> >in !
-  ;
-----
-
 .2012-09-14:
 
 Rename 'seconds' and 'microseconds':
@@ -92,6 +18,18 @@ seconds|keypress ?
 
 Then use 'seconds' and 'microseconds' for versions where the pause that can
 not be shortened with a keypress.
+
+.2012-09-20:
+
+r.s  [ 2015-02-03: better name: .rs ]
+
+Idea: 
+
+----
+: copy-name  ( "name" -- ca len )
+  >in @ >r parse-name r> >in !
+  ;
+----
 
 .2013-05-15:
 
@@ -169,3 +107,64 @@ s" string3"
 ----
 
 Pero se puede hacer igual con <galope/random-strings>.
+
+.2014-03-12:
+
+rename 'greater-of' to '>of' or 'greater-than-of'?
+rename 'less-of' to '<of' or 'less-than-of'?
+write '<>of'?
+
+.2014-03-13:
+
+'among-of' ( run-time: x0 x'1...x'n n )
+
+----
+x case
+  a b c 3 among-of ... endof
+  d e 2 among-of ... endof
+  f g h i 4 among-of ... endof
+endcase
+----
+
+.2014-03-19:
+
+
+----
+ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
+
+\  *******************************************************************
+\  *                                                                 *
+\  *  Wil Baden  2003-02-17                                          *
+\  *                                                                 *
+\  *      String Handling with Generalization of SKIP and SCAN       *
+
+: Replace-Char                  ( str /str char char_2 -- )
+    2SWAP BOUNDS ?DO
+        over I C@ = IF  dup I C!  THEN
+    LOOP 2DROP ;
+----
+
+Write 'replace-xchar' too.
+
+.2014-07-13:
+
+Use comment marks, to make automatic lists of the modules:
+
+----
+\ galope-tag: strings
+\ galope-tag: time&date
+\ galope-tag: control_structures
+\ galope-tag: text_output
+\ galope-tag: data_stack
+\ galope-tag: return_stack
+----
+
+.2015-02-03:
+
+Rename all modules?:
+
+galope_blabla_module --> galope.blabla
+
+.2015-11-27:
+
+Rename "x" files to "x-", after the spelling in Forth-2012.

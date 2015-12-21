@@ -1,4 +1,5 @@
-\ galope/time&date-to-iso.fs
+\ galope/time-and-date-to-iso.fs
+\ time&date>iso
 
 \ This file is part of Galope
 

@@ -13,6 +13,7 @@
 \ Message-ID: <alpine.BSF.2.00.1308071836490.16825@yoko.controlq.com>
 
 \ 2015-01-29: Alternative version without locals.
+\ 2015-10-15: Alternative version without locals or variables.
 
 0 [if]
 
@@ -35,7 +36,7 @@
 : times  ( xt n -- ) 
   \ Execute xt n times.
   0
-  begin   2dup -
+  begin   2dup <>
   while   2 pick execute 1+
   repeat  2drop drop
   ;
@@ -76,4 +77,22 @@ export
   ;
 
 ;module
+[then]
+
+0 [if]
+
+\ 2015-10-15:
+\ Alternative version without locals or variables.
+
+variable times-count
+variable times-xt
+
+: times  ( i*x xt n -- j*x )
+  \ Execute xt n times.
+  2>r
+  begin   2r> 1- 2dup 2>r
+  while   execute
+  repeat  drop 2rdrop
+  ;
+
 [then]

@@ -19,9 +19,9 @@
 
 : test  ( x -- )
   case
-    1 of ." one"  endof
+    1 of  ." one"  endof
     2 3 or-of  ." two or three"  endof
-    4 of ." four"  endof
+    4 of  ." four"  endof
   endcase
   ;
 

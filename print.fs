@@ -24,13 +24,14 @@
 \   UTF-8 support.
 \ 2014-02-19: Rename all interface words homogeneously and with a simpler
 \   convention than "print_".
+\ 2015-10-13: Updated after the latest renamings in Galope.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 require ./module.fs
 require ./column.fs 
 require ./home.fs 
-require ./last_row.fs 
+require ./last-row.fs 
 require ./question-question.fs 
 
 require ffl/trm.fs
@@ -97,10 +98,10 @@ false [if]  \ First version
   
 hide
 
-: at_last_start_of_line?
-  xy last_row = swap 0= and
+: at_last_start_of_line?  ( -- wf )
+  xy last-row = swap 0= and
   ;
-: not_at_start_of_line?
+: not_at_start_of_line?  ( -- wf )
   column 0<>
   ;
 : print_cr?  ( -- wf )
@@ -126,7 +127,7 @@ hide
 : previous_word?  ( -- wf )
   #printed @ #indented @ >
   ;
-: ?space
+: ?space  ( -- )
   previous_word? if  bl .char  then
   ;
 : current_print_width  ( -- u )
@@ -160,7 +161,7 @@ hide
   \ ca3 len3 = Same text, from the char after its first word.
   bl skip 2dup bl scan
   ;
-: >word  ( ca1 len1 ca2 len2 -- ca2 len2 a1 u4 )
+: >word  ( ca1 len1 ca2 len2 -- ca2 len2 ca1 len4 )
   \ ca1 len1 = Text, from the start of its first word.
   \ ca2 len2 = Same text, from the char after its first word.
   \ ca1 len4 = First word of the text.
@@ -237,3 +238,5 @@ export
 \ 2014-02-19: New: 'print_page'.
 \
 \ 2014-11-17: Module name updated.
+\
+\ 2015-10-16: Fixed some comments.

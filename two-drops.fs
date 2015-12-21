@@ -1,4 +1,4 @@
-\ galope/2drops.fs
+\ galope/two-drops.fs
 \ Double multiple drop
 
 \ This file is part of Galope

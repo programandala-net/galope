@@ -3,7 +3,22 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014,2015 Marcos Cruz (programandala.net)
+
+\ galope/module.fs is free software; you can redistribute it and/or
+\ modify it under the terms of the GNU General Public License as
+\ published by the Free Software Foundation; either version 3 of the
+\ License, or (at your option) any later version.
+\
+\ This program is distributed in the hope that it will be useful, but
+\ WITHOUT ANY WARRANTY; without even the implied warranty of
+\ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+\ General Public License for more details.
+\
+\ You should have received a copy of the GNU General Public License
+\ along with this program; if not, see <http://gnu.org/licenses>.
+
+\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 \ This code was inspired by, and partly based on:
 \
@@ -26,16 +41,16 @@
 \ History
 
 \ 2012-04-17: First version.
-\ 
+\
 \ 2012-09-14: Code and comments reformated.
-\ 
-\ 2013-06-02: New stack comments. 
-\ 
+\
+\ 2013-06-02: New stack comments.
+\
 \ 2014-02-18: 'set-wordlist' is moved to its own file.
-\ 
+\
 \ 2014-02-18: 'do-latest' is renamed to 'execute-latest' and moved to
 \ its own file.
-\ 
+\
 \ 2014-02-18: Fix: 'vocs' and 'order' crashed in unclear conditions.
 \ These changes were made: 'vocabulary' and 'definitions' were
 \ removed; 'wordlist' was used instead; the code was factored and
@@ -44,12 +59,15 @@
 \
 \ 2014-11-17: Module name and comments updated. Original SP-Forth
 \ credits added.
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Requirements
-
-require ./set-wordlist.fs
-require ./execute-latest.fs
+\
+\ 2015-09-28: GPL header.
+\
+\ 2015-10-26: Removed old requirements.
+\
+\ 2015-11-09: Fix: module names were created in the module wordlist!
+\ Now `(module:)` does not executes `set-current`. `module:` and
+\ `:module` execute `hide` instead. This bug was discovered during the
+\ conversion to Solo Forth.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
@@ -63,7 +81,7 @@ MODULE: my_module
   \ Inner/helper words.
 EXPORT
   \ Interface words,
-  \ compiled to the outer vocabulary,
+  \ compiled in the outer vocabulary,
   \ thus seen from the extern.
 HIDE
   \ Inner/helper words again.
@@ -87,7 +105,7 @@ variable module-wid
 
 : (module:)  ( "name" -- wid )
   get-current current-wid !
-  wordlist dup module-wid ! dup >order dup set-current
+  wordlist dup module-wid ! dup >order
   ;
 
 set-current
@@ -95,24 +113,26 @@ set-current
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Interface words
 
-: module:  ( "name" -- )
-  \ Start a named module.
-  (module:) constant
-  ;
-: :module  ( -- )
-  \ Start an anonymous module.
-  (module:) drop
-  ;
 : export  ( -- )
   \ Public definitions follow.
   current-wid @ set-current
   ;
 : hide  ( -- )
   \ Hidden definitions follow.
-  module-wid @ set-current  
+  module-wid @ set-current
+  ;
+: module:  ( "name" -- )
+  \ Start a named module.
+  (module:) constant hide
+  ;
+: :module  ( -- )
+  \ Start an anonymous module.
+  \ Hidden definitions follow.
+  (module:) drop hide
   ;
 : ;module  ( -- )
   \ End a module.
+  \ Hidden definitions follow.
   export previous
   ;
 

@@ -38,7 +38,7 @@
 require random.fs
 
 require ./module.fs
-require ./2choose.fs
+require ./two-choose.fs
 require ./sb.fs
 require ./plus-plus.fs
 require ./minus-minus.fs
