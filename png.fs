@@ -36,11 +36,11 @@ module: galope_png_module
 
 : @le  ( ca -- n )
   \ Fetch a little-endian 32-bit value.
-	dup c@ [ 0xff 0xff 0xff * * ] literal *
-	over 1+ c@ [ 0xff 0xff * ] literal * +
-	over 2 + c@ 0xff * +
-	swap 3 + c@ +
-	;
+  dup c@ [ 0xff 0xff 0xff * * ] literal *
+  over 1+ c@ [ 0xff 0xff * ] literal * +
+  over 2 + c@ 0xff * +
+  swap 3 + c@ +
+  ;
 
 export
 
@@ -48,33 +48,33 @@ export
 /png-buffer buffer: png-buffer
 
 : not-png?  ( -- f )
-	\ Is the current file not a PNG?
-	\ The first bytes in the buffer must be:
-	\ 89 50 4E 47 0D 0A 1A 0A
-	png-buffer @ 0x474e5089 <>
-	png-buffer cell+ @ 0x0a1a0a0d <>  or
-	;
+  \ Is the current file not a PNG?
+  \ The first bytes in the buffer must be:
+  \ 89 50 4E 47 0D 0A 1A 0A
+  png-buffer @ 0x474e5089 <>
+  png-buffer cell+ @ 0x0a1a0a0d <>  or
+  ;
 : png-load  ( fid -- )
-	\ Fill the buffer with the beginning of the PNG image file,
+  \ Fill the buffer with the beginning of the PNG image file,
   \ to make it the current one.
-	png-buffer /png-buffer  2dup erase
-	rot read-file throw drop
-	not-png? abort" Not a PNG image file."
-	;
+  png-buffer /png-buffer  2dup erase
+  rot read-file throw drop
+  not-png? abort" Not a PNG image file."
+  ;
 variable png-fid
 : png-open  ( ca len -- )
-	\ Open a PNG image file and make it the current one.
-	r/o bin open-file throw  dup png-fid !  png-load
-	;
+  \ Open a PNG image file and make it the current one.
+  r/o bin open-file throw  dup png-fid !  png-load
+  ;
 : png-close  ( -- )
   \ Close the current PNG image.
   png-fid @ close-file throw
   ;
 : png-size  ( -- width height )
-	\ Return the size of the current PNG file.
-	png-buffer 16 + dup @le  swap 4 + @le
-	;
-	
+  \ Return the size of the current PNG file.
+  png-buffer 16 + dup @le  swap 4 + @le
+  ;
+  
 \ ---------------------------------------------
 \ Debug
 
@@ -82,13 +82,13 @@ variable png-fid
 
 : png-test  ( c-addr u -- )
 
-	2dup cr type cr
-	png-open
-	png-xy swap
-	." x=" . ."  y=" .
-	close-file abort" Closing PNG error"
+  2dup cr type cr
+  png-open
+  png-xy swap
+  ." x=" . ."  y=" .
+  close-file abort" Closing PNG error"
 
-	;
+  ;
 
 s" c:\tmp\UniEncWhiteBord.png" sconstant img1
 

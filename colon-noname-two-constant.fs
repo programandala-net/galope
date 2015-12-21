@@ -1,4 +1,4 @@
-\ galope/colon-noname-2constant.fs
+\ galope/colon-noname-two-constant.fs
 \ :noname-2constant
 
 \ This file is part of Galope

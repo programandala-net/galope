@@ -1,11 +1,12 @@
-\ galope/char-to-rule.fs
+\ galope/c-to-rule.fs
 
 \ This file is part of Galope
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
 \ History
-\ 2014-02-19 Written.
+\ 2014-02-19: Written.
+\ 2015-10-15: Renamed filename.
 
 : c>rule  ( c len -- ca len )
   \ Create a string with a repeated ASCII char.

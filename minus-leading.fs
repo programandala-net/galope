@@ -7,11 +7,12 @@
 \ History
 \ 2012-05-20 Added.
 \ 2012-09-14 Code reformated.
-\ 2012-09-19 Stack comment fixed.
+\ 2012-09-19 Fixed the stack comment.
+\ 2015-10-05 Changed the stack comment.
 
 \ '-leading' is common use.
 
-: -leading  ( a1 u1 -- a2 u2 )
+: -leading  ( ca1 len1 -- ca2 len2 )
   bl skip
   ;
 

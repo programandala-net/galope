@@ -1,5 +1,5 @@
-\ galope/last_xchar.fs
-\ 'last_xchar'
+\ galope/last-xchar.fs
+\ 'last-xchar'
 
 \ This file is part of Galope
 
@@ -7,11 +7,12 @@
 
 \ 2012-12-18 Added. Code copied from an application of the
 \ author.
+\ 2015-10-13: Renamed.
 
-require tick-last_xchar.fs  \ "'last_xchar"
+require tick-last-xchar.fs  \ "'last_xchar"
 
-: last_xchar  ( a u -- c )
+: last-xchar  ( a u -- c )
   \ Return the last xchar of a UTF8 string.
-  'last_xchar xc@ 
+  'last-xchar xc@ 
   ;
 

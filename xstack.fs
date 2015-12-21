@@ -17,6 +17,9 @@
 \ - Comus-like low-level interface: 'xp0', 'xp@' and 'xp!'.
 \ - More words to manipulate the stacks.
 \ - '.x' behaves like Gforth's '.s'.
+\
+\ 2015-10-14: Improved usage of `literal` in `(xdrop)` and `(x2drop)`.
+\ Fixed comments.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Creation and core manipulation of xstacks
@@ -69,7 +72,7 @@ defer x@
 
 defer xdrop
 : (xdrop)  ( X: x -- )
-  cell negate xp+!
+  [ cell negate ] literal xp+!
   ;
 ' (xdrop) is xdrop
 
@@ -120,7 +123,7 @@ defer 2x>
 
 defer x2drop
 : (x2drop)  ( X: x1 x2 -- )
-  2 cells negate xp+!
+  [ -2 cells ] literal xp+!
   ;
 ' (x2drop) is x2drop
 
@@ -171,24 +174,24 @@ defer x2dup
   ;
 : ((>x))
   \ Secure version of '(>x)'.
-  xp@ xp0 xsize cells + x?  ( c h e c k max a d d r )
+  xp@ xp0 xsize cells + x?  \ check max addr
   (>x)
   ;
 : ((x>))
   \ Secure version of '(x>)'.
-  xp@ xp0 over x?  \ check a g a i n s t min a d d r
+  xp@ xp0 over x?  \ check against min addr
   @  -2 xstack +!  \ XXX TODO factor -- used in '(x>)' too
   ;
 : ((x@))
   \ Secure version of '(x@)'.
-  xp@ xp0 over x?  \ check a g a i n s t min a d d r
+  xp@ xp0 over x?  \ check against min addr
   @
   ;
 : ((xpick))
   \ Secure version of '(xpick)'.
   xp@ swap cells -
-  dup xp@ 2 + x?  \ check a g a i n s t s t a c k t o p
-  xp0 over x?  \ check a g a i n s t min a d d r
+  dup xp@ 2 + x?  \ check agains stack top
+  xp0 over x?  \ check agains min addr
   @
   ;
 

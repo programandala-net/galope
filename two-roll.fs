@@ -1,4 +1,4 @@
-\ galope/2roll.fs
+\ galope/two-roll.fs
 \ Double number roll
 
 \ This file is part of Galope

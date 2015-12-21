@@ -1,4 +1,4 @@
-\ galope/stream-to-string.fs
+\ galope/stream-to-str.fs
 \ stream>s
 \ Multiline strings from the source stream
 
@@ -13,22 +13,23 @@
 \ 2013-05-28: Fix: 'require ./sb.fs' was unnecessary. 
 \ 2013-09-28: File renamed from "stream_s.fs" to "stream-to-string.fs".
 \ 2014-11-17: Module name fixed. 
+\ 2015-10-22: Renamed file and two words.
 
 require ./module.fs
 require ./svariable.fs
 
-module: galope_stream_to_s_module
+module: galope_stream_to_str_module
 
-svariable end_of_stream
+svariable end-of-stream
 
 export
 
-: stream>s  ( a u "text" -- )
-  end_of_stream place  s" "
+: stream>str  ( a u "text" -- )
+  end-of-stream place  s" "
   begin
     parse-word dup
     if
-      2dup end_of_stream count compare
+      2dup end-of-stream count compare
       if    2swap s"  " s+ 2swap s+ false
       else  true
       then
@@ -38,6 +39,8 @@ export
     then
   until  2drop 1 /string
   ;
+
+' stream>str alias stream>s  \ old name
 
 : s((  ( "text<space><right paren><right paren>" -- a u )
   s" ))" stream>s

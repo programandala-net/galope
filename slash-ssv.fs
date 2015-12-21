@@ -5,33 +5,28 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
+\ History
+\
 \ 2014-12-05: Added. Taken from Fendo's <fendo.data.fs>
 \ (http://programandala.net/en.program.fendo.html) and
 \ fixed.
 
 require ./slash-sides.fs  \ '/sides'
 
-false [if]
-  \ XXX OLD first version, buggy
-  : /ssv  ( ca len -- ca#1 len#1 ... ca#u len#u u )
-    \ Divide a space separated values string.
-    \ ca len = string with space separated values
-    \ ca#1 len#1 ... ca#u len#u = one or more strings
-    \ u = number of strings returned
-    \ XXX TODO make it simpler: use 'execute-parsing' instead.
-    \ XXX FIXME double spaces cause empty strings
-    depth >r
-    begin  s"  " /sides 0=  until  2drop
-    depth r> 2 - - 2/
-    ;
-[then]
-
 : /ssv  ( ca len -- ca#1 len#1 ... ca#u len#u u )
+
   \ Divide a space separated values string.
+
+  \ Any group of spaces is regarded as a field delimiter.  For a
+  \ strict version of this word, that regards every single space as a
+  \ delimiter, use `/ssv-strict`.
+
   \ ca len = string with space separated values
   \ ca#1 len#1 ... ca#u len#u = one or more strings
   \ u = number of strings returned
+
   \ XXX TODO make it simpler: use 'execute-parsing' instead.
+
   depth >r
   begin
     s"  " /sides >r
@@ -39,3 +34,4 @@ false [if]
     r> 0=
   until  2drop depth r> 2 - - 2/
   ;
+
