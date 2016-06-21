@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope_unspace_module 
+module: galope-unspace-module 
 
 variable spaces?  \ flag: does the current char belongs to a HTML tag?
 variable destination  \ address to store the next valid char into

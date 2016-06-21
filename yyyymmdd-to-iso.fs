@@ -18,7 +18,7 @@
 require ./module.fs
 require ./buffer-colon.fs
 
-module: galope_yyyymmdd-to-iso_module
+module: galope-yyyymmdd-to-iso-module
 
 10 chars constant /iso-date
 /iso-date 1+ chars buffer: iso-date

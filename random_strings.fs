@@ -3,7 +3,7 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2011,2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2011,2012,2013,2014 Marcos Cruz (programandala.net)
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ History
@@ -13,8 +13,8 @@
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth).  The
 \ abort messages are translated to English.
 \ 
-\ 2012-04-22: The original Spanish comments are moved to the end of the
-\ file.  More compact source layout. 
+\ 2012-04-22: The original Spanish comments are moved to the end of
+\ the file.  More compact source layout. 
 \ 
 \ 2012-04-30: Added 's?{' and '}s{'.
 \ 
@@ -24,8 +24,8 @@
 \ galope/decrement.fs, instead of defining '++' and '--'.  Added
 \ '}s&?'.
 \ 
-\ 2012-05-08: galope/increment.fs and galope/decrement.fs changed their
-\ names to galope/plus-plus.fs and galope/minus-minus.fs.
+\ 2012-05-08: galope/increment.fs and galope/decrement.fs changed
+\ their names to galope/plus-plus.fs and galope/minus-minus.fs.
 \ 
 \ 2012-09-14: Code reformated.
 \ 
@@ -43,7 +43,7 @@ require ./sb.fs
 require ./plus-plus.fs
 require ./minus-minus.fs
 
-module: galope_random_strings_module
+module: galope-random_strings-module
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Depth stack

@@ -26,7 +26,7 @@
 
 require ./module.fs
 
-module: galope_xy_module
+module: galope-xy-module
 
 base @ decimal
 

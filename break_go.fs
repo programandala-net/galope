@@ -27,7 +27,7 @@
 
 require ./module.fs
 
-module: galope_break_module
+module: galope-break-module
 
 variable depth-backup
 create debug-pad  80 allot

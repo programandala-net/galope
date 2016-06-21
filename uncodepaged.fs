@@ -23,7 +23,7 @@ require ffl/str.fs
 \ --------------------------------------------------------------
 \ Core
 
-module: galope_uncodepaged_module
+module: galope-uncodepaged-module
 
 str-create uncodepaged-str
 variable depth0

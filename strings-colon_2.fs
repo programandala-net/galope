@@ -25,7 +25,7 @@
 
 require ./module.fs
 
-module: galope_constant_string_array_2_module
+module: galope-strings-colon-2-module
 
 variable depth0
 : #strings  ( -- n )

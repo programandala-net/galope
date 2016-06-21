@@ -11,7 +11,7 @@
 
 require ./module.fs
 
-module: galope_minus-keys_module
+module: galope-minus-keys-module
 
 export 
 

@@ -12,7 +12,7 @@
 require ./module.fs
 require ffl/str.fs
 
-module: galope_replaced_module 
+module: galope-replaced-module 
 str-create tmp-str
 export
 : replaced ( ca1 len1 ca2 len2 ca3 len3 -- ca1' len1' )

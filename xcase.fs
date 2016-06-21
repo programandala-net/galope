@@ -49,7 +49,7 @@ require ffl/bar.fs  \ bit array
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Inner words
 
-module: galope_xcase_module
+module: galope-xcase-module
 
 variable xtable  \ translation table address
 variable caseness  \ bit array id

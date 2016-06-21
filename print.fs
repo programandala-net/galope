@@ -36,7 +36,7 @@ require ./question-question.fs
 
 require ffl/trm.fs
 
-module: galope_print_module
+module: galope-print-module
 
 export
 

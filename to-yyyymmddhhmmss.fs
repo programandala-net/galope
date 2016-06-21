@@ -16,7 +16,7 @@
 require ./n-to-str-plus.fs  \ `n>str+`
 require ./module.fs
 
-module: galope_to-yyyymmddhhmmss_module
+module: galope-to-yyyymmddhhmmss-module
 
 : <##>  ( u -- ca len )
   s>d <<# # #s #> #>>

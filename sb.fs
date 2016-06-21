@@ -63,7 +63,7 @@ require ./question-question.fs
 
 base @ decimal
 
-module: galope_sb_module
+module: galope-sb-module
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Inner

@@ -26,7 +26,7 @@ require ./module.fs
 require ./buffer-colon.fs
 require ./default-of.fs
 
-module: galope_jpeg_module
+module: galope-jpeg-module
 
 : 16@  ( ca -- n )
   \ Fetch a little-endian 16-bit value.
