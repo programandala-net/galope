@@ -1,2 +1,1 @@
-Current Galope version:
-A-00-20151016
+0.1.0+201606211706
