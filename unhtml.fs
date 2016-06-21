@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope_unhtml_module 
+module: galope-unhtml-module 
 
 variable tag?  \ flag: does the current char belongs to a HTML tag?
 variable destination  \ address to store the next valid char into

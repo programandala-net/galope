@@ -16,7 +16,7 @@
 
 require ./module.fs
 
-module: galope_colon-sys_module
+module: galope-colon-sys-module
 
 variable tmp
 

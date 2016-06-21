@@ -14,7 +14,7 @@
 require string.fs  \ Gforth's dynamic strings
 require ./module.fs  \ Galope's module
 
-module: galope_heredoc_module
+module: galope-heredoc-module
 
 0 [if]  \ xxx old, first version
 : <<<  ( "text>>>" -- ca len )

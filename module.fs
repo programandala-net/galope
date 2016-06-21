@@ -71,7 +71,7 @@
 Modules hide the internal implementation and leave visible the
 words of the outer interface. Example:
 
-module: my_module
+module: my-module
   \ Inner/helper words.
 export
   \ Interface words,
@@ -92,7 +92,7 @@ as an alternative, the word ':module' starts an unnamed module.
 
 get-order get-current
 
-wordlist  dup constant galope_module_module
+wordlist  dup constant galope-module-module
           dup set-current  >order
 
 variable current-wid

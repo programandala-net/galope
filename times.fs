@@ -61,7 +61,7 @@
 
 require ./module.fs
 
-module: galope_times_module
+module: galope-times-module
 
 variable times-count
 variable times-xt

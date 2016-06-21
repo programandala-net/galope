@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope_nospace_module 
+module: galope-nospace-module 
 
 variable destination  \ address to store the next valid char into
 : keep  ( c -- )

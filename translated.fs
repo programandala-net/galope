@@ -14,7 +14,7 @@ require ./module.fs
 
 require ffl/str.fs
 
-module: galope_translated_module
+module: galope-translated-module
 
 str-create translated-str
 variable depth0

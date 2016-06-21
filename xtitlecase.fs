@@ -17,7 +17,7 @@ require ./xcase.fs
 require ./x-c-store.fs
 require ./tilde-tilde.fs
 
-module: galope_xtitlecase_module
+module: galope-xtitlecase-module
 
 variable apart?
 : ?word_separation  ( xc -- )

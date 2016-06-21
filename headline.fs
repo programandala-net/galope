@@ -16,7 +16,7 @@
 require module.fs
 require xy.fs
 
-module: galope_headline_module
+module: galope-headline-module
 
 variable y variable x  \ top left coordinates
 variable heigth  \ rows of the headline

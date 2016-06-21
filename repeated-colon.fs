@@ -14,7 +14,7 @@
 
 require ./module.fs
 
-module: galope_repeated-colon_module
+module: galope-repeated-colon-module
 
 : invoke  ( a -- )  >r  ; 
 

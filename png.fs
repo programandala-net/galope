@@ -32,7 +32,7 @@
 require ./module.fs
 require ./buffer-colon.fs
 
-module: galope_png_module
+module: galope-png-module
 
 : @le  ( ca -- n )
   \ Fetch a little-endian 32-bit value.

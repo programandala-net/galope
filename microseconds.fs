@@ -24,7 +24,7 @@
 
 require ./module.fs
 
-module: galope_microseconds_module
+module: galope-microseconds-module
 
 : overtime?  ( d -- wf )
   utime d<  ;

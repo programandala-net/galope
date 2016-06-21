@@ -27,7 +27,7 @@ require ./print.fs
 
 2 value indentation
 : (paragraph)  ( -- )
-  print_cr indentation print_indentation 
+  print_cr indentation print_indentation
   ;
 : paragraph  ( ca len -- )
   (paragraph) print

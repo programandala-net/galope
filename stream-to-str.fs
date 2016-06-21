@@ -18,7 +18,7 @@
 require ./module.fs
 require ./svariable.fs
 
-module: galope_stream_to_str_module
+module: galope-stream-to-str-module
 
 svariable end-of-stream
 

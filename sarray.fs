@@ -52,7 +52,7 @@ along with this library; if not, see
 
 require ./module.fs
 
-module: galope_sarray_module
+module: galope-sarray-module
 
 variable start_depth
 
