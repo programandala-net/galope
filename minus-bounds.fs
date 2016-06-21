@@ -7,7 +7,7 @@
 
 \ 2013-07-11: Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo)
-\ 
+\
 \ 2014-11-09: New: Comment about '-loop' in Gforth.
 
 : -bounds  ( ca1 len -- ca2 ca1 )

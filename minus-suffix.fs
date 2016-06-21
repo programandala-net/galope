@@ -16,6 +16,6 @@ require ./string-suffix-question.fs
   \ ca2 len2 = suffix to be removed
   \ ca3 len3 = string without the suffix
   dup >r 2over 2swap string-suffix?
-  if  r> -  else  rdrop  then 
+  if  r> -  else  rdrop  then
   ;
 

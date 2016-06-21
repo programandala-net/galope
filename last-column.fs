@@ -1,5 +1,5 @@
 \ galope/last-column.fs
-\ Last screen column 
+\ Last screen column
 
 \ This file is part of Galope
 

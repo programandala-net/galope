@@ -13,7 +13,7 @@
 \ by Wil Banden's 'hunt' (Charscan library, 2003-02-17, public
 \ domain).
 
-\ 2013-07-11 Moved to Galope. 
+\ 2013-07-11 Moved to Galope.
 
 \ 2013-11-06 <plus-slash-string.fs> was unnecessary but still
 \ included.
@@ -37,11 +37,11 @@ require ./str-not-equals.fs  \ 'str<>'
   \ substring ca2 len2 itself.
   \ ca1 len1  = string
   \ ca2 len2  = substring
-  \ ca1 len1' = left side (or whole string if not found) 
+  \ ca1 len1' = left side (or whole string if not found)
   \ ca3 len3  = right side (or empty string if not found)
   \ wf = result flag: found?
   \ Note: ca3 len3 can be empty also when wf is true.
-  false >r  \ default value of the result flag 
+  false >r  \ default value of the result flag
   ca1 len1 2dup
   begin   ca2 len2 search
           dup r> or >r  \ update the result flag

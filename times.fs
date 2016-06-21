@@ -19,7 +19,7 @@
 
 \ Original MiniForth code:
 
-: times  ( xt n -- ) 
+: times  ( xt n -- )
   \ Execute xt n times.
   0
   begin   over over -
@@ -33,7 +33,7 @@
 
 \ Converted to Gforth:
 
-: times  ( xt n -- ) 
+: times  ( xt n -- )
   \ Execute xt n times.
   0
   begin   2dup <>

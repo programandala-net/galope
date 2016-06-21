@@ -16,7 +16,7 @@
 2012-09-14 Code and comments reformated.
 2012-09-19 'mdrop' updated to 'drops'.
 
-) 
+)
 
 require random.fs  \ Gforth's 'random'
 require ./drops.fs

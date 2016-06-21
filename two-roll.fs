@@ -11,6 +11,6 @@
 
 [undefined] 2roll [if]
 : 2roll ( d0 d1 ... dn n -- d1 ... dn d0 )
-  2 * dup >r roll r> 1+ roll swap 
+  2 * dup >r roll r> 1+ roll swap
   ;
 [then]

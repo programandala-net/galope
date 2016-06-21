@@ -13,6 +13,6 @@ require ./heredoc.fs
 : ["  ( "text <double-quote><closing-bracket>" -- )
   \ Read text from the input stream until '"]' is found,
   \ and compile the string.
-  s\" \"]" (heredoc)  postpone sliteral 
+  s\" \"]" (heredoc)  postpone sliteral
   ;  immediate compile-only
 

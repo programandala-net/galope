@@ -18,7 +18,7 @@ s" gforth" environment? drop s" 0.8" str< [if]
   : $@  ( a -- ca len )
     \ Return the content of a dynamic string variable,
     \ even if it's not initialized.
-    @ dup if  dup cell+ swap @  else  pad swap  then 
+    @ dup if  dup cell+ swap @  else  pad swap  then
     ;
   warnings !
 

@@ -13,6 +13,6 @@ require string.fs  \ Gforth's dynamic strings
 
 : $!new  ( ca len a -- )
   \ Re-create a dynamic string with the given content.
-  dup $off $! 
+  dup $off $!
   ;
 

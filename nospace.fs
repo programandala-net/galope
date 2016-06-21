@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope-nospace-module 
+module: galope-nospace-module
 
 variable destination  \ address to store the next valid char into
 : keep  ( c -- )
@@ -27,7 +27,7 @@ export
   \ Remove all spaces from a string.
   over dup >r destination !
   bounds ?do  i c@ (nospace)  loop
-  r> dup destination @ swap - 
+  r> dup destination @ swap -
   ;
 
 ;module

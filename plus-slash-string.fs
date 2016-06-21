@@ -12,6 +12,6 @@
   \ Step forward by one char in a buffer.
   \ Inspired by Gforth's '+x/string'.
   \ ca1 len1 = buffer or string
-  \ ca2 len2 = remaining buffer or string 
+  \ ca2 len2 = remaining buffer or string
   char- swap char+ swap
   ;

@@ -8,7 +8,7 @@
 \ 2013-12-01 Added.
 
 : :noname-variable  ( -- xt )
-  \ Create an anonymous variable. 
+  \ Create an anonymous variable.
   noname variable latestxt
   ;
 

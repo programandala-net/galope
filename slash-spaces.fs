@@ -13,5 +13,5 @@
   \ by adding spaces to its right until its length is len2.
   \ If len1=len2, the string does not change.
   \ If len1>len2, the string is truncated at the right.
-  >r pad r@  2dup blank  s+ drop r> 
+  >r pad r@  2dup blank  s+ drop r>
   ;

@@ -31,7 +31,7 @@
 \ --------------------------------------------------------------
 \ History
 
-\ 2014-02-16 Written for Finto 
+\ 2014-02-16 Written for Finto
 \   (<http://programandala.net/en.program.finto.html>).
 \ 2014-02-17 New: 'lodge-value', 'lodge-to' and related words.
 \ 2014-02-19 New: 'lodge-address-value'.
@@ -65,7 +65,7 @@ variable /lodge  \ length in address units
 0 allocate throw lodge !  \ an empty buffer at first
 
 : lodge+  ( +n -- a )
-  \ Current absolute address of a lodge offset. 
+  \ Current absolute address of a lodge offset.
   lodge @ +
   ;
 : lodge-update  ( u a -- +n )
@@ -98,7 +98,7 @@ variable /lodge  \ length in address units
 \ Variables
 
 : lodge-variable-does>  ( -- a )
-  \ Behaviour of a lodge variable. 
+  \ Behaviour of a lodge variable.
   does> ( -- a ) ( dfa ) @ lodge+
   ;
 : (lodge-variable)  ( u -- )
@@ -131,7 +131,7 @@ variable /lodge  \ length in address units
   ;
 : lodge-address-value  ( +n "name" -- )
   \ Create a lodge address value.
-  \ +n = lodge offset 
+  \ +n = lodge offset
   \ This kind of lodge-value stores a lodge offset but returns the
   \ corresponding absolute address.  This is useful for creating
   \ lodge-values that point to data space in the lodge but have to be
@@ -150,17 +150,17 @@ variable /lodge  \ length in address units
 : xt>lodge  ( xt -- a )
   \ Absolute lodge address from the xt of a lodge-variable or a
   \ lodge-value.
-  >body @ lodge+  
+  >body @ lodge+
   ;
 
 : <lodge-to>  ( x "name" -- )
   \ Change the content of a lodge-variable or a lodge-value.
   ' xt>lodge !
-  ; 
+  ;
 : [lodge-to]  ( compilation: x "name" -- )
   \ Change the content of a lodge-variable or a lodge-value.
   ' postpone literal postpone xt>lodge postpone !
-  ; immediate 
+  ; immediate
 ' <lodge-to>
 ' [lodge-to]
 interpret/compile: lodge-to
@@ -168,11 +168,11 @@ interpret/compile: lodge-to
 : <lodge-2to>  ( x "name" -- )
   \ Change the content of a lodge-2variable or a lodge-2value.
   ' xt>lodge 2!
-  ; 
+  ;
 : [lodge-2to]  ( compilation: d "name" -- )
   \ Change the content of a lodge-2variable or a lodge-2value.
   ' xt>lodge postpone 2literal postpone 2!
-  ; immediate 
+  ; immediate
 ' <lodge-2to>
 ' [lodge-2to]
 interpret/compile: lodge-2to

@@ -26,7 +26,7 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Usage
 
-\ First, include this module into your program: 
+\ First, include this module into your program:
 \
 \    s" galope/sb.fs" required
 \
@@ -78,7 +78,7 @@ variable sb#  \ Free chars in the buffer
 0 value /sb  \ Buffer length
 
 \ xxx todo remove or rename; these names are too general
-\ and probably will clash with application words: 
+\ and probably will clash with application words:
 
 : restart  ( -- )
   /sb sb# !
@@ -198,7 +198,7 @@ export
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \ Creation of buffered strings
 
-hide 
+hide
 
 : (bs)  ( a1 u -- | a2 u )
   state @ if  postpone sliteral  else  >sb  then
@@ -220,7 +220,7 @@ export
   ;  immediate
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Concatenation of strings 
+\ Concatenation of strings
 
 \ hide \ xxx todo why removed the 'hide'?
 \ xxx todo make these independent in galope:
@@ -252,7 +252,7 @@ export
 true [if]
 
   \ First version, faster but more complex.
-  
+
   : (bs&)  ( a1 u1 a2 u2 -- a3 u3 )
     \ Join two strings with a space.
     lengths + 1+ >r  ( a1 u2 a2 u2 ) ( R: u3 )
@@ -288,27 +288,27 @@ export
 
 \ This program is based on csb2 by the same author:
 \ <http://programandala.net/es.programa.csb2>.
-\ 
+\
 \ 2012-04-16 First changes in csb2. Version A-00.
-\ 
+\
 \ 2012-04-17 More changes.
-\ 
+\
 \ 2012-04-18 More changes. Added the new 'module.fs'.
-\ 
+\
 \ 2012-04-19 Simplified: '?free_sb' not needed.  Simpler alternative
 \ version of 'sb&'.  The ''sb' and '/sb' variables are changed to
 \ values.  Version A-01.
-\ 
+\
 \ 2012-04-30 Added 'chars' where needed, for portability.
-\ 
+\
 \ 2012-07-04 '??' used.
-\ 
+\
 \ 2012-07-09 All 'hide' are temporary removed, for debugging.
-\ 
+\
 \ 2012-09-14 The code was reformated.
-\ 
+\
 \ 2013-05-23 Revision. First todos.
-\ 
+\
 \ 2013-10-30 '(bs)' and '>(bs)' are hidden again. Besides, there's
 \ word called '(bs)' in Gforth.
 \

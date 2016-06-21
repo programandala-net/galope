@@ -29,7 +29,7 @@ module: galope-microseconds-module
 : overtime?  ( d -- wf )
   utime d<  ;
 
-export 
+export
 
 : microseconds  ( u -- )
   \ Wait a number of microseconds or until a key is pressed.

@@ -1,6 +1,6 @@
 \ galope/colon-sys.fs
 \ colon-sys tools
- 
+
 \ This file is part of Galope
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
@@ -25,10 +25,10 @@ export
 : colon-sys>r  ( colon-sys -- ; R: a -- colon-sys )
   \ Move a colon-sys to the return stack.
   r> tmp !  2>r 2>r  tmp @ >r
-  ; 
+  ;
 : r>colon-sys  ( -- colon-sys ; R: colon-sys a -- )
   \ Move a colon-sys from the return stack.
   r> tmp !  2r> 2r>  tmp @ >r
-  ; 
+  ;
 
 ;module

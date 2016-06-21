@@ -25,7 +25,7 @@
 
 \ 2014-02-21: Forked from <galope/lodge.fs>, in order to make
 \   an improved version that can create different named buffers.
-\   This feature is needed for Finto 
+\   This feature is needed for Finto
 \   (<http://programandala.net/en.program.finto.html>).
 \ 2014-02-21: Improvement: Several named lodges can be created.
 \   'get-lodge' and 'set-lodge' manage the current one.
@@ -54,7 +54,7 @@ variable current-lodge  \ data field address of the current lodge
   ;
 
 : lodge+  ( +n -- a )
-  \ Current absolute address of a lodge offset. 
+  \ Current absolute address of a lodge offset.
   lodge-address @ +
   ;
 : lodge-update  ( u a -- +n )
@@ -72,7 +72,7 @@ variable current-lodge  \ data field address of the current lodge
 : lodge-allocate  ( u -- +n wior )
   \ u = additional address units required in the lodge
   \ +n = lodge offset to the additional free space
-  dup lodge-length @ + lodge-resize 
+  dup lodge-length @ + lodge-resize
   ;
 : (lodge-erase)  ( u +n -- )
   \ Erase u address units from a lodge offset.
@@ -89,7 +89,7 @@ variable current-lodge  \ data field address of the current lodge
   ;
 : set-lodge  ( dfa -- )
   \ Set a lodge as current.
-  current-lodge ! 
+  current-lodge !
   ;
 : lodge:  ( "name" -- )
   \ Create a new empty lodge and make it the current one.
@@ -114,7 +114,7 @@ variable current-lodge  \ data field address of the current lodge
   ;
 
 : lodge-variable-does>  ( -- a )
-  \ Behaviour of a lodge variable. 
+  \ Behaviour of a lodge variable.
   does> ( -- a ) ( dfa ) body>lodge
   ;
 : (lodge-variable)  ( u -- )
@@ -148,7 +148,7 @@ variable current-lodge  \ data field address of the current lodge
   ;
 : lodge-address-value  ( +n "name" -- )
   \ Create a lodge address value.
-  \ +n = lodge offset 
+  \ +n = lodge offset
   \ This kind of lodge-value stores a lodge offset but returns the
   \ corresponding absolute address.  This is useful for creating
   \ lodge-values that point to data space in the lodge but have to be
@@ -176,11 +176,11 @@ variable current-lodge  \ data field address of the current lodge
 : <lodge-to>  ( x "name" -- )
   \ Change the content of a lodge-variable or a lodge-value.
   ' xt>lodge !
-  ; 
+  ;
 : [lodge-to]  ( compilation: x "name" -- )
   \ Change the content of a lodge-variable or a lodge-value.
   ' postpone literal postpone xt>lodge postpone !
-  ; immediate 
+  ; immediate
 ' <lodge-to>
 ' [lodge-to]
 interpret/compile: lodge-to
@@ -188,11 +188,11 @@ interpret/compile: lodge-to
 : <lodge-2to>  ( x "name" -- )
   \ Change the content of a lodge-2variable or a lodge-2value.
   ' xt>lodge 2!
-  ; 
+  ;
 : [lodge-2to]  ( compilation: d "name" -- )
   \ Change the content of a lodge-2variable or a lodge-2value.
   ' xt>lodge postpone 2literal postpone 2!
-  ; immediate 
+  ; immediate
 ' <lodge-2to>
 ' [lodge-2to]
 interpret/compile: lodge-2to

@@ -99,7 +99,7 @@ create array2 \ array with three fields (value1, key and value2)
   32 array2 cell+ 3 array-search  ( a wf )  \ search for a missing key (32)
   assert( dup 0= )  \ not found
   assert( over @ end-of-array = )  \ pointer to the end of array key
-  2drop 
+  2drop
   ;
 
 test2

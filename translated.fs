@@ -19,7 +19,7 @@ module: galope-translated-module
 str-create translated-str
 variable depth0
 4 constant cells/translation
-cells/translation cells constant /translation 
+cells/translation cells constant /translation
 : translations_init  ( -- a )
   \ Init tasks before the definition of the translation table.
   here 0 ,  depth depth0 !
@@ -30,8 +30,8 @@ cells/translation cells constant /translation
   ;
 : translations,  ( ca'1 len'1 ... ca'n len'n n -- )
   \ Compile the translations into the table.
-  \ n = number of translations 
-  0 ?do  2, 2,  loop 
+  \ n = number of translations
+  0 ?do  2, 2,  loop
   ;
 
 export
@@ -76,7 +76,7 @@ false [if]  \ xxx not used
   \ ca len = string to translate
   \ a = address of the translation table
   \ n = number of the required translation
-  \ ca' len' = translated string 
+  \ ca' len' = translated string
   2swap translated-str str-set
   0 ?do  dup i translation@ translated-str str-replace  loop  drop
   translated-str str-get

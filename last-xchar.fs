@@ -13,6 +13,6 @@ require tick-last-xchar.fs  \ "'last_xchar"
 
 : last-xchar  ( a u -- c )
   \ Return the last xchar of a UTF8 string.
-  'last-xchar xc@ 
+  'last-xchar xc@
   ;
 

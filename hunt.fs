@@ -16,6 +16,6 @@
   \ From Wil Baden's Charscan library (2003-02-17), public domain.
   \ ca1 len1 = string
   \ ca2 len2 = substring
-  \ ca3 len3 = ca1+i len1-i 
+  \ ca3 len3 = ca1+i len1-i
   search 0= if  chars + 0  then
   ;

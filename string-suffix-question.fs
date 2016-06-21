@@ -6,9 +6,9 @@
 
 \ History
 
-\ 2012-12-10: Word inspired by Gforth's 'string-prefix?'; it's a 
+\ 2012-12-10: Word inspired by Gforth's 'string-prefix?'; it's a
 \   modified version of Wil Baden's 'ends?' (from Charscan, 2002-2003).
-\ 2013-05-18: Fixed: typo. 
+\ 2013-05-18: Fixed: typo.
 \ 2013-11-06: Changed the stack notation of flag.
 \ 2014-03-23: Changed the stack notation of strings.
 \ 2014-05-29: Updated the stack notation of strings.

@@ -33,7 +33,7 @@ variable depth0
   ;
 : strings,  ( ca'1 len'1 ... ca'n len'n n -- )
   \ Compile the addresses and lengths of the strings.
-  0 ?do  2,  loop 
+  0 ?do  2,  loop
   ;
 : last!  ( dfa -- )
   \ Store the address of the last string compiled.
@@ -46,7 +46,7 @@ export
   \ Start the definition of a constant string array.
   \ dfa = data field address of the array,
   \   that will keep the address of the last string compiled.
-  create  here  0 ,  depth depth0 ! 
+  create  here  0 ,  depth depth0 !
   does>   ( n -- ca len )
     ( n dfa ) @ swap 2 cells * - 2@
   ;
