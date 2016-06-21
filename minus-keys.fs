@@ -13,7 +13,7 @@ require ./module.fs
 
 module: galope-minus-keys-module
 
-export 
+export
 
 : -keys ( -- )
   \ Remove all keys in the keyboard buffer.

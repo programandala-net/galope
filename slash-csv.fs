@@ -16,7 +16,7 @@ require ./slash-sides.fs  \ '/sides'
   \ Divide a comma separated values string.
   \ ca len = string with comma separated values
   \ ca#1 len#1 ... ca#u len#u = one or more strings
-  \ u = number of strings 
+  \ u = number of strings
   depth >r
   begin  s" ," /sides 0=  until  2drop
   depth r> 2 - - 2/

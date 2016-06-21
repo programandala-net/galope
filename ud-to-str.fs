@@ -8,6 +8,6 @@
 \ 2015-10-22: Renamed file.
 
 : ud>str  ( ud -- ca len )
-  <# #s #> 
+  <# #s #>
   ;
 

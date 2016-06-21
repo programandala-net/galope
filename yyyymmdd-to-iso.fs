@@ -68,7 +68,7 @@ export
 : yyyymmdd>iso  ( c-addr1 u1 -- c-addr2 u2 )
   \ Convert a date string with the format "yyyy[mm[dd]]"
   \ to the format "yyyy[-mm[-dd]]".
-  -iso-date  
+  -iso-date
   2dup year>iso 2dup month>iso day>iso
   iso-date count
   ;

@@ -14,5 +14,5 @@ require ./sides-slash.fs  \ 'sides/'
   \ Remove the filename and leave the path (with ending slash).
   \ ca len = filename with path
   \ ca' len' = path (with ending slash)
-  s" /" sides/ if  2drop s" /" s+  else  2nip  then 
+  s" /" sides/ if  2drop s" /" s+  else  2nip  then
   ;

@@ -63,7 +63,7 @@ export
 \ ----8<------------------------
 
 \ ----8<------------------------
-false [if]  \ Unfinished alternative!!! 
+false [if]  \ Unfinished alternative!!!
 : headline"  ( -- )
   postpone s"
   ; immediate
@@ -107,5 +107,5 @@ false [if]  \ Unfinished alternative!!!
   s"                      _/                 \__|"
   4 \ lines
   ;
-  
+
 ;module

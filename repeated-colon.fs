@@ -16,7 +16,7 @@ require ./module.fs
 
 module: galope-repeated-colon-module
 
-: invoke  ( a -- )  >r  ; 
+: invoke  ( a -- )  >r  ;
 
 \ The Gforth's primitive 'call' could be used instead of
 \ 'invoke', but it seems it's buggy in 64-bit CPUs.
@@ -25,7 +25,7 @@ export
 
 : repeated:  ( +n -- )
   begin   dup
-  while   r@ invoke 1- 
+  while   r@ invoke 1-
   repeat  drop rdrop
   ;
 

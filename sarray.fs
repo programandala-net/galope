@@ -61,31 +61,31 @@ export
 : s[
   \ Start the array definition.
   depth start_depth !
-  ; 
-: []s!  ( a1 u1 ... an un n -- ) 
-  \ Store the array strings. 
+  ;
+: []s!  ( a1 u1 ... an un n -- )
+  \ Store the array strings.
   \ a1 u1 ... an un = strings
   \ n = number of strings
-  0 do  , ,  loop 
+  0 do  , ,  loop
   ;
 : ]s  ( a1 u1 ... an n -- a n )
-  \ Finish the array definition. 
+  \ Finish the array definition.
   \ a1 u1 ... an un = strings
-  \ a = array address 
-  \ n = number of strings 
+  \ a = array address
+  \ n = number of strings
   depth start_depth @ - 2 /
   dup align here >r >r []s! 2r>
-  ; 
+  ;
 : '{}s  ( a1 u -- a2 )
-  \ Return an array string address. 
+  \ Return an array string address.
   \ a1 = array address
   \ u = string number
-  \ a2 = string address 
-  2* cells + 
+  \ a2 = string address
+  2* cells +
   ;
 : }s@  ( a1 u -- a2 u2 )
   \ Fetch a string from an array.
-  \ a1 = array address 
+  \ a1 = array address
   \ u = string number
   \ a2 u2 = string
   '{}s 2@

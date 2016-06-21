@@ -74,7 +74,7 @@ variable png-fid
   \ Return the size of the current PNG file.
   png-buffer 16 + dup @le  swap 4 + @le
   ;
-  
+
 \ ---------------------------------------------
 \ Debug
 

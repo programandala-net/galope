@@ -20,5 +20,5 @@ require ./sgr.fs
 : system_colors  ( -- )
   \ Set the system default colors.
   system_background_color system_foreground_color
-  trm.reset 1 sgr 
+  trm.reset 1 sgr
   ;

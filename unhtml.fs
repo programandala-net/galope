@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope-unhtml-module 
+module: galope-unhtml-module
 
 variable tag?  \ flag: does the current char belongs to a HTML tag?
 variable destination  \ address to store the next valid char into
@@ -37,7 +37,7 @@ export
   \ Remove the HTML tags from a string.
   over dup >r destination !
   bounds ?do  i c@ (unhtml)  loop
-  r> dup destination @ swap - 
+  r> dup destination @ swap -
   ;
 
 ;module

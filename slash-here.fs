@@ -10,6 +10,6 @@
 
 : /here  ( a -- n )
   \ Number of memory units from a previous dictionary address.
-  here swap - cell - 
-  ; 
+  here swap - cell -
+  ;
 

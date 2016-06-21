@@ -18,9 +18,9 @@ module: galope-heredoc-module
 
 0 [if]  \ xxx old, first version
 : <<<  ( "text>>>" -- ca len )
-  \ Read text from the input stream until '>>>' 
+  \ Read text from the input stream until '>>>'
   s" "
-  begin   parse-name ?dup 
+  begin   parse-name ?dup
     if    2dup s" >>>" str= dup >r
           if    2drop
           else  s+ s"  " s+
@@ -45,7 +45,7 @@ export
   \ ca1 len1 = <name>, the delimiter
   \ ca2 len2 = text from the input stream, until <name> is found
   /heredoc $!  s" "
-  begin   parse-name dup 
+  begin   parse-name dup
     if    2dup /heredoc? dup >r
           if  2drop  else  s+ s"  " s+  then  r>
     else  2drop refill 0= dup abort" Missing final heredoc's delimiter"

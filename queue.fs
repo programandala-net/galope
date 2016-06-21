@@ -12,7 +12,7 @@
 
 : queue ( n "name" -- )
   \ Create a named queue with a maximum size in address units.
-	create dup allocate throw 
+	create dup allocate throw
     ,    \ address
     0 ,  \ size
     ,    \ n = maximum size

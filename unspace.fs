@@ -9,7 +9,7 @@
 
 require ./module.fs
 
-module: galope-unspace-module 
+module: galope-unspace-module
 
 variable spaces?  \ flag: does the current char belongs to a HTML tag?
 variable destination  \ address to store the next valid char into
@@ -34,7 +34,7 @@ export
   \ Remove double spaces from a string.
   over dup >r destination !
   bounds ?do  i c@ (unspace)  loop
-  r> dup destination @ swap - 
+  r> dup destination @ swap -
   ;
 
 ;module

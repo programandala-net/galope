@@ -23,7 +23,7 @@ not be shortened with a keypress.
 
 r.s  [ 2015-02-03: better name: .rs ]
 
-Idea: 
+Idea:
 
 ----
 : copy-name  ( "name" -- ca len )
@@ -33,19 +33,19 @@ Idea:
 
 .2013-05-15:
 
-Idea found in 
+Idea found in
 (<http://groups.google.com/group/comp.lang.forth/browse_thread/thread/7367894d3a9ac280/2829422a2a58b349>):
 
 ____
-I use: 
-BEGIN-PRIVATE   \ remember dp #1 
-< definitions > 
-END-PRIVATE  \ remember dp #2 
-< definitions > 
-MAKE-PRIVATE  \ decapitate all definitions between dp #1 & #2 
-Clean and simple. Decapitate means, convert those defs to real nonames, 
-thereby freeing additional namespace. 
-Andreas 
+I use:
+BEGIN-PRIVATE   \ remember dp #1
+< definitions >
+END-PRIVATE  \ remember dp #2
+< definitions >
+MAKE-PRIVATE  \ decapitate all definitions between dp #1 & #2
+Clean and simple. Decapitate means, convert those defs to real nonames,
+thereby freeing additional namespace.
+Andreas
 ____
 
 .2013-05-28:
@@ -68,7 +68,7 @@ for words of specific sections.
 '2pick', 'picks', '2picks'.
 
 .2014-02-23:
- 
+
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own files,
 when a similar word will need them.
 

@@ -27,7 +27,7 @@ false [if]
 defer nupx
 : (nuptest)  { times -- }
   utime
-  1 2 
+  1 2
   times 0 do  nupx drop  loop
   utime swap - u. ." microseconds" cr
   ;
@@ -40,6 +40,6 @@ defer nupx
 \ cr 10000000 nuptest
 \ 531217218 microseconds
 \ 528703805 microseconds
- 
+
 
 [then]

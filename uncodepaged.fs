@@ -38,7 +38,7 @@ variable 'table  \ address of the translation table just defined
   ;
 : new_table  ( -- a )
   \ Create a new translation table.
-  /table allocate throw  dup erase_table  
+  /table allocate throw  dup erase_table
   ;
 : #translations  ( c1 ca1 len1 ... c'n ca'n len'n -- c1 ca1 len1 ... c'n ca'n len'n n )
   \ Calculate the number of translations defined in the translation table.
@@ -62,11 +62,11 @@ variable 'table  \ address of the translation table just defined
   ;
 : translation,  ( c ca len -- )
   \ Compile a translation into the translation table.
-  rot 'table @ swap translation! 
+  rot 'table @ swap translation!
   ;
 : translations,  ( c'1 ca'1 len'1 ... c'n ca'n len'n n -- )
   \ Compile the translations into the translation table.
-  \ n = number of translations 
+  \ n = number of translations
 \  .s cr key drop  \ xxx informer
   0 ?do  translation,  loop
   ;
@@ -94,7 +94,7 @@ variable 'table  \ address of the translation table just defined
 : char>uncodepaged  ( c -- )
   \ Append a character to the uncodepaged string.
 \  ." char>uncodepaged START" cr .s cr key drop  \ xxx informer
-  1 uncodepaged-str str-append-chars 
+  1 uncodepaged-str str-append-chars
   ;
 : >uncodepaged  ( a c -- )
   \ Append a translation to the uncodepaged string.
@@ -125,7 +125,7 @@ export
   \ Translate a string with a translation table.
   \ ca len = string to translate
   \ a = address of the translation table
-  \ ca' len' = translated string 
+  \ ca' len' = translated string
   uncodepaged-str str-clear
   rot rot bounds ?do  dup i c@ >uncodepaged loop  drop
   uncodepaged-str str-get

@@ -25,8 +25,8 @@ false [if]
 
 : (*  ( -- )
   \ Start a block comment; blocks can not be nested.
-  begin   parse-name dup 
-    if    s" *)" str= 
+  begin   parse-name dup
+    if    s" *)" str=
     else  2drop refill 0= dup abort" Missing closing '*)'"  then
   until
   ;  immediate
@@ -48,7 +48,7 @@ variable (*_count
 : (*  ( -- )
   \ Start a block comment; blocks can be nested.
   (*_count off
-  begin  parse-name dup 
+  begin  parse-name dup
     if  ((*)  else  2drop refill 0= dup abort" Missing closing '*)'"  then
   until
   ;  immediate

@@ -33,7 +33,7 @@ true [if]
 \ Date: Wed, 27 Nov 2013 22:34:06 +0100
 \ Message-Id: <52966559$0$15971$e4fe514c@news2.news.xs4all.nl>
 
-: d*  ( d1 d2 -- d3 ) 
+: d*  ( d1 d2 -- d3 )
   >r swap >r over over um* rot r> * + rot r> * +
   ;
 

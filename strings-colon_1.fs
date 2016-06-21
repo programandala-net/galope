@@ -25,7 +25,7 @@
 : strings:  ( "name" -- dfa )
   \ Start the definition of a constant string array.
   \ The strings must be compiled with '2,'.
-  create  here 
+  create  here
   does>   ( n -- ca len )
     ( n dfa ) swap 2 cells * + 2@
   ;
@@ -33,7 +33,7 @@
   \ End the definition of a constant string array.
   \ dfa = data field address of the array, left by 'strings:'
   \ n = number of strings compiled in the array
-  here swap - cell / 2/ 
+  here swap - cell / 2/
   ;
 
 false [if]

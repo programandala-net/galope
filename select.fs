@@ -11,7 +11,7 @@ require ./between.fs
 \ Origin of this code
 
 \ This control structure has been taken from:
- 
+
 \     http://dxforth.netbay.com.au/miser.html
 \     Miser's CASE - A general purpose Forth CASE statement
 \     Revision 3  2008-11-30
@@ -81,7 +81,7 @@ clauses that would otherwise pass to 'endselect'. It provides
 : thens  ( 0 a'1 ... a'n -- )
   \ Compile the pending 'then'.
   begin  ?dup while  postpone then  repeat
-  ; 
+  ;
 : endselect  ( compile-time: 0 a'1 ... a'n -- ) ( run-time: x0 -- )
   postpone drop  thens
   ;  immediate

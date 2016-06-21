@@ -1,6 +1,6 @@
 \ galope/print.fs
 \ Left justified print
- 
+
 \ This file is part of Galope
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
@@ -29,10 +29,10 @@
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 require ./module.fs
-require ./column.fs 
-require ./home.fs 
-require ./last-row.fs 
-require ./question-question.fs 
+require ./column.fs
+require ./home.fs
+require ./last-row.fs
+require ./question-question.fs
 
 require ffl/trm.fs
 
@@ -95,7 +95,7 @@ false [if]  \ First version
   ;
 
 [else]  \ Experimental
-  
+
 hide
 
 : at_last_start_of_line?  ( -- wf )
@@ -165,7 +165,7 @@ hide
   \ ca1 len1 = Text, from the start of its first word.
   \ ca2 len2 = Same text, from the char after its first word.
   \ ca1 len4 = First word of the text.
-  tuck 2>r -  2r> 2swap ; 
+  tuck 2>r -  2r> 2swap ;
 : first_word  ( ca1 len1 -- ca2 len2 ca3 len3 )
   /word >word
   ;
