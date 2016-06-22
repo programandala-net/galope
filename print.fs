@@ -3,7 +3,7 @@
 
 \ This file is part of Galope
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2013,2014,2015 Marcos Cruz (programandala.net)
 
 \ Based on:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
@@ -24,7 +24,6 @@
 \   UTF-8 support.
 \ 2014-02-19: Rename all interface words homogeneously and with a simpler
 \   convention than "print_".
-\ 2015-10-13: Updated after the latest renamings in Galope.
 
 \ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -238,5 +237,7 @@ export
 \ 2014-02-19: New: 'print_page'.
 \
 \ 2014-11-17: Module name updated.
+\
+\ 2015-10-13: Updated after the latest renamings in Galope.
 \
 \ 2015-10-16: Fixed some comments.

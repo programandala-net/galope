@@ -1,8 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2015-02-03
-
-Pending tasks and raw ideas for Galope.
+:revdate: 2016-06-21
 
 .2012-09-14:
 
@@ -16,8 +14,8 @@ seconds|keypress ?
 /seconds ?
 ----
 
-Then use 'seconds' and 'microseconds' for versions where the pause that can
-not be shortened with a keypress.
+Then use 'seconds' and 'microseconds' for versions where the pause
+that can not be shortened with a keypress.
 
 .2012-09-20:
 
@@ -59,24 +57,22 @@ fix slash-sides.fs
 
 .2014-02-17:
 
-Create word sections, after Gforth, and mark them in the sources with some conventional notation.
-This way the files could be searched (e.g. with 'grep')
-for words of specific sections.
+Create word sections, after Gforth, and mark them in the sources with
+some conventional notation.  This way the files could be searched
+(e.g. with 'grep') for words of specific sections.
 
 .2014-02-18:
 
-'2pick', 'picks', '2picks'.
+`2pick`, `picks`, `2picks`.
 
 .2014-02-23:
 
-Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own files,
-when a similar word will need them.
+Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own
+files, when a similar word will need them.
 
 .2014-02-27:
 
-Rename 'drops' to 'ndrop', and related.
-
-de comp.lang.forth:
+comp.lang.forth:
 
 ----
 : [:  postpone ahead
@@ -106,7 +102,7 @@ s" string3"
 }random-string: name$
 ----
 
-Pero se puede hacer igual con <galope/random-strings>.
+But <galope/random-strings> can be used for that.
 
 .2014-03-12:
 
@@ -159,12 +155,16 @@ Use comment marks, to make automatic lists of the modules:
 \ galope-tag: return_stack
 ----
 
-.2015-02-03:
-
-Rename all modules?:
-
-galope_blabla_module --> galope.blabla
-
 .2015-11-27:
 
 Rename "x" files to "x-", after the spelling in Forth-2012.
+
+.2016-06-21:
+
+Rename all modules?:
+
+galope-blabla-module --> galope.blabla
+
+.2016-06-21:
+
+Replace underscore with hyphens in words of modules "print" and "sb".
