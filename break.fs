@@ -1,7 +1,8 @@
-\ galope/break_go.fs
+\ galope/break.fs
 \ This file is part of Galope
 
 \ 2015-02-03
+\ 2016-06-23: Rename the module.
 
 \ Adapted from CP/M DX-Forth 4.09 (file <BREAKGO.SCR>).
 \
