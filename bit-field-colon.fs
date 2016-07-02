@@ -5,45 +5,66 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ By Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2016.
 
 \ 2016-06-23: Extract from the project "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html)
 \ in order to reuse it in other projects. Improve with some name
 \ changes. Translate comments.
+\ 2016-06-26: Update header.
+\ 2016-07-02: Rewrite. Improve with `begin-bitfields` and `end-bitfields`.
+
+\ ==============================================================
 
 require ./module.fs
+require ./n-to-str-plus.fs  \ `n>str+`
 
 module: galope-bit-field-colon-module
 
-variable bitfield-mask
-  \ Bitmask counter.
+variable bitmask
 
-: ?bitfield-mask  ( -- u )
-  bitfield-mask @  dup 0= abort" Too many bits in the field"  ;
-  \ XXX FIXME this check depends on the cell width, thus the amount of
-  \ contiguous bit fields defined in one data structure depends on the
-  \ machine.  Make the system smarter: use additional cells when
-  \ needed.
+1 constant first-bitmask
 
-: next-bit  ( -- )  bitfield-mask @ 1 lshift bitfield-mask !  ;
+: next-bitmask  ( -- u )
+  bitmask @ 1 lshift  ;
+  \ Update the bitmask to the next bit.
+
+: update-bitmask  ( n -- n' )
+  next-bitmask ?dup 0= if  first-bitmask  then  bitmask !  ;
+  \ Update the bitmask, ready for the next bit field.
+
+: first-bitmask?  ( -- f )
+  bitmask @ first-bitmask =   ;
+  \ Is the current bitmask the first one?
+
+: get-bitmask  ( n -- n' u )
+  first-bitmask? cell and + bitmask @  ;
+  \ Get the current bitmask _u_. If _u_ is the first bitmask,
+  \ update the cell offset _n_.
+
+: bitfields-name  ( -- ca len )
+  s" bitfields-" here n>str+  ;
+  \ Unique name for the current set of bitfields.
 
 export
 
-: bitfields  ( -- )  1 bitfield-mask !  ;
-  \ Mark the start of the bit fields in a data structure.
+: begin-bitfields  ( n1 -- n1 n2 )
+  aligned dup  first-bitmask bitmask !  ;
 
-\ : begin-structure  ( "name" -- )  init-bitfields begin-structure  ;
-  \ XXX TODO
+: end-bitfields  ( n1 n2 -- )
+  cr ." end-bitfields " .s  \ XXX INFORMER
+  over - bitfields-name nextname
+  cr ." +field " .s key drop  \ XXX INFORMER
+  +field  ;
 
-: bitfield:  ( n "name" -- n )
-  create  ?bitfield-mask over 2, next-bit
+: bitfield:  ( n "name" -- n' )
+  create  get-bitmask
+  cr ." bitmask= " dup 2 base ! 33 u.r decimal  \ XXX INFORMER
+          over 2, update-bitmask
   does>  ( a -- u a' )  ( a pfa ) 2@ rot +  ;
-  \ Create a bit field _name_, with offset _n_ from the start of the
-  \ structure (the field that holds the bit fields must be created
-  \ with `field:` after the last `bitfield:`.
-  \ When executed, `name` will return its address _a'_ and bitmask
-  \ _u_.
+  \ Create a it field _name_, with offset _n_ from the start of the
+  \ structure.  When executed, `name` will return its bitmask _u_ and
+  \ the address _a'_ that holds the bit.
 
 : bit-on  ( u a -- )  dup @ rot or swap !  ;
   \ Turn a bit field on (address _a_ and bitmask _u_).
@@ -51,39 +72,87 @@ export
 : bit-off  ( u a -- )  dup @ rot invert and swap !  ;
   \ Turn a bit field off (address _a_ and bitmask _u_).
 
-: bit!  ( f u a -- )  rot if  bit-on  else  bit-off  then  ;
+: bit!  ( f u a -- )  rot if  bit-on exit  then  bit-off  ;
   \ Store _f_ in a bit field (address _a_ and bitmask _u_).
 
 : bit@  ( u a -- f )  @ and 0<>  ;
   \ Fetch _f_ from a bit field (address _a_ and bitmask _u_).
 
-\ Usage example:
-\
-\ 0
-\   2field: thing>name  \ string
-\   bitfields
-\     bitfield: thing>portable
-\     bitfield: thing>fast
-\     bitfield: thing>automatic
-\   field: thing>bitfields  \ actual field that holds the bit fields
-\ constant /thing
+\ ==============================================================
+\ Usage example
 
-\ XXX TODO -- Make this syntax possible:
-\
 \ ----
 \ 0
-\   2field: thing>name  \ string
+\   field: thing>something
 \   begin-bitfields
-\     bitfield: thing>portable
-\     bitfield: thing>fast
-\     bitfield: thing>automatic
+\     bitfield: thing>flag0
+\     bitfield: thing>flag1
+\     bitfield: thing>flag2
 \   end-bitfields
+\   field: thing>other
 \ constant /thing
 \ ----
-\
-\ `end-bitfields` would reserve as much cells as needed to hold all
-\ bit fields. This way the code will be portable among 8-bit and
-\ 32-bit platforms. `begin-bitfield` must preserve the initial offset
-\ and `bitfield:` must increase it when needed.
+
+\ ==============================================================
+\ Debug tests
+
+false [if]
+
+\ cr %10000000000000000000000000000000 .
+\ cr s" max-n" environment? drop . key drop
+\ cr s" max-u" environment? drop u. key drop
+\ quit
+
+\ Usage example
+
+0
+  field: cf00
+  field: cf01
+  field: cf02
+  begin-bitfields
+    bitfield: bf00
+    bitfield: bf01
+    bitfield: bf02
+    bitfield: bf03
+    bitfield: bf04
+    bitfield: bf05
+    bitfield: bf06
+    bitfield: bf07
+    bitfield: bf08
+    bitfield: bf09
+    bitfield: bf10
+    bitfield: bf11
+    bitfield: bf12
+    bitfield: bf13
+    bitfield: bf14
+    bitfield: bf15
+    bitfield: bf16
+    bitfield: bf17
+    bitfield: bf18
+    bitfield: bf19
+    bitfield: bf20
+    bitfield: bf21
+    bitfield: bf22
+    bitfield: bf23
+    bitfield: bf24
+    bitfield: bf25
+    bitfield: bf26
+    bitfield: bf27
+    bitfield: bf28
+    bitfield: bf29
+    bitfield: bf30
+cr .( about to define bf31)
+    bitfield: bf31
+ cr .( about to define bf00-2)
+    bitfield: bf00-2
+\    bitfield: bf01-2
+    \ bitfield: bf03-2
+  end-bitfields
+  field: cf03
+
+cr .( /thing = ) dup .  \ XXX INFORMER
+constant /thing
+
+[then]
 
 ;module
