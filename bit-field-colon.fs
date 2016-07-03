@@ -7,15 +7,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2016.
 
-\ 2016-06-23: Extract from the project "Asalto y castigo"
-\ (http://programandala.net/es.programa.asalto_y_castigo.forth.html)
-\ in order to reuse it in other projects. Improve with some name
-\ changes. Translate comments.
-\ 2016-06-26: Update header.
-\ 2016-07-02: Rewrite. Improve with `begin-bitfields` and `end-bitfields`.
-\ 2016-07-03: Make `bitfields-name` configurable, in case the
-\ application needs to manipulate all bitfields as a whole (for
-\ example, por saving and restoring them).
+\ See history at the end of the file.
 
 \ ==============================================================
 
@@ -57,19 +49,14 @@ defer bitfields-name  ( -- ca len)
 ' default-bitfields-name is bitfields-name
 
 : begin-bitfields  ( n1 -- n1 n2 )
-  aligned dup  first-bitmask bitmask !  ;
+  aligned dup cell -  first-bitmask bitmask !  ;
 
 : end-bitfields  ( n1 n2 -- )
-  \ cr ." end-bitfields " .s  \ XXX INFORMER
-  over - bitfields-name nextname
-  \ cr ." +field " .s key drop  \ XXX INFORMER
-  +field  ;
+  over - cell+ bitfields-name nextname +field  ;
 
 : bitfield:  ( n "name" -- n' )
-  create  get-bitmask
-  \ cr ." bitmask= " dup 2 base ! 33 u.r decimal  \ XXX INFORMER
-          over 2, update-bitmask
-  does>  ( a -- u a' )  ( a pfa ) 2@ rot +  ;
+  create  get-bitmask over 2, update-bitmask
+  does>   ( a -- u a' )  ( a pfa ) 2@ rot +  ;
   \ Create a it field _name_, with offset _n_ from the start of the
   \ structure.  When executed, `name` will return its bitmask _u_ and
   \ the address _a'_ that holds the bit.
@@ -85,6 +72,8 @@ defer bitfields-name  ( -- ca len)
 
 : bit@  ( u a -- f )  @ and 0<>  ;
   \ Fetch _f_ from a bit field (address _a_ and bitmask _u_).
+
+;module
 
 \ ==============================================================
 \ Usage example
@@ -110,8 +99,6 @@ false [if]
 \ cr s" max-n" environment? drop . key drop
 \ cr s" max-u" environment? drop u. key drop
 \ quit
-
-\ Usage example
 
 0
   field: cf00
@@ -158,9 +145,23 @@ cr .( about to define bf31)
   end-bitfields
   field: cf03
 
-\ cr .( /thing = ) dup .  \ XXX INFORMER
 constant /thing
 
 [then]
 
-;module
+\ ==============================================================
+\ History
+
+\ 2016-06-23: Extract from the project "Asalto y castigo"
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth.html)
+\ in order to reuse it in other projects. Improve with some name
+\ changes. Translate comments.
+\
+\ 2016-06-26: Update header.
+\
+\ 2016-07-02: Rewrite. Improve with `begin-bitfields` and
+\ `end-bitfields`.
+\
+\ 2016-07-03: Make `bitfields-name` configurable, in case the
+\ application needs to manipulate all bitfields as a whole (for
+\ example, por saving and restoring them). Fix calculation of offset.
