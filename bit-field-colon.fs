@@ -13,6 +13,9 @@
 \ changes. Translate comments.
 \ 2016-06-26: Update header.
 \ 2016-07-02: Rewrite. Improve with `begin-bitfields` and `end-bitfields`.
+\ 2016-07-03: Make `bitfields-name` configurable, in case the
+\ application needs to manipulate all bitfields as a whole (for
+\ example, por saving and restoring them).
 
 \ ==============================================================
 
@@ -42,24 +45,29 @@ variable bitmask
   \ Get the current bitmask _u_. If _u_ is the first bitmask,
   \ update the cell offset _n_.
 
-: bitfields-name  ( -- ca len )
-  s" bitfields-" here n>str+  ;
-  \ Unique name for the current set of bitfields.
-
 export
+
+defer bitfields-name  ( -- ca len)
+  \ Name of the set of bitfields, configurable by the application.
+
+: default-bitfields-name  ( -- ca len )
+  s" ~bitfields-" here n>str+  ;
+  \ Unique name for set of bitfields, used by default.
+
+' default-bitfields-name is bitfields-name
 
 : begin-bitfields  ( n1 -- n1 n2 )
   aligned dup  first-bitmask bitmask !  ;
 
 : end-bitfields  ( n1 n2 -- )
-  cr ." end-bitfields " .s  \ XXX INFORMER
+  \ cr ." end-bitfields " .s  \ XXX INFORMER
   over - bitfields-name nextname
-  cr ." +field " .s key drop  \ XXX INFORMER
+  \ cr ." +field " .s key drop  \ XXX INFORMER
   +field  ;
 
 : bitfield:  ( n "name" -- n' )
   create  get-bitmask
-  cr ." bitmask= " dup 2 base ! 33 u.r decimal  \ XXX INFORMER
+  \ cr ." bitmask= " dup 2 base ! 33 u.r decimal  \ XXX INFORMER
           over 2, update-bitmask
   does>  ( a -- u a' )  ( a pfa ) 2@ rot +  ;
   \ Create a it field _name_, with offset _n_ from the start of the
@@ -150,7 +158,7 @@ cr .( about to define bf31)
   end-bitfields
   field: cf03
 
-cr .( /thing = ) dup .  \ XXX INFORMER
+\ cr .( /thing = ) dup .  \ XXX INFORMER
 constant /thing
 
 [then]
