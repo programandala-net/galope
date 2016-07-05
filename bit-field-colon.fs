@@ -39,20 +39,12 @@ variable bitmask
 
 export
 
-defer bitfields-name  ( -- ca len)
-  \ Name of the set of bitfields, configurable by the application.
+: begin-bitfields  ( n1 "name" -- ca len n1 n2 )
+  parse-name save-mem
+  rot aligned dup cell -  first-bitmask bitmask !  ;
 
-: default-bitfields-name  ( -- ca len )
-  s" ~bitfields-" here n>str+  ;
-  \ Unique name for set of bitfields, used by default.
-
-' default-bitfields-name is bitfields-name
-
-: begin-bitfields  ( n1 -- n1 n2 )
-  aligned dup cell -  first-bitmask bitmask !  ;
-
-: end-bitfields  ( n1 n2 -- )
-  over - cell+ bitfields-name nextname +field  ;
+: end-bitfields  ( ca len n1 n2 -- )
+  2swap nextname over - cell+ +field  ;
 
 : bitfield:  ( n "name" -- n' )
   create  get-bitmask over 2, update-bitmask
@@ -104,7 +96,7 @@ false [if]
   field: cf00
   field: cf01
   field: cf02
-  begin-bitfields
+  begin-bitfields the-bitfields
     bitfield: bf00
     bitfield: bf01
     bitfield: bf02
@@ -165,3 +157,6 @@ constant /thing
 \ 2016-07-03: Make `bitfields-name` configurable, in case the
 \ application needs to manipulate all bitfields as a whole (for
 \ example, por saving and restoring them). Fix calculation of offset.
+\
+\ 2016-07-05: Make `begin-bitfields` parse the name of the bit fields
+\ set.
