@@ -42,9 +42,16 @@ export
 : begin-bitfields  ( n1 "name" -- ca len n1 n2 )
   parse-name save-mem
   rot aligned dup cell -  first-bitmask bitmask !  ;
+  \ Begin a set of bitfields called _name_ that starts at the offset
+  \ _n1_ in the data structure, leaving the name in the preserved
+  \ string _ca len_. _n2_ is used to calculate the length of the
+  \ bitfields set at the end.
 
-: end-bitfields  ( ca len n1 n2 -- )
-  2swap nextname over - cell+ +field  ;
+: end-bitfields  ( ca len n1 n2 -- n3 )
+  2swap nextname over - cell+ dup >r +field r>  ;
+  \ End a set of bitfields with name _ca len_ that starts at the
+  \ offset _n1_ in the data structure and ends at offset _n2_, leaving
+  \ the length of the bitfields set _n3_ in address units.
 
 : bitfield:  ( n "name" -- n' )
   create  get-bitmask over 2, update-bitmask
@@ -159,4 +166,4 @@ constant /thing
 \ example, por saving and restoring them). Fix calculation of offset.
 \
 \ 2016-07-05: Make `begin-bitfields` parse the name of the bit fields
-\ set.
+\ set. Make `end-bitfields` return the length of the bit fields set.
