@@ -1,29 +1,34 @@
 \ galope/string-suffix-question.fs
+\ `string-suffix?`
+\ Check a suffix of a string.
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012.
+\ Based on Wil Baden's `ends?` (from Charscan, 2002-2003).
 
+\ Note: The word `ends?` (provided by <ends-question.fs>) does the
+\ same but doesn't consume the first string. 'string-suffix?' is
+\ recommended.
+
+\ ==============================================================
+
+require ./fourth.fs
+
+: string-suffix? ( ca1 len1 ca2 len2 -- f )
+  2swap dup fourth - /string  str=  ;
+  \ Is _ca2 len2_ the end of _ca1 len1_?
+
+\ ==============================================================
 \ History
 
 \ 2012-12-10: Word inspired by Gforth's 'string-prefix?'; it's a
 \   modified version of Wil Baden's 'ends?' (from Charscan, 2002-2003).
-\ 2013-05-18: Fixed: typo.
-\ 2013-11-06: Changed the stack notation of flag.
-\ 2014-03-23: Changed the stack notation of strings.
-\ 2014-05-29: Updated the stack notation of strings.
-\ 2015-10-14: `str=` instead of `compare 0=`.
-
-\ The word 'ends?' (in <ends-question.fs>) does the same but doesn't
-\ consume the first string. 'string-suffix?' is recommended.
-
-require ./fourth.fs
-
-: string-suffix? ( ca1 len1 ca2 len2 -- wf )
-  \ Check end of string:
-  \ Is ca2 len2 the end of ca1 len1?
-  \ ca1 len1 = long string
-  \ ca2 len2 = suffix to check
-  2swap dup fourth - /string  str=
-  ;
+\ 2013-05-18: Fix typo.
+\ 2013-11-06: Chang the stack notation of flag.
+\ 2014-03-23: Chang the stack notation of strings.
+\ 2014-05-29: Update the stack notation of strings.
+\ 2015-10-14: Replace `compare 0=` with `str=`.
+\ 2016-07-05: Update source layout and header.
 
