@@ -4,9 +4,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ By Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2016
 
-\ 2016-06-25: Extract from the project _Asalto y castigo_ and rename.
+\ ==============================================================
 
 require ./colon-alias.fs
 require ./module.fs
@@ -36,3 +36,12 @@ export
   \ Create any number of aliases of _xt_, until ";aliases" is parsed.
 
 ;module
+
+\ ==============================================================
+\ History
+
+\ 2016-06-25: Extract from "Asalto y castigo"
+\ (http://programandala.net/en.program.asalto_y_castigo.forth.html)
+\ and rename.
+\
+\ 2016-07-11: Update source layout and file header.

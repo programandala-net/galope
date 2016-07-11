@@ -1,4 +1,4 @@
-\ galope/system_color.fs
+\ galope/system-colors.fs
 \ Set the system default colors.
 
 \ This file is part of Galope
@@ -6,11 +6,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ 2012-12-02: Refactored from the "Asalto y castigo" project
-\ (<http://programandala.net/es.programa.asalto_y_castigo.forth.html>).
-\
-\ 2016-06-26: Change underscores to hyphens; update source style and
-\ header.
+\ ==============================================================
 
 require ./sgr.fs
 
@@ -26,3 +22,14 @@ require ./sgr.fs
   system-background-color system-foreground-color
   trm.reset 1 sgr  ;
   \ Set the system default colors.
+
+\ ==============================================================
+\ History
+
+\ 2012-12-02: Refactor from "Asalto y castigo"
+\ (<http://programandala.net/es.programa.asalto_y_castigo.forth.html>).
+\
+\ 2016-06-26: Change underscores to hyphens; update source style and
+\ header.
+\
+\ 2016-07-11: Update the file name.

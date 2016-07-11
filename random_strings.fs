@@ -2,38 +2,14 @@
 \ Random strings
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2011,2012,2013,2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2013, 2014.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ History
+\ XXX TODO -- document the words in English
+\ XXX TODO -- replace underscores with dashes
 
-\ 2012-04-07: In order to reuse this code, it was extracted from the
-\ project it was developed for
-\ (http://programandala.net/es.programa.asalto_y_castigo.forth).  The
-\ abort messages are translated to English.
-\
-\ 2012-04-22: The original Spanish comments are moved to the end of
-\ the file.  More compact source layout.
-\
-\ 2012-04-30: Added 's?{' and '}s{'.
-\
-\ 2012-05-02: Fixed some stack comments.
-\
-\ 2012-05-05: Added the new files galope/increment.fs and
-\ galope/decrement.fs, instead of defining '++' and '--'.  Added
-\ '}s&?'.
-\
-\ 2012-05-08: galope/increment.fs and galope/decrement.fs changed
-\ their names to galope/plus-plus.fs and galope/minus-minus.fs.
-\
-\ 2012-09-14: Code reformated.
-\
-\ 2013-11-06: Changed the stack notation of flag.
-\
-\ 2014-11-17: Module name updated.
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 
 require random.fs
 
@@ -45,92 +21,93 @@ require ./minus-minus.fs
 
 module: galope-random_strings-module
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Depth stack
 
 8 constant /dstack
-variable dstack_pointer
-/dstack cells allot
-: 'dstack_tos ( -- a )
-  dstack_pointer dup @ cells +
-  ;
-: dstack_full? ( -- wf )
-  dstack_pointer @ /dstack =
-  ;
-: dstack_empty? ( -- wf )
-  dstack_pointer @ 0=
-  ;
-: ?abort_full
-  dstack_full? abort" Too many nesting levels with S{ and }S ."
-  ;
-: dstack! ( u -- )
-  ?abort_full dstack_pointer ++ 'dstack_tos !
-  ;
-: ?abort_empty
-  dstack_empty? abort" S{ and }S badly nested."
-  ;
-: dstack@ ( -- u )
-  ?abort_empty 'dstack_tos @ dstack_pointer --
-  ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+variable dstack_pointer
+
+/dstack cells allot
+
+: 'dstack_tos ( -- a )
+  dstack_pointer dup @ cells +  ;
+
+: dstack_full? ( -- wf )
+  dstack_pointer @ /dstack =  ;
+
+: dstack_empty? ( -- wf )
+  dstack_pointer @ 0=  ;
+
+: ?abort_full
+  dstack_full? abort" Too many nesting levels with S{ and }S ."  ;
+
+: dstack! ( u -- )
+  ?abort_full dstack_pointer ++ 'dstack_tos !  ;
+
+: ?abort_empty
+  dstack_empty? abort" S{ and }S badly nested."  ;
+
+: dstack@ ( -- u )
+  ?abort_empty 'dstack_tos @ dstack_pointer --  ;
+
+\ ==============================================================
 \ Operators
 
 export
 
 : s{ ( -- )
-  depth dstack!
-  ;
-: }s ( a1 u1 ... an un -- a' u' )
-  depth dstack@ - 2 / 2choose
-  ;
-: }s{ ( a1 u1 ... an un -- a' u' )
-  }s s{
-  ;
-: }s& ( a0 u0 a1 u1 ... an un -- a' u' )
-  }s bs&
-  ;
-: }s+ ( a0 u0 a1 u1 ... an un -- a' u' )
-  }s bs+
-  ;
-: s? ( a u -- a u | a 0 )
-  2 random *
-  ;
-: s?& ( a1 u1 a2 u2 -- a3 u3 | a3 u1 )
-  s? bs&
-  ;
-: s?+ ( a1 u1 a2 u2 -- a3 u3 | a3 u1 )
-  s? bs+
-  ;
-: s+? ( a1 u1 a2 u2 -- a3 u3 | a3 0 )
-  bs+ s?
-  ;
-: s&? ( a1 u1 a2 u2 -- a3 u3 | a3 0 )
-  bs& s?
-  ;
-: }s? ( a1 u1 ... an un -- a' u' | a' 0 )
-  }s s?
-  ;
-: }s?& ( a0 u0 a1 u1 ... an un -- a' u' )
-  }s? bs&
-  ;
-: }s?+ ( a0 u0 a1 u1 ... an un -- a' u' )
-  }s? bs+
-  ;
-: s&{ ( a1 u1 a2 u2 -- a3 u3 )
-  bs& s{
-  ;
-: s+{ ( a1 u1 a2 u2 -- a3 u3 )
-  bs+ s{
-  ;
-: s?{ ( a1 u1 -- a1 u1 | a1 0 )
-  s? s{
-  ;
-: }s&? ( a0 u0 a1 u1 ... an un -- a' u' | a' 0 )
-  }s& s?
-  ;
+  depth dstack!  ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+: }s ( ca1 len1 ... ca#n len#n -- ca' len' )
+  depth dstack@ - 2 / 2choose  ;
+
+: }s{ ( ca1 len1 ... ca#n len#n -- ca' len' )
+  }s s{  ;
+
+: }s& ( ca0 len0 ca1 len1 ... ca#n len#n -- ca' len' )
+  }s bs&  ;
+
+: }s+ ( ca0 len0 ca1 len1 ... ca#n len#n -- ca' len' )
+  }s bs+  ;
+
+: s? ( a u -- a u | a 0 )
+  2 random *  ;
+
+: s?& ( ca1 len1 ca2 len2 -- ca3 len3 | ca3 len1 )
+  s? bs&  ;
+
+: s?+ ( ca1 len1 ca2 len2 -- ca3 len3 | ca3 len1 )
+  s? bs+  ;
+
+: s+? ( ca1 len1 ca2 len2 -- ca3 len3 | ca3 0 )
+  bs+ s?  ;
+
+: s&? ( ca1 len1 ca2 len2 -- ca3 len3 | ca3 0 )
+  bs& s?  ;
+
+: }s? ( ca1 len1 ... ca#n len#n -- ca' len' | ca' 0 )
+  }s s?  ;
+
+: }s?& ( ca0 len0 ca1 len1 ... ca#n len#n -- ca' len' )
+  }s? bs&  ;
+
+: }s?+ ( ca0 len0 ca1 len1 ... ca#n len#n -- ca' len' )
+  }s? bs+  ;
+
+: s&{ ( ca1 len1 ca2 len2 -- ca3 len3 )
+  bs& s{  ;
+
+: s+{ ( ca1 len1 ca2 len2 -- ca3 len3 )
+  bs+ s{  ;
+
+: s?{ ( ca1 len1 -- ca1 len1 | ca1 0 )
+  s? s{  ;
+
+: }s&? ( ca0 len0 ca1 len1 ... ca#n len#n -- ca' len' | ca' 0 )
+  }s& s?  ;
+
+\ ==============================================================
 \ Spanish documentation
 
 0 [if]
@@ -175,3 +152,33 @@ s?{ \ Vacía una cadena (con el 50% de probabilidad) e inicia una zona de selecc
 [then]
 
 ;module
+
+\ ==============================================================
+\ History
+
+\ 2012-04-07: In order to reuse this code, it was extracted from the
+\ project it was developed for
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth).  The
+\ abort messages are translated to English.
+\
+\ 2012-04-22: The original Spanish comments are moved to the end of
+\ the file.  More compact source layout.
+\
+\ 2012-04-30: Added 's?{' and '}s{'.
+\
+\ 2012-05-02: Fixed some stack comments.
+\
+\ 2012-05-05: Added the new files galope/increment.fs and
+\ galope/decrement.fs, instead of defining '++' and '--'.  Added
+\ '}s&?'.
+\
+\ 2012-05-08: galope/increment.fs and galope/decrement.fs changed
+\ their names to galope/plus-plus.fs and galope/minus-minus.fs.
+\
+\ 2012-09-14: Code reformated.
+\
+\ 2013-11-06: Changed the stack notation of flag.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2016-07-11: Update source layout, file header, stack notation.

@@ -1,27 +1,29 @@
 \ galope/empty.fs
+\ `empty`
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
-
-\ History
-\ 2012-05-18 Added.
-\ 2012-09-14 Code reformated.
-
-\ Taken from ToolBelt 2002 by Wil Baden.
+\ Authors:
+\ Wil Baden, 2002 (from ToolBelt)
+\ Marcos Cruz (programandala.net), 2012
 
 require ./anew.fs
 
-\ empty  ( -- )
-
-\ Reset the dictionary to a predefined golden state, discarding
-\ all definitions and releasing all allocated data space beyond
-\ that state.  This 'empty' uses '--empty--' to separate kernel
-\ words and user words.  Rename '--empty--' if you wish.
-\ 'marker --empty--' will setup a new golden area for 'empty'.
-\ '--empty--' will restore the previous golden area.
-
 : empty  ( -- )
-    s" anew --empty-- decimal  only forth definitions "
-    evaluate
-    ;
+  s" anew --empty-- decimal only forth definitions"
+  evaluate  ;
+  \ Reset the dictionary to a predefined golden state, discarding all
+  \ definitions and releasing all allocated data space beyond that
+  \ state.  This `empty` uses  --empty--` to separate kernel words and
+  \ user words.  Rename `--empty--` if you wish.  `marker --empty--`
+  \ will setup a new golden area for `empty`.  `--empty--` will
+  \ restore the previous golden area.
+
+\ ==============================================================
+\ History
+
+\ 2012-05-18: Add to the library.
+\ 2012-09-14: Reformat the code.
+\ 2016-07-08: Update source layout and header.
+
