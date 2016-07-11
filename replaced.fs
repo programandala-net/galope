@@ -1,25 +1,36 @@
 \ galope/replaced.fs
+\ `replaced`
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014, 2016.
 
-\ History
-\ 2014-02-28 Copied from Fendo
-\ (http://programandala.net/en.program.fendo.html); the order of the
-\ parameters is changed.
+\ ==============================================================
 
 require ./module.fs
 require ffl/str.fs
 
 module: galope-replaced-module
+
 str-create tmp-str
+
 export
+
 : replaced ( ca1 len1 ca2 len2 ca3 len3 -- ca1' len1' )
-  \ Replaces all ocurrences of ca3 len3 with ca2 len2 in ca1 len1.
-  \ ca1 len1 = string to modify ("haystack")
-  \ ca2 len2 = substring to replace with
-  \ ca3 len3 = substring to be replaced ("needle")
-  2rot tmp-str str-set  tmp-str str-replace  tmp-str str-get
-  ;
+  2rot tmp-str str-set  tmp-str str-replace  tmp-str str-get  ;
+  \ Replace all ocurrences of _ca3 len3_ ("needle") in _ca1 len1_
+  \ ("haystack") with _ca2 len2_.
+
 ;module
+
+\ ==============================================================
+\ History
+
+\ 2014-02-28: Copy from Fendo
+\ (http://programandala.net/en.program.fendo.html); change the order
+\ of the parameters.
+\
+\ 2016-06-28: Update file header, source style and comment.
+\
+\ 2016-07-11: Update source layout and file header.

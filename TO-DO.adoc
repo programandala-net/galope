@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2016-06-25
+:revdate: 2016-07-11
 
 .2012-09-14:
 
@@ -168,8 +168,4 @@ galope-blabla-module --> galope.blabla
 .2016-06-21:
 
 Replace underscore with hyphens in words of modules "print" and "sb".
-
-.2016-06-25:
-
-Improve `bitfield:`.
 

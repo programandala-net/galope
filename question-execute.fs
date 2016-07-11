@@ -1,13 +1,19 @@
 \ galope/question-execute.fs
-\ ?execute
+\ `?execute`
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ 2014-02-17 Added. It was noted in the to-do list.
+\ ==============================================================
 
 : ?execute  ( xt | 0 -- )
-  ?dup if  execute  then
-  ;
+  ?dup if  execute  then  ;
 
+\ ==============================================================
+\ History
+
+\ 2014-02-17: Add to the library.
+\
+\ 2016-07-11: Update source layout and file header.

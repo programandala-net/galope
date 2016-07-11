@@ -1,11 +1,12 @@
 \ galope/xcase_es.fs
-\ Case conversion of Spanish UTF-8 chars.
+\ `xcase` conversion table of Spanish UTF-8 chars.
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ 2012-09-21 Added.
+\ ==============================================================
 
 require ./xcase.fs
 
@@ -18,3 +19,12 @@ xcase[
   char ü char Ü
   char ñ char Ñ
 ]xcase
+
+\ ==============================================================
+\ History
+
+\ 2012-09-21: Add to the library.
+\
+\ 2016-06-28: Update file header.
+\
+\ 2016-07-11: Update source layout.

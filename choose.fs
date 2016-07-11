@@ -3,8 +3,9 @@
 \ Random element of the stack
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2016
+\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2016.
 
 \ ==============================================================
 
