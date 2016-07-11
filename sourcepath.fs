@@ -1,14 +1,22 @@
 \ galope/sourcepath.fs
+\ `sourcepath`
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013, 2016.
 
-\ 2013-09-28 Written.
+\ ==============================================================
 
 require ./minus-filename.fs
 
 : sourcepath  ( -- ca len )
+  sourcefilename -filename  ;
   \ Return the path of the source file being interpreted.
-  sourcefilename -filename
-  ;
+
+\ ==============================================================
+\ History
+
+\ 2013-09-28: Start.
+\
+\ 2016-07-11: Update source layout and file header.

@@ -1,30 +1,31 @@
 \ galope/choose.fs
+\ `choose`
 \ Random element of the stack
 
 \ This file is part of Galope
 
-\ Copyright (C) 2011,2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2016
 
-\ History
-
-(
-
-2012-04-07 In order to reuse this code, it was extracted from
-  the project it was developed for
-  [http://programandala.net/es.programa.asalto_y_castigo.forth].
-2012-05-01 Divided in two files: choose.fs and 2choose.fs.
-2012-09-14 Code and comments reformated.
-2012-09-19 'mdrop' updated to 'drops'.
-
-)
+\ ==============================================================
 
 require random.fs  \ Gforth's 'random'
 require ./drops.fs
 
-: choose  ( x1..xn n -- xn' )
+: choose  ( x1..xn n -- x' )
+  dup >r random pick r> swap >r drops r>  ;
+  \ Return an element from the stack, randomly chosen among the _n_
+  \ top elements, and remove the rest.
 
-  \ Return a double element from the stack, randomly chosen
-  \ among the n top elements, and remove the rest.
+\ ==============================================================
+\ History
 
-  dup >r random pick r> swap >r drops r>
-  ;
+\ 2012-04-07: Extract from "Asalto y castigo"
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
+\
+\ 2012-05-01: Split in two files: <choose.fs> and <2choose.fs>.
+\
+\ 2012-09-14: Reformat code and comments.
+\
+\ 2012-09-19: Update 'mdrop' to 'drops'.
+\
+\ 2016-07-11: Update source layout and file header, fix comment.

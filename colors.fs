@@ -1,21 +1,10 @@
 \ galope/colors.fs
-\ Name color constants.
+\ Color constants.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016.
-
-\ ==============================================================
-\ History
-
-\ 2012-12-02: Refactored from the "Asalto y castigo" project
-\ (<http://programandala.net/es.programa.asalto_y_castigo.forth>).
-\
-\ 2013-08-17: Rewritten with constants.
-\
-\ 2016-06-26: Change underscores to hyphens. Update style and header.
-\ Remove old version, already commented out.
 
 \ ==============================================================
 
@@ -55,3 +44,17 @@ trm.foreground-red      constant red
 red lighter             constant light-red
 light-gray lighter      constant white
 brown lighter           constant yellow
+
+\ ==============================================================
+\ History
+
+\ 2012-12-02: Refactored from "Asalto y castigo"
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
+\
+\ 2013-08-17: Rewritten with constants.
+\
+\ 2016-06-26: Change underscores to hyphens. Update style and header.
+\ Remove old version, already commented out.
+\
+\ 2016-07-11: Update source layout and file header.
+

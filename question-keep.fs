@@ -1,18 +1,23 @@
 \ galope/question-keep.fs
+\ `?keep`
 \ Keep a string depending on a flag
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012
 
-\ History
-\ 2012-05-06 Refactored from an application of the author.
-\ 2012-05-07 Refactored from 'question-empty.fs'.
+\ ==============================================================
 
 require paren-question-keep.fs  \ '(?keep)'
 
-: ?keep  ( a u f -- a u | a 0 )
-  \ Keep a string if a flag is not zero.
-  \ otherwise empty it.
-  0<> (?keep)
-  ;
+: ?keep  ( ca len f -- ca len | ca 0 )
+  0<> (?keep)  ;
+  \ Keep a string if a flag is not zero,  otherwise empty it.
+
+\ ==============================================================
+\ History
+
+\ 2012-05-06: Refactor from an application of the author.
+\ 2012-05-07: Refactor from 'question-empty.fs'.
+\ 2016-07-08: Update source layout and header.

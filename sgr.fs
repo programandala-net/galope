@@ -1,24 +1,16 @@
 \ galope/sgr.fs
+\ `sgr` and SGR (Select Graphic Rendition) parameters not included in
+\ the 'trm' module of Forth Foundation library.
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ History
-\
-\ 2012-12-02 Refactored from the "Asalto y castigo" project
-\ (<http://programandala.net/es.programa.asalto_y_castigo.forth>).
-
-
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 
 require ffl/trm.fs  \ Forth Foundation Library
 
-\ SGR (Select Graphic Rendition) parameters not included in the
-\ 'trm' module of Forth Foundation library.
-\
 \ Reference:
 \ <http://en.wikipedia.org/wiki/ANSI_escape_code#graphics>.
 
@@ -42,3 +34,11 @@ require ffl/trm.fs  \ Forth Foundation Library
 107 constant trm.background-white-high
 
 ' trm+set-attributes alias sgr
+
+\ ==============================================================
+\ History
+
+\ 2012-12-02: Refactor from "Asalto y castigo"
+\ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
+\
+\ 2016-07-11: Update source layout and file header.
