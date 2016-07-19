@@ -1,29 +1,12 @@
 \ galope/sb.fs
 \ String buffer
 
-\ Version A-01-2012041923
-
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ This program is free software; you can redistribute it
-\ and/or modify it under the terms of the GNU General Public
-\ License as published by the Free Software Foundation;
-\ either version 2 of the License, or (at your option) any
-\ later version.
-
-\ This program is distributed in the hope that it will be
-\ useful, but WITHOUT ANY WARRANTY; without even the implied
-\ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-\ PURPOSE.  See the GNU General Public License for more
-\ details.
-
-\ You should have received a copy of the GNU General Public
-\ License along with this program; if not, see
-\ http://www.gnu.org/licenses .
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Usage
 
 \ First, include this module into your program:
@@ -41,7 +24,7 @@
 \
 \ The public words of the module are defined after every 'export'.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Todo
 
 \ 2013-05-23: Make a new version A-02, with better word names. Save
@@ -51,243 +34,184 @@
 \
 \ Other specific todos are marked in the code.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ History
 
 \ See at the end of the file.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 
 require ./module.fs
 require ./question-question.fs
-
-base @ decimal
+require ./smove.fs
+require ./both-lengths.fs
 
 module: galope-sb-module
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Inner
 
 export
 
 variable sb#  \ Free chars in the buffer
 
-\ hide
+hide
 
 0 value 'sb  \ Buffer address
 0 value /sb  \ Buffer length
 
-\ xxx todo remove or rename; these names are too general
-\ and probably will clash with application words:
+: restart  ( -- )  /sb sb# !  ;
 
-: restart  ( -- )
-  /sb sb# !
-  ;
-: full?  ( u -- wf )
-  sb# @ >
-  ;
-: ?restart  ( u -- )
-  full? ?? restart
-  ;
-: used  ( u -- )
-  negate sb# +!
-  ;
-: needed  ( u -- )
-  dup ?restart used
-  ;
-: init  ( u a -- )
-  to 'sb to /sb restart
-  ;
-: pointer  ( -- a )
-  'sb sb# @ +
-  ;
-: smove  ( a1 u1 a2 -- ) \ xxx todo make a galope file with this word
-  swap chars move
-  ;
-: release  ( -- )
-  0 to 'sb
-  ;
-: active?  ( -- wf )
-  'sb 0<>
-  ;
-: bigger?  ( u -- wf )
-  /sb >
-  ;
+: full?  ( len -- f )  sb# @ >  ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+: ?restart  ( len -- )  full? ?? restart  ;
+
+: used  ( len -- )  negate sb# +!  ;
+
+: needed  ( len -- )  dup ?restart used  ;
+
+: init  ( len a -- )  to 'sb to /sb restart  ;
+
+: pointer  ( -- a )  'sb sb# @ +  ;
+
+: release  ( -- )  0 to 'sb  ;
+
+: active?  ( -- f )  'sb 0<>  ;
+
+: bigger?  ( len -- f )  /sb >  ;
+
+\ ==============================================================
 \ Main
 
 export
 
-defer free_sb  \ Remove the buffer and free its space.
-' noop is free_sb
+defer free_sb  ( -- )  ' noop is free_sb
+  \ Remove the buffer and free its space.
 
-defer resize_sb  ( u -- )  \ Resize the buffer.
-' noop is resize_sb
+defer resize_sb  ( len -- )  ' noop is resize_sb
+  \ Resize the buffer.
 
-\ hide
+hide
 
 \ Common heap version
 
-: (heap_free_sb)
-  'sb free throw release
-  ;
-: heap_free_sb
-  active? ?? (heap_free_sb)
-  ;
-: heap_allocate_sb  ( u -- )
-  chars dup allocate throw init
-  ;
-: heap_resize_sb  ( u -- )
-  dup 'sb swap resize throw init
-  ;
+: (heap_free_sb)  ( -- )  'sb free throw release  ;
+: heap_free_sb  ( -- )  active? ?? (heap_free_sb)  ;
+: heap_allocate_sb  ( len -- )  chars dup allocate throw init  ;
+: heap_resize_sb  ( len -- )  dup 'sb swap resize throw init  ;
 
 \ Dictionary version
 
-: dictionary_free_sb
-  release
-  ;
-: dictionary_allocate_sb  ( u -- )
-  chars here over allot init
-  ;
-: dictionary_resize_sb  ( u -- )
-  dup bigger? if  dictionary_allocate_sb  else  drop  then
-  ;
+: dictionary_free_sb  ( -- )  release  ;
+: dictionary_allocate_sb  ( len -- )  chars here over allot init  ;
+: dictionary_resize_sb  ( len -- )
+  dup bigger? if  dictionary_allocate_sb  else  drop  then  ;
 
 \ Version selection
 
-: are  ( xt1 xt2 -- )
-  is free_sb is resize_sb
-  ;
+: are  ( xt1 xt2 -- )  is free_sb  is resize_sb  ;
+
 : (heap_sb)
-  ['] heap_resize_sb ['] heap_free_sb  are
-  ;
+  ['] heap_resize_sb ['] heap_free_sb  are  ;
+
 : (dictionary_sb)
-  ['] dictionary_resize_sb ['] dictionary_free_sb are
-  ;
+  ['] dictionary_resize_sb ['] dictionary_free_sb are  ;
 
 \ Creation of the buffer
 
 export
 
-: heap_sb  ( u -- )
-  free_sb (heap_sb) heap_allocate_sb
-  ;
-: dictionary_sb  ( u -- )
-  free_sb (dictionary_sb) dictionary_allocate_sb
-  ;
+: heap_sb  ( len -- )
+  free_sb (heap_sb) heap_allocate_sb  ;
+  \ Create a string buffer in the heap.
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+: dictionary_sb  ( len -- )
+  free_sb (dictionary_sb) dictionary_allocate_sb  ;
+  \ Create a string buffer in the data space, with less features. 
+
+\ ==============================================================
 \ Low level interface
 
 \ hide
 
-: (>sb)  ( a1 u a2 -- a2 u )
-  2dup 2>r smove 2r> swap
-  ;
+: (>sb)  ( ca1 len ca2 -- ca2 len )  2dup 2>r smove 2r> swap  ;
 
 export
 
-: sb_allocate  ( u -- a )
-  needed pointer
-  ;
-: >sb  ( a1 u -- a2 u )
-  dup sb_allocate (>sb)
-  ;
+: sb_allocate  ( len -- a )  needed pointer  ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+: >sb  ( ca1 len -- ca2 len )  dup sb_allocate (>sb)  ;
+
+\ ==============================================================
 \ Creation of buffered strings
 
 hide
 
-: (bs)  ( a1 u -- | a2 u )
-  state @ if  postpone sliteral  else  >sb  then
-  ;
-: >(bs)  ( c "text" -- a u )
-  parse (bs)
-  ;
+: (bs)  ( ca1 len1 -- | ca2 len1 )
+  state @ if  postpone sliteral  else  >sb  then  ;
+
+: >(bs)  ( c "ccc" -- ca len )  parse (bs)  ;
 
 export
 
-: bs|  ( "ccc<|>" -- a u )
-  [char] | >(bs)
-  ;  immediate
-: bs"  ( "ccc<double-quote>" -- a u )
-  [char] " >(bs)
-  ;  immediate
-: bs(  ( "ccc<close-paren>" -- a u )
-  [char] ) >(bs)
-  ;  immediate
+: bs|  ( "ccc<|>" -- ca len )  '|' >(bs)  ; immediate
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+: bs"  ( "ccc<quote>" -- ca len )  '"' >(bs)  ; immediate
+
+: bs(  ( "ccc<paren>" -- ca len )  ')' >(bs)  ; immediate
+
+\ ==============================================================
 \ Concatenation of strings
 
-\ hide \ xxx todo why removed the 'hide'?
-\ xxx todo make these independent in galope:
-
-: lengths  ( a1 u1 a2 u2 -- a1 u1 a2 u2 u1 u2 )
-  2 pick over
-  ;
-: any_zero?  ( u1 u2 -- wf )
-  0= swap 0= or
-  ;
-: any_empty?  ( a1 u1 a2 u2  -- a1 u1 a2 u2 wf )
-  lengths any_zero?
-  ;
-
 export
 
-: bs+  ( a1 u1 a2 u2 -- a3 u3 )
+: bs+  ( ca1 len1 ca2 len2 -- ca3 len3 )
   \ Join two strings.
-  lengths + >r  ( a1 u2 a2 u2 ) ( R: u3 )
-  r@ sb_allocate >r  ( R: u3 a3 )
-  2 pick r@ +  ( a1 u1 a2 u2 u1+a3 )  \ Address of the second string in the result.
-  smove  ( a1 u1 )  \ Second string.
+  both-lengths + >r  ( ca1 len2 ca2 len2 ) ( R: len3 )
+  r@ sb_allocate >r  ( R: len3 ca3 )
+  2 pick r@ +  ( ca1 len1 ca2 len2 len1+ca3 )  \ Address of the second string in the result.
+  smove  ( ca1 len1 )  \ Second string.
   r@ smove  \ First string.
-  r> r>
-  ;
+  r> r>  ;
 
-\ hide \ xxx todo why removed the 'hide'?
+hide
 
 true [if]
 
   \ First version, faster but more complex.
 
-  : (bs&)  ( a1 u1 a2 u2 -- a3 u3 )
-    \ Join two strings with a space.
-    lengths + 1+ >r  ( a1 u2 a2 u2 ) ( R: u3 )
-    r@ sb_allocate >r  ( R: u3 a3 )
-    2 pick r@ +  ( a1 u1 a2 u2 u1+a3 )  \ Address of the second string in the result.
-    bl over c! char+ smove  ( a1 u1 )  \ Space and second string.
+  : (bs&)  ( ca1 len1 ca2 len2 -- ca3 len3 )
+    both-lengths + 1+ >r  ( ca1 len2 ca2 len2 ) ( R: len3 )
+    r@ sb_allocate >r  ( R: len3 ca3 )
+    2 pick r@ +  ( ca1 len1 ca2 len2 u1+a3 )  \ Address of the second string in the result.
+    bl over c! char+ smove  ( ca1 len1 )  \ Space and second string.
     r@ smove  \ First string.
-    r> r>
-    ;
+    r> r>  ;
+    \ Join two strings with a space.
 
 [else]
 
   \ Second version, simpler but slower.
 
-  : (bs&)  ( a1 u1 a2 u2 -- a3 u3 )
+  : (bs&)  ( ca1 len1 ca2 len2 -- ca3 len3 )
+    2>r s"  " bs+ 2r> bs+  ;
     \ Join two strings with a space.
-    2>r s"  " bs+ 2r> bs+
-    ;
 
 [then]
 
 export
 
-: bs&  ( a1 u1 a2 u2 -- a3 u3 )
+: bs&  ( ca1 len1 ca2 len2 -- ca3 len3 )
+  either-empty? if  bs+  else  (bs&)  then  ;
   \ Join two strings, with a space if needed.
-  any_empty? if  bs+  else  (bs&)  then
-  ;
 
-;module  base !
+;module
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ History
 
 \ This program is based on csb2 by the same author:
-\ <http://programandala.net/es.programa.csb2>.
+\ <http://programandala.net/es.programa.csb2.html>.
 \
 \ 2012-04-16 First changes in csb2. Version A-00.
 \
@@ -315,4 +239,7 @@ export
 \ 2013-11-06 Changed the stack notation of flag.
 \
 \ 2014-11-17: Module name updated.
-
+\
+\ 2016-07-19: Update source layout, stack notation and file header.
+\ Remove the GPL license and the version number. Move some words to
+\ their own files and rename them.
