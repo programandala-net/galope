@@ -45,6 +45,7 @@ require ./module.fs
 require ./question-question.fs
 require ./smove.fs
 require ./both-lengths.fs
+require ./either-empty-question.fs
 
 module: galope-sb-module
 

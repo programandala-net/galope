@@ -9,7 +9,7 @@
 \ ==============================================================
 
 require ./both-lengths.fs
-require ./either-empty-question.fs
+require ./either-zero-question.fs
 
 : either-empty?  ( ca1 len1 ca2 len2  -- ca1 len1 ca2 len2 f )
   both-lengths either-zero?  ;
