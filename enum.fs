@@ -1,18 +1,20 @@
 \ galope/enum.fs
+\ `enum`
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ This file is public domain.
+\ ==============================================================
 
+: enum  (  n "name" -- n+1 )  dup constant 1+  ;
+
+\ ==============================================================
 \ History
-\ 2012-05-06 First version.
-\ 2012-09-14 Code reformated.
 
-[undefined] enum [if]
-  : enum  (  n "name" -- n+1 )
-    dup constant 1+
-    ;
-[then]
-
+\ 2012-05-06: First version.
+\
+\ 2012-09-14: Code reformated.
+\
+\ 2016-07-11: Update source layout and file header, fix comment.
