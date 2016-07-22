@@ -1,5 +1,5 @@
-\ galope/random_strings.fs
-\ Random strings
+\ galope/s-curly-bracket.fs
+\ `s{`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -7,74 +7,19 @@
 \ Author: Marcos Cruz (programandala.net), 2011, 2012, 2013, 2014,
 \ 2016.
 
-\ Description: Tools to compile several strings and return one of them
-\ by chance at run-time.
+\ Description: Tools to choose one string from a set. Actually, it's
+\ only a syntax compatibility layer for `2choose{`.
 
 \ ==============================================================
 
-require random.fs
+require ./two-choose-curly-bracket.fs
 
-require ./module.fs
-require ./two-choose.fs
-require ./plus-plus.fs
-require ./minus-minus.fs
+' 2choose{ alias  s{ ( -- )
+  \ Start a set of strings to choose from.
 
-module: galope-random_strings-module
-
-\ ==============================================================
-\ Depth stack
-
-8 constant /dstack
-  \ Size of the depth stack in cells. This is the maximum number of
-  \ nestings.
-
-create dstack-pointer /dstack 1+ cells allot
-  \ Depth stack.  The first cell holds the pointer to the top of depth
-  \ stack (or zero if the depth stack is empty).
-
-: 'dstack-tos ( -- a )
-  dstack-pointer dup @ cells +  ;
-  \ Address of the top of depth stack.
-
-: dstack-full? ( -- f )
-  dstack-pointer @ /dstack =  ;
-  \ Is the depth stack full?
-
-: dstack-empty? ( -- f )
-  dstack-pointer @ 0=  ;
-  \ Is the depth stack empty?
-
-: ?abort-full  ( -- )
-  dstack-full? abort" Too many nesting levels with `S{` and `}S`."  ;
-  \ Abort if the depth stack is full.
-
-: dstack! ( n -- )
-  ?abort-full dstack-pointer ++ 'dstack-tos !  ;
-  \ Store _n_ in the depth stack.
-
-: ?abort-empty  ( -- )
-  dstack-empty? abort" `S{` and `}S` badly nested."  ;
-  \ Abort if the depth stack is empty.
-
-: dstack@ ( -- n )
-  ?abort-empty 'dstack-tos @ dstack-pointer --  ;
-  \ Fetch the top of the depth stack.
-
-\ ==============================================================
-\ Operators
-
-export
-
-: s{ ( -- )
-  depth dstack!  ;
-  \ Start a set of random strings.
-
-: }s ( ca1 len1 ... ca#n len#n -- ca' len' )
-  depth dstack@ - 2 / 2choose  ;
-  \ Chose a random string _ca' len'_ from the strings _ca1 len ... ca#n
+' }2choose alias }s ( ca1 len1 ... ca#n len#n -- ca' len' )
+  \ Chose a string _ca' len'_ randomly from the strings _ca1 len ... ca#n
   \ len#n_ stacked since the last unresolved `s{`.
-
-;module
 
 \ ==============================================================
 \ History
@@ -117,3 +62,7 @@ export
 \ 2016-07-22: Remove the shortcuts to combined actions. Remove the
 \ Spanish documentation. Move `s?` to its own module and rename it to
 \ `50%nullify`. Write more general versions `%nullify` and `?nullify`.
+\ Factor the code into three new modules: <choose-stack.fs>,
+\ <choose-curly-bracket.fs> and <two-choose-curly-bracket.fs>.  Keep
+\ this file as a compatibility layer, and rename it to
+\ <s-curly-bracket.fs>.
