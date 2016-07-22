@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2016-07-11
+:revdate: 2016-07-13
 
 .2012-09-14:
 
@@ -169,3 +169,7 @@ galope-blabla-module --> galope.blabla
 
 Replace underscore with hyphens in words of modules "print" and "sb".
 
+.2016-07-13:
+
+Add Gforth-specific words which have an alternative definition in
+standard Forth.
