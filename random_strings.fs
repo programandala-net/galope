@@ -7,8 +7,8 @@
 \ Author: Marcos Cruz (programandala.net), 2011, 2012, 2013, 2014,
 \ 2016.
 
-\ Description: Tools to compile and manipulate strings that will be
-\ chosen randomly at run-time.
+\ Description: Tools to compile several strings and return one of them
+\ by chance at run-time.
 
 \ ==============================================================
 
@@ -74,10 +74,6 @@ export
   \ Chose a random string _ca' len'_ from the strings _ca1 len ... ca#n
   \ len#n_ stacked since the last unresolved `s{`.
 
-: s? ( ca len -- ca len | ca 0 )
-  2 random *  ;
-  \ Empty a string randomly (50% choices).
-
 ;module
 
 \ ==============================================================
@@ -119,4 +115,5 @@ export
 \ buffer, like <sb.fs>.
 \
 \ 2016-07-22: Remove the shortcuts to combined actions. Remove the
-\ Spanish documentation.
+\ Spanish documentation. Move `s?` to its own module and rename it to
+\ `50%nullify`. Write more general versions `%nullify` and `?nullify`.
