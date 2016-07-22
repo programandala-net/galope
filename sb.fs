@@ -1,38 +1,14 @@
 \ galope/sb.fs
-\ String buffer
+\ Circular string buffer
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016.
 
-\ ==============================================================
-\ Usage
-
-\ First, include this module into your program:
-\
-\    s" galope/sb.fs" required
-\
-\ Then create a string buffer in the common heap, for example with
-\ space for 1024 chars:
-\
-\    1024 heap_sb
-\
-\ It's possible to use the dictionary instead (with less features):
-\
-\    1024 dictionary_sb
-\
-\ The public words of the module are defined after every 'export'.
-
-\ ==============================================================
-\ Todo
-
-\ 2013-05-23: Make a new version A-02, with better word names. Save
-\ the new version as "sb_a-02.fs" to avoid compatibility problems.
-\
-\ 2014-11-17: Update the stack notation.
-\
-\ Other specific todos are marked in the code.
+\ Description: A configurable circular string buffer that can be used
+\ in the heap or in data space. This implementation of a circular
+\ string buffer is deprecated in favor of <stringer.fs>.
 
 \ ==============================================================
 \ History
@@ -40,6 +16,8 @@
 \ See at the end of the file.
 
 \ ==============================================================
+
+cr .( XXX sb module) key drop
 
 require ./module.fs
 require ./question-question.fs
@@ -139,7 +117,7 @@ export
 
 export
 
-: sb_allocate  ( len -- a )  needed pointer  ;
+: sb_allocate  ( len -- ca )  needed pointer  ;
 
 : >sb  ( ca1 len -- ca2 len )  dup sb_allocate (>sb)  ;
 
@@ -167,13 +145,13 @@ export
 export
 
 : bs+  ( ca1 len1 ca2 len2 -- ca3 len3 )
-  \ Join two strings.
-  both-lengths + >r  ( ca1 len2 ca2 len2 ) ( R: len3 )
+  both-lengths + >r  ( ca1 len1 ca2 len2 ) ( R: len3 )
   r@ sb_allocate >r  ( R: len3 ca3 )
   2 pick r@ +  ( ca1 len1 ca2 len2 len1+ca3 )  \ Address of the second string in the result.
   smove  ( ca1 len1 )  \ Second string.
   r@ smove  \ First string.
   r> r>  ;
+  \ Concatenate two strings.
 
 hide
 
@@ -188,7 +166,7 @@ true [if]
     bl over c! char+ smove  ( ca1 len1 )  \ Space and second string.
     r@ smove  \ First string.
     r> r>  ;
-    \ Join two strings with a space.
+    \ Concatenate two strings with a space.
 
 [else]
 
@@ -196,7 +174,7 @@ true [if]
 
   : (bs&)  ( ca1 len1 ca2 len2 -- ca3 len3 )
     2>r s"  " bs+ 2r> bs+  ;
-    \ Join two strings with a space.
+    \ Concatenate two strings with a space.
 
 [then]
 
@@ -204,7 +182,7 @@ export
 
 : bs&  ( ca1 len1 ca2 len2 -- ca3 len3 )
   either-empty? if  bs+  else  (bs&)  then  ;
-  \ Join two strings, with a space if needed.
+  \ Concatenate two strings, with a space if needed.
 
 ;module
 
@@ -243,4 +221,5 @@ export
 \
 \ 2016-07-19: Update source layout, stack notation and file header.
 \ Remove the GPL license and the version number. Move some words to
-\ their own files and rename them.
+\ their own files and rename them. Deprecated in favor of
+\ <stringer.fs>.
