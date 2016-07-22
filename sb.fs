@@ -17,8 +17,6 @@
 
 \ ==============================================================
 
-cr .( XXX sb module) key drop
-
 require ./module.fs
 require ./question-question.fs
 require ./smove.fs
