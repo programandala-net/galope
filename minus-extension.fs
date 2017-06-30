@@ -2,19 +2,21 @@
 \ -extension
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ 2013-07-11 Added. Taken from Fendo
+\ 2013-07-11: Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo.html)
+\
+\ 2017-02-27: Update code style.
 
 require ./minus-bounds.fs  \ '-bounds'
 
-: -extension  ( ca1 len1 -- ca1 len1' | ca1 len1 )
-  \ Remove the file extension of a filename.
-  2dup -bounds 1+ 2swap  \ default raw return values
+: -extension ( ca1 len1 -- ca1 len1' | ca1 len1 )
+  2dup -bounds 1+ 2swap \ default raw return values
   -bounds ?do
-    i c@ '.' = if  drop i  leave  then
-  -1 +loop  ( ca1 ca1' )  \ final raw return values
-  over -
-  ;
+    i c@ '.' = if drop i leave then
+  -1 +loop ( ca1 ca1' ) \ final raw return values
+  over - ;
+  \ Remove the file extension from a filename.
