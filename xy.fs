@@ -2,6 +2,7 @@
 \ Current cursor coordinates
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Extracted and modified from:
 \ --------------------------------------------------------------

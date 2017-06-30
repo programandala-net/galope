@@ -1,6 +1,7 @@
 \ galope/headline.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
 

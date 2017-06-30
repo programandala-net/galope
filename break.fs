@@ -1,5 +1,6 @@
 \ galope/break.fs
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ 2015-02-03
 \ 2016-06-23: Rename the module.

@@ -1,6 +1,7 @@
 \ galope/queue.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 

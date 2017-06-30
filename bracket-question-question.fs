@@ -1,6 +1,7 @@
 \ galope/bracket-question-question.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2012,2103 Marcos Cruz (programandala.net)
 

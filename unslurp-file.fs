@@ -1,5 +1,6 @@
 \ galope/unslurp.fs
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 

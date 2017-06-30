@@ -1,6 +1,7 @@
 \ galope/parse-name-question.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2012,2013 Marcos Cruz (programandala.net)
 
