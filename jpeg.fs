@@ -1,6 +1,7 @@
 \ galope/jpeg.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2006,2007,2009,2013,2014 Marcos Cruz (programandala.net)
 

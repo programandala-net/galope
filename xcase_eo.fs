@@ -2,6 +2,7 @@
 \ `xcase` conversion table of Esperanto UTF-8 chars.
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016.
 

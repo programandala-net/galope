@@ -1,6 +1,7 @@
 \ galope/four-drop.fs
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 

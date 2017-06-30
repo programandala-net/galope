@@ -2,6 +2,7 @@
 \ /ssv-strict
 
 \ This file is part of Galope
+\ http://programandala.net/en.program.galope.html
 
 \ Copyright (C) 2014,2015 Marcos Cruz (programandala.net)
 
