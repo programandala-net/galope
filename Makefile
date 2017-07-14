@@ -3,7 +3,7 @@
 # This file is part of Galope
 # http://programandala.net/en.program.galope.html
 
-# Last modified 201707141352
+# Last modified 201707141521
 
 # ==============================================================
 # Author
@@ -108,17 +108,17 @@ doc/galope_manual.html: \
 	README.adoc
 	asciidoctor --out-file=$@ $<
 
-# tmp/doc.manual_skeleton.adoc: \
-# 	docsrc/manual_skeleton.adoc \
-# 	VERSION.fs
-# 	version=$(shell gforth -e 's" ../src/version.z80s" true' make/version_number.fs) ; \
-# 	sed -e "s/%VERSION%/$${version}/" $< > $@
+tmp/manual_skeleton.adoc: \
+	docsrc/manual_skeleton.adoc \
+	VERSION.txt
+	version=$$(cat VERSION.txt); \
+	sed -e "s/%VERSION%/$${version}/" $< > $@
 
 tmp/files.txt: $(galope_modules)
 	ls -1 $^ > $@
 
 tmp/galope_manual.adoc: \
-	docsrc/manual_skeleton.adoc \
+	tmp/manual_skeleton.adoc \
 	tmp/glossary.adoc
 	cat $^ > $@
 
