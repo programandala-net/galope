@@ -1,0 +1,26 @@
+= Galope %VERSION%
+:author: Marcos Cruz (programandala.net)
+:revdate: 2017-07-14
+:toc:
+:toclevels: 1
+:toc-placement!:
+:linkattrs:
+
+// Last modified 201707141441
+
+toc::[]
+
+// =============================================================
+
+include::../README.adoc[tags=description]
+
+// =============================================================
+
+include::../README.adoc[tags=name]
+
+
+// =============================================================
+
+== Glossary
+
+
