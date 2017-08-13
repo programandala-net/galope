@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2016-07-14
+:revdate: 2017-08-14
 
 .2012-09-14:
 
@@ -178,3 +178,15 @@ standard Forth.
 
 Decide about the two versions of `strings:`. Make them independent
 from Gforth, i.e. don't suppose the strings are preserved.
+
+.2017-07-16:
+
+Deprecate `--` and `++`; use `1-!` and `1+!` instead.
+
+.2017-08-14:
+
+Remove `(?keep)`.
+
+.2017-08-14:
+
+Improve and document `??` and `[??]`.
