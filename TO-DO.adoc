@@ -185,8 +185,8 @@ Deprecate `--` and `++`; use `1-!` and `1+!` instead.
 
 .2017-08-14:
 
-Remove `(?keep)`.
+Improve and document `??` and `[??]`.
 
 .2017-08-14:
 
-Improve and document `??` and `[??]`.
+Rename `?keep` and `?empty`.
