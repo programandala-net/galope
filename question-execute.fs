@@ -1,5 +1,4 @@
 \ galope/question-execute.fs
-\ `?execute`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -17,7 +16,7 @@
   \
   \ If TOS is zero, discard it.  Otherwise call ``execute``.
   \
-  \ See also: `?perform`.
+  \ See: `?perform`.
   \
   \ }doc
 
@@ -29,3 +28,5 @@
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-08-03: Update source style. Improve documentation
+\
+\ 2017-08-14: Update documentation notation.
