@@ -174,11 +174,6 @@ Replace underscore with hyphens in words of modules "print" and "sb".
 Add Gforth-specific words which have an alternative definition in
 standard Forth.
 
-.2017-07-14:
-
-Decide about the two versions of `strings:`. Make them independent
-from Gforth, i.e. don't suppose the strings are preserved.
-
 .2017-07-16:
 
 Deprecate `--` and `++`; use `1-!` and `1+!` instead.
