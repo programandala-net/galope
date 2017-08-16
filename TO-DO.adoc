@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-08-14
+:revdate: 2017-08-16
 
 .2012-09-14:
 
@@ -190,3 +190,7 @@ Improve and document `??` and `[??]`.
 .2017-08-14:
 
 Rename `?keep` and `?empty`.
+
+.2017-08-16:
+
+Add `package` and VFX `module`.

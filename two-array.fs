@@ -24,7 +24,7 @@
   \
   \ Return address _a_ of element _n_.
   \
-  \ See: `array`
+  \ See: `2arrayed`, `array`
   \
   \ }doc
 
