@@ -188,4 +188,12 @@ Rename `?keep` and `?empty`.
 
 .2017-08-16:
 
-Add `package` and VFX `module`.
+Add `module`, by Ulrich Hoffmann.
+
+.2017-08-16:
+
+Rename `\eof` to `\\`.
+
+.2017-08-16:
+
+Document `package` and its requirements.
