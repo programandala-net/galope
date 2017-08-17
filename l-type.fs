@@ -4,7 +4,8 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015, 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015,
+\ 2016, 2017.
 
 \ Based on:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
@@ -21,10 +22,11 @@
 
 \ ==============================================================
 
-require ./module.fs
 require ./column.fs
+require ./home-question.fs
 require ./home.fs
 require ./last-row.fs
+require ./module.fs
 
 require ffl/trm.fs
 
@@ -32,157 +34,231 @@ module: galope-l-type-module
 
 export
 
-variable #typed    \ Printed chars in the current line.
+variable #typed \ Printed chars in the current line.
 
-variable #indented   \ Indented chars in the current line.
+variable #indented \ Indented chars in the current line.
 
-: typed+  ( u -- )  #typed +!  ;
+: typed+ ( u -- ) #typed +! ;
 
-: indented+  ( u -- )  #indented +!  ;
+: indented+ ( u -- ) #indented +! ;
 
-: (.word) ( ca len -- )  dup typed+ type  ;
+: (.word) ( ca len -- ) dup typed+ type ;
 
-: l-emit  ( c -- )  emit 1 typed+  ;
+: lemit ( c -- ) emit 1 typed+ ;
 
-: l-space  ( -- )  bl l-emit  ;
+  \ doc{
+  \
+  \ lemit ( c -- )
+  \
+  \ Display character _c_ as part of the left-justified printing
+  \ system.
+  \
+  \ See: `ltype`, `lspace`.
+  \
+  \ }doc
 
-: not-at-home?  ( -- f )  xy + 0<>  ;
+: lspace ( -- ) bl lemit ;
 
-: no-typed  ( -- )  #typed off  #indented off  ;
+  \ doc{
+  \
+  \ lspace ( -- )
+  \
+  \ Display a space as part of the left-justified printing system.
+  \
+  \ See: `lemit`, `ltype`.
+  \
+  \ }doc
 
-: l-home  ( -- )  home no-typed  ;
+: no-typed ( -- ) #typed off #indented off ;
 
-: l-page  ( -- )  page l-home  ;
+: lhome ( -- ) home no-typed ;
 
-false [if]
+  \ doc{
+  \
+  \ lhome ( -- )
+  \
+  \ Move the cursor used by `ltype` and related words to its home
+  \ position, at the top left (column 0, row 0).
+  \
+  \ }doc
 
-\ XXX OLD -- Buggy first version: 'at-x' changed the cursor position
-\ in some cases because of the way 'xy' works, though the actual
-\ reason is not clear yet.
+: lpage ( -- ) page lhome ;
 
-: l-start-of-line  ( -- )
-  0 at-x no-typed  ;
-
-[else]
-
-\ XXX NEW -- safe alternative
-
-: l-start-of-line  ( -- )
-  #typed @ trm+move-cursor-left no-typed  ;
-
-[then]
-
-false [if]
-
-\ XXX OLD -- first version
-
-: l-cr  ( -- )
-  not-at-home? if  cr  then  no-typed  ;
-
-[else]
-
-\ XXX NEW -- experimental
+  \ doc{
+  \
+  \ lpage ( -- )
+  \
+  \ Clear the display and init the cursor used by `ltype` and related
+  \ words.
+  \
+  \ }doc
 
 hide
 
-: at-last-start-of-line?  ( -- f )
-  xy last-row = swap 0= and  ;
+: not-at-start-of-line? ( -- f )
+  column 0<> ;
 
-: not-at-start-of-line?  ( -- f )
-  column 0<>  ;
-
-: l-cr?  ( -- f )
-  not-at-home? not-at-start-of-line? and
-  \ XXX FIXME -- 2012-09-30 what this was for?:
-  \ at-last-start-of-line? 0= or
-  ;
-  \ XXX OLD
+: lcr? ( -- f )
+  home? 0= not-at-start-of-line? and ;
 
 export
 
-defer (l-cr)  ( -- )
-' cr is (l-cr)
+defer do-cr ( -- )
+' cr is do-cr
 
-: unconditional-l-cr  ( -- )  (l-cr)  no-typed  ;
+  \ doc{
+  \
+  \ do-cr ( -- )
+  \
+  \ A deferred word whose default action is ``cr``.
+  \ Used by `lcr`.
+  \
+  \ See: `lcr`.
+  \
+  \ }doc
 
-: l-cr  ( -- )  l-cr? if  unconditional-l-cr  then  ;
+: (lcr) ( -- ) do-cr no-typed ;
 
-[then]
+: lcr ( -- ) lcr? if (lcr) then ;
+
+  \ doc{
+  \
+  \ lcr ( -- )
+  \
+  \ Move the cursor to the next row, if it's neither at the home
+  \ position nor at the start of a line.
+  \
+  \ See: `ltype`.
+  \
+  \ }doc
 
 variable l-width
 
 hide
 
-: previous-word?  ( -- f )
-  #typed @ #indented @ >  ;
+: previous-word? ( -- f )
+  #typed @ #indented @ > ;
 
-: ?space  ( -- )
-  previous-word? if  l-space  then  ;
+: ?space ( -- )
+  previous-word? if lspace then ;
 
-: current-print-width  ( -- u )
-  l-width @ ?dup 0= if  cols  then  ;
+: current-print-width ( -- u )
+  l-width @ ?dup 0= if cols then ;
 
-: too-long?  ( u -- f )
-  1+ #typed @ + current-print-width >  ;
+: too-long? ( u -- f )
+  1+ #typed @ + current-print-width > ;
 
-: .word  ( ca len -- )
-  dup too-long? if  l-cr  else  ?space  then  (.word)  ;
+: .word ( ca len -- )
+  dup too-long? if lcr else ?space then (.word) ;
 
-: (indent)  ( u -- )
-  dup trm+move-cursor-right dup indented+ typed+  ;
+: (indent) ( u -- )
+  dup trm+move-cursor-right dup indented+ typed+ ;
 
 export
 
-: indent  ( u -- )
-  ?dup if  (indent)  then  ;
+: indent ( u -- )
+  ?dup if (indent) then ;
+
+  \ doc{
+  \
+  \ indent ( u -- )
+  \
   \ Indent _u_ spaces.
+  \
+  \ See: `indentation`.
+  \
+  \ }doc
 
 hide
 
-: /word  ( ca1 len1 -- ca2 len2 ca3 len3 )
-  bl skip 2dup bl scan  ;
+: /word ( ca1 len1 -- ca2 len2 ca3 len3 )
+  bl skip 2dup bl scan ;
   \ ca1 len1 = Text.
   \ ca2 len2 = Same text, from the start of its first word.
   \ ca3 len3 = Same text, from the char after its first word.
 
-: >word  ( ca1 len1 ca2 len2 -- ca2 len2 ca1 len4 )
-  tuck 2>r -  2r> 2swap ;
+: >word ( ca1 len1 ca2 len2 -- ca2 len2 ca1 len4 )
+  tuck 2>r - 2r> 2swap ;
   \ ca1 len1 = Text, from the start of its first word.
   \ ca2 len2 = Same text, from the char after its first word.
   \ ca1 len4 = First word of the text.
 
-: first-word  ( ca1 len1 -- ca2 len2 ca3 len3 )
-  /word >word  ;
+: first-word ( ca1 len1 -- ca2 len2 ca3 len3 )
+  /word >word ;
 
-: (l-type)  ( ca1 len1 -- ca2 len2 )
-  first-word .word  ;
+: (ltype) ( ca1 len1 -- ca2 len2 )
+  first-word .word ;
 
 export
 
-: l-type  ( ca len -- )
-  begin  dup   while  (l-type)  repeat  2drop  ;
+: ltype ( ca len -- )
+  begin dup while (ltype) repeat 2drop ;
+
+  \ doc{
+  \
+  \ ltype ( ca len -- )
+  \
   \ Type _ca len_ left justified.
+  \
+  \ See: `/ltype`, `l."`.
+  \
+  \ }doc
 
 2 value indentation
-  \ Spaces at the left of the first line of a new paragraph.
 
-1 value rows-between-paragraphs
-  \ Blank rows between paragraphs.
+  \ doc{
+  \
+  \ indentation ( -- n )
+  \
+  \ Return the number _n_ of spaces at the left of the first line of a
+  \ new paragraph. ``indentation`` is a value.
+  \
+  \ See `/paragraph`.
+  \
+  \ }doc
+
+1 value /paragraph
+
+  \ doc{
+  \
+  \ /paragraph ( -- n )
+  \
+  \ Blank rows between paragraphs. ``/paragraph`` is a value.
+  \
+  \ See: `indentation`, `paragraph`.
+  \
+  \ }doc
 
 hide
 
-: separate-paragraph  ( -- )
-  rows-between-paragraphs 1+ 0 ?do  unconditional-l-cr  loop  ;
+: separate-paragraph ( -- )
+  /paragraph 1+ 0 ?do (lcr) loop ;
 
 export
 
-: paragraph  ( -- )
-  separate-paragraph indentation indent  ;
-  \ Start a new paragraph.
+: paragraph ( -- )
+  separate-paragraph indentation indent ;
 
-: pl-type  ( ca len -- )
-  paragraph l-type  ;
+  \ doc{
+  \
+  \ paragraph ( -- )
+  \
+  \ Start a new paragraph. Used by `/ltype` and `/l."`.
+  \
+  \ }doc
+
+: /ltype ( ca len -- )
+  paragraph ltype ;
+
+  \ doc{
+  \
+  \ /ltype ( ca len -- )
+  \
   \ Start a new paragraph and type _ca len_ left justified.
+  \
+  \ See: `ltype`, `paragraph`, `/l."`.
+  \
+  \ }doc
 
 ;module
 
@@ -242,4 +318,10 @@ export
 \
 \ 2017-07-14: Fix typo.
 \
-\ 2017-08-17: Update stack notation.
+\ 2017-08-17: Update stack notation.  Change "l-" prefix to "l". The
+\ name of the module remains "l-type", because it reflects the
+\ pronunciation of the word, after the convention used in the library.
+\ Update source style. Remove `l-start-of-line` and
+\ `at-last-start-of-line`, which were unnecessary. Rename `pl-type` to
+\ `/ltype`. Rename `rows-between-paragraphs` to `/paragraph`. Document
+\ the most importart public words of the module.
