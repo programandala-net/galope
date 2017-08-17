@@ -4,17 +4,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ History
-
-\ 2014-07-13: Written. Inspired by code from fhp ("Forth HTML
-\ Preprocessor") version B-00-201206, in file <fhp-date.fs>
-\ (http://programandala.net/es.programa.fhp.html).
-\ 2014-11-02: Change: stack notation, comment.
-
-\ .............................................................
-\ Code
+\ ==============================================================
 
 \ XXX TODO
 \ svariable time-zone
@@ -49,3 +41,13 @@
   \ XXX TODO time-zone count >>html
   ;
 
+\ ==============================================================
+\ Change log
+
+\ 2014-07-13: Written. Inspired by code from fhp ("Forth HTML
+\ Preprocessor") version B-00-201206, in file <fhp-date.fs>
+\ (http://programandala.net/es.programa.fhp.html).
+\
+\ 2014-11-02: Change: stack notation, comment.
+\
+\ 2017-08-17: Update change log layout. Update header.

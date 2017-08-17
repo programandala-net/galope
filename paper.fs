@@ -14,7 +14,7 @@ require ./sgr.fs
   \ Set the current paper (background) color.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Extract from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
@@ -24,4 +24,3 @@ require ./sgr.fs
 \ 2016-06-28: Update file header and source style.
 \
 \ 2016-07-11: Update source layout and file header.
-

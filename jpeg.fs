@@ -3,25 +3,15 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2006,2007,2009,2013,2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2006, 2007, 2009, 2013,
+\ 2014.
 
-\ --------------------------------------------------------------
-\ History
-
-\ 2014-02-24: Code copied from a previous tool by the same author
-\ (<http://programandala.net/en.program.fjpg.html>). Changes: 'base'
-\ removed; 'bounds' used; 'default-of' used; 'throw' instead of
-\ several 'abort"'; one value converted to a local; new names; updated
-\ stack notations and code layout.
-
-\ 2014-02-28: Typo fixed in comment.
-
-\ --------------------------------------------------------------
-\ To-do
+\ ==============================================================
+\ XXX TODO --
 
 \ 2013-02-24: a growing header buffer with galope/lodge-colon.fs
 
-\ --------------------------------------------------------------
+\ ==============================================================
 
 require ./module.fs
 require ./buffer-colon.fs
@@ -147,7 +137,7 @@ variable jpeg-fid
   loop
   ;
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Testing and debugging
 
 false [if]
@@ -185,3 +175,17 @@ defer jpeg-found2
 [then]
 
 ;module
+
+\ ==============================================================
+\ Change log
+
+\ 2014-02-24: Code copied from a previous tool by the same author
+\ (<http://programandala.net/en.program.fjpg.html>). Changes: 'base'
+\ removed; 'bounds' used; 'default-of' used; 'throw' instead of
+\ several 'abort"'; one value converted to a local; new names; updated
+\ stack notations and code layout.
+\
+\ 2014-02-28: Typo fixed in comment.
+\
+\ 2017-08-17: Update change log layout. Update header. Update
+\ section rulers.

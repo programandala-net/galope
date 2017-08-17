@@ -4,14 +4,18 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013.
 
-\ History
+\ ==============================================================
+
+: decrement ( a -- )
+  dup @ ?dup if 1- swap ! else drop then ;
+
+\ ==============================================================
+\ Change log
+
 \ 2013-07-12 Added. Code by Brad Rodriguez:
 \ <http://camelforth.com/news.php?extend.44.2>.
-
-: decrement  ( a -- )
-  dup @ ?dup if  1- swap !  else  drop  then
-  ;
-[then]
-
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

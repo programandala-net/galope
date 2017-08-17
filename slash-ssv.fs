@@ -6,11 +6,7 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
-\ History
-\
-\ 2014-12-05: Added. Taken from Fendo's <fendo.data.fs>
-\ (http://programandala.net/en.program.fendo.html) and
-\ fixed.
+\ ==============================================================
 
 require ./slash-sides.fs  \ '/sides'
 
@@ -36,3 +32,11 @@ require ./slash-sides.fs  \ '/sides'
   until  2drop depth r> 2 - - 2/
   ;
 
+\ ==============================================================
+\ Change log
+
+\ 2014-12-05: Added. Taken from Fendo's <fendo.data.fs>
+\ (http://programandala.net/en.program.fendo.html) and
+\ fixed.
+\
+\ 2017-08-17: Update change log layout.

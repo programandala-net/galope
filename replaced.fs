@@ -25,7 +25,7 @@ export
 ;module
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2014-02-28: Copy from Fendo
 \ (http://programandala.net/en.program.fendo.html); change the order

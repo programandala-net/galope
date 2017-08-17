@@ -14,7 +14,7 @@ require random.fs  \ Gforth's `random`
   \ Randomly return zero instead of _x_, one choice out of _n_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Write. A generalization of the old `s?`, included in the
 \ deprecated module <sb.fs>.

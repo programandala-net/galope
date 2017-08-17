@@ -13,7 +13,7 @@
   0 ?do  drop  loop  ;
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-04-19: Extract 'mdrop' from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
@@ -26,4 +26,3 @@
 \ 2016-01-16: Update header and layout.
 \
 \ 2016-07-11: Update header and layout.
-

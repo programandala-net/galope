@@ -3,17 +3,20 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Wil Baden.
 
-\ History
+\ ==============================================================
+
+: macro ( "name <char> ccc<char>" -- )
+  : char parse
+  postpone sliteral
+  postpone evaluate
+  postpone ; immediate ;
+
+\ ==============================================================
+\ Change log
+
 \ 2012-05-06 Added.
-
-\ 'macro' was created by Wil Baden.
-
-[undefined] macro [if]
-  : macro  ( "name <char> ccc<char>" -- )
-    : char parse  postpone sliteral  postpone evaluate
-    postpone ; immediate
-    ;
-[then]
-
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

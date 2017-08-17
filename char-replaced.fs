@@ -3,19 +3,24 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ History
-\ 2014-05-10 Written.
+\ ==============================================================
 
 : char-replaced ( ca len c1 c2 -- )
+  { to-char from-char }
+  bounds ?do
+    i c@ from-char = if to-char i c! then
+  loop ;
   \ Replaces all ocurrences of a char in a string.
   \ ca len = string to modify
   \ c1 = char to replace with
   \ c2 = char to be replaced
-  { to_char from_char }
-  bounds ?do
-    i c@ from_char = if  to_char i c!  then
-  loop
-  ;
 
+\ ==============================================================
+\ Change log
+
+\ 2014-05-10 Written.
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

@@ -15,7 +15,7 @@ require ./minus-filename.fs
   \ Return the path of the source file being interpreted.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2013-09-28: Start.
 \

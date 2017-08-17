@@ -7,21 +7,13 @@
 
 \ Copyright (C) 2013 Marcos Cruz (programandala.net)
 
-\ --------------------------------------------------------------
-\ History
-
-\ 2013-12-12 Written, based on <galope/translated.fs>, as a better
-\ alternative to ftrac
-\ (<http://programandala.net/es.program.ftrac.html>).
-\
-\ 2014-11-17: Module name updated.
-
-\ --------------------------------------------------------------
+\ ==============================================================
+\ Requirements
 
 require ./module.fs
 require ffl/str.fs
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Core
 
 module: galope-uncodepaged-module
@@ -108,7 +100,7 @@ variable 'table  \ address of the translation table just defined
   else  char>uncodepaged 2drop  then
   ;
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ User interface
 
 export
@@ -134,7 +126,7 @@ export
 
 ;module
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Usage example
 
 false [if]
@@ -154,3 +146,13 @@ table0 uncodepaged  type cr
 
 [then]
 
+\ ==============================================================
+\ Change log
+
+\ 2013-12-12 Written, based on <galope/translated.fs>, as a better
+\ alternative to ftrac
+\ (<http://programandala.net/es.program.ftrac.html>).
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2017-08-17: Update change log layout. Update header.

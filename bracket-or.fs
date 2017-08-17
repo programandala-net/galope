@@ -3,11 +3,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ ==============================================================
 
-\ History
-\ 2012-05-08 Extracted from an application by the author.
+: [or] ( x1 x2 -- x3 ) or ; immediate
 
-: [or]  ( x1 x2 -- x3 )
-  or
-  ;  immediate
+\ ==============================================================
+\ Change log
+
+\ 2012-05-08: Copied from an application by the author.
+\
+\ 2017-08-17: Update change log layout. Update header.
+

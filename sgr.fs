@@ -36,7 +36,7 @@ require ffl/trm.fs  \ Forth Foundation Library
 ' trm+set-attributes alias sgr
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Refactor from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).

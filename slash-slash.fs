@@ -6,9 +6,7 @@
 
 \ Copyright (C) 2014,2015 Marcos Cruz (programandala.net)
 
-\ History
-\
-\ 2015-12-15: Added to the library.
+\ ==============================================================
 
 require ./slash-sides.fs  \ '/sides'
 
@@ -26,3 +24,10 @@ require ./slash-sides.fs  \ '/sides'
   begin  s" /" /sides 0=  until  2drop
   depth r> 2 - - 2/
   ;
+
+\ ==============================================================
+\ Change log
+
+\ 2015-12-15: Added to the library.
+\
+\ 2017-08-17: Update change log layout. Update header.

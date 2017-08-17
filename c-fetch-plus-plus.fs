@@ -3,13 +3,15 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Taken from Wil Baden's Common Use compilation 2003.
 
-\ History
+\ ==============================================================
+
+: c@++ ( ca -- ca' c ) dup char+ swap c@ ;
+
+\ ==============================================================
+\ Change log
+
 \ 2012-05-18 Added.
-
-\ Taken from Common Use compilation 2003 by Wil Baden.
-
-: c@++  ( a -- a' c )
-  dup char+ swap c@
-  ;
+\
+\ 2017-08-17: Update change log layout. Update header.

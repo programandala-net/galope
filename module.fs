@@ -29,41 +29,6 @@
 \   License: GNU GPL
 
 \ ==============================================================
-\ History
-
-\ 2012-04-17: First version.
-\
-\ 2012-09-14: Code and comments reformated.
-\
-\ 2013-06-02: New stack comments.
-\
-\ 2014-02-18: 'set-wordlist' is moved to its own file.
-\
-\ 2014-02-18: 'do-latest' is renamed to 'execute-latest' and
-\ moved to its own file.
-\
-\ 2014-02-18: Fix: 'vocs' and 'order' crashed in unclear
-\ conditions.  These changes were made: 'vocabulary' and
-\ 'definitions' were removed; 'wordlist' was used instead; the
-\ code was factored and rewritten in orden to make sure the
-\ wordlists are restored at the end of any created module and at
-\ the end of this file too. Solved.
-\
-\ 2014-11-17: Module name and comments updated. Original
-\ SP-Forth credits added.
-\
-\ 2015-09-28: GPL header.
-\
-\ 2015-10-26: Removed old requirements.
-\
-\ 2015-11-09: Fix: module names were created in the module
-\ wordlist!  Now `(module:)` does not executes `set-current`.
-\ `module:` and `:module` execute `hide` instead. This bug was
-\ discovered during the conversion to Solo Forth.
-\
-\ 2016-01-16: Updated header, license and layout.
-
-\ ==============================================================
 \ Usage
 
 0 [if]
@@ -130,3 +95,40 @@ set-current
   \ Hidden definitions follow.
 
 set-order
+
+\ ==============================================================
+\ Change log
+
+\ 2012-04-17: First version.
+\
+\ 2012-09-14: Code and comments reformated.
+\
+\ 2013-06-02: New stack comments.
+\
+\ 2014-02-18: 'set-wordlist' is moved to its own file.
+\
+\ 2014-02-18: 'do-latest' is renamed to 'execute-latest' and
+\ moved to its own file.
+\
+\ 2014-02-18: Fix: 'vocs' and 'order' crashed in unclear
+\ conditions.  These changes were made: 'vocabulary' and
+\ 'definitions' were removed; 'wordlist' was used instead; the
+\ code was factored and rewritten in orden to make sure the
+\ wordlists are restored at the end of any created module and at
+\ the end of this file too. Solved.
+\
+\ 2014-11-17: Module name and comments updated. Original
+\ SP-Forth credits added.
+\
+\ 2015-09-28: GPL header.
+\
+\ 2015-10-26: Removed old requirements.
+\
+\ 2015-11-09: Fix: module names were created in the module
+\ wordlist!  Now `(module:)` does not executes `set-current`.
+\ `module:` and `:module` execute `hide` instead. This bug was
+\ discovered during the conversion to Solo Forth.
+\
+\ 2016-01-16: Updated header, license and layout.
+\
+\ 2017-08-17: Update change log layout.

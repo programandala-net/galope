@@ -45,11 +45,7 @@ along with this library; if not, see
 \ array strings with ordinary words or
 \ expressions.
 
-\ History
-\ 2012-09-07: First version.
-\ 2012-09-08: Comments revised and completed.
-\ 2014-11-17: Module name updated.
-\ 2015-01-25: Typo.
+\ ==============================================================
 
 require ./module.fs
 
@@ -101,7 +97,6 @@ export
 
 ;module
 
-
 0 [if]
 
 .( Usage example)
@@ -132,3 +127,15 @@ number{ #numbers random }s@ cr type
 
 [then]
 
+\ ==============================================================
+\ Change log
+
+\ 2012-09-07: First version.
+\
+\ 2012-09-08: Comments revised and completed.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2015-01-25: Typo.
+\
+\ 2017-08-17: Update change log layout. Update header.

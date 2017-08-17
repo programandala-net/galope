@@ -5,13 +5,11 @@
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
-\ History
-\ 2012-06-07: Added.
-\ 2014-11-17: Module name updated.
-
 \ Taken from:
 \ http://c2.com/cgi/wiki?ForthReadability
 \ Author: Samuel Falvo
+
+\ ==============================================================
 
 require ./module.fs
 
@@ -34,3 +32,12 @@ export
 \ : stars  ( +n -- )  repeated: [char] * emit  ;
 
 ;module
+
+\ ==============================================================
+\ Change log
+
+\ 2012-06-07: Added.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2017-08-17: Update change log layout. Update header.

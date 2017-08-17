@@ -3,16 +3,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012,2013,2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014.
 
-\ History
-\ 2012-04-29 First version.
-\ 2012-09-14 Removed unused mroll.fs. Code reformated.
-\ 2013-11-06 Changed the stack notation of flag.
-\ 2014-11-17: Module name updated.
+\ ==============================================================
 
-\ XXX TODO -- finish!
+\ XXX TODO -- finish
 \ XXX TODO -- update the stack notation
+
+\ ==============================================================
 
 require module.fs
 require xy.fs
@@ -110,3 +108,16 @@ false [if]  \ Unfinished alternative!!!
   ;
 
 ;module
+
+\ ==============================================================
+\ Change log
+
+\ 2012-04-29 First version.
+\
+\ 2012-09-14 Removed unused mroll.fs. Code reformated.
+\
+\ 2013-11-06 Changed the stack notation of flag.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2017-08-17: Update change log layout. Update header.

@@ -71,6 +71,6 @@ variable unused-stringer  \ Free chars in the buffer
   \ Copy string _ca1 len_ to the stringer, returning it as _ca2 len_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Write, based on the deprecated module <sb.fs>.

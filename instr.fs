@@ -3,10 +3,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013.
 
-\ History
-\ 2013-08-27 Written, based on 'instr?'.
+\ ==============================================================
 
 : instr  ( c ca len -- n true | false )
   \ Is char c in string ca len? If so, return its position.
@@ -19,3 +18,10 @@
     [then]
   loop  false
   ;
+
+\ ==============================================================
+\ Change log
+
+\ 2013-08-27 Written, based on 'instr?'.
+\
+\ 2017-08-17: Update change log layout. Update header.

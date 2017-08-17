@@ -5,10 +5,7 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
-\ History
-\ 2014-03-24: Written after Gforth's 'included?', that matches only
-\ exact paths. Sometimes exact paths are inconvenient because you
-\ don't know where the file was actually loaded from.
+\ ==============================================================
 
 require ./string-suffix-question.fs
 
@@ -29,3 +26,12 @@ require ./string-suffix-question.fs
     r> cell+ cell+
   loop  2drop drop false
   ;
+
+\ ==============================================================
+\ Change log
+
+\  2014-03-24: Written after Gforth's 'included?', that matches only
+\  exact paths. Sometimes exact paths are inconvenient because you
+\  don't know where the file was actually loaded from.
+\
+\ 2017-08-17: Update change log layout.

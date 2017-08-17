@@ -3,13 +3,15 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ ==============================================================
 
-\ History
+: emits ( c n -- ) 0 ?do dup emit loop drop ;
+  \ Emit the char c n times.
+
+\ ==============================================================
+\ Change log
 
 \ 2013-09-02 Written.
-
-: emits  ( c n -- )
-  \ Emit the char c n times.
-  0 ?do  dup emit  loop  drop
-  ;
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

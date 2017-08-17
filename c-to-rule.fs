@@ -3,13 +3,20 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ History
-\ 2014-02-19: Written.
-\ 2015-10-15: Renamed filename.
+\ ==============================================================
 
-: c>rule  ( c len -- ca len )
+: c>rule ( c len -- ca len )
+  dup allocate throw swap 2dup 2>r rot fill 2r> ;
   \ Create a string with a repeated ASCII char.
-  dup allocate throw  swap 2dup 2>r  rot fill  2r>
-  ;
+
+\ ==============================================================
+\ Change log
+
+\ 2014-02-19: Written.
+\
+\ 2015-10-15: Renamed filename.
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

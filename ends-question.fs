@@ -21,12 +21,16 @@ require ./fourth.fs
   \ Is _ca2 len2_ the end of _ca1 len1_?
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-10: Copied and modified from Charscan by Wil Baden (2002-2003).
+\
 \ 2013-11-06: Changed the stack notation of flag.
+\
 \ 2014-05-29: Changed the stack notation of strings. Note about
 \ 'string-suffix?'.
+\
 \ 2016-07-05: Update source layout and header. Replace `compare 0=`
 \ with `str=`.
-
+\
+\ 2017-08-17: Update change log layout.

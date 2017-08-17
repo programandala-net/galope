@@ -5,15 +5,13 @@
 
 \ Copyright (C) 2016 Marcos Cruz (programandala.net)
 
-\ History
-\ 2016-03-15: Added.
+\ ==============================================================
+\ Credits
 
-\ Credits:
-\
-\ Code adapted from Solo Forth
-\
-\ The Solo Forth version was adapted from Forth Dimensions (volume
-\ 17, number 4 page 11, 1995-11).
+\ Code adapted from Solo Forth.  The Solo Forth version was adapted
+\ from Forth Dimensions (volume 17, number 4 page 11, 1995-11).
+
+\ ==============================================================
 
 2variable bench0
 
@@ -35,3 +33,9 @@
 : benched.  ( xt n -- )
   bench{ 0 do  dup execute  loop  }bench. drop  ;
 
+\ ==============================================================
+\ Change log
+
+\ 2016-03-15: Added.
+\
+\ 2017-08-17: Update change log layout.

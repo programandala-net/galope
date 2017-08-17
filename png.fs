@@ -3,32 +3,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2008,2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2008, 2014.
 
-\ --------------------------------------------------------------
-\ History
-
-\ 2013-02-28: Code copied from a previous unfinished tool by the same
-\ author (<http://programandala.net/en.program.fpng.html>), written in
-\ 2008.  Changes: 'base' removed; 'bounds' used; 'default-of' used;
-\ 'throw' instead of several 'abort"'; one value converted to a local;
-\ new names; updated stack notations and code layout.
-
-\ --------------------------------------------------------------
-
-0 [if]
-
-89 50 4E 47 0D 0A 1A 0A \ main identifier: ".PNG...."
-00 00 00 0D \ first chunk size
-49 48 44 52 \ name of the firstchunk: "IHDR"
-00 00 00 00 \ width, little endian
-00 00 00 00 \ height, little endian
-00 \ bits per pixel
-
-[then]
-
-
-\ ---------------------------------------------
+\ ==============================================================
 
 require ./module.fs
 require ./buffer-colon.fs
@@ -76,7 +53,21 @@ variable png-fid
   png-buffer 16 + dup @le  swap 4 + @le
   ;
 
-\ ---------------------------------------------
+\ ==============================================================
+\ Reference
+
+0 [if]
+
+89 50 4E 47 0D 0A 1A 0A \ main identifier: ".PNG...."
+00 00 00 0D \ first chunk size
+49 48 44 52 \ name of the firstchunk: "IHDR"
+00 00 00 00 \ width, little endian
+00 00 00 00 \ height, little endian
+00 \ bits per pixel
+
+[then]
+
+\ ==============================================================
 \ Debug
 
 0 [if] \ test code
@@ -100,3 +91,14 @@ img2 png-test
 
 [then]
 
+\ ==============================================================
+\ Change log
+
+\ 2013-02-28: Code copied from a previous unfinished tool by the same
+\ author (<http://programandala.net/en.program.fpng.html>), written in
+\ 2008.  Changes: 'base' removed; 'bounds' used; 'default-of' used;
+\ 'throw' instead of several 'abort"'; one value converted to a local;
+\ new names; updated stack notations and code layout.
+\
+\ 2017-08-17: Update change log layout. Update header. Update section
+\ rulers.

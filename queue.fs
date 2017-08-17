@@ -5,19 +5,18 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
-\ History
-\ 2014-11-22: Written.
+\ ==============================================================
 
 \ XXX FIXME the two cells of a double are listed by '.queue' in
 \ different order than on the stack by '.s'.
 
 : queue ( n "name" -- )
   \ Create a named queue with a maximum size in address units.
-	create dup allocate throw
+  create dup allocate throw
     ,    \ address
     0 ,  \ size
     ,    \ n = maximum size
-	;
+  ;
 ' noop alias queue>a  ( queue -- a )
 ' cell+ alias queue>len  ( queue -- a )
 : queue>max  ( queue -- a )
@@ -108,7 +107,7 @@
   queue_count dump
   ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Usage examples
 
 8 cells queue zx
@@ -129,3 +128,10 @@ zx queue@ . cr
 zx queue@ . cr
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2014-11-22: Written.
+\
+\ 2017-08-17: Update change log layout. Update section rulers.

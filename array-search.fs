@@ -1,9 +1,9 @@
 \ galope/array-search.fs
 
-\ xxx Unfinished
-
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
+
+\ XXX -- Unfinished
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
@@ -16,7 +16,11 @@
 \ http://gnu.org/licenses/gpl.html
 \ http://www.gnu.org/licenses/gpl-2.0.html
 
+\ ==============================================================
+\ Credit
+
 \ This program is based on:
+
 \ -----------------------------------------------------
 \ 4tH library - ROW - Copyright 2007,2009 J.L. Bezemer
 \ You can redistribute this file and/or modify it under
@@ -24,21 +28,7 @@
 \ Generic table-search routine
 \ -----------------------------------------------------
 
-\ History
-\
-\ 2012-04-24: First changes to 4tH's row.4th
-\
-\ 2012-04-29: More changes. Number keys only. First working version.
-\ 'key-drop' was refactored and defered. Testings.
-\
-\ 2012-09-14: Some cosmetic reformat of the code.
-\
-\ 2012-09-21: Typos fixed.
-\
-\ 2013-11-06: Changed the stack notation of flag.
-\
-\ 2015-10-13: Renamed words.
-
+\ ==============================================================
 
 true value end-of-array  \ fake key
 defer key-found?  ( i*x a -- wf )
@@ -108,3 +98,21 @@ test2
 --array-search-testing--
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2012-04-24: First changes to 4tH's row.4th
+\
+\ 2012-04-29: More changes. Number keys only. First working version.
+\ 'key-drop' was refactored and defered. Testings.
+\
+\ 2012-09-14: Some cosmetic reformat of the code.
+\
+\ 2012-09-21: Typos fixed.
+\
+\ 2013-11-06: Changed the stack notation of flag.
+\
+\ 2015-10-13: Renamed words.
+\
+\ 2017-08-17: Update change log layout.

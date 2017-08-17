@@ -25,7 +25,7 @@ require ./slash-name.fs
 \ ==============================================================
 \ Change log
 
-\ History
+\ Change log
 \
 \ 2015-10-16: Added to the library, taken from fsb2
 \ (http://programandala.net/en.program.fsb2.html) and Solo Forth

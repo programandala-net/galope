@@ -6,12 +6,18 @@
 
 \ Copyright (C) 2012 Marcos Cruz (programandala.net)
 
-\ History
+\ ==============================================================
+
+: sconstant (  ca len "name" -- )
+  create s,
+  does> ( -- ca len ) ( dfa ) count ;
+
+\ ==============================================================
+\ Change log
 
 \ 2012-05-01: Extracted from and application of the author.
+\
 \ 2014-11-02: Change: Stack comments.
-
-: sconstant  (  a len "name" -- )
-  create  s,
-  does>  ( -- a len ) ( pfa ) count
-  ;
+\
+\ 2017-08-17: Update change log layout. Update source style and stack
+\ notation.

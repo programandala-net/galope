@@ -34,7 +34,10 @@ require ./stringer.fs
   \ the characters _ccc_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Move from <stringer.fs>.
+\
 \ 2016-07-20: Improve comments.
+\
+\ 2017-08-17: Update change log layout.

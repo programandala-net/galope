@@ -20,7 +20,7 @@ require ./x-c-store.fs
   \ Convert a UTF-8 string to lowercase.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: First version.
 \

@@ -13,7 +13,7 @@
   \ _n2_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Write. A factor of the generalization of the old `s?`,
 \ included in the deprecated module <sb.fs>. Used by `%nullify`.

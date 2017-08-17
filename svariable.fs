@@ -16,7 +16,7 @@ require ./slash-counted-string.fs
   \ its contents, as a counted string.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012: First version.
 \

@@ -5,8 +5,7 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
-\ History
-\ 2014-11-07: Added.
+\ ==============================================================
 
 require ./module.fs
 
@@ -42,3 +41,10 @@ export
   ;
 
 ;module
+
+\ ==============================================================
+\ Change log
+
+\ 2014-11-07: Added.
+\
+\ 2017-08-17: Update change log layout.

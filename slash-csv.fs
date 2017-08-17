@@ -19,7 +19,7 @@ require ./slash-sides.fs  \ '/sides'
   \ strings _n_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2013-11-11: Move from Fendo
 \ (http://programandala.net/en.program.fendo.html).
