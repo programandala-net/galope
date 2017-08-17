@@ -3,7 +3,7 @@
 # This file is part of Galope
 # http://programandala.net/en.program.galope.html
 
-# Last modified 201707141521
+# Last modified 201708171718
 
 # ==============================================================
 # Author
@@ -93,7 +93,9 @@ cleandoc:
 	asciidoctor --out-file=$@ $<
 
 tmp/glossary.adoc: tmp/files.txt
-	glosara --level=3 --input=$< > $@
+	glosara --level=3 --input=$< --output=$@
+
+#glosara --level=3 -m "glossary{ }glossary" --input=$< --output=$@
 
 %.docbook: %.adoc
 	asciidoctor --backend=docbook --out-file=$@ $<
@@ -129,3 +131,4 @@ doc: doc/galope_manual.html doc/galope_manual.pdf
 # Change log
 
 # 2017-07-14: Start.
+# 2017-07-15: Try Glosara `--output` parameter.
