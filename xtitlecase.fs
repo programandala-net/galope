@@ -6,7 +6,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013, 2014.
 
 \ ==============================================================
 

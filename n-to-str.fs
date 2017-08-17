@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013,2014,2015 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2015.
 
 \ 2013-11-26: First version.
 \ 2014-01-29: Fix: "./" path for 'require'.

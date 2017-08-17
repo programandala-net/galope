@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012.
 
 \ 2013-12-06: First version.
 \ 2015-10-13: Renamed.

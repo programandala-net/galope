@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013.
 
 \ 2013-08-30: Extracted from Fungo, by the same author.
 \ 2015-02-11: Gforth 0.8 will work this way, so a check is added.

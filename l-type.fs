@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012,2013,2014,2015 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015, 2016, 2017.
 
 \ Based on:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
@@ -172,7 +172,7 @@ export
   \ Spaces at the left of the first line of a new paragraph.
 
 1 value rows-between-paragraphs
-  \ Blanks rows between paragraphs.
+  \ Blank rows between paragraphs.
 
 hide
 
@@ -244,3 +244,5 @@ export
 \ and replace it gradually, without breaking existing code. Rename:
 \ Replace underscores with hyphens. New main interface words: `l-type`
 \ and `pl-type`. General renaming.
+\
+\ 2017-07-14: Fix typo.
