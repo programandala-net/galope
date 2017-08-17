@@ -27,7 +27,7 @@
 
 : lsconstant (  a1 len "name" -- )
   create ls,
-  does> ( -- a2 len ) ( pfa ) lcount ;
+  does> ( -- a2 len ) ( dfa ) lcount ;
 
 \ ==============================================================
 \ Change log
