@@ -3,12 +3,8 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
-
-\ History
-\ 2014-11-16: Added.
-
 \ Author: Hans Bezemer
+\
 \ Source:
 
 \ Message-Id: <543bfa10$0$2928$e4fe514c@news2.news.xs4all.nl>
@@ -26,6 +22,8 @@
 
 \ Regular Expressions by Brian W. Kernighan and Rob Pike
 \ Believed to be in the public domain
+
+\ ==============================================================
 
 defer (matchhere)
 
@@ -88,3 +86,10 @@ true [if]  \ usage examples
  s" 0,,9"  s" ^0,?9$" match? . .s cr cr
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2014-11-16: Added.
+\
+\ 2017-08-17: Update change log layout. Update header.

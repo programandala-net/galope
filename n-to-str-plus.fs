@@ -26,7 +26,7 @@ require ./s-plus.fs
   \ }doc
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2014-02-17: Move from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.html), to be

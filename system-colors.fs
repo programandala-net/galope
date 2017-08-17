@@ -24,7 +24,7 @@ require ./sgr.fs
   \ Set the system default colors.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Refactor from "Asalto y castigo"
 \ (<http://programandala.net/es.programa.asalto_y_castigo.forth.html>).

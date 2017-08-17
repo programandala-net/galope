@@ -14,7 +14,7 @@ require ./sgr.fs
   \ Set the current ink (foreground) color to _n_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Refactored from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).

@@ -3,14 +3,16 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Taken from Wil Baden's ToolBelt 2002.
 
-\ History
-\ 2012-12-04 Added.
+\ ==============================================================
 
-\ Taken from ToolBelt 2002 by Wil Baden.
-
-: third  ( x1 x2 x3 -- x1 x2 x3 x1 )
+: third ( x1 x2 x3 -- x1 x2 x3 x1 ) 2 pick ;
   \ Copy third element on the stack onto top of stack.
-  2 pick
-  ;
+
+\ ==============================================================
+\ Change log
+
+\ 2012-12-04 Added.
+\
+\ 2017-08-17: Update change log layout. Update header.

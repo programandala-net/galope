@@ -3,15 +3,18 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Wil Baden, from Common Use compilation 2003.
 
-\ History
+\ ==============================================================
+
+: c!++ ( a c -- a' ) over c! char+ ;
+
+\ ==============================================================
+\ Change log
+
 \ 2012-05-18 Added.
+\
 \ 2012-09-14 Code reformated.
-
-\ Taken from Common Use compilation 2003 by Wil Baden.
-
-: c!++  ( a c -- a' )
-  over c! char+
-  ;
-
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

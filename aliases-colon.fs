@@ -38,7 +38,7 @@ export
 ;module
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-06-25: Extract from "Asalto y castigo"
 \ (http://programandala.net/en.program.asalto_y_castigo.forth.html)

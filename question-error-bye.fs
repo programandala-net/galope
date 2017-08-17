@@ -26,7 +26,7 @@ require ./typecr.fs
 \ ----
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2015-12-17: Add to the library, after code by Anton Ertl:
 \ http://lists.gnu.org/archive/html/gforth/2015-12/msg00004.html

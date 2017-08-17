@@ -46,7 +46,7 @@ light-gray lighter      constant white
 brown lighter           constant yellow
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Refactored from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
@@ -57,4 +57,3 @@ brown lighter           constant yellow
 \ Remove old version, already commented out.
 \
 \ 2016-07-11: Update source layout and file header.
-

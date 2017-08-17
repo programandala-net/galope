@@ -8,12 +8,9 @@
 
 \ ==============================================================
 
-\ Forth Foundation Library
-\ http://irdvo.github.io/ffl/
-
 require ffl/str.fs
-
-\ ==============================================================
+  \ Forth Foundation Library
+  \ http://irdvo.github.io/ffl/
 
 : str-txt-concatenation?  ( len str -- f )
   str-length@ 0<> swap 0<> and  ;
@@ -21,7 +18,7 @@ require ffl/str.fs
   \ separation space when they are concatenated?
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-21: Extract from _Asalto y castigo_
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).

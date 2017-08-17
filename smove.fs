@@ -13,6 +13,6 @@
   \ Copy string _ca1 len1_ to _ca2_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Extract from the <sb.fs> module.

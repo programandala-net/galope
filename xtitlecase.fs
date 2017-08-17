@@ -8,9 +8,7 @@
 
 \ Copyright (C) 2013,2014 Marcos Cruz (programandala.net)
 
-\ History
-\ 2013-08-27: Written, based on 'xuppercase'.
-\ 2014-11-17: Module name updated.
+\ ==============================================================
 
 require ./module.fs
 require ./xbounds.fs
@@ -43,3 +41,12 @@ export
   ;
 
 ;module
+
+\ ==============================================================
+\ Change log
+
+\ 2013-08-27: Written, based on 'xuppercase'.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2017-08-17: Update change log layout.

@@ -60,7 +60,7 @@ init-choose-stack
   \ Fetch the top of the choose stack.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-22: Move from the old module <random_strings.fs>, improve
 \ and rename the words, in order to reuse them for the new `2choose{

@@ -29,7 +29,7 @@ require ./choose.fs
   \ stacked since the last unresolved `choose{`.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-22: Copy, modify and rename `s{ }s` from the old module
 \ <random_strings.fs> 

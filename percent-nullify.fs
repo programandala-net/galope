@@ -15,7 +15,7 @@ require ./question-nullify.fs   \ `?nullify`
   \ Randomly return zero instead of _x_, _n_ percent choices.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Write. A generalization of the old `?s`, included in the
 \ deprecated module <sb.fs>.

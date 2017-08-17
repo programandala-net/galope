@@ -3,12 +3,15 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
-
-\ History
-\ 2014-03-09 Added.
+\ ==============================================================
 
 s" MAX-N" environment? 0=
 [if]    .( MAX-N environmental query not implemented) ABORT
 [then]  constant max-n
 
+\ ==============================================================
+\ Change log
+
+\ 2014-03-09 Added.
+\
+\ 2017-08-17: Update change log layout. Update header.

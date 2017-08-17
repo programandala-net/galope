@@ -3,12 +3,13 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author:
+\   Wil Baden
+\   From ToolBelt 2002
+\ Adapted to Galope:
+\   Marcos Cruz (programandala.net), 2012
 
-\ History
-\ 2012-05-18: Added.
-
-\ Taken from ToolBelt 2002 by Wil Baden.
+\ ==============================================================
 
 require ./possibly.fs
 
@@ -27,3 +28,9 @@ require ./possibly.fs
   >in @ possibly >in ! marker
   ;
 
+\ ==============================================================
+\ Change log
+
+\ 2012-05-18: Added.
+\
+\ 2017-08-17: Update change log and header layout.

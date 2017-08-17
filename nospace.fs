@@ -3,33 +3,38 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ History
-\ 2014-12-01: Written, based on <galope/unspace.fs>.
+\ ==============================================================
 
 require ./module.fs
 
 module: galope-nospace-module
 
 variable destination  \ address to store the next valid char into
-: keep  ( c -- )
+
+: keep ( c -- )
+  destination @ c!  1 chars destination +! ;
   \ Keep the given char and update 'spaces?'.
-  destination @ c!  1 chars destination +!
-  ;
-: (nospace)  ( c -- )
+
+: (nospace) ( c -- )
+  dup bl = if drop else keep then ;
   \ Ignore or keep the given current char.
-  dup bl = if  drop  else  keep  then
-  ;
 
 export
 
-: nospace  ( ca len -- ca len' )
-  \ Remove all spaces from a string.
+: nospace ( ca len -- ca len' )
   over dup >r destination !
-  bounds ?do  i c@ (nospace)  loop
-  r> dup destination @ swap -
-  ;
+  bounds ?do i c@ (nospace) loop
+  r> dup destination @ swap - ;
+  \ Remove all spaces from a string.
 
 ;module
 
+\ ==============================================================
+\ Change log
+
+\ 2014-12-01: Written, based on <galope/unspace.fs>.
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style.

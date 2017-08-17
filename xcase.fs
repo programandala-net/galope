@@ -2,16 +2,12 @@
 \ Tools to convert xchars to lowercase or uppercase.
 
 \ Version 0.3.0+201606272139
+\ See change log at the end of the file.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2013, 2016.
-
-\ ==============================================================
-\ History
-
-\ See at the end of the file.
 
 \ ==============================================================
 \ TODO
@@ -176,7 +172,7 @@ export
 ;module
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-09-17: Start. Version A-00.
 \

@@ -15,7 +15,7 @@ require ffl/trm.fs
   \ Change a color code to its lighter counterpart.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-12-02: Extracte from "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).

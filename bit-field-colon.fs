@@ -7,8 +7,6 @@
 
 \ Author: Marcos Cruz (programandala.net), 2016.
 
-\ See history at the end of the file.
-
 \ ==============================================================
 
 require ./module.fs
@@ -149,7 +147,7 @@ constant /thing
 [then]
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-06-23: Extract from the project "Asalto y castigo"
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html)

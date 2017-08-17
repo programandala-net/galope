@@ -3,16 +3,13 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ ==============================================================
 
-\ History
+: th ( a1 u -- a2 ) cells + ;
+
+\ ==============================================================
+\ Change log
+
 \ 2012-05-06 Added.
-
-\ 'th' is common use.
-
-[undefined] th [if]
-  : th  ( a1 u -- a2 )
-  cells +
-  ;
-[then]
-
+\
+\ 2017-08-17: Update change log layout. Update header.

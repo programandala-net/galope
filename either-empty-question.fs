@@ -15,8 +15,7 @@ require ./either-zero-question.fs
   both-lengths either-zero?  ;
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Extract `any_empty?` from the <sb.fs> module and rename
 \ it.
-

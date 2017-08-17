@@ -22,7 +22,7 @@ require ./two-choose-curly-bracket.fs
   \ len#n_ stacked since the last unresolved `s{`.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-04-07: In order to reuse this code, it was extracted from the
 \ project it was developed for

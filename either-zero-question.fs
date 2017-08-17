@@ -11,7 +11,7 @@
 : either-zero?  ( n1 n2 -- f )  0= swap 0= or  ;
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Extract `any_zero?` from the <sb.fs> module and rename
 \ it.

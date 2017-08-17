@@ -5,14 +5,13 @@
 
 \ Copyright (C) 2014 Marcos Cruz (programandala.net)
 
-\ History
-\ 2014-11-16: Added.
-
 \ Message-Id: <54414f47$0$2922$e4fe514c@news2.news.xs4all.nl>
 \ From: Hans Bezemer <the.beez.speaks@gmail.com>
 \ Subject: Re: Tiny regular expressions code
 \ Newsgroups: comp.lang.forth
 \ Date: Fri, 17 Oct 2014 19:20:12 +0200
+
+\ ==============================================================
 
 require ./chop.fs
 require ./four-drop.fs
@@ -45,3 +44,10 @@ require ./four-drop.fs
   repeat  \ get next character
   >r drop nip r> or 0=  \ only a match if both are at the end
   ;
+
+\ ==============================================================
+\ Change log
+
+\ 2014-11-16: Added.
+\
+\ 2017-08-17: Update change log layout.

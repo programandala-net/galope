@@ -25,7 +25,7 @@ require ./sides.fs  \ 'sides'
   \ depending on its position in _ca1 len1_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2013-07-11: Added. Taken from Fendo
 \ (http://programandala.net/en.program.fendo.html)

@@ -4,25 +4,26 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017.
 
 \ ==============================================================
 
 require ffl/str.fs
   \ Forth Foundation Library (http://irdvo.github.io/ffl/)
 
-require ./str-txt-concatenation-question.fs  \ `str-txt-concatenation?`
+require ./str-txt-concatenation-question.fs \ `str-txt-concatenation?`
 
-\ ==============================================================
-
-: str-append-txt  ( ca len str -- )
+: str-append-txt ( ca len str -- )
   2dup str-txt-concatenation?
-  if  bl over str-append-char  then  str-append-string  ;
+  if bl over str-append-char then str-append-string ;
   \ Append a text _ca len_ to a FFL's dynamic string _str_,
   \ with a space separator if needed.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-21: Extract from _Asalto y castigo_
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).
+\
+\ 2017-08-17: Update change log layout. Update header and source
+\ style.

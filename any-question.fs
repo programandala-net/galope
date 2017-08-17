@@ -4,8 +4,10 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: John A. Peters, 1984. Included in a tool set written for the
-\ CP/M implementation of Laxen&Perry's F83 2.1.1.
+\ Author:
+\   John A. Peters, 1984.
+\   Included in a tool set written for the
+\   CP/M implementation of Laxen&Perry's F83 2.1.1.
 
 \ ==============================================================
 
@@ -16,7 +18,7 @@ variable (any?)
   \ Is any _x1..xn_ equal to _x0_?
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2015-12-11: Copy from Solo Forth
 \ (http://programandala.net/en.program.solo_forth.html). Original code
@@ -24,3 +26,5 @@ variable (any?)
 \
 \ 2016-07-11: Update source layout and file header. Fix and complete
 \ the credits.
+\
+\ 2017-08-17: Update header layout.

@@ -3,16 +3,22 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013.
 
-\ History
-\ 2013-08-17 Written as 'instr'.
-\ 2013-08-27 Renamed to 'instr?'; a new 'instr' is defined apart.
+\ ==============================================================
 
-: instr?  ( c ca len -- wf )
-  \ Is char c in string ca len?
+: instr? ( c ca len -- f )
   bounds ?do
-    dup i c@ = ?dup if  unloop nip exit  then
-  loop  drop false
-  ;
+    dup i c@ = ?dup if unloop nip exit then
+  loop drop false ;
+  \ Is char c in string ca len?
 
+\ ==============================================================
+\ Change log
+
+\ 2013-08-17 Written as 'instr'.
+\
+\ 2013-08-27 Renamed to 'instr?'; a new 'instr' is defined apart.
+\
+\ 2017-08-17: Update change log layout. Update header. Update source
+\ style and stack notation.

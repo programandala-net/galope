@@ -19,6 +19,6 @@ require ./slash-sides.fs  \ '/sides'
   \ number of resulting strings _n_.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-29: Write, after the code of `/csv`.

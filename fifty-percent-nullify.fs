@@ -15,7 +15,7 @@ require random.fs  \ Gforth's `random`
   \ Faster and smaller than `50 %nullify`.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Move `s?` from the deprecated module <sb.fs> and rename
 \ it. More general versions have been written as `?nullify` and

@@ -4,11 +4,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2013 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2013.
 
-\ History
-\ 2013-12-10: Written.
-\ 2014-11-17: Module name updated.
+\ ==============================================================
 
 require ./paren-star.fs  \ '(*'
 require ./module.fs
@@ -98,3 +96,12 @@ translations: table0
 s" bla blafrom2! bla bla from3 bla bla from1" table0 translated
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2013-12-10: Written.
+\
+\ 2014-11-17: Module name updated.
+\
+\ 2017-08-17: Update change log layout. Update header.

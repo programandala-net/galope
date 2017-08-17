@@ -13,8 +13,6 @@ require ffl/str.fs
 
 require ./str-txt-concatenation-question.fs  \ `str-txt-concatenation?`
 
-\ ==============================================================
-
 : str-prepend-txt  ( ca len str -- )
   2dup str-txt-concatenation?
   if  bl over str-prepend-char  then  str-prepend-string  ;
@@ -22,7 +20,7 @@ require ./str-txt-concatenation-question.fs  \ `str-txt-concatenation?`
   \ with a space separator if needed.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-21: Extract from _Asalto y castigo_
 \ (http://programandala.net/es.programa.asalto_y_castigo.forth.html).

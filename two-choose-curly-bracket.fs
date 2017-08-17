@@ -18,9 +18,6 @@ require random.fs  \ Gforth's `random`
 require ./choose-stack.fs
 require ./two-choose.fs
 
-\ ==============================================================
-\ Operators
-
 : 2choose{ ( -- )
   depth >choose-stack  ;
   \ Start a set of double numbers (or strings) to choose from.
@@ -31,7 +28,7 @@ require ./two-choose.fs
   \ stacked since the last unresolved `2choose{`.
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-22: Copy, improve and rename `s{ }s` from the old module
 \ <random_strings.fs> 

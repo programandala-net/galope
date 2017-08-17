@@ -8,11 +8,12 @@
 
 \ ==============================================================
 
-: both-lengths  ( ca1 len1 ca2 len2 -- ca1 len1 ca2 len2 len1 len2 )
-  2 pick over  ;
+: both-lengths ( ca1 len1 ca2 len2 -- ca1 len1 ca2 len2 len1 len2 )
+  2 pick over ;
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2016-07-19: Extract `lengths` from the <sb.fs> module and rename it.
-
+\
+\ 2017-08-17: Update change log layout. Update source style.

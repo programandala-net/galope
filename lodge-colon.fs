@@ -3,45 +3,30 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
-\ --------------------------------------------------------------
-\ About
+\ ==============================================================
+\ Description
 
 \ This code provides words that create and manage self-growing buffers
-\ that hold variables, values or any kind of data space.  The
-\ variables and values work as the ordinary ones, but they store in
-\ their own body an offset to the actual data in the buffer.  This
-\ makes it possible to save a whole buffer to a binary file and
-\ restore it later (e.g.  game sessions), even if the actual absolute
-\ address of the buffer changes.
+\ that hold variables, values or any kind of data.  The variables and
+\ values work as the ordinary ones, but they store in their own body
+\ an offset to the actual data in the buffer.  This makes it possible
+\ to save a whole buffer to a binary file and restore it later (e.g.
+\ game sessions), even if the actual absolute address of the buffer
+\ changes.
 
 \ There's a simpler version with only one buffer.  See the file
 \ <galope/lodge.fs>.  Both versions can not be loaded at the same time
 \ because most of the word names are the same.  <galope/lodge.fs>
 \ should be a bit faster because of the simpler inner calculations.
 
-\ --------------------------------------------------------------
-\ History
-
-\ 2014-02-21: Forked from <galope/lodge.fs>, in order to make
-\   an improved version that can create different named buffers.
-\   This feature is needed for Finto
-\   (<http://programandala.net/en.program.finto.html>).
-\ 2014-02-21: Improvement: Several named lodges can be created.
-\   'get-lodge' and 'set-lodge' manage the current one.
-\ 2014-02-21: Change: Some core words are renamed.
-\ 2014-02-21: New: 'lodge-,' and 'lodge-2,'.
-\ 2014-02-21: Fix: 'lodge-resize' now can be used directly by the
-\   application. Solved by moving the trailing code of
-\   'lodge-allocate' to 'lodge-resize'.
-
-\ --------------------------------------------------------------
-\ To-do
+\ ==============================================================
+\ XXX TODO --
 
 \ 2014-02-21: Update 'lodge-,' and 'lodge-2,' to the new system.
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Buffer
 
 variable current-lodge  \ data field address of the current lodge
@@ -101,7 +86,7 @@ variable current-lodge  \ data field address of the current lodge
   latestxt >body set-lodge
   ;
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Variables
 
 : body>lodge  ( dfa -- a )
@@ -131,7 +116,7 @@ variable current-lodge  \ data field address of the current lodge
   create 2 cells (lodge-variable) lodge-variable-does>
   ;
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Values
 
 : (lodge-value)  ( u -- a )
@@ -165,7 +150,7 @@ variable current-lodge  \ data field address of the current lodge
   does> ( -- n ) ( dfa ) body>lodge 2@
   ;
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ To
 
 : xt>lodge  ( xt -- a )
@@ -198,7 +183,7 @@ interpret/compile: lodge-to
 ' [lodge-2to]
 interpret/compile: lodge-2to
 
-\ --------------------------------------------------------------
+\ ==============================================================
 \ Misc
 
 : lodge-save-mem  ( a1 len -- +n len )
@@ -214,3 +199,25 @@ interpret/compile: lodge-2to
   \ "Compile" two cells into the current lodge.
   2 cells lodge-allocate throw lodge+ 2!
   ;
+
+\ ==============================================================
+\ Change log
+
+\ 2014-02-21: Forked from <galope/lodge.fs>, in order to make an
+\ improved version that can create different named buffers.  This
+\ feature is needed for Finto
+\ (<http://programandala.net/en.program.finto.html>).
+\
+\ 2014-02-21: Improvement: Several named lodges can be created.
+\ 'get-lodge' and 'set-lodge' manage the current one.
+\
+\ 2014-02-21: Change: Some core words are renamed.
+\
+\ 2014-02-21: New: 'lodge-,' and 'lodge-2,'.
+\
+\ 2014-02-21: Fix: 'lodge-resize' now can be used directly by the
+\ application. Solved by moving the trailing code of 'lodge-allocate'
+\ to 'lodge-resize'.
+\
+\ 2017-08-17: Update change log layout. Update header. Update section
+\ rulers.

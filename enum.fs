@@ -11,7 +11,7 @@
 : enum  (  n "name" -- n+1 )  dup constant 1+  ;
 
 \ ==============================================================
-\ History
+\ Change log
 
 \ 2012-05-06: First version.
 \
