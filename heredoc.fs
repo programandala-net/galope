@@ -31,7 +31,7 @@ module: galope-heredoc-module
 
 variable /heredoc  \ delimiter, a dynamic string
 
-: /heredoc? ( ca len -- wf )
+: /heredoc? ( ca len -- f )
   /heredoc $@ str= ;
 
 export
@@ -98,4 +98,5 @@ bla bla " type
 \
 \ 2017-07-15: Require `s+`, which was removed from Gforth 0.7.9.
 \ Update layout.
-
+\
+\ 2017-08-17: Update stack notation.

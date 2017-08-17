@@ -3,45 +3,17 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author:
+\   Ed
+\   http://dxforth.netbay.com.au/miser.html
+\   Miser's CASE - A general purpose Forth CASE statement
+\   Revision 3  2008-11-30
+\   Public domain
+\
+\ Adapted to Galope:
+\   Marcos Cruz (programandala.net), 2013.
 
-require ./between.fs
-\ require ./thens.fs  \ xxx todo
-
-\ **************************************************************
-\ Origin of this code
-
-\ This control structure has been taken from:
-
-\     http://dxforth.netbay.com.au/miser.html
-\     Miser's CASE - A general purpose Forth CASE statement
-\     Revision 3  2008-11-30
-\     Public domain
-
-\ **************************************************************
-\ Change history
-
-0 [if]
-
-
-2013-08-16: First changes to the original code:
-
-- Change words to lowercase.
-- Rename 'case' and 'endcase' to 'select' and 'endselect' (from SuperBASiC)
-- Remove 'of' and 'endof'.
-- Remove the code for other Forth systems than Gforth.
-- Add stack and purpouse comments.
-- Format the source after my house style.
-- Use 'between' in '(range)'.
-
-2013-08-17: Corrected the title of the test.  Note: 'thens' is not
-immediate; Wil Baden's 'thens' is equivalent but immediate.
-
-2015-10-25: Fixed the usage example.
-
-[then]
-
-\ **************************************************************
+\ ==============================================================
 \ Syntax
 
 0 [if]
@@ -73,7 +45,13 @@ clauses that would otherwise pass to 'endselect'. It provides
 
 [then]
 
-\ **************************************************************
+\ ==============================================================
+\ Requirements
+
+require ./between.fs
+\ require ./thens.fs  \ XXX TODO
+
+\ ==============================================================
 \ Code
 
 0 constant select  immediate
@@ -95,7 +73,7 @@ clauses that would otherwise pass to 'endselect'. It provides
 : equal  ( compile-time:  -- ) ( run-time: x0 x1 -- )
   postpone over  postpone -  postpone if
   ;  immediate
-: (range)  ( x0 x1 x2 -- x0 wf )
+: (range)  ( x0 x1 x2 -- x0 f )
   2>r dup 2r> over - -rot - u<
   \ 2>r dup 2r> between
   ;
@@ -103,7 +81,7 @@ clauses that would otherwise pass to 'endselect'. It provides
   postpone (range)  postpone if
   ;  immediate
 
-\ **************************************************************
+\ ==============================================================
 \ Usage example
 
 false [if]
@@ -137,5 +115,30 @@ cr  char K  .(   ) dup emit  select_test
 cr  0              dup 3 .r  select_test
 cr  127            dup 3 .r  select_test
 cr  128            dup 3 .r  select_test
+
+[then]
+
+\ ==============================================================
+\ Change log
+
+0 [if]
+
+2013-08-16: First changes to the original code:
+
+- Change words to lowercase.
+- Rename 'case' and 'endcase' to 'select' and 'endselect' (from SuperBASiC)
+- Remove 'of' and 'endof'.
+- Remove the code for other Forth systems than Gforth.
+- Add stack and purpouse comments.
+- Format the source after my house style.
+- Use 'between' in '(range)'.
+
+2013-08-17: Corrected the title of the test.  Note: 'thens' is not
+immediate; Wil Baden's 'thens' is equivalent but immediate.
+
+2015-10-25: Fixed the usage example.
+
+2017-08-17: Update change log layout. Update header. Update section
+rulers. Update stack notation.
 
 [then]

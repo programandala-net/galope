@@ -23,7 +23,7 @@ variable apart?
   \ Update the word separation flag: is xc a word separation char?
   dup bl = swap [char] - = or apart? !
   ;
-: first_of_word?  ( n -- wf )
+: first_of_word?  ( n -- f )
   \ Is the n-position xchar the first character of a word?
   0= apart? @ or
   ;
@@ -49,4 +49,4 @@ export
 \
 \ 2014-11-17: Module name updated.
 \
-\ 2017-08-17: Update change log layout.
+\ 2017-08-17: Update change log layout.  Update stack notation.

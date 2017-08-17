@@ -11,13 +11,8 @@
 \ You can redistribute this file and/or modify it under
 \ the terms of the GNU General Public License
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Development history
-
-\ At the end of this file.
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ xxx todo
+\ ==============================================================
+\ XXX TODO --
 
 \ 2013:
 \   Top left coordinates. Margins.
@@ -26,7 +21,7 @@
 \ 2014-02-19: Rename all interface words homogeneously and with a simpler
 \   convention than "print_".
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 
 require ./module.fs
 require ./column.fs
@@ -98,13 +93,13 @@ false [if]  \ First version
 
 hide
 
-: at_last_start_of_line?  ( -- wf )
+: at_last_start_of_line?  ( -- f )
   xy last-row = swap 0= and
   ;
-: not_at_start_of_line?  ( -- wf )
+: not_at_start_of_line?  ( -- f )
   column 0<>
   ;
-: print_cr?  ( -- wf )
+: print_cr?  ( -- f )
   not_at_home? not_at_start_of_line? and
   \ xxx fixme 2012-09-30 what this was for?:
   \ at_last_start_of_line? 0= or
@@ -124,7 +119,7 @@ variable print_width
 
 hide
 
-: previous_word?  ( -- wf )
+: previous_word?  ( -- f )
   #printed @ #indented @ >
   ;
 : ?space  ( -- )
@@ -133,7 +128,7 @@ hide
 : current_print_width  ( -- u )
   print_width @ ?dup 0= ?? cols
   ;
-: too_long?  ( u -- wf )
+: too_long?  ( u -- f )
   1+ #printed @ + current_print_width >
   ;
 : .word  ( ca len -- )
@@ -194,8 +189,8 @@ export
 
 ;module
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ Development history
+\ ==============================================================
+\ Change log
 
 \ 2012-04-17: Words renamed and factorized. Adapted to Gforth.
 \
@@ -242,3 +237,6 @@ export
 \ 2015-10-13: Updated after the latest renamings in Galope.
 \
 \ 2015-10-16: Fixed some comments.
+\
+\ 2017-08-17: Update change log layout. Update stack notation. Update
+\ section rulers.

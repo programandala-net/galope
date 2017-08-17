@@ -31,24 +31,24 @@
 \ ==============================================================
 
 true value end-of-array  \ fake key
-defer key-found?  ( i*x a -- wf )
-defer key-drop  ( i*x a wf -- a wf )  \ remove the key searched for
+defer key-found?  ( i*x a -- f )
+defer key-drop  ( i*x a f -- a f )  \ remove the key searched for
 
-: number-key-found?  ( n a -- wf )
+: number-key-found?  ( n a -- f )
   @ =
   ;
 ' number-key-found? is key-found?
-: number-key-drop  ( n a wf -- a wf )
+: number-key-drop  ( n a f -- a f )
   rot drop
   ;
 ' number-key-drop is key-drop
 
-: array-search  ( n a u -- a' wf )
+: array-search  ( n a u -- a' f )
   \ n = key searched for
   \ a = address of the first key to be searched
   \ u = number of cells in every element
   \ a' = address of the found key
-  \ wf = found?
+  \ f = found?
   cells >r
   begin   dup @ end-of-array <> dup
   while   drop 2dup key-found? dup 0=
@@ -69,7 +69,7 @@ create array1 \ array with two fields (key and value)
 true , 1000 , \ default end of array (true) and optional default value (1000)
 
 : test1
-  5 array1 2 array-search ( a wf )  \ search for 5
+  5 array1 2 array-search ( a f )  \ search for 5
   assert( dup )  \ found
   assert( over @ 5 = )  \ pointer to the found value
   2drop
@@ -87,7 +87,7 @@ create array2 \ array with three fields (value1, key and value2)
 
 : test2
   64 to end-of-array
-  32 array2 cell+ 3 array-search  ( a wf )  \ search for a missing key (32)
+  32 array2 cell+ 3 array-search  ( a f )  \ search for a missing key (32)
   assert( dup 0= )  \ not found
   assert( over @ end-of-array = )  \ pointer to the end of array key
   2drop
@@ -115,4 +115,4 @@ test2
 \
 \ 2015-10-13: Renamed words.
 \
-\ 2017-08-17: Update change log layout.
+\ 2017-08-17: Update change log layout.  Update stack notation.

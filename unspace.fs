@@ -18,7 +18,7 @@ variable destination  \ address to store the next valid char into
   dup bl = spaces? !
   destination @ c!  1 chars destination +!
   ;
-: extra_space?  ( c -- wf )
+: extra_space?  ( c -- f )
   \ Is the given current char and extra space?
   \ Also, update 'spaces?'.
   bl = dup spaces? @ and  swap spaces? !
@@ -44,4 +44,4 @@ export
 
 \ 2014-11-16: Written.
 \
-\ 2017-08-17: Update change log layout.
+\ 2017-08-17: Update change log layout.  Update stack notation.

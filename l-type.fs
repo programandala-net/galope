@@ -12,11 +12,6 @@
 \ the terms of the GNU General Public License
 
 \ ==============================================================
-\ Development history
-
-\ At the end of this file.
-
-\ ==============================================================
 \ XXX TODO
 
 \ - Top left coordinates.
@@ -51,7 +46,7 @@ variable #indented   \ Indented chars in the current line.
 
 : l-space  ( -- )  bl l-emit  ;
 
-: not-at-home?  ( -- wf )  xy + 0<>  ;
+: not-at-home?  ( -- f )  xy + 0<>  ;
 
 : no-typed  ( -- )  #typed off  #indented off  ;
 
@@ -90,13 +85,13 @@ false [if]
 
 hide
 
-: at-last-start-of-line?  ( -- wf )
+: at-last-start-of-line?  ( -- f )
   xy last-row = swap 0= and  ;
 
-: not-at-start-of-line?  ( -- wf )
+: not-at-start-of-line?  ( -- f )
   column 0<>  ;
 
-: l-cr?  ( -- wf )
+: l-cr?  ( -- f )
   not-at-home? not-at-start-of-line? and
   \ XXX FIXME -- 2012-09-30 what this was for?:
   \ at-last-start-of-line? 0= or
@@ -118,7 +113,7 @@ variable l-width
 
 hide
 
-: previous-word?  ( -- wf )
+: previous-word?  ( -- f )
   #typed @ #indented @ >  ;
 
 : ?space  ( -- )
@@ -127,7 +122,7 @@ hide
 : current-print-width  ( -- u )
   l-width @ ?dup 0= if  cols  then  ;
 
-: too-long?  ( u -- wf )
+: too-long?  ( u -- f )
   1+ #typed @ + current-print-width >  ;
 
 : .word  ( ca len -- )
@@ -192,7 +187,7 @@ export
 ;module
 
 \ ==============================================================
-\ Development history
+\ Change log
 
 \ 2012-04-17: Words renamed and factorized. Adapted to Gforth.
 \
@@ -246,3 +241,5 @@ export
 \ and `pl-type`. General renaming.
 \
 \ 2017-07-14: Fix typo.
+\
+\ 2017-08-17: Update stack notation.
