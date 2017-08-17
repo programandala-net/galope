@@ -13,9 +13,21 @@
 
 require ./minus-order.fs \ `-order`
 
-: +order ( wid -- )  dup -order >order ;
+: +order ( wid -- ) dup -order >order ;
+
+  \ doc{
+  \
+  \ +order ( wid -- )
+  \
+  \ Remove all _wid_ from the search order; then
+  \ add _wid_ to the top of the search order.
+  \
+  \ See: `-order`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
 
 \ 2017-08-16: Start.
+\ 2017-08-17: Document.
