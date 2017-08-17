@@ -16,7 +16,7 @@
 require ./chop.fs
 require ./four-drop.fs
 
-: wild-match?  ( ca1 len1 ca2 len2 -- wf )
+: wild-match?  ( ca1 len1 ca2 len2 -- f )
   \ ca1 len1 = string
   \ ca2 len2 = match string (wildcard expression)
   begin
@@ -50,4 +50,4 @@ require ./four-drop.fs
 
 \ 2014-11-16: Added.
 \
-\ 2017-08-17: Update change log layout.
+\ 2017-08-17: Update change log layout.  Update stack notation.

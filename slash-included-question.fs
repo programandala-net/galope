@@ -9,7 +9,7 @@
 
 require ./string-suffix-question.fs
 
-: /included? ( ca len -- wf )
+: /included? ( ca len -- f )
   \ True only if the file ca len is the end of an earlier
   \ included file.
   \ Contrary to Gforth's 'included?' this word makes it possible to
@@ -30,8 +30,8 @@ require ./string-suffix-question.fs
 \ ==============================================================
 \ Change log
 
-\  2014-03-24: Written after Gforth's 'included?', that matches only
-\  exact paths. Sometimes exact paths are inconvenient because you
-\  don't know where the file was actually loaded from.
+\ 2014-03-24: Written after Gforth's 'included?', that matches only
+\ exact paths. Sometimes exact paths are inconvenient because you
+\ don't know where the file was actually loaded from.
 \
-\ 2017-08-17: Update change log layout.
+\ 2017-08-17: Update change log layout.  Update stack notation.

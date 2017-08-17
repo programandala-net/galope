@@ -30,7 +30,7 @@ module: galope-aliases-colon-module
 export
 
 : aliases:  (  xt "name#0" ... "name#n" ";aliases" -- )
-  begin  dup another-alias? ( xt xt ca len wf )
+  begin  dup another-alias? ( xt xt ca len f )
   while  :alias
   repeat  2drop 2drop  ;
   \ Create any number of aliases of _xt_, until ";aliases" is parsed.
@@ -45,3 +45,5 @@ export
 \ and rename.
 \
 \ 2016-07-11: Update source layout and file header.
+\
+\ 2017-08-17: Update stack notation.

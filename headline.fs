@@ -21,7 +21,7 @@ variable y variable x  \ top left coordinates
 variable heigth  \ rows of the headline
 variable width  \ max width that can be shown
 
-: +row?  ( u -- wf )
+: +row?  ( u -- f )
   heigth @ 1- <
   ;
 : (+row)  cr x @ at-x
@@ -120,4 +120,5 @@ false [if]  \ Unfinished alternative!!!
 \
 \ 2014-11-17: Module name updated.
 \
-\ 2017-08-17: Update change log layout. Update header.
+\ 2017-08-17: Update change log layout. Update header.  Update stack
+\ notation.

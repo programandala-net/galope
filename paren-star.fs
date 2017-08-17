@@ -5,15 +5,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2013.
 
-\ 2013-11-26 First version.
-\ 2013-11-27 New: '*)'.
-\ 2013-11-27 Second version, block comment can be nested.
-\ 2014-01-29 Fix: "./" path for 'require'.
-\ 2014-02-13 Note: Just found an alternative implementation:
-\   <http://www.forth200x.org/paren-star.txt>,
-\   <https://groups.google.com/forum/#!topic/comp.lang.forth/K4d7f4CN7YU%5B126-150-false%5D>.
-\ 2014-07-24 Included the implementation found in
-\ <http://www.forth200x.org/paren-star.txt>, for reference.
+\ ==============================================================
 
 : *)  ( -- )
   \ can be nested Close a block comment.
@@ -40,8 +32,8 @@ require ./plus-plus.fs  \ '++'
 require ./minus-minus.fs  \ '--'
 
 variable (*_count
-: ((*)  { D: parsed_name -- wf }
-  \ wf = end of the comment block?
+: ((*)  { D: parsed_name -- f }
+  \ f = end of the comment block?
   parsed_name s" (*" str= if  (*_count ++ false exit  then
   parsed_name s" *)" str= if  (*_count dup -- @ 0< exit  then
   false
@@ -98,3 +90,23 @@ Other suggestions for names:  \\  --- ( in both cases, the next
 instance toggles rather than nests)
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2013-11-26 First version.
+\
+\ 2013-11-27 New: '*)'.
+\
+\ 2013-11-27 Second version, block comment can be nested.
+\
+\ 2014-01-29 Fix: "./" path for 'require'.
+\
+\ 2014-02-13 Note: Just found an alternative implementation:
+\ <http://www.forth200x.org/paren-star.txt>,
+\ <https://groups.google.com/forum/#!topic/comp.lang.forth/K4d7f4CN7YU%5B126-150-false%5D>.
+\
+\ 2014-07-24 Included the implementation found in
+\ <http://www.forth200x.org/paren-star.txt>, for reference.
+\
+\ 2017-08-17: Update change log layout. Update stack notation.

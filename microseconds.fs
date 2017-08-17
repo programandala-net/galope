@@ -12,7 +12,7 @@ require ./module.fs
 
 module: galope-microseconds-module
 
-: overtime?  ( d -- wf )
+: overtime?  ( d -- f )
   utime d<  ;
 
 export
@@ -40,4 +40,5 @@ export
 \
 \ 2016-01-16: Updated header and layout.
 \
-\ 2017-08-17: Update change log layout. Update header.
+\ 2017-08-17: Update change log layout. Update header.  Update stack
+\ notation.

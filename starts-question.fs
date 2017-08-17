@@ -13,7 +13,7 @@
 
 require ./third.fs
 
-: starts? ( a1 u1 a2 u2 -- a1 u1 wf )
+: starts? ( a1 u1 a2 u2 -- a1 u1 f )
   2over third min compare 0= ;
   \ Check start of string:
   \ Is a2 u2 the start of a1 u1?
@@ -28,4 +28,4 @@ require ./third.fs
 \ 2013-11-06 Changed the stack notation of flag.
 \
 \ 2017-08-17: Update change log layout. Update header and source
-\ style.
+\ style.  Update stack notation.

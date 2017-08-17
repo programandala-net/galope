@@ -7,7 +7,7 @@
 
 \ ==============================================================
 
-: contains? ( a1 u1 a2 u2 -- a1 u1 wf )
+: contains? ( a1 u1 a2 u2 -- a1 u1 f )
   2over 2swap search nip nip ;
   \ Test that a string contains another string.
   \ a1 u1 = string to search
@@ -20,4 +20,5 @@
 \
 \ 2013-11-06 Changed the stack notation of flag.
 \
-\ 2017-08-17: Update change log layout. Update header.
+\ 2017-08-17: Update change log layout. Update header.  Update stack
+\ notation.

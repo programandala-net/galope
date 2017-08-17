@@ -128,7 +128,7 @@ defer x2dup
   \ Depth of the current xstack.
   xlen cell /
   ;
-: xempty?  ( -- wf )
+: xempty?  ( -- f )
   \ Is the current xstack empty?
   xp@ xp0 =
   ;
@@ -185,20 +185,23 @@ defer x2dup
 \ Change log
 
 \ 2014-11-08: Start. Based on:
+\
 \   XSTACK
 \   Author: Victor H. Yngve (Chicago, Illinois), 1987
 \   Published in Forth Dimensions
 \   (Volume 10, Number 3, September/October 1988, pages 5 and 10):
 \   http://www.forth.org/fd/contents.html
 \   http://www.forth.org/fd/FD-V10N3.pdf
+\
 \ Improvements on the original Yngve's code:
 \ - Any number of stacks can be created, with any size;
 \   the stack's name makes the stack the current one.
 \ - Comus-like low-level interface: 'xp0', 'xp@' and 'xp!'.
 \ - More words to manipulate the stacks.
 \ - '.x' behaves like Gforth's '.s'.
-\
+
 \ 2015-10-14: Improved usage of `literal` in `(xdrop)` and `(x2drop)`.
 \ Fixed comments.
 \
-\ 2017-08-17: Update change log layout. Update section rulers.
+\ 2017-08-17: Update change log layout. Update section rulers.  Update
+\ stack notation.
