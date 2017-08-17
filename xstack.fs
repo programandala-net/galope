@@ -38,7 +38,7 @@
     , \ xsize
   does> ( -- )
     \ Make an xstack the current xstack.
-    ( pfa ) dup @ to xp0  cell+ dup to xp  cell+ @ to xsize
+    ( dfa ) dup @ to xp0  cell+ dup to xp  cell+ @ to xsize
   ;
 : xp@  ( -- a )
   xp @

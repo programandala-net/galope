@@ -53,7 +53,7 @@ export
 
 : bitfield:  ( n "name" -- n' )
   create  get-bitmask over 2, update-bitmask
-  does>   ( a -- u a' )  ( a pfa ) 2@ rot +  ;
+  does>   ( a -- u a' )  ( a dfa ) 2@ rot +  ;
   \ Create a it field _name_, with offset _n_ from the start of the
   \ structure.  When executed, `name` will return its bitmask _u_ and
   \ the address _a'_ that holds the bit.
