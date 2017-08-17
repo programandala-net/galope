@@ -14,25 +14,9 @@ require ./s-plus.fs
 
 module: galope-heredoc-module
 
-0 [if]  \ xxx old, first version
-: <<<  ( "text>>>" -- ca len )
-  \ Read text from the input stream until '>>>'
-  s" "
-  begin   parse-name ?dup
-    if    2dup s" >>>" str= dup >r
-          if    2drop
-          else  s+ s"  " s+
-          then  r>
-    else  drop refill 0= dup abort" Missing '>>>'"
-    then
-  until   -trailing
-  ;
-[then]
-
 variable /heredoc  \ delimiter, a dynamic string
 
-: /heredoc? ( ca len -- f )
-  /heredoc $@ str= ;
+: /heredoc? ( ca len -- f ) /heredoc $@ str= ;
 
 export
 
@@ -44,45 +28,64 @@ export
     else  2drop refill 0= dup abort" Missing final heredoc's delimiter"
     then
   until   -trailing ;
-  \ Read text from the input stream until a certain <name> is found.
-  \ This word was inspired by PHP's heredoc notation.
-  \ ca1 len1 = <name>, the delimiter
-  \ ca2 len2 = text from the input stream, until <name> is found
+
+  \ doc{
+  \
+  \ (heredoc) ( ca1 len1 "ccc<name>" -- ca2 len2 )
+  \
+  \ Parse _ccc_ delimited by _ca1 len1_ that is _name_.  Return a
+  \ string _ca2 len2_ that describes the string consisting of the
+  \ characters _ccc_.
+  \
+  \ ``(heredoc)`` is a factor of `heredoc`. See `heredoc` for a usage
+  \ example.
+  \
+  \ }doc
 
 : heredoc ( "<name>text<name>" -- ca len )
   parse-name dup 0= abort" Missing initial heredoc's delimiter"
   (heredoc) ;
-  \ Read text from the input stream until a certain <name> is found.
-  \ This word was inspired by PHP's heredoc notation.
-  \ <name> = delimiter name
+
+  \ doc{
+  \
+  \ heredoc ( "<name>ccc<name>" -- ca len )
+  \
+  \ Parse _name_, then parse _ccc_ delimited by _name_.  Return a
+  \ string _ca len_ that describes the string consisting of the
+  \ characters _ccc_.
+  \
+  \ ``heredoc`` was inspired by PHP's homonymous notation.
+  \
+  \
+  \ Usage examples:
+
+  \ ----
+  \ ' heredoc alias <<<
+  \
+  \ <<< EOT bla bla bla
+  \   bla bla bla
+  \   bla bla bla
+  \   EOT type
+  \
+  \ : {{  s" }}" (heredoc)  ;
+  \
+  \ {{ bla bla bla
+  \   bla bla bla
+  \   bla bla bla }} type
+  \
+  \ :noname  s\" \"" (heredoc) save-mem  ;
+  \ :noname  s\" \"" (heredoc) postpone sliteral  ;
+  \ interpret/compile: txt"
+
+  \ txt" bla bla bla
+  \ bla bla " type
+  \ ----
+
+  \ See: `"`, `["`, `<"`.
+  \
+  \ }doc
 
 ;module
-
-0 [if]
-
-\ Usage examples
-
-require ../galope/heredoc.fs
-
-' heredoc alias <<<
-<<< EOT bla bla bla
-  bla bla bla
-  bla bla bla
-  EOT type
-
-: {{  s" }}" (heredoc)  ;
-{{ bla bla bla
-  bla bla bla
-  bla bla bla }} type
-
-:noname  s\" \"" (heredoc) save-mem  ;
-:noname  s\" \"" (heredoc) postpone sliteral  ;
-interpret/compile: txt"
-
-txt" bla bla bla
-bla bla " type
-
-[then]
 
 \ ==============================================================
 \ Change log
@@ -99,4 +102,4 @@ bla bla " type
 \ 2017-07-15: Require `s+`, which was removed from Gforth 0.7.9.
 \ Update layout.
 \
-\ 2017-08-17: Update stack notation.
+\ 2017-08-17: Update stack notation. Document.
