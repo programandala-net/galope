@@ -5,24 +5,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2014.
 
-\ 2014-11-08: Start. Based on:
-\   XSTACK
-\   Author: Victor H. Yngve (Chicago, Illinois), 1987
-\   Published in Forth Dimensions
-\   (Volume 10, Number 3, September/October 1988, pages 5 and 10):
-\   http://www.forth.org/fd/contents.html
-\   http://www.forth.org/fd/FD-V10N3.pdf
-\ Improvements on the original Yngve's code:
-\ - Any number of stacks can be created, with any size;
-\   the stack's name makes the stack the current one.
-\ - Comus-like low-level interface: 'xp0', 'xp@' and 'xp!'.
-\ - More words to manipulate the stacks.
-\ - '.x' behaves like Gforth's '.s'.
-\
-\ 2015-10-14: Improved usage of `literal` in `(xdrop)` and `(x2drop)`.
-\ Fixed comments.
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Creation and core manipulation of xstacks
 
 \ Values of the current xstack
@@ -56,7 +39,7 @@
   xp0 free throw
   ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Manipulation of the current xstack (without checks)
 
 defer >x
@@ -101,7 +84,7 @@ defer xover
   ;
 ' (xover) is xover
 
-\ .............................
+\ ----------------------------------------------
 \ Double numbers
 
 defer x2@
@@ -134,7 +117,7 @@ defer x2dup
   ;
 ' (x2dup) is x2dup
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Information on the current xstack
 
 : xlen  ( -- n )
@@ -162,7 +145,7 @@ defer x2dup
   xdepth dup (xdepth.) if  (.x)  then
   ;
 
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ ==============================================================
 \ Manipulation of the current xstack (with checks)
 
 \ XXX TODO
@@ -197,3 +180,25 @@ defer x2dup
   ;
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2014-11-08: Start. Based on:
+\   XSTACK
+\   Author: Victor H. Yngve (Chicago, Illinois), 1987
+\   Published in Forth Dimensions
+\   (Volume 10, Number 3, September/October 1988, pages 5 and 10):
+\   http://www.forth.org/fd/contents.html
+\   http://www.forth.org/fd/FD-V10N3.pdf
+\ Improvements on the original Yngve's code:
+\ - Any number of stacks can be created, with any size;
+\   the stack's name makes the stack the current one.
+\ - Comus-like low-level interface: 'xp0', 'xp@' and 'xp!'.
+\ - More words to manipulate the stacks.
+\ - '.x' behaves like Gforth's '.s'.
+\
+\ 2015-10-14: Improved usage of `literal` in `(xdrop)` and `(x2drop)`.
+\ Fixed comments.
+\
+\ 2017-08-17: Update change log layout. Update section rulers.
