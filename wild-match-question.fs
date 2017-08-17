@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2014 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014.
 
 \ Message-Id: <54414f47$0$2922$e4fe514c@news2.news.xs4all.nl>
 \ From: Hans Bezemer <the.beez.speaks@gmail.com>

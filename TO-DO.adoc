@@ -197,3 +197,31 @@ Rename `\eof` to `\\`.
 .2017-08-16:
 
 Document `package` and its requirements.
+
+.2017-08-17:
+
+Remove `[or]`.
+
+.2017-08-17:
+
+Rename <sarray.fs> to <s-array.fs>.
+
+.2017-08-17:
+
+Check dependency on `u+do` in `rolls`.
+
+.2017-08-17:
+
+Rewrite `#do` without `evaluate`.
+
+.2017-08-17:
+
+Finish or simplify or remove <headline.fs>.
+
+.2017-08-17:
+
+Rename `decrement` to `?1-!`
+
+.2017-08-17:
+
+Homogenize "Author: Wil Baden" and "Taken from".

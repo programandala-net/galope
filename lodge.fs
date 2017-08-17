@@ -6,7 +6,7 @@
 \ Last modified 201707031346.
 \ See change log at the end of the file.
 
-\ Copyright (C) 2014,2017 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
 \ ==============================================================
 \ Description

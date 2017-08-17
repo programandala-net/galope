@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Author: Marcos Cruz (programandala.net), 2012.
 
 \ 2012-09-21 Copied from a program of the author.
 
