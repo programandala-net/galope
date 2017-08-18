@@ -228,8 +228,4 @@ Homogenize "Author: Wil Baden" and "Taken from".
 
 .2017-08-18:
 
-Fix dependency in <print.fs>.
-
-.2017-08-18:
-
 Rename `break`.
