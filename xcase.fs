@@ -7,7 +7,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2016.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2016, 2017.
 
 \ ==============================================================
 \ TODO
@@ -37,7 +37,7 @@
 \ Requirements
 
 \ From Galope
-require ./module.fs
+require ./package.fs
 require ./between.fs
 
 \ From Forth Foundation Library
@@ -47,7 +47,7 @@ require ffl/bar.fs  \ bit array
 \ ==============================================================
 \ Inner words
 
-module: galope-xcase-module
+package galope-xcase
 
 variable xtable       \ translation table address
 variable caseness     \ bit array id
@@ -136,7 +136,7 @@ variable xcase_depth  \ depth before creating the table
 \ ==============================================================
 \ Interface words
 
-export
+public
 
 : xcase[  ( -- )
   largest lowest !  depth xcase_depth !  ;
@@ -169,7 +169,7 @@ export
   dup tabled? if  (xupper?)  else  chr-upper?  then  ;
   \ Is an xchar uppercase?
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -204,3 +204,5 @@ export
 \
 \ 2016-06-27: Update the file header, the source style and the stack
 \ notation. Change the version numbering to Semantic Versioning.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

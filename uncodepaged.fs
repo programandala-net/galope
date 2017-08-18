@@ -5,18 +5,18 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
 \ ==============================================================
 \ Requirements
 
-require ./module.fs
+require ./package.fs
 require ffl/str.fs
 
 \ ==============================================================
 \ Core
 
-module: galope-uncodepaged-module
+package galope-uncodepaged
 
 str-create uncodepaged-str
 variable depth0
@@ -103,7 +103,7 @@ variable 'table  \ address of the translation table just defined
 \ ==============================================================
 \ User interface
 
-export
+public
 
 : uncodepage:  ( "name" -- )
   \ Start the definition of a translation table.
@@ -124,7 +124,7 @@ export
   uncodepaged-str str-get
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Usage example
@@ -156,3 +156,5 @@ table0 uncodepaged  type cr
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

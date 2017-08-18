@@ -26,13 +26,13 @@ require ./column.fs
 require ./home-question.fs
 require ./home.fs
 require ./last-row.fs
-require ./module.fs
+require ./package.fs
 
 require ffl/trm.fs
 
-module: galope-l-type-module
+package galope-l-type
 
-export
+public
 
 variable #typed \ Printed chars in the current line.
 
@@ -93,7 +93,7 @@ variable #indented \ Indented chars in the current line.
   \
   \ }doc
 
-hide
+private
 
 : not-at-start-of-line? ( -- f )
   column 0<> ;
@@ -101,7 +101,7 @@ hide
 : lcr? ( -- f )
   home? 0= not-at-start-of-line? and ;
 
-export
+public
 
 defer do-cr ( -- )
 ' cr is do-cr
@@ -134,7 +134,7 @@ defer do-cr ( -- )
 
 variable l-width
 
-hide
+private
 
 : previous-word? ( -- f )
   #typed @ #indented @ > ;
@@ -154,7 +154,7 @@ hide
 : (indent) ( u -- )
   dup trm+move-cursor-right dup indented+ typed+ ;
 
-export
+public
 
 : indent ( u -- )
   ?dup if (indent) then ;
@@ -169,7 +169,7 @@ export
   \
   \ }doc
 
-hide
+private
 
 : /word ( ca1 len1 -- ca2 len2 ca3 len3 )
   bl skip 2dup bl scan ;
@@ -189,7 +189,7 @@ hide
 : (ltype) ( ca1 len1 -- ca2 len2 )
   first-word .word ;
 
-export
+public
 
 : ltype ( ca len -- )
   begin dup while (ltype) repeat 2drop ;
@@ -229,12 +229,12 @@ export
   \
   \ }doc
 
-hide
+private
 
 : separate-paragraph ( -- )
   /paragraph 1+ 0 ?do (lcr) loop ;
 
-export
+public
 
 : paragraph ( -- )
   separate-paragraph indentation indent ;
@@ -260,7 +260,7 @@ export
   \
   \ }doc
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -325,3 +325,5 @@ export
 \ `at-last-start-of-line`, which were unnecessary. Rename `pl-type` to
 \ `/ltype`. Rename `rows-between-paragraphs` to `/paragraph`. Document
 \ the most importart public words of the module.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

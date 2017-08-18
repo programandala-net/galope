@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015, 2017.
 
 \ Based on:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
@@ -23,7 +23,7 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./column.fs
 require ./home.fs
 require ./last-row.fs
@@ -31,9 +31,9 @@ require ./question-question.fs
 
 require ffl/trm.fs
 
-module: galope-print-module
+package galope-print
 
-export
+public
 
 variable #printed   \ Printed chars in the current line.
 variable #indented   \ Indented chars in the current line.
@@ -53,7 +53,7 @@ variable #indented   \ Indented chars in the current line.
   xy +
   ;
 
-export
+public
 
 : no_printed
   #printed off #indented off
@@ -91,7 +91,7 @@ false [if]  \ First version
 
 [else]  \ Experimental
 
-hide
+private
 
 : at_last_start_of_line?  ( -- f )
   xy last-row = swap 0= and
@@ -105,7 +105,7 @@ hide
   \ at_last_start_of_line? 0= or
   ;
 
-export
+public
 
 defer (print_cr) ' cr is (print_cr)
 
@@ -117,7 +117,7 @@ defer (print_cr) ' cr is (print_cr)
 
 variable print_width
 
-hide
+private
 
 : previous_word?  ( -- f )
   #printed @ #indented @ >
@@ -139,7 +139,7 @@ hide
   dup trm+move-cursor-right dup indented+ printed+
   ;
 
-export
+public
 
 \ : print_x+  ( u -- )  \ xxx not used
 \   dup column + at-x printed+
@@ -148,7 +148,7 @@ export
   ?dup ?? (print_indentation)
   ;
 
-hide
+private
 
 : /word  ( ca1 len1 -- ca2 len2 ca3 len3 )
   \ ca1 len1 = Text.
@@ -168,7 +168,7 @@ hide
   first_word .word
   ;
 
-export
+public
 
 : print  ( ca len --)
   begin  dup   while  (print)  repeat  2drop
@@ -187,7 +187,7 @@ export
 
 [then]
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -240,3 +240,5 @@ export
 \
 \ 2017-08-17: Update change log layout. Update stack notation. Update
 \ section rulers.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

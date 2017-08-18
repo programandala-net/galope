@@ -2,8 +2,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ 2015-02-03
+\ 2015-02-03: Start.
 \ 2016-06-23: Rename the module.
+\ 2017-08-18: Use `package` instead of `module:`.
 
 \ Adapted from CP/M DX-Forth 4.09 (file <BREAKGO.SCR>).
 \
@@ -27,9 +28,9 @@
 \ Executing 'quit' or 'abort' while halted (e.g. as a result of
 \ mistyping a command) will result in the user dropping back to forth.
 
-require ./module.fs
+require ./package.fs
 
-module: galope-break-module
+package galope-break
 
 variable depth-backup
 create debug-pad  80 allot
@@ -38,7 +39,7 @@ create debug-pad  80 allot
   begin  debug-pad dup 80 accept evaluate ."  [ok]" cr  again
   ;
 
-export
+public
 
 : break ( i*x -- i*x )
   \ Halt the application.
@@ -54,4 +55,4 @@ export
   abort" stack changed" -256 throw
   ;
 
-;module
+end-package

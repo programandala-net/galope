@@ -3,14 +3,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2006, 2013.
+\ Author: Marcos Cruz (programandala.net), 2006, 2013, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./buffer-colon.fs
 
-module: galope-yyyymmdd-to-iso-module
+package galope-yyyymmdd-to-iso
 
 10 chars constant /iso-date
 /iso-date 1+ chars buffer: iso-date
@@ -55,7 +55,7 @@ module: galope-yyyymmdd-to-iso-module
   iso-date 1+ /iso-date [char] - fill  \ hyphens
   ;
 
-export
+public
 
 : yyyymmdd>iso  ( c-addr1 u1 -- c-addr2 u2 )
   \ Convert a date string with the format "yyyy[mm[dd]]"
@@ -65,7 +65,7 @@ export
   iso-date count
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -80,3 +80,5 @@ export
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

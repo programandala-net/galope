@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2017.
 
 \ ==============================================================
 
@@ -15,7 +15,7 @@
 require module.fs
 require xy.fs
 
-module: galope-headline-module
+package galope-headline
 
 variable y variable x  \ top left coordinates
 variable heigth  \ rows of the headline
@@ -42,7 +42,7 @@ variable width  \ max width that can be shown
   heigth ! cols column dup x ! - width !
   ;
 
-export
+public
 
 : .headline  ( a1 u1 ... an un n -- )
   \ Print a headline at the current cursor position.
@@ -107,7 +107,7 @@ false [if]  \ Unfinished alternative!!!
   4 \ lines
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -122,3 +122,5 @@ false [if]  \ Unfinished alternative!!!
 \
 \ 2017-08-17: Update change log layout. Update header.  Update stack
 \ notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -225,3 +225,11 @@ Rename `decrement` to `?1-!`
 .2017-08-17:
 
 Homogenize "Author: Wil Baden" and "Taken from".
+
+.2017-08-18:
+
+Update source style of <break.fs> and <times.fs>.
+
+.2017-08-18:
+
+Fix dependency in <print.fs>.

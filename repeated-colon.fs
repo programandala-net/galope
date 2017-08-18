@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012.
+\ Author: Marcos Cruz (programandala.net), 2012, 2017.
 
 \ Taken from:
 \ http://c2.com/cgi/wiki?ForthReadability
@@ -11,16 +11,16 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-repeated-colon-module
+package galope-repeated-colon
 
 : invoke  ( a -- )  >r  ;
 
 \ The Gforth's primitive 'call' could be used instead of
 \ 'invoke', but it seems it's buggy in 64-bit CPUs.
 
-export
+public
 
 : repeated:  ( +n -- )
   begin   dup
@@ -31,7 +31,7 @@ export
 \ Usage example:
 \ : stars  ( +n -- )  repeated: [char] * emit  ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -41,3 +41,5 @@ export
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -4,16 +4,16 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
 \ ==============================================================
 
 require ./paren-star.fs  \ '(*'
-require ./module.fs
+require ./package.fs
 
 require ffl/str.fs
 
-module: galope-translated-module
+package galope-translated
 
 str-create translated-str
 variable depth0
@@ -33,7 +33,7 @@ cells/translation cells constant /translation
   0 ?do  2, 2,  loop
   ;
 
-export
+public
 
 : translations:  ( "name" -- a1 )
   \ Start the definition of a translation table.
@@ -81,7 +81,7 @@ false [if]  \ xxx not used
   translated-str str-get
   ;
 
-;module
+end-package
 
 false [if]
 
@@ -105,3 +105,5 @@ s" bla blafrom2! bla bla from3 bla bla from1" table0 translated
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

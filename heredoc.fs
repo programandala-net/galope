@@ -9,16 +9,16 @@
 
 require string.fs  \ Gforth's dynamic strings
 
-require ./module.fs
+require ./package.fs
 require ./s-plus.fs
 
-module: galope-heredoc-module
+package galope-heredoc
 
 variable /heredoc  \ delimiter, a dynamic string
 
 : /heredoc? ( ca len -- f ) /heredoc $@ str= ;
 
-export
+public
 
 : (heredoc) ( ca1 len1 "text<name>" -- ca2 len2 )
   /heredoc $!  s" "
@@ -85,7 +85,7 @@ export
   \
   \ }doc
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -103,3 +103,5 @@ export
 \ Update layout.
 \
 \ 2017-08-17: Update stack notation. Document.
+\
+\ 2017-08-18: Use `package` instead of `module:`.
