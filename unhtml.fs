@@ -3,13 +3,13 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-unhtml-module
+package galope-unhtml
 
 variable tag?  \ flag: does the current char belongs to a HTML tag?
 variable destination  \ address to store the next valid char into
@@ -31,7 +31,7 @@ variable destination  \ address to store the next valid char into
   tag? @ if  ignore  else  keep  then
   ;
 
-export
+public
 
 : unhtml  ( ca len -- ca len' )
   \ Remove the HTML tags from a string.
@@ -40,7 +40,7 @@ export
   r> dup destination @ swap -
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -48,3 +48,5 @@ export
 \ 2014-11-07: Added.
 \
 \ 2017-08-17: Update change log layout.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -8,15 +8,15 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./sb.fs
 require ./svariable.fs
 
-module: galope-stream-bs-module
+package galope-stream-bs
 
 svariable end_of_stream
 
-export
+public
 
 : stream>bs ( ca len "text" -- )
   end_of_stream place s" "
@@ -40,7 +40,7 @@ export
 : bs[[ ( "text<space><]><]>" -- ca len )
   s" ]]" stream>bs postpone sliteral ; immediate
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -55,3 +55,5 @@ export
 \
 \ 2017-08-17: Update change log layout. Update header and source style
 \ and stack comments notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

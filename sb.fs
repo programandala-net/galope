@@ -18,23 +18,23 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./question-question.fs
 require ./smove.fs
 require ./both-lengths.fs
 require ./either-empty-question.fs
 require ./s-plus.fs
 
-module: galope-sb-module
+package galope-sb
 
 \ ==============================================================
 \ Inner
 
-export
+public
 
 variable sb#  \ Free chars in the buffer
 
-hide
+private
 
 0 value 'sb  \ Buffer address
 0 value /sb  \ Buffer length
@@ -62,7 +62,7 @@ hide
 \ ==============================================================
 \ Main
 
-export
+public
 
 defer free_sb ( -- ) ' noop is free_sb
   \ Remove the buffer and free its space.
@@ -70,7 +70,7 @@ defer free_sb ( -- ) ' noop is free_sb
 defer resize_sb ( len -- ) ' noop is resize_sb
   \ Resize the buffer.
 
-hide
+private
 
 \ Common heap version
 
@@ -98,7 +98,7 @@ hide
 
 \ Creation of the buffer
 
-export
+public
 
 : heap_sb ( len -- )
   free_sb (heap_sb) heap_allocate_sb ;
@@ -116,7 +116,7 @@ export
 
 : (>sb) ( ca1 len ca2 -- ca2 len ) 2dup 2>r smove 2r> swap ;
 
-export
+public
 
 : sb_allocate ( len -- ca ) needed pointer ;
 
@@ -125,14 +125,14 @@ export
 \ ==============================================================
 \ Creation of buffered strings
 
-hide
+private
 
 : (bs) ( ca1 len1 -- | ca2 len1 )
   state @ if  postpone sliteral  else  >sb  then ;
 
 : >(bs) ( c "ccc" -- ca len ) parse (bs) ;
 
-export
+public
 
 : bs| ( "ccc<|>" -- ca len ) '|' >(bs) ; immediate
 
@@ -143,7 +143,7 @@ export
 \ ==============================================================
 \ Concatenation of strings
 
-export
+public
 
 : bs+ ( ca1 len1 ca2 len2 -- ca3 len3 )
   both-lengths + >r ( ca1 len1 ca2 len2 ) ( R: len3 )
@@ -154,7 +154,7 @@ export
   r> r> ;
   \ Concatenate two strings.
 
-hide
+private
 
 true [if]
 
@@ -180,13 +180,13 @@ true [if]
 
 [then]
 
-export
+public
 
 : bs& ( ca1 len1 ca2 len2 -- ca3 len3 )
   either-empty? if  bs+  else  (bs&)  then ;
   \ Concatenate two strings, with a space if needed.
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -225,3 +225,5 @@ export
 \
 \ 2017-07-15: Require `s+`, which was removed from Gforth 0.7.9.
 \ Update layout. Improve documentation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

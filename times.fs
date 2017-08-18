@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
 \ 2013-08-08: Code taken from:
 \
@@ -15,6 +15,7 @@
 
 \ 2015-01-29: Alternative version without locals.
 \ 2015-10-15: Alternative version without locals or variables.
+\ 2017-08-18: Use `package` instead of `module:`.
 
 0 [if]
 
@@ -60,14 +61,14 @@
 
 \ Alternative version without locals.
 
-require ./module.fs
+require ./package.fs
 
-module: galope-times-module
+package galope-times
 
 variable times-count
 variable times-xt
 
-export
+public
 
 : times  ( i*x xt n -- j*x )
   \ Execute xt n times.
@@ -77,7 +78,7 @@ export
   repeat
   ;
 
-;module
+end-package
 [then]
 
 0 [if]

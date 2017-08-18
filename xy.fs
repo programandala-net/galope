@@ -19,13 +19,13 @@
 
 \ Modifications:
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-xy-module
+package galope-xy
 
 base @ decimal
 
@@ -45,7 +45,7 @@ base @ decimal
   repeat  r> 2drop
   ;
 
-export
+public
 
 : xy  ( -- u1 u2 )
   \ u1 = current column
@@ -58,7 +58,7 @@ export
 
 base !
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -76,3 +76,5 @@ base !
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

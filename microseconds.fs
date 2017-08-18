@@ -4,18 +4,18 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2016.
+\ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-microseconds-module
+package galope-microseconds
 
 : overtime?  ( d -- f )
   utime d<  ;
 
-export
+public
 
 : microseconds  ( u -- )
   \ Wait a number of microseconds or until a key is pressed.
@@ -24,7 +24,7 @@ export
   begin  2dup overtime? key? or     until
   2drop ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -42,3 +42,5 @@ export
 \
 \ 2017-08-17: Update change log layout. Update header.  Update stack
 \ notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -3,13 +3,13 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-nospace-module
+package galope-nospace
 
 variable destination  \ address to store the next valid char into
 
@@ -21,7 +21,7 @@ variable destination  \ address to store the next valid char into
   dup bl = if drop else keep then ;
   \ Ignore or keep the given current char.
 
-export
+public
 
 : nospace ( ca len -- ca len' )
   over dup >r destination !
@@ -29,7 +29,7 @@ export
   r> dup destination @ swap - ;
   \ Remove all spaces from a string.
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -38,3 +38,5 @@ export
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -5,14 +5,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./n-to-str-plus.fs  \ `n>str+`
 
-module: galope-bit-field-colon-module
+package galope-bit-field-colon
 
 variable bitmask
 
@@ -35,7 +35,7 @@ variable bitmask
   \ Get the current bitmask _u_. If _u_ is the first bitmask,
   \ update the cell offset _n_.
 
-export
+public
 
 : begin-bitfields  ( n1 "name" -- ca len n1 n2 )
   parse-name save-mem
@@ -70,7 +70,7 @@ export
 : bit@  ( u a -- f )  @ and 0<>  ;
   \ Fetch _f_ from a bit field (address _a_ and bitmask _u_).
 
-;module
+end-package
 
 \ ==============================================================
 \ Usage example
@@ -165,3 +165,5 @@ constant /thing
 \
 \ 2016-07-05: Make `begin-bitfields` parse the name of the bit fields
 \ set. Make `end-bitfields` return the length of the bit fields set.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

@@ -13,18 +13,18 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./buffer-colon.fs
 require ./default-of.fs
 
-module: galope-jpeg-module
+package galope-jpeg
 
 : 16@  ( ca -- n )
   \ Fetch a little-endian 16-bit value.
   dup c@ 256 * swap 1+ c@ +
   ;
 
-export
+public
 
 65536 constant /jpeg-buffer  \ enough to hold any JPEG header
 /jpeg-buffer buffer: jpeg-buffer
@@ -174,7 +174,7 @@ defer jpeg-found2
 
 [then]
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -189,3 +189,5 @@ defer jpeg-found2
 \
 \ 2017-08-17: Update change log layout. Update header. Update
 \ section rulers.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

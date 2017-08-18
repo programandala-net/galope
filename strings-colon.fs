@@ -7,9 +7,9 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-strings-colon-module
+package galope-strings-colon
 
 variable depth0
 
@@ -22,7 +22,7 @@ variable depth0
 : last! ( dfa -- ) here [ 2 cells ] literal - swap ! ;
   \ Store the address of the last string compiled.
 
-export
+public
 
 : strings: ( "name" -- a )
   create here 0 , depth depth0 !
@@ -73,7 +73,7 @@ export
   \
   \ }doc
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -98,3 +98,5 @@ export
 \ the old version "1", which has been superseded by `2arrayed`.
 \ Remove note about `;strings`, which has been removed from the
 \ library.  Improve documentation. Update source style.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

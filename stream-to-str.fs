@@ -9,15 +9,15 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./svariable.fs
 require ./s-plus.fs
 
-module: galope-stream-to-str-module
+package galope-stream-to-str
 
 svariable end-of-stream
 
-export
+public
 
 : stream>str ( ca len "text" -- )
   end-of-stream place  s" "
@@ -45,7 +45,7 @@ export
 : s[[ ( "text<space><]><]>" -- ca len )
   s" ]]" stream>s postpone sliteral ; immediate
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -67,3 +67,5 @@ export
 \
 \ 2017-07-15: Require `s+`, which was removed from Gforth 0.7.9.
 \ Update layout and stack notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

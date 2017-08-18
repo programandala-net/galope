@@ -7,10 +7,10 @@
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./buffer-colon.fs
 
-module: galope-png-module
+package galope-png
 
 : @le  ( ca -- n )
   \ Fetch a little-endian 32-bit value.
@@ -20,7 +20,7 @@ module: galope-png-module
   swap 3 + c@ +
   ;
 
-export
+public
 
 25 constant /png-buffer  \ enough to hold the first PNG chunk
 /png-buffer buffer: png-buffer
@@ -53,7 +53,7 @@ variable png-fid
   png-buffer 16 + dup @le  swap 4 + @le
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Reference
@@ -106,3 +106,5 @@ img2 png-test
 \ rulers.
 \
 \ 2017-08-18: Add missing `;module`.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

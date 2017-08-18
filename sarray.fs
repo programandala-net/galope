@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012.
+\ Author: Marcos Cruz (programandala.net), 2012, 2017.
 
 (
 
@@ -47,13 +47,13 @@ along with this library; if not, see
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 
-module: galope-sarray-module
+package galope-sarray
 
 variable start_depth
 
-export
+public
 
 : s[
   \ Start the array definition.
@@ -95,7 +95,7 @@ export
   '{}s 2!
   ;
 
-;module
+end-package
 
 0 [if]
 
@@ -139,3 +139,5 @@ number{ #numbers random }s@ cr type
 \ 2015-01-25: Typo.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

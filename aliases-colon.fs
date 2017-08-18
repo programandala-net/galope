@@ -4,14 +4,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016
+\ Author: Marcos Cruz (programandala.net), 2016, 2017.
 
 \ ==============================================================
 
 require ./colon-alias.fs
-require ./module.fs
+require ./package.fs
 
-module: galope-aliases-colon-module
+package galope-aliases-colon
 
 : parse-alias  ( -- ca len )
   begin   parse-name dup 0=
@@ -27,7 +27,7 @@ module: galope-aliases-colon-module
   \ `aliases{`. If _f_ is false, _ca len_ is the word "}aliases",
   \ which marks the end of the list.
 
-export
+public
 
 : aliases:  (  xt "name#0" ... "name#n" ";aliases" -- )
   begin  dup another-alias? ( xt xt ca len f )
@@ -35,7 +35,7 @@ export
   repeat  2drop 2drop  ;
   \ Create any number of aliases of _xt_, until ";aliases" is parsed.
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -47,3 +47,5 @@ export
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-08-17: Update stack notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

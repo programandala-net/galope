@@ -6,17 +6,17 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2014.
+\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2017.
 
 \ ==============================================================
 
-require ./module.fs
+require ./package.fs
 require ./xbounds.fs
 require ./xcase.fs
 require ./x-c-store.fs
 require ./tilde-tilde.fs
 
-module: galope-xtitlecase-module
+package galope-xtitlecase
 
 variable apart?
 : ?word_separation  ( xc -- )
@@ -28,7 +28,7 @@ variable apart?
   0= apart? @ or
   ;
 
-export
+public
 
 : xtitlecase  ( xca len -- )  \ xxx todo fixme
   \ Convert a UTF-8 string to titlecase.
@@ -40,7 +40,7 @@ export
   loop  drop
   ;
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -50,3 +50,5 @@ export
 \ 2014-11-17: Module name updated.
 \
 \ 2017-08-17: Update change log layout.  Update stack notation.
+\
+\ 2017-08-18: Use `package` instead of `module:`.

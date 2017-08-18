@@ -9,22 +9,22 @@
 \ ==============================================================
 
 require ./n-to-str-plus.fs  \ `n>str+`
-require ./module.fs
+require ./package.fs
 
-module: galope-to-yyyymmddhhmmss-module
+package galope-to-yyyymmddhhmmss
 
 : <##> ( u -- ca len ) s>d <<# # #s #> #>> ;
 
 : <##>+ ( u ca1 len1 -- ca2 len2 ) rot <##> s+ ;
 
-export
+public
 
 : >yyyymmddhhmmss ( second minute hour day month year -- ca len )
   n>str <##>+ <##>+ <##>+ <##>+ <##>+ ;
   \ Convert the given date and time to a string with the ISO format
   \ "yyyymmddhhmmss".
 
-;module
+end-package
 
 \ ==============================================================
 \ Change log
@@ -44,3 +44,5 @@ export
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-08-17: Update source style.
+\
+\ 2017-08-18: Use `package` instead of `module:`.
