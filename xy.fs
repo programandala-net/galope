@@ -25,40 +25,40 @@
 
 require ./package.fs
 
-package galope-xy
-
 base @ decimal
 
+package galope-xy
+
 : number<c>  ( c -- n )
+  >r 0 begin  key dup r@ <>
+       while  swap 10 * swap '0' - +
+       repeat r> 2drop ;
   \ Read a decimal numeric entry delimited by character c.
-  \ xxx todo move this word to its own file:
-  \ xxx todo choose a better name:
+  \
+  \ XXX TODO -- Move this word to its own file.
+  \
+  \ XXX TODO -- Choose a better name:
   \ number/c
   \ keys/c>decimal
   \ keys>#
   \ keys>number
   \ keys>#number
-  \ xxx todo no final char: finish at the first non-digit instead
-  >r 0
-  begin   key dup r@ <>
-  while   swap 10 * swap '0' - +
-  repeat  r> 2drop
-  ;
+  \
+  \ XXX TODO -- No final char: finish at the first non-digit instead.
 
 public
 
-: xy  ( -- u1 u2 )
+: xy ( -- u1 u2 )
+  esc[ ." 6n"
+  key key 2drop \ erase: <esc> [
+  ';' number<c> 'R' number<c>
+  1- swap 1- ;
   \ u1 = current column
   \ u2 = current line
-  esc[ ." 6n"
-  key key 2drop  \ erase: <esc> [
-  ';' number<c>  'R' number<c>
-  1- swap 1-
-  ;
-
-base !
 
 end-package
+
+base !
 
 \ ==============================================================
 \ Change log
@@ -77,4 +77,5 @@ end-package
 \
 \ 2017-08-17: Update change log layout. Update header.
 \
-\ 2017-08-18: Use `package` instead of `module:`.
+\ 2017-08-18: Use `package` instead of `module:`. Fix: Move the `base`
+\ backup and restore outside the package. Update source style.
