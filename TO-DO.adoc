@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-08-16
+:revdate: 2017-08-18
 
 .2012-09-14:
 
@@ -228,8 +228,12 @@ Homogenize "Author: Wil Baden" and "Taken from".
 
 .2017-08-18:
 
-Update source style of <break.fs> and <times.fs>.
+Update source style of <times.fs>.
 
 .2017-08-18:
 
 Fix dependency in <print.fs>.
+
+.2017-08-18:
+
+Rename `break`.
