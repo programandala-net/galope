@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2008, 2014.
+\ Author: Marcos Cruz (programandala.net), 2008, 2014, 2017.
 
 \ ==============================================================
 
@@ -52,6 +52,8 @@ variable png-fid
   \ Return the size of the current PNG file.
   png-buffer 16 + dup @le  swap 4 + @le
   ;
+
+;module
 
 \ ==============================================================
 \ Reference
@@ -102,3 +104,5 @@ img2 png-test
 \
 \ 2017-08-17: Update change log layout. Update header. Update section
 \ rulers.
+\
+\ 2017-08-18: Add missing `;module`.
