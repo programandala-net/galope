@@ -34,7 +34,7 @@ interpret/compile: " \ "
   \ Return a string _ca len_ that describes the string consisting of
   \ the characters _ccc_.
   \
-  \ See: `heredoc`, `["`, `<"`.
+  \ See: `heredoc`.
   \
   \ }doc
 
@@ -46,3 +46,5 @@ interpret/compile: " \ "
 \
 \ 2017-08-17: Update change log layout. Update source style and
 \ header. Document.
+\
+\ 2017-08-19: Update documentation.
