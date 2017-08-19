@@ -13,6 +13,8 @@
   \
   \ If _n_ is greater than zero, display the character _c_ _n_ times.
   \
+  \ See: `ruler`.
+  \
   \ }doc
 
 \ ==============================================================
