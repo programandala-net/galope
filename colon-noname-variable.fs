@@ -4,12 +4,16 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
+
+\ ==============================================================
+
+: :noname-variable  ( -- xt ) noname variable latestxt ;
+  \ Create an anonymous variable.
+
+\ ==============================================================
+\ Change log
 
 \ 2013-12-01 Added.
-
-: :noname-variable  ( -- xt )
-  \ Create an anonymous variable.
-  noname variable latestxt
-  ;
-
+\
+\ 2017-08-17: Update change log layout and source style.

@@ -1,7 +1,7 @@
 \ galope/xcase.fs
 \ Tools to convert xchars to lowercase or uppercase.
 
-\ Version 0.3.0+201606272139
+\ Version 0.3.0+201708200103
 \ See change log at the end of the file.
 
 \ This file is part of Galope
@@ -41,132 +41,134 @@ require ./package.fs
 require ./between.fs
 
 \ From Forth Foundation Library
-require ffl/chr.fs  \ char data type
-require ffl/bar.fs  \ bit array
+require ffl/chr.fs \ char data type
+require ffl/bar.fs \ bit array
 
 \ ==============================================================
-\ Inner words
 
 package galope-xcase
 
-variable xtable       \ translation table address
-variable caseness     \ bit array id
-variable lowest       \ lower char in the translation table
-variable highest      \ higher char in the translation table
-variable xcase_depth  \ depth before creating the table
+\ ----------------------------------------------
+\ Inner
 
-: xchar>#  ( xc -- u )  lowest @ -  ;
+variable xtable      \ translation table address
+variable caseness    \ bit array id
+variable lowest      \ lower char in the translation table
+variable highest     \ higher char in the translation table
+variable xcase-depth \ depth before creating the table
+
+: xchar># ( xc -- u ) lowest @ - ;
   \ Convert an xchar to its index number in the translation table.
 
-: xchars  ( -- u )  highest @ xchar># 1+  ;
+: xchars ( -- u ) highest @ xchar># 1+ ;
   \ Return the number of chars the translation table can hold.
 
-: limit  ( xc -- )
+: limit ( xc -- )
   dup lowest @ min lowest !
-      highest @ max highest !   ;
+      highest @ max highest ! ;
   \ Update the limit chars with an xchar.
 
-: limits  ( xc0 ... xcn n -- xc0 ... xcn )
-  0 ?do  i pick limit  loop  ;
+: limits ( xc0 ... xcn n -- xc0 ... xcn )
+  0 ?do i pick limit loop ;
   \ Update the limit chars with n chars.
 
-: lowercase  ( xc -- )
-  xchar># caseness @ bar-set-bit  ;
+: lowercase ( xc -- )
+  xchar># caseness @ bar-set-bit ;
   \ Mark an xchar as lowercase.
 
-: (xlower?)  ( xc -- f )
-  xchar># caseness @ bar-get-bit  ;
+: (xlower?) ( xc -- f )
+  xchar># caseness @ bar-get-bit ;
   \ Is an xchar lowercase?
 
-: (xupper?)  ( xc -- f )  (xlower?) 0=  ;
+: (xupper?) ( xc -- f ) (xlower?) 0= ;
   \ Is an xchar uppercase?
 
-: 'xchar  ( xc -- xca )
-  xchar># cells xtable @ +  ;
+: 'xchar ( xc -- xca )
+  xchar># cells xtable @ + ;
   \ Return the address of an xchar in the translation table.
 
-: counterpart  ( xc1 -- xc2 )  'xchar @  ;
+: counterpart ( xc1 -- xc2 ) 'xchar @ ;
   \ Return the counterpart of an xchar.
 
-: (pair,)  ( xc1 xc2 -- )
-  swap 'xchar !  ;
+: (pair,) ( xc1 xc2 -- )
+  swap 'xchar ! ;
   \ Store a pair of chars in the translation table, one direction
   \ only: _xc1_ is the index xchar; _xc2_ is the counterpart xchar.
 
-: pair,  ( xc1 xc2 -- )
-  over lowercase  2dup swap (pair,) (pair,)  ;
+: pair, ( xc1 xc2 -- )
+  over lowercase 2dup swap (pair,) (pair,) ;
   \ Store a pair of chars in the translation table, both directions.
   \ _xc1_ is the lowercase xchar; _xc2_ is the uppercase xchar.
 
-: xtable!  ( xc1 xc1' ... xcn xcn' n -- )
-  0 ?do  pair,  loop  ;
+: xtable! ( xc1 xc1' ... xcn xcn' n -- )
+  0 ?do pair, loop ;
   \ Store all pairs of chars in the translation table.
 
-: (xtoupper)  ( xc -- xc' | xc )
-  dup (xlower?) if  counterpart  then  ;
+: (xtoupper) ( xc -- xc' | xc )
+  dup (xlower?) if counterpart then ;
   \ Convert an xchar to uppercase.
 
-: (xtolower)  ( xc -- xc' | xc )
-  dup (xupper?) if  counterpart  then  ;
+: (xtolower) ( xc -- xc' | xc )
+  dup (xupper?) if counterpart then ;
   \ Convert an xchar to lowercase.
 
-: :caseness  ( n -- )
-  bar-new caseness !  ;
+: :caseness ( n -- )
+  bar-new caseness ! ;
   \ Create the caseness bit array.
 
-: :xtable  ( n -- )
+: :xtable ( n -- )
   cells dup allocate throw
-  dup xtable !  swap erase  ;
+  dup xtable ! swap erase ;
   \ Create the translation table.
 
-: largest  ( -- n )
-  s" MAX-N" environment? drop  ;
+: largest ( -- n )
+  s" MAX-N" environment? drop ;
   \ Return the largest usable signed integer.
   \ XXX TODO -- rename to `max-n` and move to Galope.
 
-: circumscribed?  ( xc -- f )
-  lowest @ highest @ between  ;
+: circumscribed? ( xc -- f )
+  lowest @ highest @ between ;
   \ Is an xchar in the range of the translation table?
 
-: tabled?  ( xc -- f )
+: tabled? ( xc -- f )
   dup circumscribed?
-  if  counterpart 0<>  else  drop false  then  ;
+  if counterpart 0<> else drop false then ;
   \ Is an xchar in the translation table?
 
-\ ==============================================================
-\ Interface words
+\ ----------------------------------------------
+\ Interface
 
 public
 
-: xcase[  ( -- )
-  largest lowest !  depth xcase_depth !  ;
+: xcase[ ( -- )
+  largest lowest ! depth xcase-depth ! ;
   \ Start the xchar translation table.
 
-: ]xcase  ( xc1 xc1' ... xcn xcn' -- )
-  depth xcase_depth @ -
+: ]xcase ( xc1 xc1' ... xcn xcn' -- )
+  depth xcase-depth @ -
   dup >r limits
   xchars dup :caseness :xtable
-  r> 2/ xtable!  ;
+  r> 2/ xtable! ;
   \ End the xchar translation table.
   \ _xcn_ is the lowercase xchar;
   \ _xcn'_ = uppercase xchar.
   \ XXX TODO -- improve documentation
 
-: xtoupper  ( xc -- xc | xc' )
-  dup tabled? if  (xtoupper) else  toupper  then  ;
+: xtoupper ( xc -- xc | xc' )
+  dup tabled? if (xtoupper) else toupper then ;
   \ Convert an xchar to uppercase.
 
-: xtolower  ( xc -- xc | xc' )
-  dup tabled? if  (xtolower)  else  chr-lower  then  ;
+: xtolower ( xc -- xc | xc' )
+  dup tabled? if (xtolower) else chr-lower then ;
   \ Convert an xchar to lowercase.  There's no 'tolower' in Gforth, so
   \ FFL's 'chr-lower' is used instead.
 
-: xlower?  ( xc -- f )
-  dup tabled? if  (xlower?)  else  chr-lower? then  ;
+: xlower? ( xc -- f )
+  dup tabled? if (xlower?) else chr-lower? then ;
   \ Is an xchar lowercase?
 
-: xupper?  ( xc -- f )
-  dup tabled? if  (xupper?)  else  chr-upper?  then  ;
+: xupper? ( xc -- f )
+  dup tabled? if (xupper?) else chr-upper? then ;
   \ Is an xchar uppercase?
 
 end-package
@@ -206,3 +208,5 @@ end-package
 \ notation. Change the version numbering to Semantic Versioning.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-08-17: Update source style.
