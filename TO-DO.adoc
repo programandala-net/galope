@@ -1,8 +1,8 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-08-18
+:revdate: 2017-08-20
 
-.2012-09-14:
+== 2012-09-14
 
 Rename 'seconds' and 'microseconds':
 
@@ -17,7 +17,7 @@ seconds|keypress ?
 Then use 'seconds' and 'microseconds' for versions where the pause
 that can not be shortened with a keypress.
 
-.2012-09-20:
+== 2012-09-20
 
 r.s  [ 2015-02-03: better name: .rs ]
 
@@ -29,7 +29,7 @@ Idea:
   ;
 ----
 
-.2013-05-15:
+== 2013-05-15
 
 Idea found in
 (<http://groups.google.com/group/comp.lang.forth/browse_thread/thread/7367894d3a9ac280/2829422a2a58b349>):
@@ -46,31 +46,31 @@ thereby freeing additional namespace.
 Andreas
 ____
 
-.2013-05-28:
+== 2013-05-28
 
 Idea: reverse characters in a string,
 done in <~/ext/comp/lang/forth/prg/util/misc/units/>.
 
-.2013-11-06:
+== 2013-11-06
 
 fix slash-sides.fs
 
-.2014-02-17:
+== 2014-02-17
 
 Create word sections, after Gforth, and mark them in the sources with
 some conventional notation.  This way the files could be searched
 (e.g. with 'grep') for words of specific sections.
 
-.2014-02-18:
+== 2014-02-18
 
 `2pick`, `picks`, `2picks`.
 
-.2014-02-23:
+== 2014-02-23
 
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own
 files, when a similar word will need them.
 
-.2014-02-27:
+== 2014-02-27
 
 comp.lang.forth:
 
@@ -92,7 +92,7 @@ Lines: 46
 Message-ID: <l8vjmk$l6a$1@dont-email.me>
 ____
 
-.2014-03-09:
+== 2014-03-09
 
 ----
 random-string{
@@ -104,13 +104,13 @@ s" string3"
 
 But <galope/random-strings> can be used for that.
 
-.2014-03-12:
+== 2014-03-12
 
 rename 'greater-of' to '>of' or 'greater-than-of'?
 rename 'less-of' to '<of' or 'less-than-of'?
 write '<>of'?
 
-.2014-03-13:
+== 2014-03-13
 
 'among-of' ( run-time: x0 x'1...x'n n )
 
@@ -122,7 +122,7 @@ x case
 endcase
 ----
 
-.2014-03-19:
+== 2014-03-19
 
 
 ----
@@ -142,7 +142,7 @@ ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
 
 Write 'replace-xchar' too.
 
-.2014-07-13:
+== 2014-07-13
 
 Use comment marks, to make automatic lists of the modules:
 
@@ -155,77 +155,99 @@ Use comment marks, to make automatic lists of the modules:
 \ galope-tag: return_stack
 ----
 
-.2015-11-27:
+== 2015-11-27
 
 Rename "x" files to "x-", after the spelling in Forth-2012.
 
-.2016-06-21:
+== 2016-06-21
 
 Rename all modules?:
 
 galope-blabla-module --> galope.blabla
 
-.2016-06-21:
+== 2016-06-21, 2017-08-18
 
-Replace underscore with hyphens in words of modules "print" and "sb".
+Replace underscore with hyphens in the `sb` module.
 
-.2016-07-13:
+== 2016-07-13
 
 Add Gforth-specific words which have an alternative definition in
 standard Forth.
 
-.2017-07-16:
+== 2017-07-16
 
 Deprecate `--` and `++`; use `1-!` and `1+!` instead.
 
-.2017-08-14:
+== 2017-08-14
 
 Improve and document `??` and `[??]`.
 
-.2017-08-14:
+== 2017-08-14
 
 Rename `?keep` and `?empty`.
 
-.2017-08-16:
+== 2017-08-16
 
 Add `module`, by Ulrich Hoffmann.
 
-.2017-08-16:
+== 2017-08-16
 
 Rename `\eof` to `\\`.
 
-.2017-08-16:
+== 2017-08-16
 
 Document `package` and its requirements.
 
-.2017-08-17:
+== 2017-08-17
 
 Remove `[or]`.
 
-.2017-08-17:
+== 2017-08-17
 
 Rename <sarray.fs> to <s-array.fs>.
 
-.2017-08-17:
+== 2017-08-17
 
 Check dependency on `u+do` in `rolls`.
 
-.2017-08-17:
+== 2017-08-17
 
 Rewrite `#do` without `evaluate`.
 
-.2017-08-17:
+== 2017-08-17
 
 Finish or simplify or remove <headline.fs>.
 
-.2017-08-17:
+== 2017-08-17
 
 Rename `decrement` to `?1-!`
 
-.2017-08-17:
+== 2017-08-17
 
 Homogenize "Author: Wil Baden" and "Taken from".
 
-.2017-08-18:
+== 2017-08-18
 
 Rename `break`.
+
+== 2017-08-19
+
+Finish updating the change log layout:
+
+----
+gvim $(grep "Change\slog" *.fs -L)
+----
+
+== 2017-08-20
+
+Rename `:create` to `created`.
+
+Remove `?nip`?
+
+Check if `$variable` is needed in Gforth 0.7.9.
+
+Check if `$@len` is needed in Gforth 0.7.9.
+
+Check if `$@` is needed in Gforth 0.7.9.
+
+Remove `char>ruler`.

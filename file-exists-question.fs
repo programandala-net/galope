@@ -6,9 +6,16 @@
 
 \ Author: Marcos Cruz (programandala.net), 2015, 2017.
 
-\ 2015-02-01: First version.
-\ 2017-06-25: Update source style.
+\ ==============================================================
 
-: file-exists? ( ca len -- f )
-  file-status -514 <> nip ;
+: file-exists? ( ca len -- f ) file-status -514 <> nip ;
   \ Does filename _ca len_ exists?
+
+\ ==============================================================
+\ Change log
+
+\ 2015-02-01: First version.
+\
+\ 2017-06-25: Update source style.
+\
+\ 2017-08-17: Update change log layout and source style.

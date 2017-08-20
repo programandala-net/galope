@@ -3,27 +3,33 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
-\ 2014-03-13: Written.
+\ ==============================================================
 
-: (or-of)  ( x1 x2 x3 -- x1 x1 | x1 x1' )
-  2>r dup dup dup r> = swap r> = or 0= if  invert  then
-  ;
-: or-of  ( compilation: -- of-sys ) ( run-time: x1 x2 x3 -- | x1 )
-  postpone (or-of) postpone of
-  ;  immediate compile-only
+: (or-of) ( x1 x2 x3 -- x1 x1 | x1 x1' )
+  2>r dup dup dup r> = swap r> = or 0= if invert then ;
+
+: or-of \ Compilation: ( -- of-sys )
+        \ Run-time:    ( x1 x2 x3 -- | x1 )
+  postpone (or-of) postpone of ; immediate compile-only
 
 0 [if]
 
 \ Usage example
 
-: test  ( x -- )
+: test ( x -- )
   case
-    1 of  ." one"  endof
-    2 3 or-of  ." two or three"  endof
-    4 of  ." four"  endof
-  endcase
-  ;
+    1      of ." one"          endof
+    2 3 or-of ." two or three" endof
+    4      of ." four"         endof
+  endcase ;
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2014-03-13: Written.
+\
+\ 2017-08-17: Update change log layout and source style.

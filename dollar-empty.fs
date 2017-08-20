@@ -4,14 +4,19 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
-\ 2013-11-11 Added.
+\ ==============================================================
 
 require string.fs  \ Gforth's dynamic strings
 
-: $empty  ( a -- )
+: $empty ( a -- ) 0 swap $!len ;
   \ Empty a dynamic string variable.
-  0 swap $!len
-  ;
+
+\ ==============================================================
+\ Change log
+
+\ 2013-11-11 Added.
+\
+\ 2017-08-17: Update change log layout and source style.
 

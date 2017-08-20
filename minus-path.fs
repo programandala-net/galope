@@ -4,16 +4,22 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
-\ 2013-07-11 Added. Taken from Fendo
-\ (http://programandala.net/en.program.fendo)
+\ ==============================================================
 
 require ./sides-slash.fs  \ 'sides/'
 
-: -path  ( ca len -- ca' len' )
+: -path ( ca len -- ca' len' )
+  s" /" sides/ if 2nip else 2drop then ;
   \ Remove the file path and leave the filename.
   \ ca len = filename with path
   \ ca' len' = filename
-  s" /" sides/ if  2nip  else  2drop  then
-  ;
+
+\ ==============================================================
+\ Change log
+
+\ 2013-07-11 Added. Taken from Fendo
+\ (http://programandala.net/en.program.fendo).
+\
+\ 2017-08-17: Update change log layout and source style.

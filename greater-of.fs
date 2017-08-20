@@ -3,20 +3,18 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
-\ 2014-02-12: Written.
-\ 2014-02-15: '>r dup dup r>' changed to 'nup nup'.
-\ 2014-03-12: Usage example.
+\ ==============================================================
 
 require ./nup.fs
 
-: (greater-of)  ( x1 x2 -- x1 x1 | x1 x1' )
-  nup nup <= if  invert  then
-  ;
-: greater-of  ( compilation: -- of-sys ) ( run-time: x1 x2 -- | x1 )
-  postpone (greater-of) postpone of
-  ;  immediate compile-only
+: (greater-of) ( x1 x2 -- x1 x1 | x1 x1' )
+  nup nup <= if invert then ;
+
+: greater-of \ Compilation: ( -- of-sys )
+             \ Run-time:    ( x1 x2 -- | x1 )
+  postpone (greater-of) postpone of ; immediate compile-only
 
 0 [if]
 
@@ -31,3 +29,14 @@ require ./nup.fs
   ;
 
 [then]
+
+\ ==============================================================
+\ Change log
+
+\ 2014-02-12: Written.
+\
+\ 2014-02-15: '>r dup dup r>' changed to 'nup nup'.
+\
+\ 2014-03-12: Usage example.
+\
+\ 2017-08-17: Update change log layout and source style.
