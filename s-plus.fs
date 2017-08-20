@@ -27,6 +27,8 @@
   \ concatenation of string _ca1 len1_ (first) and string _ca2 len2_
   \ (second).
   \
+  \ NOTE: ``s+`` is already included in Gforth.
+  \
   \ }doc
 
 \ ==============================================================
@@ -34,3 +36,6 @@
 
 \ 2017-07-15: Copy from Gforth 0.7.3. This word was removed from
 \ Gforth 0.7.9.
+\
+\ 2017-08-20: Note: `s+` has been included back in Gforth 0.7.9, which
+\ is under development. Improve documentation.
