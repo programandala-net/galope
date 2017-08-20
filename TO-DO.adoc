@@ -7,11 +7,11 @@
 Rename 'seconds' and 'microseconds':
 
 ----
-seconds/key ?
-seconds|key ?
-seconds_or_keypress ?
-seconds|keypress ?
-/seconds ?
+seconds/key
+seconds|key
+seconds-or-keypress
+seconds|keypress
+/seconds
 ----
 
 Then use 'seconds' and 'microseconds' for versions where the pause
@@ -25,8 +25,7 @@ Idea:
 
 ----
 : copy-name  ( "name" -- ca len )
-  >in @ >r parse-name r> >in !
-  ;
+  >in @ >r parse-name r> >in ! ;
 ----
 
 == 2013-05-15
@@ -69,40 +68,6 @@ some conventional notation.  This way the files could be searched
 
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own
 files, when a similar word will need them.
-
-== 2014-02-27
-
-comp.lang.forth:
-
-----
-: [:  postpone ahead
-      here ; immediate
-: ;]  postpone exit
-      postpone then
-      postpone literal ; immediate
-----
-
-____
-From: "Alex McDonald" <blog@rivadpm.com>
-Newsgroups: comp.lang.forth
-Subject: Re: What about code blocks (not Forth blocks)?
-Date: Thu, 19 Dec 2013 20:07:50 GMT
-Organization: A noiseless patient Spider
-Lines: 46
-Message-ID: <l8vjmk$l6a$1@dont-email.me>
-____
-
-== 2014-03-09
-
-----
-random-string{
-s" string1"
-s" string3"
-s" string3"
-}random-string: name$
-----
-
-But <galope/random-strings> can be used for that.
 
 == 2014-03-12
 
@@ -159,12 +124,6 @@ Use comment marks, to make automatic lists of the modules:
 
 Rename "x" files to "x-", after the spelling in Forth-2012.
 
-== 2016-06-21
-
-Rename all modules?:
-
-galope-blabla-module --> galope.blabla
-
 == 2016-06-21, 2017-08-18
 
 Replace underscore with hyphens in the `sb` module.
@@ -174,9 +133,13 @@ Replace underscore with hyphens in the `sb` module.
 Add Gforth-specific words which have an alternative definition in
 standard Forth.
 
-== 2017-07-16
+== 2017-07-16, 2017-08-17, 2017-08-20
 
 Deprecate `--` and `++`; use `1-!` and `1+!` instead.
+
+Deprecate `?--` and `?++`; use `?1-!` and `?1+!` instead.
+
+Rename `decrement` to `?1-!`
 
 == 2017-08-14
 
@@ -193,10 +156,6 @@ Add `module`, by Ulrich Hoffmann.
 == 2017-08-16
 
 Rename `\eof` to `\\`.
-
-== 2017-08-16
-
-Document `package` and its requirements.
 
 == 2017-08-17
 
@@ -220,15 +179,11 @@ Finish or simplify or remove <headline.fs>.
 
 == 2017-08-17
 
-Rename `decrement` to `?1-!`
-
-== 2017-08-17
-
 Homogenize "Author: Wil Baden" and "Taken from".
 
-== 2017-08-18
+== 2017-08-18, 2017-08-20
 
-Rename `break`.
+Rename `break`: `debug`?
 
 == 2017-08-19
 
@@ -249,3 +204,6 @@ Check if `$variable` is needed in Gforth 0.7.9.
 Check if `$@len` is needed in Gforth 0.7.9.
 
 Check if `$@` is needed in Gforth 0.7.9.
+
+Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
+`2arrayed`. The HTML version is fine.
