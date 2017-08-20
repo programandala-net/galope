@@ -249,5 +249,3 @@ Check if `$variable` is needed in Gforth 0.7.9.
 Check if `$@len` is needed in Gforth 0.7.9.
 
 Check if `$@` is needed in Gforth 0.7.9.
-
-Remove `char>ruler`.
