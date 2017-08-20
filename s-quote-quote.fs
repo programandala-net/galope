@@ -21,8 +21,9 @@ interpret/compile: s"" \ ""
 
   \ Interpretation:
   \
-  \ Parse _ccc_ delimited by a word that consists of two double quote.
-  \ Store the resulting string in the heap and return it as _ca len_.
+  \ Parse _ccc_ delimited by a word that consists of two double
+  \ quotes.  Store the resulting string in newly allocated space in
+  \ the heap and return it as _ca len_.
   \
   \ Compilation:
   \
@@ -50,3 +51,5 @@ interpret/compile: s"" \ ""
 \
 \ 2017-08-19: Rename `"` to `s""` and use two double quotes as
 \ delimiter; rename the module.  Update documentation.
+\
+\ 2017-08-20: Improve documentation.
