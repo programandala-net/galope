@@ -31,32 +31,32 @@
 
 variable current-lodge  \ data field address of the current lodge
 
-: lodge-address ( -- a )
+: lodge ( -- a )
   current-lodge @ ;
   \ Address of the start address of the current lodge space.
 
-: lodge-length ( -- a )
+: /lodge ( -- a )
   current-lodge @ cell+ ;
   \ Address of the length of the current lodge.
 
 : lodge+ ( +n -- a )
-  lodge-address @ + ;
+  lodge @ + ;
   \ Current absolute address of a lodge offset.
 
 : lodge-update ( u a -- +n )
-  lodge-address !  lodge-length @  swap lodge-length +! ;
+  lodge !  /lodge @  swap /lodge +! ;
   \ u = additional address units already allocated in the lodge
   \ a = new address of the lodge
   \ +n = offset to the new free space
   \      (it's the same than the previous length of the lodge)
 
 : lodge-resize ( u -- +n wior )
-  lodge-address @ swap resize >r lodge-update r> ;
+  lodge @ swap resize >r lodge-update r> ;
   \ u = new size of the lodge
   \ +n = lodge offset to the additional free space
 
 : lodge-allocate ( u -- +n wior )
-  dup lodge-length @ + lodge-resize ;
+  dup /lodge @ + lodge-resize ;
   \ u = additional address units required in the lodge
   \ +n = lodge offset to the additional free space
 
@@ -133,7 +133,7 @@ variable current-lodge  \ data field address of the current lodge
   (cell-lodge-value:)
   does> ( -- a ) ( dfa )
     dup @ @ dup rot cell+ @ + @ + ;
-    \ dup body>lodge @ swap @ @ + ; \ not clearer, and certainly slower
+    \ dup body>lodge @ swap @ @ + ; \ XXX REMARK -- not clearer, and certainly slower
   \ Create a lodge address value.
   \
   \ +n = lodge offset
@@ -222,4 +222,6 @@ interpret/compile: lodge-2to
 \ rulers.
 \
 \ 2017-08-21: Update source style. Improve documentation and stack
-\ notation.
+\ notation. Rename `lodge-address` to `lodge`. Rename `lodge-length`
+\ to `/length` (after the names used in the original module
+\ <lodge.fs>).

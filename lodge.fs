@@ -72,8 +72,13 @@ variable /lodge  0 /lodge !
 \ ==============================================================
 \ Variables
 
+: body>lodge ( dfa -- a )
+  @ lodge+ ;
+  \ Convert the body of a lodge-variable or a lodge-value
+  \ to the lodge address they point to.
+
 : lodge-variable-does> ( -- a )
-  does> ( -- a ) ( dfa ) @ lodge+ ;
+  does> ( -- a ) ( dfa ) body>lodge ;
   \ Behaviour of a lodge variable.
 
 : (lodge-variable) ( u -- )
@@ -100,13 +105,15 @@ variable /lodge  0 /lodge !
   \ Create a 1-cell lodge value.
 
 : lodge-value ( n "name" -- )
-  (cell-lodge-value:)  does> ( -- n ) ( dfa ) @ lodge+ @ ;
+  (cell-lodge-value:)
+  does> ( -- n ) ( dfa ) body>lodge @ ;
   \ Create a lodge value.
 
 : lodge-address-value ( +n "name" -- )
   (cell-lodge-value:)
   does> ( -- a ) ( dfa )
-    @ lodge+ @ lodge+ ;
+    body>lodge @ lodge+ ;
+    \ body>lodge body>lodge ; \ XXX REMARK -- not clearer
   \ Create a lodge address value.
   \
   \ +n = lodge offset
@@ -118,14 +125,14 @@ variable /lodge  0 /lodge !
 
 : lodge-2value ( d "name" -- )
   create 2 cells (lodge-value) 2!
-  does> ( -- xd ) ( dfa ) @ lodge+ 2@ ;
+  does> ( -- xd ) ( dfa ) body>lodge 2@ ;
   \ Create a lodge value.
 
 \ ==============================================================
 \ To
 
 : xt>lodge ( xt -- a )
-  >body @ lodge+ ;
+  >body body>lodge ;
   \ Return absolute lodge address _a_ from the _xt_ of a
   \ lodge-variable or a lodge-value.
 
@@ -194,9 +201,9 @@ interpret/compile: lodge-2to
 \
 \     ' postpone xt>lodge postpone literal postpone !
 \
-\  First bug: `xt>lodge` should not be postponed in this case.
-\  Second bug: the absolute lodge address must not be compiled,
-\  because it may change.
+\  First bug: `xt>lodge` should not be postponed in this case.  Second
+\  bug: the absolute lodge address must not be compiled, because it
+\  may change.
 \
 \   After the fix:
 \
@@ -209,11 +216,11 @@ interpret/compile: lodge-2to
 \
 \ 2014-02-21: New: `lodge-,` and `lodge-2,`.
 \
-\ 2014-02-21: Fix: `lodge-resize` now can be used directly by
-\ the application. Solved by moving the trailing code of
-\ `lodge-allocate` to `lodge-resize`.
+\ 2014-02-21: Fix: `lodge-resize` now can be used directly by the
+\ application. Solved by moving the trailing code of `lodge-allocate`
+\ to `lodge-resize`.
 \
 \ 2017-07-03: Update code style. Improve documentation.
 \
-\ 2017-08-21: Improve documentation and stack
-\ notation.
+\ 2017-08-21: Improve documentation and stack notation. Add the factor
+\ `body>lodge`, after the `lodge-colon` module.
