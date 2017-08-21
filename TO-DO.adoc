@@ -212,3 +212,7 @@ Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 
 Combine <lodge.fs> and <lodge-colon.fs> into one module, or make them
 compatible.
+
+In <lodge-colon.fs>, make lodge variables and values smarter, storing
+and index to the lodge they belong to, making `get-lodge` and
+`set-lodge` unnecessary.
