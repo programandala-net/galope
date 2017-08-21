@@ -2,9 +2,6 @@
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
-\
-\ Last modified 201707031346.
-\ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
@@ -107,7 +104,9 @@ variable /lodge  0 /lodge !
   \ Create a lodge value.
 
 : lodge-address-value ( +n "name" -- )
-  (cell-lodge-value:)  does> ( -- a ) ( dfa ) @ lodge+ @ lodge+ ;
+  (cell-lodge-value:)
+  does> ( -- a ) ( dfa )
+    @ lodge+ @ lodge+ ;
   \ Create a lodge address value.
   \
   \ +n = lodge offset
@@ -119,7 +118,7 @@ variable /lodge  0 /lodge !
 
 : lodge-2value ( d "name" -- )
   create 2 cells (lodge-value) 2!
-  does> ( -- d ) ( dfa ) @ lodge+ 2@ ;
+  does> ( -- xd ) ( dfa ) @ lodge+ 2@ ;
   \ Create a lodge value.
 
 \ ==============================================================
@@ -134,25 +133,27 @@ variable /lodge  0 /lodge !
   ' xt>lodge ! ;
   \ Change the content of a lodge-variable or a lodge-value.
 
-: [lodge-to] ( compilation: x "name" -- )
+: [lodge-to] \ Compilation: ( x "name" -- )
   ' postpone literal postpone xt>lodge postpone ! ; immediate
   \ Change the content of a lodge-variable or a lodge-value.
 
 ' <lodge-to>
 ' [lodge-to]
 interpret/compile: lodge-to
+  \ Change the content of a lodge-variable or a lodge-value.
 
 : <lodge-2to> ( x "name" -- )
   ' xt>lodge 2! ;
   \ Change the content of a lodge-2variable or a lodge-2value.
 
-: [lodge-2to] ( compilation: d "name" -- )
+: [lodge-2to] \ Compilation: ( d "name" -- )
   ' xt>lodge postpone 2literal postpone 2! ; immediate
   \ Change the content of a lodge-2variable or a lodge-2value.
 
 ' <lodge-2to>
 ' [lodge-2to]
 interpret/compile: lodge-2to
+  \ Change the content of a lodge-2variable or a lodge-2value.
 
 \ ==============================================================
 \ Misc
@@ -213,4 +214,6 @@ interpret/compile: lodge-2to
 \ `lodge-allocate` to `lodge-resize`.
 \
 \ 2017-07-03: Update code style. Improve documentation.
-
+\
+\ 2017-08-21: Improve documentation and stack
+\ notation.

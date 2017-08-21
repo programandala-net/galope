@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
 \ ==============================================================
 \ Description
@@ -30,175 +30,174 @@
 \ Buffer
 
 variable current-lodge  \ data field address of the current lodge
-: lodge-address  ( -- a )
-  \ Address of the start address of the current lodge space.
-  current-lodge @
-  ;
-: lodge-length  ( -- a )
-  \ Address of the length of the current lodge.
-  current-lodge @ cell+
-  ;
 
-: lodge+  ( +n -- a )
+: lodge-address ( -- a )
+  current-lodge @ ;
+  \ Address of the start address of the current lodge space.
+
+: lodge-length ( -- a )
+  current-lodge @ cell+ ;
+  \ Address of the length of the current lodge.
+
+: lodge+ ( +n -- a )
+  lodge-address @ + ;
   \ Current absolute address of a lodge offset.
-  lodge-address @ +
-  ;
-: lodge-update  ( u a -- +n )
+
+: lodge-update ( u a -- +n )
+  lodge-address !  lodge-length @  swap lodge-length +! ;
   \ u = additional address units already allocated in the lodge
   \ a = new address of the lodge
   \ +n = offset to the new free space
   \      (it's the same than the previous length of the lodge)
-  lodge-address !  lodge-length @  swap lodge-length +!
-  ;
-: lodge-resize  ( u -- +n wior )
+
+: lodge-resize ( u -- +n wior )
+  lodge-address @ swap resize >r lodge-update r> ;
   \ u = new size of the lodge
   \ +n = lodge offset to the additional free space
-  lodge-address @ swap resize >r lodge-update r>
-  ;
-: lodge-allocate  ( u -- +n wior )
+
+: lodge-allocate ( u -- +n wior )
+  dup lodge-length @ + lodge-resize ;
   \ u = additional address units required in the lodge
   \ +n = lodge offset to the additional free space
-  dup lodge-length @ + lodge-resize
-  ;
-: (lodge-erase)  ( u +n -- )
-  \ Erase u address units from a lodge offset.
-  lodge+ swap erase
-  ;
-: lodge-erase  ( +n u -- )
-  \ Erase u address units from a lodge offset.
-  swap (lodge-erase)
-  ;
 
-: get-lodge  ( -- dfa )
+: (lodge-erase) ( u +n -- )
+  lodge+ swap erase ;
+  \ Erase u address units from a lodge offset.
+
+: lodge-erase ( +n u -- )
+  swap (lodge-erase) ;
+  \ Erase u address units from a lodge offset.
+
+: get-lodge ( -- dfa )
+  current-lodge @ ;
   \ Return the current lodge.
-  current-lodge @
-  ;
-: set-lodge  ( dfa -- )
+
+: set-lodge ( dfa -- )
+  current-lodge ! ;
   \ Set a lodge as current.
-  current-lodge !
-  ;
-: lodge:  ( "name" -- )
+
+: lodge: ( "name" -- )
+  create  0 allocate throw , 0 ,
+  latestxt >body set-lodge ;
   \ Create a new empty lodge and make it the current one.
   \ When executed, a lodge returns the address of its body
   \ (data field address), like an ordinary variable.
   \ The body holds the address and length of the allocated space.
-  create  0 allocate throw , 0 ,
-  latestxt >body set-lodge
-  ;
 
 \ ==============================================================
 \ Variables
 
-: body>lodge  ( dfa -- a )
+: body>lodge ( dfa -- a )
+  dup @ @ swap cell+ @ + ;
   \ Convert the body of a lodge-variable or a lodge-value
   \ to the lodge address they point to.
   \ The body (data field address) holds two cells:
   \   0     = The address of the lodge's body
   \           (that holds the actual address of the lodge).
   \   cell+ = The offset in the lodge.
-  dup @ @ swap cell+ @ +
-  ;
 
-: lodge-variable-does>  ( -- a )
+
+: lodge-variable-does> ( -- a )
+  does> ( -- a ) ( dfa ) body>lodge ;
   \ Behaviour of a lodge variable.
-  does> ( -- a ) ( dfa ) body>lodge
-  ;
-: (lodge-variable)  ( u -- )
+
+: (lodge-variable) ( u -- )
+  current-lodge @ , dup lodge-allocate throw dup , (lodge-erase) ;
   \ Compile a lodge variable of u address units.
-  current-lodge @ , dup lodge-allocate throw dup , (lodge-erase)
-  ;
-: lodge-variable  ( "name" -- )
+
+: lodge-variable ( "name" -- )
+  create cell (lodge-variable) lodge-variable-does> ;
   \ Create a lodge variable and init it with zero.
-  create cell (lodge-variable) lodge-variable-does>
-  ;
-: lodge-2variable  ( "name" -- )
+
+: lodge-2variable ( "name" -- )
+  create 2 cells (lodge-variable) lodge-variable-does> ;
   \ Create a lodge double variable and init it with zero.
-  create 2 cells (lodge-variable) lodge-variable-does>
-  ;
 
 \ ==============================================================
 \ Values
 
-: (lodge-value)  ( u -- a )
-  \ Compile a lodge value of u address units.
-  current-lodge @ , lodge-allocate throw dup , lodge+
-  ;
-: (cell-lodge-value:)  ( x "name" -- )
+: (lodge-value) ( u -- a )
+  current-lodge @ , lodge-allocate throw dup , lodge+ ;
+  \ Compile a lodge value of _u_ address units.
+
+: (cell-lodge-value:) ( x "name" -- )
+  create  cell (lodge-value) ! ;
   \ Create a 1-cell lodge value.
-  create  cell (lodge-value) !
-  ;
-: lodge-value  ( n "name" -- )
-  \ Create a lodge value.
+
+: lodge-value ( n "name" -- )
   (cell-lodge-value:)
-  does> ( -- n ) ( dfa ) body>lodge @
-  ;
-: lodge-address-value  ( +n "name" -- )
+  does> ( -- n ) ( dfa ) body>lodge @ ;
+  \ Create a lodge value.
+
+: lodge-address-value ( +n "name" -- )
+  (cell-lodge-value:)
+  does> ( -- a ) ( dfa )
+    dup @ @ dup rot cell+ @ + @ + ;
+    \ dup body>lodge @ swap @ @ + ; \ not clearer, and certainly slower
   \ Create a lodge address value.
+  \
   \ +n = lodge offset
+  \
   \ This kind of lodge-value stores a lodge offset but returns the
   \ corresponding absolute address.  This is useful for creating
   \ lodge-values that point to data space in the lodge but have to be
   \ used as ordinary Forth values.
-  (cell-lodge-value:)
-  does> ( -- n ) ( dfa )
-    dup @ @ dup rot cell+ @ + @ +
-    \ dup body>lodge @ swap @ @ +  \ not clearer, and certainly slower
-  ;
-: lodge-2value  ( d "name" -- )
-  \ Create a lodge value.
+
+: lodge-2value ( d "name" -- )
   create 2 cells (lodge-value) 2!
-  does> ( -- n ) ( dfa ) body>lodge 2@
-  ;
+  does> ( -- xd ) ( dfa ) body>lodge 2@ ;
+  \ Create a lodge value.
 
 \ ==============================================================
 \ To
 
-: xt>lodge  ( xt -- a )
+: xt>lodge ( xt -- a )
+  >body body>lodge ;
   \ Absolute lodge address from the xt of a lodge-variable or a
   \ lodge-value.
-  >body body>lodge
-  ;
 
-: <lodge-to>  ( x "name" -- )
+: <lodge-to> ( x "name" -- )
+  ' xt>lodge ! ;
   \ Change the content of a lodge-variable or a lodge-value.
-  ' xt>lodge !
-  ;
-: [lodge-to]  ( compilation: x "name" -- )
+
+: [lodge-to] \ Compilation: ( x "name" -- )
+  ' postpone literal postpone xt>lodge postpone ! ; immediate
   \ Change the content of a lodge-variable or a lodge-value.
-  ' postpone literal postpone xt>lodge postpone !
-  ; immediate
+
 ' <lodge-to>
 ' [lodge-to]
 interpret/compile: lodge-to
+  \ Change the content of a lodge-variable or a lodge-value.
 
-: <lodge-2to>  ( x "name" -- )
+: <lodge-2to> ( x "name" -- )
+  ' xt>lodge 2! ;
   \ Change the content of a lodge-2variable or a lodge-2value.
-  ' xt>lodge 2!
-  ;
-: [lodge-2to]  ( compilation: d "name" -- )
+
+: [lodge-2to] \ Compilation: ( d "name" -- )
+  ' xt>lodge postpone 2literal postpone 2! ; immediate
   \ Change the content of a lodge-2variable or a lodge-2value.
-  ' xt>lodge postpone 2literal postpone 2!
-  ; immediate
+
 ' <lodge-2to>
 ' [lodge-2to]
 interpret/compile: lodge-2to
+  \ Change the content of a lodge-2variable or a lodge-2value.
 
 \ ==============================================================
 \ Misc
 
-: lodge-save-mem  ( a1 len -- +n len )
+: lodge-save-mem ( a1 len -- +n len )
+  swap >r  dup lodge-allocate throw  swap over lodge+ over
+  r> -rot move ;
   \ Copy a memory block into the lodge.
   \ Written after Gforth's 'save-mem'.
-  swap >r  dup lodge-allocate throw  swap over lodge+ over  r> -rot move
-  ;
-: lodge-,  ( x -- )
-  \ "Compile" a cell into the current lodge.
-  cell lodge-allocate throw lodge+ !
-  ;
-: lodge-2,  ( d -- )
-  \ "Compile" two cells into the current lodge.
-  2 cells lodge-allocate throw lodge+ 2!
-  ;
+
+: lodge-, ( x -- )
+  cell lodge-allocate throw lodge+ ! ;
+  \ "Compile" _x_ into the current lodge.
+
+: lodge-2, ( x1 x2 -- )
+  2 cells lodge-allocate throw lodge+ 2! ;
+  \ "Compile" _x1 x2_ into the current lodge.
 
 \ ==============================================================
 \ Change log
@@ -206,7 +205,7 @@ interpret/compile: lodge-2to
 \ 2014-02-21: Forked from <galope/lodge.fs>, in order to make an
 \ improved version that can create different named buffers.  This
 \ feature is needed for Finto
-\ (<http://programandala.net/en.program.finto.html>).
+\ (http://programandala.net/en.program.finto.html).
 \
 \ 2014-02-21: Improvement: Several named lodges can be created.
 \ 'get-lodge' and 'set-lodge' manage the current one.
@@ -221,3 +220,6 @@ interpret/compile: lodge-2to
 \
 \ 2017-08-17: Update change log layout. Update header. Update section
 \ rulers.
+\
+\ 2017-08-21: Update source style. Improve documentation and stack
+\ notation.
