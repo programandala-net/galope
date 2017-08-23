@@ -8,176 +8,177 @@
 \ ==============================================================
 \ Description
 
-\ This code provides words that create variables, values or any kind
-\ of data whose actual data are stored into a self-growing buffer. The
-\ variables and values store in their own body an offset to the actual
-\ data in the buffer.  This makes it possible to save the whole buffer
-\ to a binary file and restore it later (e.g. for game sessions), even
-\ if the actual absolute address of the buffer changes.
+\ This code provides words that create variables, values or any
+\ kind of data whose actual data are stored into a self-growing
+\ buffer. The variables and values store in their own body an
+\ offset to the actual data in the buffer.  This makes it
+\ possible to save the whole buffer to a binary file and
+\ restore it later (e.g. for game sessions), even if the actual
+\ absolute address of the buffer changes.
 
 \ There's an improved version that makes it possible to create
-\ different named buffers and change any of them at any moment.  See
-\ the file <galope/lodge-colon.fs>.  Both versions can not be loaded
-\ at the same time because most of the word names are the same.
-\ <galope/lodge.fs> should be a bit faster because of the simpler
-\ inner calculations.
-
-\ The first name of this code was "zbuffer"; then it was renamed to
-\ "pack", but unfortunately the name was already taken in Galope, by a
-\ simple one-liner; then it was renamed to "stow", just to discover
-\ (in The Collaborative International Dictionary of English v.0.48
-\ [gcide]) that "stow" is only a transitive verb, not a substantive,
-\ and some words didn't fit well; finally "lodge" was chosen...
+\ different named buffers and change any of them at any moment.
+\ See the file <galope/lodge-colon.fs>.  Both versions can not
+\ be loaded at the same time because most of the word names are
+\ the same.  <galope/lodge.fs> should be a bit faster because
+\ of the simpler inner calculations.
 
 \ ==============================================================
-\ Buffer
+\ Lodge
 
 variable lodge
-  \ Buffer address.
+  \ Lodge address.
 
 variable /lodge  0 /lodge !
-  \ Length in address units.
+  \ Lodge length in address units.
 
-0 allocate throw lodge ! \ an empty buffer at first
+0 allocate throw lodge !
+  \ Set an empty lodge.
 
-: lodge+ ( +n -- a )
-  lodge @ + ;
-  \ Return current absolute address _a_ of a lodge offset _+n_.
+: lodge-here ( -- +n ) /lodge @ ;
+  \ Return the offset _+n_ of the next free available address
+  \ of the lodge.
 
-: lodge-update ( u a -- +n )
-  lodge !  /lodge @  swap /lodge +! ;
+: lodge+ ( +n -- a ) lodge @ + ;
+  \ Convert lodge offset _+n_ to absolute address _a_.
+
+: (lodge-resize) ( u a -- +n )
+  lodge ! /lodge @  swap /lodge +! ;
   \ u = additional address units already allocated in the lodge
-  \ a = new address of the lodge
-  \ +n = offset to the new free space
-  \      (it's the same than the previous length of the lodge)
+  \ a = new address of the lodge +n = offset to the new free
+  \ space (it's the same than the previous length of the lodge)
 
-: lodge-resize ( u -- +n wior )
-  lodge @ swap resize >r lodge-update r> ;
-  \ u = new size of the lodge
-  \ +n = lodge offset to the additional free space
+: lodge-resize ( u -- +n ior )
+  lodge @ swap resize >r (lodge-resize) r> ;
+  \ Resize the lodge to _n1_ address units.  If the operation
+  \ succeeds, _+n_ is the offset to the additional free space
+  \ and _ior_ is zero.  If the operation fails, the value of
+  \ _+n_ is unimportant and _ior_ in the corresponding I/O
+  \ result code.
 
-: lodge-allocate ( u -- +n wior )
+: lodge-allocate ( n1 -- +n2 ior )
   dup /lodge @ + lodge-resize ;
-  \ u = additional address units required in the lodge
-  \ +n = lodge offset to the additional free space
+  \ Allocate _n1_ additional address units in the lodge.  If
+  \ the operation succeeds, _+n2_ is the offset to the
+  \ additional free space and _ior_ is zero.  If the operation
+  \ fails, the value of _+n_ is unimportant and _ior_ in the
+  \ corresponding I/O result code.
 
-: (lodge-erase) ( u +n -- )
-  lodge+ swap erase ;
-  \ Erase _u_ address units from a lodge offset.
+: lodge-allot ( n -- ) lodge-allocate throw drop ;
 
-: lodge-erase ( +n u -- )
-  swap (lodge-erase) ;
-  \ Erase _u_ address units from a lodge offset.
+: body>lodge ( dfa -- a ) @ lodge+ ;
+  \ Convert the body of a lodge-variable, a lodge-value or a
+  \ word created by `lodge-create`, to the lodge address they
+  \ point to.
+
+: >lodge ( xt -- a ) >body body>lodge ;
+  \ Return absolute lodge address _a_ from the _xt_ of a
+  \ lodge-variable, a lodge-value or a word created by
+  \ `lodge-create`.
 
 \ ==============================================================
 \ Variables
 
-: body>lodge ( dfa -- a )
-  @ lodge+ ;
-  \ Convert the body of a lodge-variable or a lodge-value
-  \ to the lodge address they point to.
+: (lodge-create) ( "name" -- ) create lodge-here , ;
 
-: lodge-variable-does> ( -- a )
-  does> ( -- a ) ( dfa ) body>lodge ;
-  \ Behaviour of a lodge variable.
+: lodge-create ( "name" -- ) (lodge-create) does> body>lodge ;
 
-: (lodge-variable) ( u -- )
-  dup lodge-allocate throw dup , (lodge-erase) ;
-  \ Compile a lodge variable of _u_ address units.
-
-: lodge-variable ( "name" -- )
-  create cell (lodge-variable) lodge-variable-does> ;
-  \ Create a lodge variable and init it with zero.
+: lodge-variable ( "name" -- ) lodge-create cell lodge-allot ;
+  \ Create a lodge variable _name_.
 
 : lodge-2variable ( "name" -- )
-  create 2 cells (lodge-variable) lodge-variable-does> ;
-  \ Create a lodge double variable and init it with zero.
+  lodge-create [ 2 cells ] literal lodge-allot ;
+  \ Create a lodge double-cell variable _name_.
 
 \ ==============================================================
 \ Values
 
-: (lodge-value) ( u -- a )
-  lodge-allocate throw dup , lodge+ ;
-  \ Compile a lodge value of _u_ address units.
+: lodge-value ( x "name" -- )
+  lodge-here (lodge-create)
+  cell lodge-allot lodge+ !
+  does> ( -- x ) ( dfa ) body>lodge @ ;
+  \ Create a lodge value _name_.
 
-: (cell-lodge-value:) ( x "name" -- )
-  create  cell (lodge-value) ! ;
-  \ Create a 1-cell lodge value.
+: lodge-2value ( x1 x2 "name" -- )
+  lodge-here (lodge-create)
+  [ 2 cells ] literal lodge-allot lodge+ 2!
+  does> ( -- x1 x2 ) ( dfa ) body>lodge 2@ ;
+  \ Create a double-cell lodge value _name_.
 
-: lodge-value ( n "name" -- )
-  (cell-lodge-value:)
-  does> ( -- n ) ( dfa ) body>lodge @ ;
-  \ Create a lodge value.
-
-: lodge-address-value ( +n "name" -- )
-  (cell-lodge-value:)
-  does> ( -- a ) ( dfa )
-    body>lodge @ lodge+ ;
-    \ body>lodge body>lodge ; \ XXX REMARK -- not clearer
-  \ Create a lodge address value.
-  \
-  \ +n = lodge offset
-  \
-  \ This kind of lodge-value stores a lodge offset but returns the
-  \ corresponding absolute address.  This is useful for creating
-  \ lodge-values that point to data space in the lodge but have to be
-  \ used as ordinary Forth values.
-
-: lodge-2value ( d "name" -- )
-  create 2 cells (lodge-value) 2!
-  does> ( -- xd ) ( dfa ) body>lodge 2@ ;
-  \ Create a lodge value.
-
-\ ==============================================================
-\ To
-
-: xt>lodge ( xt -- a )
-  >body body>lodge ;
-  \ Return absolute lodge address _a_ from the _xt_ of a
-  \ lodge-variable or a lodge-value.
-
-: <lodge-to> ( x "name" -- )
-  ' xt>lodge ! ;
-  \ Change the content of a lodge-variable or a lodge-value.
+: <lodge-to> ( x "name" -- ) ' >lodge ! ;
+  \ Store _x_ into a lodge-value _name_.
 
 : [lodge-to] \ Compilation: ( x "name" -- )
-  ' postpone literal postpone xt>lodge postpone ! ; immediate
-  \ Change the content of a lodge-variable or a lodge-value.
+  ' postpone literal postpone >lodge postpone ! ; immediate
+  \ Compile the words needed to store _x_ into a lodge-value
+  \ _name_.
 
 ' <lodge-to>
 ' [lodge-to]
-interpret/compile: lodge-to
-  \ Change the content of a lodge-variable or a lodge-value.
+interpret/compile: lodge-to \ Interpretation: ( x "name" -- )
+                            \ Compilation: ( x "name" -- )
+  \ Store _x_ into a lodge-value _name_.
 
-: <lodge-2to> ( x "name" -- )
-  ' xt>lodge 2! ;
-  \ Change the content of a lodge-2variable or a lodge-2value.
+: <lodge-2to> ( x1 x2 "name" -- ) ' >lodge 2! ;
+  \ Store the cell pair _x1 x2_ into a double-cell lodge-value
+  \ _name_.
 
-: [lodge-2to] \ Compilation: ( d "name" -- )
-  ' xt>lodge postpone 2literal postpone 2! ; immediate
-  \ Change the content of a lodge-2variable or a lodge-2value.
+: [lodge-2to] \ Compilation: ( x1 x2 "name" -- )
+  ' >lodge postpone 2literal postpone 2! ; immediate
+  \ Compile the words needed to store the cell pair _x1 x2_
+  \ into a double-cell lodge-value _name_.
 
 ' <lodge-2to>
 ' [lodge-2to]
-interpret/compile: lodge-2to
-  \ Change the content of a lodge-2variable or a lodge-2value.
+interpret/compile: lodge-2to \ Interpretation: ( x1 x2 "name" -- )
+                             \ Compilation: ( x1 x2 "name" -- )
+  \ Store the cell pair _x1 x2_ into a double-cell lodge-value
+  \ _name_.
 
 \ ==============================================================
 \ Misc
 
-: lodge-save-mem ( a1 len -- +n len )
-  swap >r  dup lodge-allocate throw  swap over lodge+ over
-  r> -rot move ;
-  \ Copy a memory block into the lodge.
-  \ Written after Gforth's `save-mem`.
+: lodge-save-mem ( a len -- +n len )
+  swap >r dup lodge-allocate throw swap over lodge+ over
+       r> -rot move ;
 
-: lodge-, ( x -- )
-  cell lodge-allocate throw lodge+ ! ;
-  \ "Compile" _x_ into the current lodge.
+  \ doc{
+  \
+  \ lodge-save-mem ( a len -- +n len )
+  \
+  \ Add a memory zone _a len_ to the lodge, increasing its size
+  \ accordingly and returning its offset _+n_ and the length
+  \ _len_ of the zone.
+  \
+  \ See: `lodge-,`, `lodge-2,`.
+  \
+  \ }doc
+
+: lodge-, ( x -- ) lodge-here cell lodge-allot lodge+ ! ;
+
+  \ doc{
+  \
+  \ lodge-, ( x -- )
+  \
+  \ Add _x_ to the lodge, increasing its size by one cell.
+  \
+  \ See: `lodge-2,`, `lodge-save-mem`.
+  \
+  \ }doc
 
 : lodge-2, ( x1 x2 -- )
-  2 cells lodge-allocate throw lodge+ 2! ;
-  \ "Compile" _x1 x2_ into the current lodge.
+  lodge-here [ 2 cells ] literal lodge-allot lodge+ 2! ;
+
+  \ doc{
+  \
+  \ lodge-2, ( x1 x2 -- )
+  \
+  \ Add the cell pair _x1 x2_ to the lodge increasing its size
+  \ by two cells.
+  \
+  \ See: `lodge-,`, `lodge-save-mem`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -223,4 +224,11 @@ interpret/compile: lodge-2to
 \ 2017-07-03: Update code style. Improve documentation.
 \
 \ 2017-08-21: Improve documentation and stack notation. Add the factor
-\ `body>lodge`, after the `lodge-colon` module.
+\ `body>lodge`, after the `lodge:` module.
+\
+\ 2017-08-22: Prepare to supersed the `lodge:` module.
+\
+\ 2017-08-23: Factor. Add `lodge-here`, `lodge-allot` and
+\ `lodge-create`, and rewrite other words after them, making the code
+\ easier to follow.  Remove zero initialization of variables. Improve
+\ documentation. Rename `xt>lodge` to `>lodge`.
