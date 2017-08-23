@@ -16,13 +16,6 @@
 \ restore it later (e.g. for game sessions), even if the actual
 \ absolute address of the buffer changes.
 
-\ There's an improved version that makes it possible to create
-\ different named buffers and change any of them at any moment.
-\ See the file <galope/lodge-colon.fs>.  Both versions can not
-\ be loaded at the same time because most of the word names are
-\ the same.  <galope/lodge.fs> should be a bit faster because
-\ of the simpler inner calculations.
-
 \ ==============================================================
 \ Lodge
 
