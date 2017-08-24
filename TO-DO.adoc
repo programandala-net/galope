@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-08-21
+:revdate: 2017-08-24
 
 == 2012-09-14
 
@@ -208,11 +208,3 @@ Check if `$@` is needed in Gforth 0.7.9.
 Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 `2arrayed`. The HTML version is fine.
 
-== 2017-08-21
-
-Combine <lodge.fs> and <lodge-colon.fs> into one module, or make them
-compatible.
-
-In <lodge-colon.fs>, make lodge variables and values smarter, storing
-and index to the lodge they belong to, making `get-lodge` and
-`set-lodge` unnecessary.
