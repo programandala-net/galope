@@ -18,7 +18,7 @@ require ./slash-name.fs
   \ Get the first name _ca2 len2_ from the string _ca1 len1_.  A name
   \ is a substring separated by spaces.
   \
-  \ See: `/name`.
+  \ See: `/first-name`, `/name`.
   \
   \ }doc
 
@@ -30,3 +30,5 @@ require ./slash-name.fs
 \ (http://programandala.net/en.program.solo_forth.html).
 \
 \ 2017-07-15: Update layout. Improve documentation.
+\
+\ 2017-09-08: Update documentation.
