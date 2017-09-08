@@ -28,6 +28,7 @@ require ./column.fs
 require ./home.fs
 require ./last-row.fs
 require ./question-question.fs
+require ./xy.fs
 
 require ffl/trm.fs
 
@@ -241,4 +242,5 @@ end-package
 \ 2017-08-17: Update change log layout. Update stack notation. Update
 \ section rulers.
 \
-\ 2017-08-18: Use `package` instead of `module:`.
+\ 2017-08-18: Use `package` instead of `module:`. Add missing
+\ requirement of `xy`.
