@@ -208,3 +208,6 @@ Check if `$@` is needed in Gforth 0.7.9.
 Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 `2arrayed`. The HTML version is fine.
 
+== 2017-08-24
+
+Move lodge tool words to their own files.
