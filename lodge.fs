@@ -6,17 +6,6 @@
 \ Author: Marcos Cruz (programandala.net), 2014, 2017.
 
 \ ==============================================================
-\ Description
-
-\ This code provides words that create variables, values or any
-\ kind of data whose actual data are stored into a self-growing
-\ buffer. The variables and values store in their own body an
-\ offset to the actual data in the buffer.  This makes it
-\ possible to save the whole buffer to a binary file and
-\ restore it later (e.g. for game sessions), even if the actual
-\ absolute address of the buffer changes.
-
-\ ==============================================================
 \ Lodge
 
 variable lodge  0 allocate throw lodge !
@@ -27,6 +16,19 @@ variable lodge  0 allocate throw lodge !
   \
   \ _a_ is the address of a cell containig the address of the
   \ lodge.
+  \
+  \ A lodge is a self-growing buffer allocated from the heap,
+  \ where data can be stored and retrieved transparently, using
+  \ offsets, regardless of the actual address of the buffer,
+  \ provided the definer words `lodge-create`,
+  \ `lodge-variable`, `lodge-constant` and others are used.
+  \ The words so defined store in their data field the offset
+  \ to the actual data in the lodge, which is resolved at
+  \ run-time.
+  \
+  \ A lodge makes it possible to concentrate the application
+  \ data into one relocatable and transparent buffer, which can
+  \ be saved and restored as a whole (e.g. for game sessions).
   \
   \ See: `/lodge`.
   \
@@ -66,7 +68,7 @@ variable /lodge  0 /lodge !
   \
   \ Words created by `lodge-variable`, `lodge-2variable`,
   \ `lodge-value`, `lodge-2value` and `lodge-create` save in
-  \ their dafa field address the current value returned by
+  \ their data field address the current value returned by
   \ `lodge-here`, and convert it to the its corresponding
   \ `lodge` address at run-time.
   \
@@ -106,7 +108,7 @@ variable /lodge  0 /lodge !
   \ Allocate _n1_ additional address units in the `lodge`.  If
   \ the operation succeeds, _+n2_ is the offset to the
   \ additional free space and _ior_ is zero.  If the operation
-  \ fails, the value of _+n_ is unimportant and _ior_ in the
+  \ fails, the value of _+n2_ is unimportant and _ior_ is the
   \ corresponding I/O result code.
   \
   \ See: `lodge-resize`, `lodge-allot`.
@@ -391,3 +393,5 @@ interpret/compile: lodge-2to \ Interpretation: ( x1 x2 "name" -- )
 \ `lodge-create`, and rewrite other words after them, making the code
 \ easier to follow.  Remove zero initialization of variables. Improve
 \ documentation. Rename `xt>lodge` to `>lodge`.
+\
+\ 2017-08-24: Improve documentation.
