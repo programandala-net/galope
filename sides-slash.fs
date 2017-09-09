@@ -4,14 +4,14 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
 \ ==============================================================
 
 require ./sides.fs  \ 'sides'
 require ./str-not-equals.fs  \ 'str<>'
 
-: sides/ {: ca1 len1 ca2 len2 -- ca1 len1' ca3 len3 f :}
+: sides/ { ca1 len1 ca2 len2 -- ca1 len1' ca3 len3 f }
   false >r  \ default value of the result flag
   ca1 len1 2dup
   begin  ca2 len2 search
@@ -55,3 +55,6 @@ require ./str-not-equals.fs  \ 'str<>'
 \
 \ 2017-08-17: Update change log layout. Update stack notation. Update
 \ source style.
+\
+\ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
+\ `{` instead of `{:`.
