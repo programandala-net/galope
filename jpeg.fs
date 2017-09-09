@@ -126,7 +126,7 @@ variable jpeg-fid
   \ header, until the buffer end.  Written to learn about the
   \ JPEG format and write the other words.
 
-: jpeg-search {: byte -- :}
+: jpeg-search { byte -- }
   jpeg-buffer /jpeg-buffer bounds do
     '.' emit
     i c@ byte = if
@@ -194,3 +194,6 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-08-23: Update source style.
+\
+\ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
+\ `{` instead of `{:`.

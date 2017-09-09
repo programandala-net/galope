@@ -11,7 +11,9 @@
 
 \ ==============================================================
 
-: -order {: wid -- :}
+[undefined] n>r [if] require n-to-r.fs [then]
+
+: -order { wid -- }
   get-order n>r r> dup
   begin  dup
   while  1- r@ wid =
@@ -36,3 +38,6 @@
 \ 2017-08-16: Start.
 \
 \ 2017-08-17: Document.
+\
+\ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
+\ `{` instead of `{:` and requiring `n>r` if needed.
