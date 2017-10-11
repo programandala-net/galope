@@ -27,6 +27,8 @@ require ./home-question.fs
 require ./home.fs
 require ./last-row.fs
 require ./package.fs
+require ./slash-name.fs
+require ./slash-first-name.fs
 
 require ffl/trm.fs
 
@@ -34,17 +36,17 @@ package galope-l-type
 
 public
 
-variable #typed \ Printed chars in the current line.
+variable #ltyped \ Printed chars in the current line.
 
 variable #indented \ Indented chars in the current line.
 
-: typed+ ( u -- ) #typed +! ;
+: ltyped+ ( u -- ) #ltyped +! ;
 
 : indented+ ( u -- ) #indented +! ;
 
-: (.word) ( ca len -- ) dup typed+ type ;
+: (.word) ( ca len -- ) dup ltyped+ type ;
 
-: lemit ( c -- ) emit 1 typed+ ;
+: lemit ( c -- ) emit 1 ltyped+ ;
 
   \ doc{
   \
@@ -69,9 +71,9 @@ variable #indented \ Indented chars in the current line.
   \
   \ }doc
 
-: no-typed ( -- ) #typed off #indented off ;
+: no-ltyped ( -- ) #ltyped off #indented off ;
 
-: lhome ( -- ) home no-typed ;
+: lhome ( -- ) home no-ltyped ;
 
   \ doc{
   \
@@ -117,7 +119,7 @@ defer do-cr ( -- )
   \
   \ }doc
 
-: (lcr) ( -- ) do-cr no-typed ;
+: (lcr) ( -- ) do-cr no-ltyped ;
 
 : lcr ( -- ) lcr? if (lcr) then ;
 
@@ -137,7 +139,7 @@ variable l-width
 private
 
 : previous-word? ( -- f )
-  #typed @ #indented @ > ;
+  #ltyped @ #indented @ > ;
 
 : ?space ( -- )
   previous-word? if lspace then ;
@@ -146,13 +148,13 @@ private
   l-width @ ?dup 0= if cols then ;
 
 : too-long? ( u -- f )
-  1+ #typed @ + current-print-width > ;
+  1+ #ltyped @ + current-print-width > ;
 
 : .word ( ca len -- )
   dup too-long? if lcr else ?space then (.word) ;
 
 : (indent) ( u -- )
-  dup trm+move-cursor-right dup indented+ typed+ ;
+  dup trm+move-cursor-right dup indented+ ltyped+ ;
 
 public
 
@@ -169,30 +171,8 @@ public
   \
   \ }doc
 
-private
-
-: /word ( ca1 len1 -- ca2 len2 ca3 len3 )
-  bl skip 2dup bl scan ;
-  \ ca1 len1 = Text.
-  \ ca2 len2 = Same text, from the start of its first word.
-  \ ca3 len3 = Same text, from the char after its first word.
-
-: >word ( ca1 len1 ca2 len2 -- ca2 len2 ca1 len4 )
-  tuck 2>r - 2r> 2swap ;
-  \ ca1 len1 = Text, from the start of its first word.
-  \ ca2 len2 = Same text, from the char after its first word.
-  \ ca1 len4 = First word of the text.
-
-: first-word ( ca1 len1 -- ca2 len2 ca3 len3 )
-  /word >word ;
-
-: (ltype) ( ca1 len1 -- ca2 len2 )
-  first-word .word ;
-
-public
-
 : ltype ( ca len -- )
-  begin dup while (ltype) repeat 2drop ;
+  begin dup while /first-name .word repeat 2drop ;
 
   \ doc{
   \
@@ -327,3 +307,9 @@ end-package
 \ the most importart public words of the module.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-09-08: Replace `/word` with `/name`, whose definition is
+\ identical and is part of the library already. Simplify `ltype` with
+\ `/first-name`. Rename all "typed" to "ltyped".
+\
+\ 2017-10-11: Add missing requirement `/first-name`.
