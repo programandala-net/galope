@@ -211,3 +211,12 @@ Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 == 2017-08-24
 
 Move lodge tool words to their own files.
+
+== 2017-10-22
+
+Improve `ltype`:
+
+- Top left coordinates.
+- Left margin.
+- Real time `lwidth`.
+- UTF-8 support.
