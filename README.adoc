@@ -1,11 +1,11 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-07-14
+:revdate: 2017-10-11
 
 // This file is part of Galope
 // http://programandala.net/en.program.galope.html
 
-// Last modified 201707141443
+// Last modified 201710111431
 
 // tag::description[]
 
@@ -27,12 +27,13 @@ sytem-independent.
 
 == The name
 
-"Galope" stands for "Gforth Accessory Library of Particular Elements".
+"Galope" stands for "Gforth Accessory Library Of Particular Elements".
 In Spanish, "galope" is a noun that means "gallop"; in Esperanto,
 "galope" is an adverb (the "-e" ending marks the adverbs in this
 language) that means "at a gallop".  "Galope" is pronounced as in
-Spanish or Esperanto (its pronounciation is the same in both
-languages).
+Spanish and Esperanto.
+
+// Spanish and Esperanto: /Ga'lope/.
 
 // end::name[]
 
