@@ -12,12 +12,15 @@
 \ You can redistribute this file and/or modify it under
 \ the terms of the GNU General Public License
 
+\ Last modified 201710221556
+\ See change log at the end of the file.
+
 \ ==============================================================
 \ XXX TODO
 
 \ - Top left coordinates.
-\ - Margins.
-\ - Real time `l-width`.
+\ - Left margin.
+\ - Real time `lwidth`.
 \ - UTF-8 support.
 
 \ ==============================================================
@@ -34,17 +37,90 @@ require ffl/trm.fs
 
 package galope-l-type
 
-public
+variable #lline \ Current line of the paragraph (the first one is 0).
+
+: next-lline ( -- ) 1 #lline +! ;
 
 variable #ltyped \ Printed chars in the current line.
 
-variable #indented \ Indented chars in the current line.
-
 : ltyped+ ( u -- ) #ltyped +! ;
+
+variable #indented \ Indented chars in the current line.
 
 : indented+ ( u -- ) #indented +! ;
 
+: (indent) ( u -- )
+  dup trm+move-cursor-right dup indented+ ltyped+ ;
+
 : (.word) ( ca len -- ) dup ltyped+ type ;
+
+: no-ltyped ( -- ) #ltyped off #indented off ;
+
+public
+
+: indent ( u -- ) ?dup if (indent) then ;
+
+  \ doc{
+  \
+  \ indent ( u -- )
+  \
+  \ Indent _u_ spaces.
+  \
+  \ See: `proper-indent`.
+  \
+  \ }doc
+
+2 value indentation1
+
+  \ doc{
+  \
+  \ indentation1 ( -- n )
+  \
+  \ Return the number _n_ of spaces at the left of the first line of a
+  \ new paragraph. ``indentation1`` is a value. Its default value is
+  \ 2.
+  \
+  \ See `indentation2`, `/paragraph`.
+  \
+  \ }doc
+
+synonym indentation indentation1 \ XXX OLD -- for retrocompatibility
+
+  \ doc{
+  \
+  \ indentation ( -- n )
+  \
+  \ Old name of `indentation1`, for retrocompatibility.
+  \
+  \ }doc
+
+0 value indentation2
+
+  \ doc{
+  \
+  \ indentation2 ( -- n )
+  \
+  \ Return the number _n_ of spaces at the left of the second and
+  \ following lines of a new paragraph. ``indentation2`` is a value.
+  \ Its default value is 0.
+  \
+  \ See `indentation1`, `/paragraph`.
+  \
+  \ }doc
+
+: proper-indent ( -- )
+  #lline @ if indentation2 else indentation1 then indent ;
+
+  \ doc{
+  \
+  \ proper-indent ( -- )
+  \
+  \ Indent the proper number of spaces (`indentation1` or
+  \ `indentation2`) depending on the current line of the paragraph.
+  \
+  \ See: `indent`.
+  \
+  \ }doc
 
 : lemit ( c -- ) emit 1 ltyped+ ;
 
@@ -71,9 +147,7 @@ variable #indented \ Indented chars in the current line.
   \
   \ }doc
 
-: no-ltyped ( -- ) #ltyped off #indented off ;
-
-: lhome ( -- ) home no-ltyped ;
+: lhome ( -- ) home no-ltyped #lline off ;
 
   \ doc{
   \
@@ -97,11 +171,9 @@ variable #indented \ Indented chars in the current line.
 
 private
 
-: not-at-start-of-line? ( -- f )
-  column 0<> ;
+: not-at-start-of-line? ( -- f ) column 0<> ;
 
-: lcr? ( -- f )
-  home? 0= not-at-start-of-line? and ;
+: lcr? ( -- f ) home? 0= not-at-start-of-line? and ;
 
 public
 
@@ -119,7 +191,7 @@ defer do-cr ( -- )
   \
   \ }doc
 
-: (lcr) ( -- ) do-cr no-ltyped ;
+: (lcr) ( -- ) do-cr next-lline no-ltyped proper-indent ;
 
 : lcr ( -- ) lcr? if (lcr) then ;
 
@@ -134,42 +206,32 @@ defer do-cr ( -- )
   \
   \ }doc
 
-variable l-width
-
-private
-
-: previous-word? ( -- f )
-  #ltyped @ #indented @ > ;
-
-: ?space ( -- )
-  previous-word? if lspace then ;
-
-: current-print-width ( -- u )
-  l-width @ ?dup 0= if cols then ;
-
-: too-long? ( u -- f )
-  1+ #ltyped @ + current-print-width > ;
-
-: .word ( ca len -- )
-  dup too-long? if lcr else ?space then (.word) ;
-
-: (indent) ( u -- )
-  dup trm+move-cursor-right dup indented+ ltyped+ ;
-
-public
-
-: indent ( u -- )
-  ?dup if (indent) then ;
+variable lwidth
 
   \ doc{
   \
-  \ indent ( u -- )
+  \ lwidth ( -- a )
   \
-  \ Indent _u_ spaces.
-  \
-  \ See: `indentation`.
+  \ A variable containing the text width used by `ltype` and related
+  \ words. Its default value is zero, which means all columns are used
+  \ (the value returned by ``cols``).
   \
   \ }doc
+
+private
+
+: previous-word? ( -- f ) #ltyped @ #indented @ > ;
+
+: ?space ( -- ) previous-word? if lspace then ;
+
+: width ( -- u ) lwidth @ ?dup 0= if cols then ;
+
+: unfit? ( u -- f ) 1+ #ltyped @ + width > ;
+
+: .word ( ca len -- )
+  dup unfit? if lcr else ?space then (.word) ;
+
+public
 
 : ltype ( ca len -- )
   begin dup while /first-name .word repeat 2drop ;
@@ -181,19 +243,6 @@ public
   \ Type _ca len_ left justified.
   \
   \ See: `/ltype`, `l."`.
-  \
-  \ }doc
-
-2 value indentation
-
-  \ doc{
-  \
-  \ indentation ( -- n )
-  \
-  \ Return the number _n_ of spaces at the left of the first line of a
-  \ new paragraph. ``indentation`` is a value.
-  \
-  \ See `/paragraph`.
   \
   \ }doc
 
@@ -211,13 +260,12 @@ public
 
 private
 
-: separate-paragraph ( -- )
-  /paragraph 1+ 0 ?do (lcr) loop ;
+: separate-paragraph ( -- ) /paragraph 1+ 0 ?do (lcr) loop ;
 
 public
 
 : paragraph ( -- )
-  separate-paragraph indentation indent ;
+  #lline off separate-paragraph proper-indent ;
 
   \ doc{
   \
@@ -227,8 +275,7 @@ public
   \
   \ }doc
 
-: /ltype ( ca len -- )
-  paragraph ltype ;
+: /ltype ( ca len -- ) paragraph ltype ;
 
   \ doc{
   \
@@ -313,3 +360,7 @@ end-package
 \ `/first-name`. Rename all "typed" to "ltyped".
 \
 \ 2017-10-11: Add missing requirement `/first-name`.
+\
+\ 2017-10-22: Add indentation for the second and following lines.
+\ Rename `l-width` `lwidth` and document it. Rename
+\ `current-print-width` `width`. Rename `too-long?` `unfit?`.
