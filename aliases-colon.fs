@@ -21,19 +21,26 @@ package galope-aliases-colon
   \ Parse and return the next alias of the list started by
   \ `aliases{`.
 
-: another-alias?  ( -- ca len f )
-  parse-alias 2dup s" ;aliases" compare  ;
+: another-alias? ( -- ca len f )
+  parse-alias 2dup s" ;aliases" compare ;
   \ Parse and return the next alias _ca len_ of the list started by
   \ `aliases{`. If _f_ is false, _ca len_ is the word "}aliases",
   \ which marks the end of the list.
 
 public
 
-: aliases:  (  xt "name#0" ... "name#n" ";aliases" -- )
+: aliases: (  xt "name#0" ... "name#n" ";aliases" -- )
   begin  dup another-alias? ( xt xt ca len f )
   while  :alias
-  repeat  2drop 2drop  ;
+  repeat 2drop 2drop ;
+
+  \ doc{
+  \
+  \ aliases: (  xt "name#0" ... "name#n" ";aliases" -- )
+  \
   \ Create any number of aliases of _xt_, until ";aliases" is parsed.
+  \
+  \ }doc
 
 end-package
 
@@ -49,3 +56,5 @@ end-package
 \ 2017-08-17: Update stack notation.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-10-24: Improve documentation.

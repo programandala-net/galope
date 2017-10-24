@@ -1,5 +1,4 @@
 \ galope/any-question.fs
-\ `any?`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -13,9 +12,16 @@
 
 variable (any?)
 
-: any?  ( x0 x1..xn n -- f )
-  dup 1+ roll (any?) !  0 swap 0 do  swap (any?) @ = or  loop  ;
+: any? ( x0 x1..xn n -- f )
+  dup 1+ roll (any?) ! 0 swap 0 do swap (any?) @ = or loop ;
+
+  \ doc{
+  \
+  \ any? ( x0 x1..xn n -- f )
+  \
   \ Is any _x1..xn_ equal to _x0_?
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -28,3 +34,5 @@ variable (any?)
 \ the credits.
 \
 \ 2017-08-17: Update header layout.
+\
+\ 2017-10-24: Improve documentation.

@@ -11,6 +11,14 @@
 
 : between ( n low high -- f ) over - -rot - u< 0= ;
 
+  \ doc{
+  \
+  \ between ( n low high -- f )
+  \
+  \ Is _n_ between _low_ and _high_, including both of them?
+  \
+  \ }doc
+
 [then]
 
 \ ==============================================================
@@ -23,3 +31,5 @@
 \ 2017-06-21: Rewrite. `1+ within` doesn't work over the full range.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-10-24: Improve documentation.

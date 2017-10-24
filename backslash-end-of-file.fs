@@ -5,12 +5,19 @@
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2014.
 
+\ Credit: Inspired by SP-Forth.
+
 \ ==============================================================
 
-: \eof  ( -- )
-  source-id if begin refill 0= until then ;
+: \eof ( -- ) source-id if begin refill 0= until then ;
+
+  \ doc{
+  \
+  \ \eof ( -- )
+  \
   \ Ignore the rest of the source file.
-  \ Inspired by SP-Forth.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -22,3 +29,5 @@
 \ 2014-03-02: Formated.
 \
 \ 2017-08-17: Update change log layout. Update source style.
+\
+\ 2017-10-24: Improve documentation.
