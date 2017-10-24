@@ -4,7 +4,7 @@
 
 == 2012-09-14
 
-Rename 'seconds' and 'microseconds':
+Rename `seconds` and `microseconds`:
 
 ----
 seconds/key
@@ -14,7 +14,7 @@ seconds|keypress
 /seconds
 ----
 
-Then use 'seconds' and 'microseconds' for versions where the pause
+Then use `seconds` and `microseconds` for versions where the pause
 that can not be shortened with a keypress.
 
 == 2012-09-20
@@ -58,7 +58,7 @@ fix slash-sides.fs
 
 Create word sections, after Gforth, and mark them in the sources with
 some conventional notation.  This way the files could be searched
-(e.g. with 'grep') for words of specific sections.
+(e.g. with `grep`) for words of specific sections.
 
 == 2014-02-18
 
@@ -71,13 +71,13 @@ files, when a similar word will need them.
 
 == 2014-03-12
 
-rename 'greater-of' to '>of' or 'greater-than-of'?
-rename 'less-of' to '<of' or 'less-than-of'?
-write '<>of'?
+- rename `greater-of` to `>of` or `greater-than-of`?
+- rename `less-of` to `<of` or `less-than-of`?
+- write `<>of`?
 
 == 2014-03-13
 
-'among-of' ( run-time: x0 x'1...x'n n )
+`among-of` ( run-time: x0 x'1...x'n n )
 
 ----
 x case
@@ -105,7 +105,7 @@ ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
     LOOP 2DROP ;
 ----
 
-Write 'replace-xchar' too.
+Write `replace-xchar` too.
 
 == 2014-07-13
 
@@ -220,3 +220,7 @@ Improve `ltype`:
 - Left margin.
 - Real time `lwidth`.
 - UTF-8 support.
+
+== 2017-10-22
+
+Finish adapting the source documentation to Glosara format.
