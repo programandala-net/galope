@@ -16,18 +16,29 @@ require ./between.fs
              \ Run-time:    ( x1 x2 x3 -- | x1 )
   postpone (between-of) postpone of ; immediate compile-only
 
-0 [if]
+  \ doc{
+  \
+  \ between-of \ Compilation: ( -- of-sys )
+  \            \ Run-time:    ( x1 x2 x3 -- | x1 )
+  \
+  \ A variant of ``of`` that compares using `between`.
+  \
+  \ Usage example:
+  \
+  \ ----
 
-\ Usage example
+  \ : test ( x -- )
+  \   case
+  \     1           of ." one"                  endof
+  \     2 5 between-of ." between two and five" endof
+  \     6           of ." six"                  endof
+  \   endcase ;
 
-: test ( x -- )
-  case
-    1           of ." one"                  endof
-    2 5 between-of ." between two and five" endof
-    6           of ." six"                  endof
-  endcase ;
-
-[then]
+  \ ----
+  \
+  \ See: `within-of`, `or-of`, `less-of`, `greater-of`, `default-of`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -40,3 +51,5 @@ require ./between.fs
 \ 2014-03-13: Usage example.
 \
 \ 2017-08-20: Update change log layout and source style.
+\
+\ 2017-10-24: Improve documentation.

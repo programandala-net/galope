@@ -16,19 +16,30 @@ require ./nup.fs
              \ Run-time:    ( x1 x2 -- | x1 )
   postpone (greater-of) postpone of ; immediate compile-only
 
-0 [if]
+  \ doc{
+  \
+  \ greater-of \ Compilation: ( -- of-sys )
+  \            \ Run-time:    ( x1 x2 -- | x1 )
+  \
+  \ A variant of ``of`` that compares using ``>``.
+  \
+  \ Usage example:
+  \
+  \ ----
 
-\ Usage example
+  \ : test ( x -- )
+  \   case
+  \     10      of ." ten!"         endof
+  \     15 greater-of  ." greater than 15"  endof
+  \     ." less than 10 or 11..15"
+  \   endcase ;
 
-: test  ( x -- )
-  case
-    10 of  ." ten!"  endof
-    15 greater-of  ." greater than 15"  endof
-    ." less than 10 or 11..15"
-  endcase
-  ;
-
-[then]
+  \ ----
+  \
+  \ See: `less-of`, `between-of`, `within-of`, `or-of`,
+  \ `default-of`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -40,3 +51,5 @@ require ./nup.fs
 \ 2014-03-12: Usage example.
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-10-24: Improve documentation.

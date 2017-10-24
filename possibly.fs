@@ -9,7 +9,14 @@
 
 : possibly ( "name" -- )
   bl word find ?dup and if execute then ;
-  \ Execute 'name' if it exists; otherwise, do nothing.
+
+  \ doc{
+  \
+  \ possibly ( "name -- )
+  \
+  \ If word _name_ exists, execute it; otherwise, do nothing.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -18,3 +25,5 @@
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style.
+\
+\ 2017-10-24: Improve documentation.

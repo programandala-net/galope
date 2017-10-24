@@ -8,14 +8,6 @@
 \ 2017.
 
 \ ==============================================================
-\ Licence
-
-\ You may do whatever you want with this work, so long as you
-\ retain the copyright/authorship/acknowledgment/credit
-\ notice(s) and this license in all redistributed copies and
-\ derived works.  There is no warranty.
-
-\ ==============================================================
 \ Credit
 
 \ This code was inspired by, and partly based on:
@@ -30,70 +22,126 @@
 \   License: GNU GPL
 
 \ ==============================================================
-\ Usage
-
-0 [if]
-
-Modules hide the internal implementation and leave visible the
-words of the outer interface. Example:
-
-module: my-module
-  \ Inner/helper words.
-export
-  \ Interface words,
-  \ compiled in the outer vocabulary,
-  \ thus seen from the extern.
-hide
-  \ inner/helper words again.
-export
-  \ Interface words again. And so on.
-;module
-
-as an alternative, the word ':module' starts an unnamed module.
-
-[then]
-
-\ ==============================================================
 \ Inner words
 
 get-order get-current
 
-wordlist  dup constant galope-module
-          dup set-current  >order
+wordlist dup constant galope-module
+         dup set-current >order
 
 variable current-wid
 variable module-wid
 
-: (module:)  ( "name" -- wid )
+: (module:) ( "name" -- wid )
   get-current current-wid !
-  wordlist dup module-wid ! dup >order  ;
+  wordlist dup module-wid ! dup >order ;
 
 set-current
 
 \ ==============================================================
 \ Interface words
 
-: export  ( -- )
-  current-wid @ set-current  ;
-  \ Public definitions follow.
+: export ( -- ) current-wid @ set-current ;
 
-: hide  ( -- )
-  module-wid @ set-current  ;
-  \ Hidden definitions follow.
+  \ doc{
+  \
+  \ export ( -- )
+  \
+  \ Public definitions follow in the current module started by
+  \ `module:` or `:module`.
+  \
+  \ See: `hide`.
+  \
+  \ }doc
 
-: module:  ( "name" -- )
-  (module:) constant hide  ;
-  \ Start a named module.
+: hide ( -- ) module-wid @ set-current ;
 
-: :module  ( -- )
-  (module:) drop hide  ;
-  \ Start an anonymous module.
-  \ Hidden definitions follow.
+  \ doc{
+  \
+  \ hide ( -- )
+  \
+  \ Hidden definitions follow in the current module started by
+  \ `module:` or `:module`.
+  \
+  \ See: `export`.
+  \
+  \ }doc
 
-: ;module  ( -- )
-  export previous  ;
-  \ End a module.
-  \ Hidden definitions follow.
+: module: ( "name" -- ) (module:) constant hide ;
+
+  \ doc{
+  \
+  \ module: ( "name" -- )
+  \
+  \ Start a named module _name_. Hidden definitions follow.
+  \
+  \ Modules hide the internal implementation and leave visible the
+  \ words of the outer interface. Example:
+  \
+  \ ----
+
+  \ module: my-module
+  \   \ Inner/helper words.
+  \ export
+  \   \ Interface words,
+  \   \ compiled in the outer vocabulary,
+  \   \ thus seen from the extern.
+  \ hide
+  \   \ inner/helper words again.
+  \ export
+  \   \ Interface words again. And so on.
+  \ ;module
+
+  \ ----
+  \
+  \ As an alternative, the word `:module` starts an unnamed module.
+  \
+  \ See: `export`, `hide`, `;module`.
+
+  \ }doc
+
+: :module ( -- ) (module:) drop hide ;
+
+  \ doc{
+  \
+  \ :module ( -- )
+  \
+  \ Start an anonymous module.  Hidden definitions follow.
+  \
+  \ Modules hide the internal implementation and leave visible the
+  \ words of the outer interface. Example:
+  \
+  \ ----
+
+  \ :module
+  \   \ Inner/helper words.
+  \ export
+  \   \ Interface words,
+  \   \ compiled in the outer vocabulary,
+  \   \ thus seen from the extern.
+  \ hide
+  \   \ inner/helper words again.
+  \ export
+  \   \ Interface words again. And so on.
+  \ ;module
+
+  \ ----
+  \
+  \ As an alternative, the word `module:` starts a named module.
+  \
+  \ See: `export`, `hide`, `;module`.
+
+  \ }doc
+
+: ;module ( -- ) export previous ;
+
+  \ doc{
+  \
+  \ ;module ( -- )
+  \
+  \ End a module started by `module:` or `:module`.
+  \
+  \ }doc
 
 set-order
 
@@ -136,3 +184,5 @@ set-order
 \ 2017-08-18: Deprecated. Superseded by `package`. Remove the
 \ "-module" suffix from the module name, after the changes in the rest
 \ of the modules, converted to `package`.
+\
+\ 2017-10-24: Improve documentation.

@@ -7,12 +7,14 @@
 \ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015,
 \ 2016, 2017.
 
-\ Based on:
+\ Credits:
+\
+\ This code is based on:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 \ You can redistribute this file and/or modify it under
 \ the terms of the GNU General Public License
 
-\ Last modified 201710221556
+\ Last modified 201710242017
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -200,7 +202,8 @@ defer do-cr ( -- )
   \ lcr ( -- )
   \
   \ Move the cursor to the next row, if it's neither at the home
-  \ position nor at the start of a line.
+  \ position nor at the start of a line. ``lcr`` is part of the
+  \ left-justified printing system.
   \
   \ See: `ltype`.
   \
@@ -364,3 +367,5 @@ end-package
 \ 2017-10-22: Add indentation for the second and following lines.
 \ Rename `l-width` `lwidth` and document it. Rename
 \ `current-print-width` `width`. Rename `too-long?` `unfit?`.
+\
+\ 2017-10-24: Improve documentation.

@@ -12,6 +12,14 @@
 
 : assert ( n -- ) 0= if abort then ;
 
+  \ doc{
+  \
+  \ assert ( n -- )
+  \
+  \ If _n_ is zero, ``abort``; otherwise do nothing.
+  \
+  \ }doc
+
 \ ==============================================================
 \ Change log
 
@@ -19,3 +27,5 @@
 \
 \ 2017-08-17: Update change log and header layout. Update source
 \ style.
+\
+\ 2017-10-24: Improve documentation.
