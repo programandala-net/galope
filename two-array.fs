@@ -20,7 +20,9 @@
   \
   \ _name_ execution:
   \
+  \ ----
   \ name ( n -- a )
+  \ ----
   \
   \ Return address _a_ of element _n_.
   \
@@ -33,3 +35,5 @@
 
 \ 2017-08-16: Start. Adapt from Solo Forth's `2avariable`
 \ (http://programandala.net/en.program.solo_forth.html).
+\
+\ 2017-10-24: Update documentation markup.

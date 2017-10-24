@@ -20,7 +20,9 @@
   \
   \ _name_ execution:
   \
+  \ ----
   \ name ( n -- a )
+  \ ----
   \
   \ Return address _a_ of element _n_.
 
@@ -63,3 +65,5 @@
 \ Change log
 
 \ 2017-08-16: Start.
+\
+\ 2017-10-24: Update documentation markup.
