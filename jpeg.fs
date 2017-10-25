@@ -10,7 +10,6 @@
 
 require ./package.fs
 require ./buffer-colon.fs
-require ./default-of.fs
 
 package galope-jpeg
 
@@ -18,39 +17,83 @@ package galope-jpeg
   dup c@ 256 * swap 1+ c@ + ;
   \ Fetch a little-endian 16-bit value.
 
-public
-
 65536 constant /jpeg-buffer \ enough to hold any JPEG header
   \ XXX TODO -- use a growing header buffer
 
 /jpeg-buffer buffer: jpeg-buffer
 
-: jpeg-load ( fid -- )
-  jpeg-buffer /jpeg-buffer 2dup erase rot read-file throw
-  drop jpeg-buffer @ 0xffff and 0xd8ff <> abort" Not a JPEG image file." ;
-  \ Fill the buffer with the beginning of the a JPEG image
-  \ file.  This make the image the current one all other words
-  \ work with.
-
 variable jpeg-fid
-
-: jpeg-open ( ca len -- )
-  r/o bin open-file throw dup jpeg-fid ! jpeg-load ;
-  \ Open a JPEG image file and make it the current one.
-
-: jpeg-close ( -- )
-  jpeg-fid @ close-file throw ;
-  \ Close the current JPEG image.
-
-: jpeg-data ( ca1 -- ca2 len2 )
-  dup 4 + swap 2 + 16@ 2 - ;
-  \ ca1 = address of a JPEG marker
-  \ ca2 len2 = data region of the JPEG header
 
 : jpeg-marker+ ( ca -- +n )
   2 + 16@ 2 + ;
   \ ca = address of a JPEG marker
   \ +n = byte offset from ca to the next JPEG marker
+
+: jpeg-size@ ( ca -- width height )
+  7 + dup 16@ swap 2 - 16@ ;
+   \ ca = address of the proper JPEG marker
+
+: jpeg-load ( fid -- )
+  jpeg-buffer /jpeg-buffer 2dup erase rot read-file throw
+  drop jpeg-buffer @ 0xffff and 0xd8ff <> abort" Not a JPEG image file." ;
+  \ Fill the buffer with the beginning of a JPEG image
+  \ file.  This makes the image the current one all other words
+  \ work with.
+
+public
+
+: jpeg-open ( ca len -- )
+  r/o bin open-file throw dup jpeg-fid ! jpeg-load ;
+
+  \ doc{
+  \
+  \ jpeg-open ( ca len -- )
+  \
+  \ Open a JPEG file _ca len_ to be used by `jpeg-size`.
+  \
+  \ See: `jpeg-close`.
+  \
+  \ }doc
+
+: jpeg-close ( -- )
+  jpeg-fid @ close-file throw ;
+  \ Close the current JPEG image.
+
+  \ doc{
+  \
+  \ jpeg-close ( -- )
+  \
+  \ Close the current JPEG file, which was opened by `jpeg-open`.
+  \
+  \ See: `jpeg-size`.
+  \
+  \ }doc
+
+: jpeg-size ( -- width height )
+  jpeg-buffer /jpeg-buffer bounds 2 + do
+    i 16@ case
+      0xffc0 of i jpeg-size@ leave endof
+      0xffc2 of i jpeg-size@ leave endof
+    endcase i jpeg-marker+
+  +loop ;
+
+  \ doc{
+  \
+  \ jpeg-size ( -- width height )
+  \
+  \ Return the size _width height_ of the current JPEG file, which was
+  \ opened by `jpeg-open`.
+  \
+  \ }doc
+
+end-package
+
+\ ==============================================================
+\ Testing and debugging
+
+false [if]
+
+require ./default-of.fs
 
 : jpeg-data. ( ca len -- )
   cr ." [d]ump? [a]bort? Any other key to continue." cr
@@ -66,6 +109,11 @@ variable jpeg-fid
   \ XXX TODO -- rewrite
   \ Dump the data of a JPEG header.
 
+: jpeg-data ( ca1 -- ca2 len2 )
+  dup 4 + swap 2 + 16@ 2 - ;
+  \ ca1 = address of a JPEG marker
+  \ ca2 len2 = data region of the JPEG header
+
 : jpeg-header. ( ca -- +n )
   dup jpeg-data 2dup
   ." , " . ." bytes from " . ." :"
@@ -73,10 +121,6 @@ variable jpeg-fid
   \ Show a JPEG header.
   \ ca = address of a JPEG marker
   \ +n = byte offset from ca to the next marker
-
-: jpeg-size@ ( ca -- width height )
-  7 + dup 16@ swap 2 - 16@ ;
-   \ ca = address of the proper JPEG marker
 
 : jpeg-size. ( ca -- )
   jpeg-size@ swap ."  width=" . ." height=" . ;
@@ -107,15 +151,6 @@ variable jpeg-fid
   \
   \ XXX TODO -- better name
 
-: jpeg-size ( -- width height )
-  jpeg-buffer /jpeg-buffer bounds 2 + do
-    i 16@ case
-      0xffc0 of i jpeg-size@ leave endof
-      0xffc2 of i jpeg-size@ leave endof
-    endcase i jpeg-marker+
-  +loop ;
-  \ Size of the current JPEG file.
-
 : jpeg-dump ( -- )
   jpeg-buffer /jpeg-buffer bounds do
     i dup cr . ." : " dup c@ dup .
@@ -136,11 +171,6 @@ variable jpeg-fid
   loop ;
   \ Search a byte in the current JPEG file.
   \ Written to find out where the image width and height are stored.
-
-\ ==============================================================
-\ Testing and debugging
-
-false [if]
 
 0 value jpeg-searched2 \ byte
 defer jpeg-found2
@@ -168,14 +198,11 @@ defer jpeg-found2
   ' (jpeg-found2) is jpeg-found2 ;
   \ Search and show any possible frame header in the current JPEG file.
 
-
 : jpeg-test ( ca len -- )
   jpeg-open jpeg-dump jpeg-close ;
   \ Test an image
 
 [then]
-
-end-package
 
 \ ==============================================================
 \ Change log
@@ -188,8 +215,8 @@ end-package
 \
 \ 2014-02-28: Typo fixed in comment.
 \
-\ 2017-08-17: Update change log layout. Update header. Update
-\ section rulers.
+\ 2017-08-17: Update change log layout. Update header. Update section
+\ rulers.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
 \
@@ -197,3 +224,7 @@ end-package
 \
 \ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
 \ `{` instead of `{:`.
+\
+\ 2017-10-25: Apart the remaining debug words and tools. Reorganize
+\ public and private words of the package: Now only `jpeg-open`,
+\ `jpeg-size` and `jpeg-close` are public.  Improve documentation.
