@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017
 
 \ ==============================================================
 
@@ -12,6 +12,17 @@
     dup i c@ = ?dup if unloop nip exit then
   loop drop false ;
   \ Is char c in string ca len?
+
+  \ doc{
+  \
+  \ instr? ( c ca len -- f )
+  \
+  \ Is char _c_ in string _ca len_? If so, return _true_. Otherwise
+  \ return _false_
+  \
+  \ See: `instr`, `contains?`, `hunt`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -22,3 +33,5 @@
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style and stack notation.
+\
+\ 2017-10-25: Improve documentation.

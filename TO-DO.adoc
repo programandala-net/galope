@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-08-24
+:revdate: 2017-10-25
 
 == 2012-09-14
 
@@ -224,3 +224,64 @@ Improve `ltype`:
 == 2017-10-22
 
 Finish adapting the source documentation to Glosara format.
+
+== 2017-10-25
+
+- Add `increment` and `uincrement`, counterparts of `decrement`.
+  Alternative names: `?1+!`, `?u1+!`, `?1-!`.
+
+- Rename `number<c>` (in module <xy.fs>) and move it to its own file.
+  Possible names: `number/c`, `keys/c>decimal`, `keys>#`,
+  `keys>number`, `keys>#number`.
+
+- Remove old code from `instr`.
+
+- Remove unused <module.fs> from <choose-stack.fs>.
+
+== 2017-10-25
+
+Add a smaller version of `match?`, from
+<https://groups.google.com/d/msg/comp.lang.forth/zFRCXnlY2jY/tqkcqzbUvvwJ>:
+
+----
+
+This is an even smaller one, supporting just * and .:
+
+---8<---
+: (match-or-dot)
+  over c@ [char] . = >r 2swap dup 0<> r> and
+  >r over c@ >r 2swap over c@ r> = r> or
+;
+
+: match-reg
+  dup 0> if
+    over char+ c@ [char] * <>
+    if
+      2over 1 /string 2over 1 /string recurse >r (match-or-dot)
+      r> and >r 2drop 2drop r> exit
+    then
+
+    begin
+      (match-or-dot)
+    while
+      2over 2over 2 /string recurse if 2drop 2drop true exit then
+      2>r 1 /string 2r>
+    repeat 2 /string recurse exit
+
+  else
+    2drop nip 0=
+  then
+;
+
+s" aa" s" a"    match-reg . cr
+s" aa" s" aa"  match-reg . cr
+s" aaa" s" aa"  match-reg . cr
+s" aa" s" a*"  match-reg . cr
+s" aa" s" .*"  match-reg . cr
+s" ab" s" .*"  match-reg . cr
+s" aab" s" c*a*b"  match-reg . cr depth .
+---8<---
+
+Hans Bezemer
+
+----

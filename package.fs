@@ -4,7 +4,7 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author:
-\   Julian Fondren, 2016.
+\   Julian Fondren, 2016
 \   http://forth.minimaltype.com/packages.html
 \   Newsgroups: comp.lang.forth
 \   Date: Tue, 2 Aug 2016 04:00:38 -0700 (PDT)
