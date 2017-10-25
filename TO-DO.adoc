@@ -301,4 +301,5 @@ Alternative from
 : c@+ ( addr -- n addr' )   dup c@ swap 1+ ; 
 ----
 
-Deprecate <stream_bs.fs>, which was superseded by <heredoc.fs>.
+- Deprecate <stream_bs.fs>, which was superseded by <heredoc.fs>.
+- Finish, update, rename words of <queue.fs>.
