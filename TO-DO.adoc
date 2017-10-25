@@ -285,3 +285,8 @@ s" aab" s" c*a*b"  match-reg . cr depth .
 Hans Bezemer
 
 ----
+
+== 2017-10-25
+
+- Move `@le` from <png.fs> to its own module, with a comus name.
+- Move `16@` from <jpeg.fs> to its own module, with a comus name.

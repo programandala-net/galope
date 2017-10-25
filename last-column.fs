@@ -3,16 +3,20 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Author: Marcos Cruz (programandala.net), 2012, 2015, 2017
+
 \ ==============================================================
 
 : last-column ( -- n ) cols 1- ;
 
   \ doc{
   \
-  \ last-column ( -- n )
+  \ last-column ( -- u )
   \
-  \ _n_ is the number of the last screen column, being zero the first
-  \ one.
+  \ Return the last column _u_ (X coordinate) of the screen, being
+  \ zero the first one.
+  \
+  \ See: `last-row`, `column`.
   \
   \ }doc
 
@@ -29,3 +33,5 @@
 \ style.
 \
 \ 2017-08-19: Fix: Replace `columns` with `cols`.
+\
+\ 2017-10-25: Improve documentation.

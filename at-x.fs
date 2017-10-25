@@ -19,7 +19,7 @@ require ./row.fs
   \ Set the cursor at column _u_ (x coordinate) of the current row (y
   \ coordinate).
   \
-  \ See: `at-y`, `row`.
+  \ See: `at-y`, `home`, `row`.
   \
   \ }doc
 
@@ -35,3 +35,5 @@ require ./row.fs
 \ 2017-08-17: Update change log and header layout.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-10-25: Improve documentation.
