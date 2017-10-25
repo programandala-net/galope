@@ -4,8 +4,8 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Authors:
-\ Hans Bezemer, 2014
-\ Marcos Cruz (programandala.net), 2017
+\ Hans Bezemer, 2014.
+\ Marcos Cruz (programandala.net), 2017.
 
 \ ==============================================================
 

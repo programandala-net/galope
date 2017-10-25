@@ -3,9 +3,10 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Krishna Myeni, 1999-2004
+\ Author: Krishna Myeni, 1999-2004.
 \
-\ Modified by: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2017
+\ Modified by: Marcos Cruz (programandala.net), 2012, 2013, 2014,
+\ 2017.
 
 \ ==============================================================
 \ Credits

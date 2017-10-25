@@ -4,13 +4,13 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author:
-\   Julian Fondren, 2016
+\   Julian Fondren, 2016.
 \   http://forth.minimaltype.com/packages.html
 \   Newsgroups: comp.lang.forth
 \   Date: Tue, 2 Aug 2016 04:00:38 -0700 (PDT)
 \   Message-ID: <0a8d7b8a-8367-4e92-a482-ee8b6728325a@googlegroups.com>
 \ Adapted to Galope:
-\   Marcos Cruz (programandala.net), 2017
+\   Marcos Cruz (programandala.net), 2017.
 
 \ ==============================================================
 
