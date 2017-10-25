@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017
 
 \ ==============================================================
 \ Lodge
@@ -14,7 +14,7 @@ variable lodge  0 allocate throw lodge !
   \
   \ lodge ( -- a )
   \
-  \ _a_ is the address of a cell containig the address of the
+  \ _a_ is the address of a cell containing the address of the
   \ lodge.
   \
   \ A lodge is a self-growing buffer allocated from the heap,
@@ -395,3 +395,5 @@ interpret/compile: lodge-2to \ Interpretation: ( x1 x2 "name" -- )
 \ documentation. Rename `xt>lodge` to `>lodge`.
 \
 \ 2017-08-24: Improve documentation.
+\
+\ 2017-10-25: Fix typo.
