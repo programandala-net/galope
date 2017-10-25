@@ -51,7 +51,7 @@ public
   \
   \ Open a JPEG file _ca len_ to be used by `jpeg-size`.
   \
-  \ See: `jpeg-close`.
+  \ See: `jpeg-close`, `png-open`.
   \
   \ }doc
 
@@ -65,7 +65,7 @@ public
   \
   \ Close the current JPEG file, which was opened by `jpeg-open`.
   \
-  \ See: `jpeg-size`.
+  \ See: `jpeg-size`, `png-close`.
   \
   \ }doc
 
@@ -83,6 +83,8 @@ public
   \
   \ Return the size _width height_ of the current JPEG file, which was
   \ opened by `jpeg-open`.
+  \
+  \ See: `png-size`.
   \
   \ }doc
 
@@ -131,9 +133,9 @@ require ./default-of.fs
   dup 1+ c@ dup . ." marker: "
   case \ marker id
     0xc0 of ." frame" dup jpeg-size. jpeg-header. endof
-    0xc1 of ." unknown (frame?)" dup jpeg-size. jpeg-header. endof \ xxx debug 2007-10-19
+    0xc1 of ." unknown (frame?)" dup jpeg-size. jpeg-header. endof
     0xc2 of ." unknown (frame?)" dup jpeg-size. jpeg-header. endof
-    0xc3 of ." unknown (frame?)" dup jpeg-size. jpeg-header. endof \ xxx debug 2007-10-19
+    0xc3 of ." unknown (frame?)" dup jpeg-size. jpeg-header. endof
     0xc4 of ." define huffman table" jpeg-header. endof
     \ from 0xe0 to 0xef are reserved for applications:
     0xe0 of ." jfif" jpeg-header. endof
@@ -147,7 +149,8 @@ require ./default-of.fs
   endcase ;
   \ Identify and show a new JPEG header.
   \ ca = address of the JPEG marker
-  \ +n = byte offset to the next marker, or 0 if the marker found was the end of image
+  \ +n = byte offset to the next marker,
+  \      or 0 if the marker found was the end of image
   \
   \ XXX TODO -- better name
 
