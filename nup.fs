@@ -3,9 +3,19 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Author: Marcos Cruz (programandala.net), 2014, 2017
+
 \ ==============================================================
 
 : nup ( x1 x2 -- x1 x1 x2 ) over swap ;
+
+  \ doc{
+  \
+  \ nup ( x1 x2 -- x1 x1 x2 )
+  \
+  \ Duplicate the second stack item _x1_.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Benchmarks
@@ -44,3 +54,5 @@ defer nupx
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style.
+\
+\ 2017-10-25: Improve documentation.

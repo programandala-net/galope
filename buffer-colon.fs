@@ -9,7 +9,17 @@
 
 [undefined] buffer: [if]
 
-: buffer: ( u "name" -- ; -- a ) create allot ;
+: buffer: ( u "name" -- ) create allot ;
+
+  \ doc{
+  \
+  \ buffer: ( u "name" -- )
+  \
+  \ Forth-2012's ``buffer:``.  This module is deprecated: If
+  \ ``buffer:`` is already defined in the Forth system, this module
+  \ does nothing.
+  \
+  \ }doc
 
 [then]
 
@@ -26,3 +36,5 @@
 \
 \ 2017-08-17: Update change log layout. Update header. Update code
 \ style.
+\
+\ 2017-10-25: Improve documentation.

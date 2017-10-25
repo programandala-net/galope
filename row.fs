@@ -17,7 +17,7 @@ require ./xy.fs
   \
   \ Return the current row _u_ (Y coordinate).
   \
-  \ See: `column`, `xy`.
+  \ See: `column`, `xy`, `last-row`.
   \
   \ }doc
 
