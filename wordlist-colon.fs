@@ -4,7 +4,7 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author:
-\   Marcos Cruz (programandala.net), 2017
+\   Marcos Cruz (programandala.net), 2017.
 
 \ Credit:
 \   Idea taken from:
@@ -63,3 +63,5 @@ false [if]
 \ (http://forth.minimaltype.com/packages.html).
 \
 \ 2017-08-17: Rewrite, much simpler. Document.
+\
+\ 2017-10-25: Update header format.

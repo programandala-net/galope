@@ -7,7 +7,7 @@
 \   Julian Fondren, 2016.
 \   http://forth.minimaltype.com/packages.html
 \ Adapted to Galope:
-\   Marcos Cruz (programandala.net), 2017
+\   Marcos Cruz (programandala.net), 2017.
 
 \ ==============================================================
 
@@ -41,3 +41,5 @@
 \
 \ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
 \ `{` instead of `{:` and requiring `n>r` if needed.
+\
+\ 2017-10-25: Update header format.

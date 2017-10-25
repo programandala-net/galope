@@ -3,11 +3,8 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author:
-\   Wil Baden
-\   From ToolBelt 2002
-\ Adapted to Galope:
-\   Marcos Cruz (programandala.net), 2012, 2017
+\ Author: Wil Baden, from ToolBelt 2002.
+\ Adapted to Galope: Marcos Cruz (programandala.net), 2012, 2017.
 
 \ ==============================================================
 
@@ -41,3 +38,5 @@ require ./possibly.fs
 \ 2017-08-17: Update change log and header layout.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-10-25: Update header format.
