@@ -64,7 +64,7 @@ require ./wordlist-colon.fs \ `wordlist:`
   \ Credit: ``package`` comes from SwiftForth. Versions for Gforth and
   \ other Forth systems were written by Julian Fondren.
 
-  \ See: `public`, `private`, `end-package`.
+  \ See: `public`, `private`, `end-package`, `module:`, `:module`.
   \
   \ }doc
 
@@ -118,3 +118,5 @@ require ./wordlist-colon.fs \ `wordlist:`
 \ 2017-08-16: Start.
 \
 \ 2017-08-17: Document. Improve credits.
+\
+\ 2017-10-25: Improve documentation.
