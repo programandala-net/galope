@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2017
 
 \ ==============================================================
 
@@ -22,12 +22,12 @@ public
 
 : (heredoc) ( ca1 len1 "text<name>" -- ca2 len2 )
   /heredoc $!  s" "
-  begin   parse-name dup
-    if    2dup /heredoc? dup >r
-          if  2drop  else  s+ s"  " s+  then  r>
-    else  2drop refill 0= dup abort" Missing final heredoc's delimiter"
+  begin  parse-name dup
+    if   2dup /heredoc? dup >r
+         if  2drop  else  s+ s"  " s+  then  r>
+    else 2drop refill 0= dup abort" Missing final heredoc's delimiter"
     then
-  until   -trailing ;
+  until  -trailing ;
 
   \ doc{
   \
@@ -55,7 +55,6 @@ public
   \ characters _ccc_.
   \
   \ ``heredoc`` was inspired by PHP's homonymous notation.
-  \
   \
   \ Usage examples:
 
@@ -105,3 +104,5 @@ end-package
 \ 2017-08-17: Update stack notation. Document.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-10-25: Update minor layout details.

@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017
 
 \ ==============================================================
 
@@ -15,11 +15,28 @@ require ./buffer-colon.fs
   \ Convert an ASCII char to a string.
 [then]
 
-: c>str  ( c -- ca len )
-  1 allocate throw  tuck c! 1  ;
-  \ Convert an ASCII char to a string.
+: c>str ( c -- ca len )
+  1 allocate throw tuck c! 1 ;
+
+  \ doc{
+  \
+  \ c>str ( c -- ca len )
+  \
+  \ Convert a single-byte character _c_ to a string _ca len_
+  \ in data space allocated by ``allocate``. _ca_ is the aligned
+  \ address where _c_ is stored, and _len_ is 1.
+  \
+  \ }doc
 
 ' c>str alias c>s  \ deprecated name
+
+  \ doc{
+  \
+  \ c>s ( c -- ca len )
+  \
+  \ Old deprecated name of `c>str`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -38,3 +55,5 @@ require ./buffer-colon.fs
 \ 2015-10-15: Renamed the file.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-10-25: Improve documentation.

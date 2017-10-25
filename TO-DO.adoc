@@ -133,13 +133,11 @@ Replace underscore with hyphens in the `sb` module.
 Add Gforth-specific words which have an alternative definition in
 standard Forth.
 
-== 2017-07-16, 2017-08-17, 2017-08-20
+== 2017-07-16, 2017-08-17, 2017-08-20, 2017-10-25
 
-Deprecate `--` and `++`; use `1-!` and `1+!` instead.
-
-Deprecate `?--` and `?++`; use `?1-!` and `?1+!` instead.
-
-Rename `decrement` to `?1-!`
+- Deprecate `--` and `++`; use `1-!` and `1+!` instead.
+- Rename `decrement` to `?1-!`.
+- Write `?1+!`.
 
 == 2017-08-14
 
@@ -290,3 +288,17 @@ Hans Bezemer
 
 - Move `@le` from <png.fs> to its own module, with a comus name.
 - Move `16@` from <jpeg.fs> to its own module, with a comus name.
+- Rename `@++` `@+` and `!++` `!+`.
+- Rename `c@++` `c@+` and `c!++` `c!+`.
+
+Alternative from
+<https://groups.google.com/d/msg/comp.lang.forth/x4OtT2kSUqo/JqylkA9pZgoJ>:
+
+----
+: !+  ( n addr -- addr' )   dup cell+ -rot ! ;
+: @+  ( addr -- n addr' )   dup @ swap cell+ ;
+: c!+ ( n addr -- addr' )   dup 1+ -rot c! ;
+: c@+ ( addr -- n addr' )   dup c@ swap 1+ ; 
+----
+
+Deprecate <stream_bs.fs>, which was superseded by <heredoc.fs>.
