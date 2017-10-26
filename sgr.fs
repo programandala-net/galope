@@ -453,7 +453,7 @@ synonym sgr trm+set-attributes
   \
   \ Set _n_ attributes.
   \
-  \ ``sgr`` (Select Graphic Rendition) is a synonym of `
+  \ ``sgr`` (Select Graphic Rendition) is a synonym of
   \ ``trm+set-attributes``, found in the trm module of Forth
   \ Foundation Library.
   \
@@ -468,3 +468,5 @@ synonym sgr trm+set-attributes
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-10-26: Fix markup in documentation.

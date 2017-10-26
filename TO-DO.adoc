@@ -303,3 +303,8 @@ Alternative from
 
 - Deprecate <stream_bs.fs>, which was superseded by <heredoc.fs>.
 - Finish, update, rename words of <queue.fs>.
+
+== 2017-10-26
+
+- Rename `char-count`, `instr`, `instr?`.
+- Add `:variable`.

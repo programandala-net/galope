@@ -11,7 +11,6 @@
   bounds ?do
     dup i c@ = ?dup if unloop nip exit then
   loop drop false ;
-  \ Is char c in string ca len?
 
   \ doc{
   \
@@ -20,7 +19,7 @@
   \ Is char _c_ in string _ca len_? If so, return _true_. Otherwise
   \ return _false_
   \
-  \ See: `instr`, `contains?`, `hunt`.
+  \ See: `instr`, `contains?`, `hunt`, `char-count`, `char-replaced`.
   \
   \ }doc
 
@@ -35,3 +34,5 @@
 \ style and stack notation.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-10-26: Improve documentation.

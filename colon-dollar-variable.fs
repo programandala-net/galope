@@ -1,5 +1,4 @@
 \ galope/colon-dollar-variable.fs
-\ String variable
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,8 +10,16 @@
 require ./dollar-variable.fs
 
 : :$variable ( ca len -- ) nextname $variable ;
-  \ Create a dynamic string '$variable' with the given name.
-  \ ca len = name of the new variable
+
+  \ doc{
+  \
+  \ :$variable ( ca len -- )
+  \
+  \ Create a Gforth's dynamic string variable with name _ca len_.
+  \
+  \ See: `$variable`, `:svariable`, `:create`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -20,3 +27,5 @@ require ./dollar-variable.fs
 \ 2013-12-01 Added.
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-10-26: Improve documentation.

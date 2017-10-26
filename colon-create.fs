@@ -7,11 +7,17 @@
 
 \ ==============================================================
 
-: :create  ( ca len -- ) nextname create ;
-  \ Create a 'create' word with the given name.
-  \ ca len = name of the new word
+: :create ( ca len -- ) nextname create ;
 
-  \ XXX TODO -- Rename `created`.
+  \ doc{
+  \
+  \ :create ( ca len -- )
+  \
+  \ Create a ``create`` word with name _ca len_.
+  \
+  \ See: `:constant`, `:svariable`, `:$variable`, `:alias`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -20,3 +26,5 @@
 \ (http://programandala.net/en.program.fendo).
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-10-26: Improve documentation.

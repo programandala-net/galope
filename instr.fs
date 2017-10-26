@@ -24,7 +24,7 @@
   \ Is char _c_ in string _ca len_? If so, return its position _n_ and
   \ _true_. Otherwise return _false_
   \
-  \ See: `instr?`, `contains?`, `hunt`.
+  \ See: `instr?`, `contains?`, `hunt`, `char-count`, `char-replaced`.
   \
   \ }doc
 
@@ -36,3 +36,5 @@
 \ 2017-08-17: Update change log layout. Update header.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-10-26: Improve documentation.
