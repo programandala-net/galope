@@ -3,25 +3,22 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Code from Brad Nelson's Literate Forth:
+\ http://bradn123.github.io/literateforth/out/literate_0003.html
+
 \ ==============================================================
 
-false [if]  \ first version, deprecated
+: 3dup ( x1 x2 x3 -- x1 x2 x3 x1 x2 x3 ) dup 2over rot ;
 
-  \ Taken from ToolBelt 2002 by Wil Baden.
-
-  require third.fs
-
-  : 3dup ( x1 x2 x3 -- x1 x2 x3 x1 x2 x3 ) third third third ;
-    \  Copy top three elements on the stack onto top of stack.
-
-[else]
-
-  \ Taken from Brad Nelson's Literate Forth
-  \ http://bradn123.github.io/literateforth/out/literate_0003.html
-
-  : 3dup ( x1 x2 x3 -- x1 x2 x3 x1 x2 x3 ) dup 2over rot ;
-
-[then]
+  \ doc{
+  \
+  \ 3dup ( x1 x2 x3 -- x1 x2 x3 x1 x2 x3 )
+  \
+  \ Duplicate _x1 x2 x3_.
+  \
+  \ See: `3drop`, `third`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -32,3 +29,6 @@ false [if]  \ first version, deprecated
 \
 \ 2017-08-17: Update change log layout. Update header and source
 \ style.
+\
+\ 2017-10-26: Remove unused version by Wil Baden.  Improve
+\ documentation.
