@@ -1,19 +1,37 @@
 \ galope/svariable.fs
-\ `svariable`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ By Marcos Cruz (programandala.net), 2012, 2013, 2014, 2016.
+\ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2016,
+\ 2017.
 
 \ ==============================================================
 
 require ./slash-counted-string.fs
 
-: svariable  ( "name" -- )
+: svariable ( "name" -- )
   create 0 c, /counted-string allot align  ;
+
+  \ doc{
+  \
+  \ svariable ( "name" -- )
+  \
   \ Create a string variable _name_ which will return the address of
-  \ its contents, as a counted string.
+  \ its contents, stored in data space, as a counted string. The
+  \ maximum length of the string is `/counted-string`.
+  \
+  \ Usage example: ----
+
+  \ svariable my-string
+  \ s" Hello" my-string place
+  \ my-string count type
+
+  \ ----
+  \
+  \ See: `:svariable`, `$variable`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -27,3 +45,5 @@ require ./slash-counted-string.fs
 \ 2016-06-26: Update style and header.
 \
 \ 2016-07-11: Update source layout and comment.
+\
+\ 2017-10-26: Improve documentation.

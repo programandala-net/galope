@@ -1,5 +1,4 @@
 \ galope/colon-alias.fs
-\ :alias
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,10 +7,17 @@
 
 \ ==============================================================
 
-: :alias  ( xt ca len -- ) nextname alias ;
-  \ Create an alias with the given name for the given xt.
-  \ ca len = name of the new alias
-  \ xt = execution token of the original word
+: :alias ( xt ca len -- ) nextname alias ;
+
+  \ doc{
+  \
+  \ :alias ( xt ca len -- )
+  \
+  \ Create an alias of _xt_ with name _ca len_.
+  \
+  \ See: `:create`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -20,3 +26,5 @@
 \ (http://programandala.net/en.program.fendo).
 \
 \ 2017-08-20: Update change log layout.
+\
+\ 2017-10-26: Improve documentation.

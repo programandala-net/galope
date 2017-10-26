@@ -1,5 +1,4 @@
 \ galope/colon-svariable.fs
-\ String variable
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,8 +10,25 @@
 require ./svariable.fs
 
 : :svariable ( ca len -- ) nextname svariable ;
-  \ Create a string variable with the given name.
-  \ ca len = name of the new variable
+
+  \ doc{
+  \
+  \ :svariable ( ca len -- )
+  \
+  \ Create a string variable with name _ca len_.
+  \
+  \ Usage example:
+  \ ----
+
+  \ s" my-string" :svariable
+  \ s" Hello" my-string place
+  \ my-string count type
+
+  \ ----
+  \
+  \ See: `svariable`, `:$variable`, `:create`, `:alias`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -21,3 +37,5 @@ require ./svariable.fs
 \ (http://programandala.net/en.program.fendo)
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-10-26: Improve documentation.
