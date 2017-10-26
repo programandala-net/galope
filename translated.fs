@@ -8,94 +8,138 @@
 
 \ ==============================================================
 
-require ./paren-star.fs  \ '(*'
 require ./package.fs
 
-require ffl/str.fs
+require ffl/str.fs \ str module of Forth Foundation Library
 
 package galope-translated
 
 str-create translated-str
+
 variable depth0
+
 4 constant cells/translation
+
 cells/translation cells constant /translation
-: translations_init  ( -- a )
-  \ Init tasks before the definition of the translation table.
-  here 0 ,  depth depth0 !
-  ;
-: #translations  ( -- n )
-  \ Number of translations defined in the table.
-  depth depth0 @ - cells/translation /
-  ;
-: translations,  ( ca'1 len'1 ... ca'n len'n n -- )
-  \ Compile the translations into the table.
-  \ n = number of translations
-  0 ?do  2, 2,  loop
-  ;
 
-public
+: init-translations ( -- a )
+  here 0 , depth depth0 ! ;
+  \ Init a translation table before being defined, returning
+  \ its address _a_, which will hold the number of translations
+  \ that will be stored in the table.
 
-: translations:  ( "name" -- a1 )
-  \ Start the definition of a translation table.
-  \ a1 = data field address of the translation table,
-  \   that will hold the number of translations.
-  \ a2 = address of the first translation in the table.
-  \ n = number of translations.
-  create  translations_init
-  does>  ( -- a2 n ) ( dfa ) dup @ swap cell+ swap
-  ;
-: /translations  ( dfa ca'1 len'1 ... ca'n len'n -- n )
-  \ End the definition of a translation table.
-  \ n = number of translations compiled
-  #translations dup >r translations,  r@ swap ! r>
-  ;
-: ;translations  ( dfa ca'1 len'1 ... ca'n len'n -- )
-  \ End the definition of a translation table.
-  /translations drop
-  ;
-false [if]  \ xxx not used
-: translation@+  ( a -- a' ca1 len1 ca2 len2 )
+: #translations ( -- n )
+  depth depth0 @ - cells/translation / ;
+  \ Return number _n_ of translations defined in the current
+  \ translation table.
+
+: translations, ( ca#1 len#1 .. ca#n len#n n -- )
+  0 ?do 2, 2, loop ;
+  \ Compile the _n_ translations _ca#1 len#1 .. ca#n len#n_ into the
+  \ current translation table.
+
+false [if]  \ XXX -- Not used
+
+: translation@+ ( a -- a' ca1 len1 ca2 len2 )
+  dup 2@ 2>r
+  2 cells + dup 2@ 2>r
+  /translation +
+  2r> 2r> ;
   \ a = address of the current translation
   \ a' = address of the next translation
   \ ca1 len1 = original string
   \ ca2 len2 = translated string
-  dup 2@ 2>r  2 cells + dup 2@ 2>r  /translation +  2r> 2r>
-  ;
+
 [then]
-: translation@  ( a n -- ca1 len1 ca2 len2 )
-  \ Fetch a translation from a translation table.
-  \ a = address of the translation table
-  \ n = number of the required translation
-  \ ca1 len1 = translated string
-  \ ca2 len2 = original string
-  /translation * + dup 2@ rot 2 cells + 2@
-  ;
-: translated  ( ca len a n -- ca' len' )
-  \ Translate a string with a translation table.
-  \ ca len = string to translate
-  \ a = address of the translation table
-  \ n = number of the required translation
-  \ ca' len' = translated string
+
+: translation@ ( a n -- ca1 len1 ca2 len2 )
+  /translation * + dup 2@ rot 2 cells + 2@ ;
+  \ Fetch a translation _n_ from a translation table _a_, returning
+  \ the translated string _ca1 len1_ and its corresponding original
+  \ string _ca2 len2_.
+
+public
+
+: translations: ( "name" -- a1 )
+  create init-translations
+  does> ( -- a2 n ) ( dfa ) dup @ swap cell+ swap ;
+
+  \ doc{
+  \
+  \ translations: ( "name" -- a1 )
+  \
+  \ Start the definition of a translation table, to be used by
+  \ `translated`, leaving address _a_ of the translation table, which
+  \ will hold the number of translations.
+  \
+  \ Later execution of _name_ will leave the translation identifier
+  \ _a2 n_ on the stack, being _a2_ the address of the first
+  \ translation and _n_ the number of translations.
+  \
+  \ See: `;translations`, `/translations`.
+  \
+  \ }doc
+
+: /translations ( a ca#1 len#1 .. ca#n len#n -- n )
+  #translations dup >r translations, r@ swap ! r> ;
+
+  \ doc{
+  \
+  \ /translations ( a ca#1 len#1 .. ca#n len#n -- n )
+  \
+  \ End the definition of a translation table _a_ started by
+  \ `translations:`, compiling translations _ca#1 len#1 .. ca#n
+  \ len#n_. Return the number _n_ of compiled translations.
+  \
+  \ See: `;translations`, `translated`.
+  \
+  \ }doc
+
+: ;translations ( a ca#1 len#1 .. ca#n len#n -- )
+  /translations drop ;
+
+  \ doc{
+  \
+  \ ;translations ( a ca#1 len#1 .. ca#n len#n -- )
+  \
+  \ End the definition of a translation table _a_ started by
+  \ `translations:`, compiling translations _ca#1 len#1 .. ca#n
+  \ len#n_.
+  \
+  \ See: `/translations`, `translated`.
+  \
+  \ }doc
+
+: translated ( ca len a n -- ca' len' )
   2swap translated-str str-set
-  0 ?do  dup i translation@ translated-str str-replace  loop  drop
-  translated-str str-get
-  ;
+  0 ?do dup i translation@ translated-str str-replace loop drop
+  translated-str str-get ;
+
+  \ doc{
+  \
+  \ translated ( ca1 len1 a n -- ca2 len2 )
+  \
+  \ Translate a string _ca1 len2_ using a translation table identified
+  \ by _a n_ and previously defined by `translations:`, resulting the
+  \ translated string _ca2 len2_.
+  \
+  \ Usage example:
+  \
+  \ ----
+
+  \ translations: table0
+  \   s" from3" s" to3"  \ last translation to be done
+  \   s" from2" s" to2"
+  \   s" from1" s" to1"  \ first translation to be done
+  \ ;translations
+
+  \ s" bla from2 bla from3 bla from1" table0 translated
+
+  \ ----
+  \
+  \ }doc
 
 end-package
-
-false [if]
-
-\ Usage example:
-
-translations: table0
-  s" from3" s" to3"  \ last translation to be done
-  s" from2" s" to2"
-  s" from1" s" to1"  \ first translation to be done
-;translations
-
-s" bla blafrom2! bla bla from3 bla bla from1" table0 translated
-
-[then]
 
 \ ==============================================================
 \ Change log
@@ -107,3 +151,6 @@ s" bla blafrom2! bla bla from3 bla bla from1" table0 translated
 \ 2017-08-17: Update change log layout. Update header.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-10-26: Update source style. Reorganize public and private
+\ words. Improve documentation.

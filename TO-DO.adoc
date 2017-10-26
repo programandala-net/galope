@@ -308,3 +308,5 @@ Alternative from
 
 - Rename `char-count`, `instr`, `instr?`.
 - Add `:variable`.
+- Rewrite <translated.fs> with Gforth's dynamic strings instead of
+  FFL.
