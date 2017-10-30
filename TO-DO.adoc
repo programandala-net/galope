@@ -313,4 +313,5 @@ Alternative from
 
 == 2017-10-30
 
-- Check `$!,`.
+- Add cross-references to "dollar" words, ie. dynamic string words.
+
