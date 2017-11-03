@@ -1,4 +1,4 @@
-\ galope/long_strings.fs
+\ galope/l-s-comma.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -12,21 +12,9 @@
 
 \ ==============================================================
 
-: lplace ( a1 len1 a2 -- )
-  2dup ! cell+ swap chars move ;
+require ./l-place.fs
 
-  \ doc{
-  \
-  \ lplace ( a1 len1 a2 -- )
-  \
-  \ Place the long string _a1 len1_ at _a2_.
-  \
-  \ See: `ls,`, `lcount`, `lsconstant`.
-  \
-  \ }doc
-
-: ls, ( a len -- )
-  here over chars cell+ allot lplace align ;
+: ls, ( a len -- ) here over chars cell+ allot lplace align ;
 
   \ doc{
   \
@@ -40,37 +28,11 @@
   \
   \ }doc
 
-: lcount ( a1 -- a2 len )
-  dup cell+ swap @ ;
-
-  \ doc{
-  \
-  \ lcount ( a1 -- a2 len )
-  \
-  \ Return the long string _a2 len_ for the counted long string stored
-  \ at _a1_.
-  \
-  \ See: `ls,`, `lplace`, `lsconstant`.
-  \
-  \ }doc
-
-: lsconstant (  a len "name" -- )
-  create ls,
-  does> ( -- a2 len ) ( dfa ) lcount ;
-
-  \ doc{
-  \
-  \ lsconstant (  a len "name" -- )
-  \
-  \ Store the long string _a len_ in data space.  Create a definition
-  \ _name_ that will return _a len_.
-  \
-  \ See: `ls,`, `lcount`, `lplace`.
-  \
-  \ }doc
-
 \ ==============================================================
 \ Change log
+
+\ ----------------------------------------------
+\ <long_strings.fs>
 
 \ 2012-04-20 First version: 'lplace', 'ls,', 'lcount' and
 \ 'lsconstant'.
@@ -79,5 +41,8 @@
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style and stack notation.
-\
-\ 2017-11-03: Improve documentation.
+
+\ ----------------------------------------------
+\ <l-place.fs>
+
+\ 2017-11-03: Improve documentation. Extract from <long_strings.fs>.

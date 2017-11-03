@@ -321,4 +321,3 @@ Alternative from
 - Add to long strings support: `ls"`, `lsliteral` and an alternative
   common-heap version of `lsconstant`, configurable with a deferred
   word.
-- Split <long_strings.fs>: one module for every word.
