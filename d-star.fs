@@ -1,4 +1,5 @@
 \ galope/d-star.fs
+
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
@@ -14,7 +15,8 @@ true [if]
 \ Date: Tue, 26 Nov 2013 16:13:19 GMT
 \ Message-ID: <2013Nov26.171319@mips.complang.tuwien.ac.at>
 
-: d* { al ah bl bh -- cl ch }
+: d* ( ud1|d1 ud2|d2 -- ud3|d3 )
+  {: al ah bl bh -- cl ch :}
   al bh * ah bl * + 0 swap
   al bl um* d+ ;
   \ (2^m*ah+al)+(2^m*bh+bl) =
@@ -29,10 +31,18 @@ true [if]
 \ Date: Wed, 27 Nov 2013 22:34:06 +0100
 \ Message-Id: <52966559$0$15971$e4fe514c@news2.news.xs4all.nl>
 
-: d*  ( d1 d2 -- d3 )
+: d* ( ud1|d1 ud2|d2 -- ud3|d3 )
   >r swap >r over over um* rot r> * + rot r> * + ;
 
 [then]
+
+  \ doc{
+  \
+  \ d* ( ud1|d1 ud2|d2 -- ud3|d3 )
+  \
+  \ Multiply _ud1|d1_ by _ud2|d2_ giving the product _ud3|d3_.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -41,3 +51,6 @@ true [if]
 \
 \ 2017-08-17: Update change log layout and source style. Update
 \ header.
+\
+\ 2017-11-03: Fix stack notation with unsigned numbers. Improve
+\ documentation.

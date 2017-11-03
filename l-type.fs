@@ -14,7 +14,7 @@
 \ You can redistribute this file and/or modify it under
 \ the terms of the GNU General Public License
 
-\ Last modified 201710242017
+\ Last modified 201711032231
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -295,6 +295,9 @@ end-package
 \ ==============================================================
 \ Change log
 
+\ ----------------------------------------------
+\ Old version, as <print.fs>
+
 \ 2012-04-17: Words renamed and factorized. Adapted to Gforth.
 \
 \ 2012-04-18: Added 'module.fs'. Name fixed. Added 'xy.fs'.  First
@@ -340,7 +343,10 @@ end-package
 \ 2015-10-13: Updated after the latest renamings in Galope.
 \
 \ 2015-10-16: Fixed some comments.
-\
+
+\ ----------------------------------------------
+\ Current version, as <l-type.fs>
+
 \ 2016-06-22: Forked from the `print` module, in order to improve it
 \ and replace it gradually, without breaking existing code. Rename:
 \ Replace underscores with hyphens. New main interface words: `l-type`
@@ -369,3 +375,5 @@ end-package
 \ `current-print-width` `width`. Rename `too-long?` `unfit?`.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-03: Improve change log.

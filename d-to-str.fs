@@ -7,7 +7,15 @@
 
 \ ==============================================================
 
-: d>str ( ud -- ca len ) tuck dabs <# #s rot sign #> ;
+: d>str ( d -- ca len ) tuck dabs <# #s rot sign #> ;
+
+  \ doc{
+  \
+  \ d>str ( d -- ca len )
+  \
+  \ Convert _d_ to string _ca len_.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -18,3 +26,5 @@
 \
 \ 2017-08-17: Update change log layout and source style. Remove
 \ optional definition of `tuck`. Update header.
+\
+\ 2017-11-03: Fix stack notation. Improve documentation.
