@@ -36,6 +36,6 @@
 \ `forth-wordlist`, but in Gforth 0.7.9. it's defined in the `c-lib`
 \ vocabulary. This module solves it.
 \
-\ 2017-08-20: `basename` been moved back to `forth-wordlist` in Gforth
-\ 0.7.9, which is under development. Therefore, an `[undefined]` check
-\ is added here. Improve documentation.
+\ 2017-08-20: `basename` has been moved back to `forth-wordlist` in
+\ Gforth 0.7.9, which is under development. Therefore, an
+\ `[undefined]` check is added here. Improve documentation.

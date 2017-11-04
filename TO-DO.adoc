@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-03
+:revdate: 2017-11-04
 
 == 2012-09-14
 
@@ -321,3 +321,8 @@ Alternative from
 - Add to long strings support: `ls"`, `lsliteral` and an alternative
   common-heap version of `lsconstant`, configurable with a deferred
   word.
+- Fix module names after the general convention, eg. rename
+  <svariable.fs> <s-variable.fs>.
+- Extract `string-prefix?` from `-prefix`.
+- Remove `basename` (already in Gforth 0.7.9) and `-path` (equivalent
+  to `basename`.
