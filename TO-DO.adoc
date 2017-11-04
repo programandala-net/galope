@@ -324,5 +324,4 @@ Alternative from
 - Fix module names after the general convention, eg. rename
   <svariable.fs> <s-variable.fs>.
 - Extract `string-prefix?` from `-prefix`.
-- Remove `basename` (already in Gforth 0.7.9) and `-path` (equivalent
-  to `basename`.
+- Remove `basename` (already in Gforth 0.7.9).
