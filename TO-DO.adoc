@@ -321,7 +321,10 @@ Alternative from
 - Add to long strings support: `ls"`, `lsliteral` and an alternative
   common-heap version of `lsconstant`, configurable with a deferred
   word.
-- Fix module names after the general convention, eg. rename
-  <svariable.fs> <s-variable.fs>.
 - Extract `string-prefix?` from `-prefix`.
 - Remove `basename` (already in Gforth 0.7.9).
+
+== 2017-11-04
+
+- Remov <sconstant.fs> and <svariable.fs> after the projects have been
+  adapted to the new module names.
