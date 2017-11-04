@@ -1,5 +1,4 @@
 \ galope/minus-extension.fs
-\ -extension
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -16,7 +15,18 @@ require ./minus-bounds.fs  \ '-bounds'
     i c@ '.' = if drop i leave then
   -1 +loop ( ca1 ca1' ) \ final raw return values
   over - ;
-  \ Remove the file extension from a filename.
+
+  \ doc{
+  \
+  \ -extension ( ca1 len1 -- ca1 len2 | ca1 len1 )
+  \
+  \ Remove the file extension from the filename identified by the
+  \ character string _ca1 len1_.  The file extension is the substring
+  \ that start at the last '.' of the string.
+  \
+  \ See: `-path`, `-suffix`, `-bounds`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -27,3 +37,5 @@ require ./minus-bounds.fs  \ '-bounds'
 \ 2017-02-27: Update code style.
 \
 \ 2017-08-17: Update change log layout. Update header.
+\
+\ 2017-11-04: Improve documentation.

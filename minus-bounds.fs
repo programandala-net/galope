@@ -1,5 +1,4 @@
 \ galope/minus-bounds.fs
-\ -bounds
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,17 +7,27 @@
 
 \ ==============================================================
 
-: -bounds  ( ca1 len -- ca2 ca1 )
-  2dup + 1- nip  \ This works with '-1 +loop'
-  \  over 1- >r + 1- r> swap  \ This variant works with '1 -loop'
-  ;
-  \ Convert an address and length to the parameters needed by a
-  \ "do ... -1 +loop" in order to examine that memory zone in
-  \ reverse order.
-  \ len = length in address units
+: -bounds ( ca1 len1 -- ca1 ca2 ) 2dup + 1- nip ;
+
+  \ doc{
   \
-  \ XXX Note: "do ... 1 -loop" does not work the same way in Gforth
-  \ and can not be used with this '-bounds'.
+  \ -bounds ( ca1 len1 -- ca1 ca2 )
+  \
+  \ Convert character string _ca1 len1_ to the parameters _ca1 ca2_
+  \ needed by a ``do ... -1 +loop``, being _ca2_ the address of the
+  \ last character of the string, in order to examine that string in
+  \ reverse order, character by character.
+  \
+  \ See: `-cell-bounds`.
+  \
+  \ }doc
+
+  \ XXX OLD
+  \
+  \  over 1- >r + 1- r> swap  \ This variant works with '1 -loop'
+  \
+  \ `do ... 1 -loop` does not work the same way in Gforth and can not
+  \ be used with this '-bounds'.
 
 \ ==============================================================
 \ Change log
@@ -29,3 +38,5 @@
 \ 2014-11-09: New: Comment about '-loop' in Gforth.
 \
 \ 2017-08-17: Update change log layout, header and source style.
+\
+\ 2017-11-04: Fix stack comment. Improve documentation.

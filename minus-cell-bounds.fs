@@ -1,5 +1,4 @@
 \ galope/minus-cell-bounds.fs
-\ -cell-bounds
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -10,11 +9,21 @@
 
 require ./minus-bounds.fs
 
-: -cell-bounds ( a1 len -- a2 a1 ) 1+ -bounds cell - ;
-  \ Convert an address and length to the parameters needed by a
-  \ "do ... cell negate +loop" in order to examine that memory zone in
-  \ reverse order.
-  \ len = length in address units
+: -cell-bounds ( a1 len1 -- a1 a2 ) 1+ -bounds cell - ;
+
+  \ doc{
+  \
+  \ -cell-bounds ( a1 len1 -- a1 a2 )
+  \
+  \ Convert memory zone _a1 len1_, being _len_ the length in address
+  \ units, to the parameters _a1 a2_ needed by a ``do ... cell negate
+  \ +loop``, being _a2_ the address of the last cell of the memory
+  \ zone, in order to examine that string in reverse order, cell by
+  \ cell.
+  \
+  \ See: `-bounds`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -23,3 +32,5 @@ require ./minus-bounds.fs
 \ required to explore a cells table backwards.
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-11-03: Improve documentation.
