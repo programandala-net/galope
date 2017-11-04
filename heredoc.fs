@@ -25,7 +25,7 @@ public
   begin  parse-name dup
     if   2dup /heredoc? dup >r
          if  2drop  else  s+ s"  " s+  then  r>
-    else 2drop refill 0= dup abort" Missing final heredoc's delimiter"
+    else 2drop refill 0= dup abort" Missing heredoc's final delimiter"
     then
   until  -trailing ;
 
@@ -37,8 +37,28 @@ public
   \ string _ca2 len2_ that describes the string consisting of the
   \ characters _ccc_.
   \
-  \ ``(heredoc)`` is a factor of `heredoc`. See `heredoc` for a usage
-  \ example.
+  \ Usage examples:
+  \
+  \ ----
+
+  \ : {{  s" }}" (heredoc)  ;
+  \
+  \ {{ bla bla bla
+  \   bla bla bla
+  \   bla bla bla }} type
+  \
+  \ :noname ( "ccc" -- ca len ) s\" \"" (heredoc) save-mem ;
+  \ :noname ( "ccc" -- )  s\" \"" (heredoc) postpone sliteral ;
+  \ interpret/compile: txt"
+
+  \ txt" bla bla bla
+  \ bla bla " type
+
+  \ ----
+
+  \ ``(heredoc)`` is a factor of `heredoc`.
+  \
+  \ See: `heredoc`.
   \
   \ }doc
 
@@ -57,30 +77,19 @@ public
   \ ``heredoc`` was inspired by PHP's homonymous notation.
   \
   \ Usage examples:
-
+  \
   \ ----
+
   \ ' heredoc alias <<<
   \
   \ <<< EOT bla bla bla
   \   bla bla bla
   \   bla bla bla
   \   EOT type
-  \
-  \ : {{  s" }}" (heredoc)  ;
-  \
-  \ {{ bla bla bla
-  \   bla bla bla
-  \   bla bla bla }} type
-  \
-  \ :noname  s\" \"" (heredoc) save-mem  ;
-  \ :noname  s\" \"" (heredoc) postpone sliteral  ;
-  \ interpret/compile: txt"
 
-  \ txt" bla bla bla
-  \ bla bla " type
   \ ----
-
-  \ See: `"`, `["`, `<"`.
+  \
+  \ See: `(heredoc)`, `"`, `["`, `<"`.
   \
   \ }doc
 
@@ -106,3 +115,5 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-10-25: Update minor layout details.
+\
+\ 2017-11-04: Fix abort message. Improve documentation.
