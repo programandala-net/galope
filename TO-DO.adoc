@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-04
+:revdate: 2017-11-05
 
 == 2012-09-14
 
@@ -326,5 +326,12 @@ Alternative from
 
 == 2017-11-04
 
-- Remov <sconstant.fs> and <svariable.fs> after the projects have been
+- Remove <sconstant.fs> and <svariable.fs> after the projects have been
   adapted to the new module names.
+
+== 2017-11-05
+
+- Review <sarray.fs>. Compare to <strings-colon>. Write an actual
+  `sarray` after `array` and `2array`.  Rename the module <s-array.fs>
+  after the current convention.
+- Rename `strings:` `strings`; rename `/strings` `end-strings`.
