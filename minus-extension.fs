@@ -24,7 +24,7 @@ require ./minus-bounds.fs  \ '-bounds'
   \ character string _ca1 len1_.  The file extension is the substring
   \ that start at the last '.' of the string.
   \
-  \ See: `-path`, `-suffix`, `-bounds`.
+  \ See: `-suffix`, `-bounds`.
   \
   \ }doc
 
