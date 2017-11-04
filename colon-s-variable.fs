@@ -1,4 +1,4 @@
-\ galope/colon-svariable.fs
+\ galope/colon-s-variable.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -7,7 +7,7 @@
 
 \ ==============================================================
 
-require ./svariable.fs
+require ./s-variable.fs
 
 : :svariable ( ca len -- ) nextname svariable ;
 
@@ -39,3 +39,6 @@ require ./svariable.fs
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-10-26: Improve documentation.
+\
+\ 2017-11-04: Rename module after the general convention, ie.
+\ <colon-s-variable.fs>.  Update filename of `svariable`.

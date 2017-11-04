@@ -9,8 +9,8 @@
 \ ==============================================================
 
 require ./package.fs
+require ./s-variable.fs
 require ./sb.fs
-require ./svariable.fs
 
 package galope-stream-bs
 
@@ -57,3 +57,5 @@ end-package
 \ and stack comments notation.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-11-04: Update filename of `svariable`.

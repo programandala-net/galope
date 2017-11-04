@@ -29,8 +29,6 @@
   \
   \ }doc
 
-[then]
-
 \ ==============================================================
 \ Change log
 
@@ -41,3 +39,5 @@
 \ 2017-08-20: `scan-back` has been moved back to `forth-wordlist` in
 \ Gforth 0.7.9, which is under development. Therefore, an
 \ `[undefined]` check is added here. Improve documentation.
+\
+\ 2017-11-04: Remove duplicated `[then]`.
