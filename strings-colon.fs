@@ -32,9 +32,17 @@ public
   \
   \ strings: ( "name" -- a )
   \
-  \ Start the definition of a constant string array, leaving the
-  \ address _a_, which will hold the address of the last string
-  \ compiled by `/strings`.
+  \ Start the definition of a constant string array _name_ with the
+  \ execution semantics defined below, leaving the address _a_, which
+  \ will hold the address of the last string compiled by `/strings`.
+  \
+  \ Execution of _name_:
+  \
+  \ ----
+  \ name ( n -- ca len )
+  \ ----
+  \
+  \ Return character string _ca len_ number _n_.
 
   \ Usage example:
 
@@ -100,3 +108,5 @@ end-package
 \ library.  Improve documentation. Update source style.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-11-05: Improve documentation.

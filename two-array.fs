@@ -26,7 +26,7 @@
   \
   \ Return address _a_ of element _n_.
   \
-  \ See: `2arrayed`, `array`
+  \ See: `2arrayed`, `strings:`, `array`
   \
   \ }doc
 
@@ -37,3 +37,5 @@
 \ (http://programandala.net/en.program.solo_forth.html).
 \
 \ 2017-10-24: Update documentation markup.
+\
+\ 2017-11-05: Improve documentation.

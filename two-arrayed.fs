@@ -57,7 +57,7 @@
 
   \ ----
   \
-  \ See: `2array`, `array`.
+  \ See: `2array`, `strings:`, `array`.
   \
   \ }doc
 
@@ -67,3 +67,5 @@
 \ 2017-08-16: Start.
 \
 \ 2017-10-24: Update documentation markup.
+\
+\ 2017-11-05: Improve documentation.
