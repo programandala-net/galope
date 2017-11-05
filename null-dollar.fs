@@ -1,5 +1,4 @@
 \ galope/null-dollar.fs
-\ `null$`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,7 +7,16 @@
 
 \ ==============================================================
 
-pad 0 2constant null$
+0 0 2constant null$ ( -- ca len )
+
+  \ doc{
+  \
+  \ null$ ( -- ca len )
+  \
+  \ Return an empty (zero-length) character string, with a fake start
+  \ address, which is zero.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -17,3 +25,6 @@ pad 0 2constant null$
 \ (http://programandala.net/en.program.asalto_y_castigo.forth.html).
 \
 \ 2017-08-17: Fix change log title.
+\
+\ 2017-11-05: Use zero as fake address instead of `pad`. Improve
+\ documentation.

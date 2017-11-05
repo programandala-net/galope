@@ -22,12 +22,18 @@ s" gforth" environment? drop s" 0.7.9" str< [if]
   \
   \ $@ ( a -- ca len )
   \
-  \ Return the string _ca len_ stored at a dynamic string variable
-  \ _a_, even if the variable has not been initialized.
+  \ Return the character string _ca len_ stored at Gforth's dynamic
+  \ string variable _a_. If the variable has not been initialized,
+  \ return an empty string.
   \
-  \ ``$@`` is already provided by Gforth. This is an improved
-  \ definition. But Gforth 0.7.9 already includes this improvement.
-  \ Therefore this word is not loaded on Gforth >=0.7.9.
+  \ NOTE: ``$@`` was added to replace the homonymous definition
+  \ provided by Gforth.  Since this feature (returning an empty string
+  \ when the variable is not initialized) was added to Gforth 0.7.9's
+  \ ``$@``, this alternative definition is obsolete.  Therefore
+  \ loading the Galope library module where ``$@`` is defined has no
+  \ effect on older versions of Gforth.
+  \
+  \ See: `$@len`.
   \
   \ }doc
 

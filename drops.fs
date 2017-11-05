@@ -1,16 +1,24 @@
 \ galope/drops.fs
-\ `drops`
-\ Multiple drop
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2016.
+\ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017.
 
 \ ==============================================================
 
-: drops ( x1 ... xn n -- )
-  0 ?do  drop  loop  ;
+: drops ( x#1 ... x#n n -- ) 0 ?do drop loop ;
+
+
+  \ doc{
+  \
+  \ drops ( x#1 ... x#n n -- )
+  \
+  \ Remove _n_ items from the stack.
+  \
+  \ See: `2drops`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -26,3 +34,5 @@
 \ 2016-01-16: Update header and layout.
 \
 \ 2016-07-11: Update header and layout.
+\
+\ 2017-11-05: Improve documentation.

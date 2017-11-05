@@ -1,5 +1,4 @@
 \ galope/dollar-empty.fs
-\ $empty
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,7 +10,17 @@
 require string.fs  \ Gforth's dynamic strings
 
 : $empty ( a -- ) 0 swap $!len ;
-  \ Empty a dynamic string variable.
+
+  \ doc{
+  \
+  \ $empty ( a -- )
+  \
+  \ Empty a Gforth's dynamic string variable, setting its length to
+  \ zero.
+  \
+  \ See: `$variable`, `$!new`
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -19,4 +28,5 @@ require string.fs  \ Gforth's dynamic strings
 \ 2013-11-11 Added.
 \
 \ 2017-08-17: Update change log layout and source style.
-
+\
+\ 2017-11-05: Improve documentation.

@@ -335,3 +335,16 @@ Alternative from
   `sarray` after `array` and `2array`.  Rename the module <s-array.fs>
   after the current convention.
 - Rename `strings:` `strings`; rename `/strings` `end-strings`.
+- Homogenize stack notation of indexes: eg. change "len'n" to "len#n",
+  "ca'2" to "ca#2".
+- Update module names to current convention, eg. "csv" to "c-s-v":
+- Rename `/csv` `split/comma` or something.
+- Rename `/ssv` `split/spaces` or something.
+- Remove `/random/`, which is equivalent to `random-range`.
+- Rename <smove.fs> <s-move.fs>.
+- Deprecate <sb.fs>, superseded by <stringer.fs>.
+- Rename <typecr.fs> <type-c-r.fs>.
+- Rename <rtype.fs> <r-type.fs>.
+- Fix checks of Gforth version: the flag returned by `environment?` is
+  not checked. Eg.  `s" gforth" environment? drop s" 0.7.9" str<
+  [if]`.
