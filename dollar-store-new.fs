@@ -1,5 +1,4 @@
 \ galope/dollar-store-new.fs
-\ $!new
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,7 +10,18 @@
 require string.fs  \ Gforth's dynamic strings
 
 : $!new ( ca len a -- ) dup $off $! ;
-  \ Re-create a dynamic string with the given content.
+
+  \ doc{
+  \
+  \ $!new ( ca len a -- )
+  \
+  \ Re-create a dynamic string _a_ with the given character string _ca
+  \ len_. The data space used by the previous contents of the dynamic
+  \ string is released.
+  \
+  \ See: `$empty`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -21,3 +31,5 @@ require string.fs  \ Gforth's dynamic strings
 \ (http://programandala.net/en.program.fendo.html).
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-11-05: Improve documentation.

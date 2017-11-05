@@ -1,5 +1,4 @@
 \ galope/dollar-fetch-len.fs
-\ Alternative definiton for Gforth's '$@len'
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,17 +7,33 @@
 
 \ ==============================================================
 
-s" gforth" environment? drop s" 0.8" str< [if]
+s" gforth" environment? drop s" 0.7.9" str< [if]
 
-  \ Gforth < 0.8
+  \ Gforth < 0.7.9
 
   require string.fs  \ Gforth's dynamic strings
 
   warnings @  warnings off
 
   : $@len ( a -- len ) @ dup if @ then ;
-    \ Return the length of a dynamic string variable,
-    \ even if it's not initialized.
+
+  \ doc{
+  \
+  \ $@len ( a -- len )
+  \
+  \ Return the length of a Gforth's dynamic string variable _a_. If
+  \ the variable has not been initialized, return zero.
+  \
+  \ NOTE: ``$@len`` was added to replace the homonymous definition
+  \ provided by Gforth.  Since this feature (returning zero when the
+  \ variable is not initialized) was added to Gforth 0.7.9's
+  \ ``$@len``, this alternative definition is obsolete.  Therefore
+  \ loading the Galope library module where ``$@len`` is defined has
+  \ no effect on older versions of Gforth.
+  \
+  \ See: `$@`, `$empty`.
+  \
+  \ }doc
 
   warnings !
 
@@ -32,3 +47,5 @@ s" gforth" environment? drop s" 0.8" str< [if]
 \ 2015-02-11: Gforth 0.8 will work this way, so a check is added.
 \
 \ 2017-08-17: Update change log layout and source style.
+\
+\ 2017-11-05: Check Gforth 0.7.9 instead 0.8.0. Improve documentation.
