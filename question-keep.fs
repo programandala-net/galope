@@ -16,7 +16,7 @@
   \ If _f_ is non-zero, keep the string _ca len_.  Otherwise, empty
   \ it, returning _ca 0_.
   \
-  \ See: `?empty`.
+  \ See: `?empty`, `?nip`, `ifelse`, `2ifelse`.
   \
   \ }doc
 
@@ -31,3 +31,5 @@
 \
 \ 2017-08-14: Simplify, don't use `(?empty)`. Document. Update source
 \ layout and header.
+\
+\ 2017-11-07: Improve documentation.

@@ -15,6 +15,8 @@
   \
   \ If _f_ is zero, do nothing.  Otherwise drop _x_.
   \
+  \ See: `ifelse`, `?keep`.
+  \
   \ }doc
 
 \ ==============================================================
@@ -25,3 +27,5 @@
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-11-04: Fix stack comment. Improve documentation.
+\
+\ 2017-11-07: Improve documentation.

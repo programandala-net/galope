@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-05
+:revdate: 2017-11-07
 
 == 2012-09-14
 
@@ -348,3 +348,10 @@ Alternative from
 - Fix checks of Gforth version: the flag returned by `environment?` is
   not checked. Eg.  `s" gforth" environment? drop s" 0.7.9" str<
   [if]`.
+
+== 2017-11-07
+
+- Extract `^uppercase` from project _Asalto y castigo_ and its variant
+  `capitalized` from project _La pistola de agua_. Create two
+  variants, ASCII and UTF-8, and a deferred word `capitalized` which
+  activates itself at compile time.
