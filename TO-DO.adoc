@@ -367,3 +367,9 @@ Alternative from
 - Improve names of the private words of `xconversions`.
 - Rename and document modules <xbounds.fs>, <xlowercase.fs>, etc.
 - Finish `xtitlecase`.
+- Rename `txt+`. Besides, after the current convention, its module
+  name should be <t-x-t-plus.fs>.
+- Make `xconversions` create named tables in order to define more than
+  one table and change the current one.
+- Rename <smove.fs> <s-move.fs>.
+- Rename `allocate-ss`.

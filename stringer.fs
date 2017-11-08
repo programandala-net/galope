@@ -1,76 +1,184 @@
 \ galope/stringer.fs
-\ Circular string buffer
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017.
 
-\ Description: A configurable circular string buffer that uses the
-\ heap. Related modules: <s-s-quote.fs> and <s-s-plus.fs>.
+\ Description: A configurable circular string buffer.
 
 \ ==============================================================
 
+require ./package.fs
 require ./smove.fs
 
-variable unused-stringer  \ Free chars in the buffer
+package galope-stringer
 
-0 value stringer
-  \ Address of the stringer.
+public
 
-0 value /stringer
-  \ Size of the stringer in address units.
+variable unused-stringer ( -- a )
 
-: unavailable-stringer?  ( len -- f )  unused-stringer @ >  ;
-  \ Are _len_ chars more than the current unused stringer?
+  \ doc{
+  \
+  \ unused-stringer ( -- a )
+  \
+  \ _a_ is the address of a cell containing the number of free
+  \ characters in the `stringer`.
+  \
+  \ See: `/stringer`.
+  \
+  \ }doc
 
-: restart-stringer  ( -- )  /stringer unused-stringer !  ;
+0 value stringer ( -- a )
+
+  \ doc{
+  \
+  \ stringer ( -- a )
+  \
+  \ _a_ is the address of the stringer, which can be created by
+  \ `allocate-stringer` or `set-stringer`.
+  \
+  \ See: `/stringer`, `unused-stringer`.
+  \
+  \ }doc
+
+0 value /stringer ( -- len )
+
+  \ doc{
+  \
+  \ /stringer ( -- len )
+  \
+  \ _len_ is the size of the `stringer` in address units.
+  \
+  \ See: `unused-stringer`.
+  \
+  \ }doc
+
+private
+
+: unavailable-stringer? ( len -- f ) unused-stringer @ > ;
+  \ Are _len_ address units more than the current unused stringer?
+
+: restart-stringer ( -- ) /stringer unused-stringer ! ;
   \ Restart the stringer to its maximum capacity.
 
-: ?restart-stringer  ( len -- )
-  unavailable-stringer? if   restart-stringer  then  ;
-  \ If _len_ chars are more than the current unused stringer, restart
-  \ it to its maximum capacity.
+: ?restart-stringer ( len -- )
+  unavailable-stringer? if restart-stringer then ;
+  \ If _len_ address units are more than the current unused stringer,
+  \ restart it to its maximum capacity.
 
-: used-stringer  ( len -- )  negate unused-stringer +!  ;
-  \ Note _len_ chars have been used in the stringer.
+: used-stringer ( len -- ) negate unused-stringer +! ;
+  \ Note _len_ address units have been used in the stringer.
 
-: use-stringer  ( len -- )  dup ?restart-stringer used-stringer  ;
-  \ Use _len_ chars from the stringer.
+: use-stringer ( len -- ) dup ?restart-stringer used-stringer ;
+  \ Use _len_ address units from the stringer.
 
-: init-stringer  ( len ca -- )
-  to stringer to /stringer restart-stringer  ;
-  \ Init a stringer at _ca_ for _len_ chars
+: stringer-pointer ( -- ca ) stringer unused-stringer @ + ;
+  \ Return the address _ca_ of the stringer pointer.
 
-: stringer-pointer  ( -- ca )  stringer unused-stringer @ +  ;
+public
 
-: (free-stringer)  ( -- )
-  stringer free throw  0 to stringer  ;
+: set-stringer ( ca len -- )
+  to /stringer to stringer restart-stringer ;
 
-: free-stringer  ( -- )
-  stringer if  (free-stringer)  then   ;
+  \ doc{
+  \
+  \ set-stringer ( ca len -- )
+  \
+  \ Set the `stringer` to use memory zone _ca len_, being _len_ the
+  \ size in address units.
+  \
+  \ NOTE: The previous space of the `stringer`, if any, is not freed
+  \ by `free-stringer`.
+  \
+  \ See: `allocate-stringer`.
+  \
+  \ }doc
 
-: allocate-stringer  ( len -- )
-  chars dup allocate throw init-stringer  ;
+: free-stringer ( -- )
+  stringer if stringer free throw 0 to stringer then ;
 
-: resize-stringer  ( len -- )
-  dup stringer swap resize throw init-stringer  ;
+  \ doc{
+  \
+  \ free-stringer ( -- )
+  \
+  \ Free the allocated data space used by the `stringer`, which should
+  \ had been created by `allocate-stringer`.
+  \
+  \ See: `resize-stringer`.
+  \
+  \ }doc
 
-: create-stringer  ( len -- )
-  free-stringer allocate-stringer  ;
-  \ Create a string buffer in the heap.
+: resize-stringer ( len -- )
+  dup stringer swap resize throw swap set-stringer ;
 
-: (>stringer)  ( ca1 len ca2 -- ca2 len )  2dup 2>r smove 2r> swap  ;
-  \ Copy string _ca1 len_ to _ca2_, returning it as _ca2 len_.
+  \ doc{
+  \
+  \ resize-stringer ( len -- )
+  \
+  \ Resize the allocated data space used by `stringer`, which should
+  \ had been created by `allocate-stringer`, setting its size to _len_
+  \ address units.
+  \
+  \ See: `free-stringer`.
+  \
+  \ }doc
 
-: allocate-ss  ( len -- ca )  use-stringer stringer-pointer  ;
-  \ Allocate _len_ chars in the stringer, returning the address _ca_
-  \ of the allocated space.
+: allocate-stringer ( len -- )
+  free-stringer dup allocate throw swap set-stringer ;
 
-: >stringer  ( ca1 len -- ca2 len )  dup allocate-ss (>stringer)  ;
-  \ Copy string _ca1 len_ to the stringer, returning it as _ca2 len_.
+  \ doc{
+  \
+  \ allocate-stringer ( len -- )
+  \
+  \ Create a `stringer` in the heap. _len_ is the size in address
+  \ units.
+  \
+  \ As an alternative, a `stringer` can be created by `set-stringer`
+  \ using any memory zone reserved by the application.
+  \
+  \ See: `resize-stringer`, `free-stringer`.
+  \
+  \ }doc
+
+: allocate-ss ( len -- ca ) use-stringer stringer-pointer ;
+
+  \ doc{
+  \
+  \ allocate-ss ( len -- ca )
+  \
+  \ Allocate _len_ address units in the `stringer`, returning the
+  \ address _ca_ of the allocated space.
+  \
+  \ See: `>stringer`.
+  \
+  \ }doc
+
+: >stringer ( ca1 len -- ca2 len )
+  dup allocate-ss 2dup 2>r smove 2r> swap ;
+
+  \ doc{
+  \
+  \ >stringer ( ca1 len -- ca2 len )
+  \
+  \ Copy string _ca1 len_ to the `stringer`, returning it as _ca2
+  \ len_.
+  \
+  \ See: `allocate-ss`.
+  \
+  \ }doc
+
+end-package
 
 \ ==============================================================
 \ Change log
 
 \ 2016-07-19: Write, based on the deprecated module <sb.fs>.
+\
+\ 2017-11-08: Use `package` to hide the private words.  Rename
+\ `init-stringer` `set-stringer` and reverse the order of their
+\ parameters. Remove private factors `(free-stringer)` and
+\ `(>stringer)`, which were used only once. Move useless
+\ `allocate-stringer` into `create-stringer`, then rename
+\ `create-stringer` `allocate-stringer`, making the public interface
+\ clearer. Remove useless `chars`. Improve documentation.
