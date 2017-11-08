@@ -1,37 +1,15 @@
 \ galope/xcase.fs
-\ Tools to convert xchars to lowercase or uppercase.
-
-\ Version 0.3.0+201708200103
-\ See change log at the end of the file.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Description: Tools to convert extended characters to lowercase or
+\ uppercase.
+
 \ Author: Marcos Cruz (programandala.net), 2012, 2013, 2016, 2017.
 
-\ ==============================================================
-\ TODO
-
-\ The translation table could be updated with more chars; both the
-\ table and the bit array would be resized transparently; the limits
-\ would be updated.
-\
-\ The caseness bit array could be created at compile time.
-
-\ ==============================================================
-\ Usage
-
-\ First, a char translation table must be created with all chars used
-\ by the program; it can not be updated later.  Examples can be found
-\ in the following files:
-
-\   galope/xcase_ca.fs ( Catalan letters )
-\   galope/xcase_eo.fs ( Esperanto letters )
-\   galope/xcase_es.fs ( Spanish letters )
-
-\ Then the interface words can be used to check or change any char. If
-\ the xchar is not in the table, the usual ASCII chars words will be
-\ tried.
+\ Last modified 201711081659
+\ See change log at the end of the file.
 
 \ ==============================================================
 \ Requirements
@@ -66,7 +44,7 @@ variable xcase-depth \ depth before creating the table
 : limit ( xc -- )
   dup lowest @ min lowest !
       highest @ max highest ! ;
-  \ Update the limit chars with an xchar.
+  \ Update the limit chars with _xc_.
 
 : limits ( xc0 ... xcn n -- xc0 ... xcn )
   0 ?do i pick limit loop ;
@@ -83,15 +61,13 @@ variable xcase-depth \ depth before creating the table
 : (xupper?) ( xc -- f ) (xlower?) 0= ;
   \ Is an xchar uppercase?
 
-: 'xchar ( xc -- xca )
-  xchar># cells xtable @ + ;
+: 'xchar ( xc -- xca ) xchar># cells xtable @ + ;
   \ Return the address of an xchar in the translation table.
 
 : counterpart ( xc1 -- xc2 ) 'xchar @ ;
   \ Return the counterpart of an xchar.
 
-: (pair,) ( xc1 xc2 -- )
-  swap 'xchar ! ;
+: (pair,) ( xc1 xc2 -- ) swap 'xchar ! ;
   \ Store a pair of chars in the translation table, one direction
   \ only: _xc1_ is the index xchar; _xc2_ is the counterpart xchar.
 
@@ -100,8 +76,7 @@ variable xcase-depth \ depth before creating the table
   \ Store a pair of chars in the translation table, both directions.
   \ _xc1_ is the lowercase xchar; _xc2_ is the uppercase xchar.
 
-: xtable! ( xc1 xc1' ... xcn xcn' n -- )
-  0 ?do pair, loop ;
+: xtable, ( xc1 xc1' ... xcn xcn' n -- ) 0 ?do pair, loop ;
   \ Store all pairs of chars in the translation table.
 
 : (xtoupper) ( xc -- xc' | xc )
@@ -112,8 +87,7 @@ variable xcase-depth \ depth before creating the table
   dup (xupper?) if counterpart then ;
   \ Convert an xchar to lowercase.
 
-: :caseness ( n -- )
-  bar-new caseness ! ;
+: :caseness ( n -- ) bar-new caseness ! ;
   \ Create the caseness bit array.
 
 : :xtable ( n -- )
@@ -121,55 +95,141 @@ variable xcase-depth \ depth before creating the table
   dup xtable ! swap erase ;
   \ Create the translation table.
 
-: largest ( -- n )
-  s" MAX-N" environment? drop ;
+: largest ( -- n ) s" MAX-N" environment? drop ;
   \ Return the largest usable signed integer.
-  \ XXX TODO -- rename to `max-n` and move to Galope.
+  \ XXX TODO -- Rename to `max-n` and extract to its own module.
 
-: circumscribed? ( xc -- f )
-  lowest @ highest @ between ;
-  \ Is an xchar in the range of the translation table?
+: circumscribed? ( xc -- f ) lowest @ highest @ between ;
+  \ Is _xc_ in the range of the translation table?
 
 : tabled? ( xc -- f )
-  dup circumscribed?
-  if counterpart 0<> else drop false then ;
-  \ Is an xchar in the translation table?
+  dup circumscribed? if counterpart 0<> else drop false then ;
+  \ Is _xc_ in the translation table?
 
 \ ----------------------------------------------
 \ Interface
 
 public
 
-: xcase[ ( -- )
-  largest lowest ! depth xcase-depth ! ;
-  \ Start the xchar translation table.
+: xcase[ ( -- ) largest lowest ! depth xcase-depth ! ;
 
-: ]xcase ( xc1 xc1' ... xcn xcn' -- )
+  \ doc{
+  \
+  \ xcase[ ( -- )
+  \
+  \ Start a translation table of extended characters, This table
+  \ will be used by `xtolower`, `xtoupper`, `xcapitalized`,
+  \ `xuncapitalized` and other words.
+  \
+  \ Usage example:
+  \
+  \ ----
+
+  \ xcase[
+  \   char ĉ char Ĉ
+  \   char ĝ char Ĝ
+  \   char ĥ char Ĥ
+  \   char ĵ char Ĵ
+  \   char ŝ char Ŝ
+  \   char ŭ char Ŭ
+  \ ]xcase
+
+  \ ----
+  \
+  \ Three conversion tables are provided as examples in modules
+  \ <xcase_es.fs> (for Spanish), <xcase_eo.fs> (for Esperanto, the
+  \ example above) and <xcase_ca.fs> (for Catalan).
+  \
+  \ Any character not defined in the table will be regarded as an
+  \ ordinary ASCII character.
+  \
+  \ WARNING: The table can not be modified. Therefore it must include
+  \ all extended characters used by the application.
+  \
+  \ }doc
+
+: ]xcase ( xc#1 xc#1' ... xc#n xc#n' -- )
   depth xcase-depth @ -
   dup >r limits
   xchars dup :caseness :xtable
-  r> 2/ xtable! ;
-  \ End the xchar translation table.
-  \ _xcn_ is the lowercase xchar;
-  \ _xcn'_ = uppercase xchar.
-  \ XXX TODO -- improve documentation
+  r> 2/ xtable, ;
 
-: xtoupper ( xc -- xc | xc' )
+  \ doc{
+  \
+  \ ]xcase ( xc#1 xc#1' ... xc#n xc#n' -- )
+  \
+  \ End the translation table of extended characters (used by
+  \ `xtolower`, `xtoupper`, `xcapitalized`, `xuncapitalized` and other
+  \ words) by compiling the pairs of characters. The first element of
+  \ every pair is the lowercase character, eg. _xc#1_; the second
+  \ element of every pair is the uppercase character, eg. _xc#1'_.
+  \
+  \ See: `xcase[`.
+  \
+  \ }doc
+
+: xtoupper ( xc1 -- xc1 | xc2 )
   dup tabled? if (xtoupper) else toupper then ;
-  \ Convert an xchar to uppercase.
 
-: xtolower ( xc -- xc | xc' )
+  \ doc{
+  \
+  \ xtoupper ( xc1 -- xc1 | xc2 )
+  \
+  \ Convert _xc1_ to uppercase, returning _xc2_ or _xc1_.
+  \
+  \ A conversion table must be defined first with `xtable[`.
+  \
+  \ See: `xtolower`, `xupper?`, `xcapitalized`.
+  \
+  \ }doc
+
+: xtolower ( xc1 -- xc1 | xc2 )
   dup tabled? if (xtolower) else chr-lower then ;
-  \ Convert an xchar to lowercase.  There's no 'tolower' in Gforth, so
-  \ FFL's 'chr-lower' is used instead.
+
+  \ doc{
+  \
+  \ xtolower ( xc1 -- xc1 | xc2 )
+  \
+  \ Convert _xc1_ to lowercase, returning _xc2_ or _xc1_.
+  \
+  \ A conversion table must be defined first with `xtable[`.
+  \
+  \ See: `xtoupper`, `xlower?`, `xuncapitalized`.
+  \
+  \ }doc
 
 : xlower? ( xc -- f )
   dup tabled? if (xlower?) else chr-lower? then ;
   \ Is an xchar lowercase?
 
+  \ doc{
+  \
+  \ xlower? ( xc -- f )
+  \
+  \ Is _xc_ a lowercase extended character in the current table
+  \ defined by `xchar[`?
+  \
+  \ A conversion table must be defined first with `xtable[`.
+  \
+  \ See: `xupper?`, `xtolower`.
+  \
+  \ }doc
+
 : xupper? ( xc -- f )
   dup tabled? if (xupper?) else chr-upper? then ;
-  \ Is an xchar uppercase?
+
+  \ doc{
+  \
+  \ xupper? ( xc -- f )
+  \
+  \ Is _xc_ an uppercase extended character in the current table
+  \ defined by `xchar[`?
+  \
+  \ A conversion table must be defined first with `xtable[`.
+  \
+  \ See: `xlower?`, `xtoupper`.
+  \
+  \ }doc
 
 end-package
 
@@ -210,3 +270,5 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-08-17: Update source style.
+\
+\ 2017-11-08: Improve documentation, source layout and header.
