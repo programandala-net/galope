@@ -19,7 +19,7 @@ require ./x-capitalize.fs \ `xcapitalize`
   \ Copy UTF-8 character string _xca1 len_ to the heap and return it
   \ as _xca2 len_ with its first character converted to uppercase.
   \
-  \ A conversion table must be defined first with `xtable[`.
+  \ A conversion table must be defined first with `xconversions`.
   \
   \ See: `xcapitalize`, `capitalized`.
   \

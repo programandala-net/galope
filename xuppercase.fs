@@ -8,8 +8,9 @@
 \ ==============================================================
 
 require ./xbounds.fs
-require ./xcase.fs
 require ./x-c-store.fs
+require ./x-lower-question.fs
+require ./x-to-upper.fs
 
 : xuppercase ( xca len -- )
   xbounds ?do
@@ -34,3 +35,5 @@ require ./x-c-store.fs
 \
 \ 2017-08-19: Update change log layout. Update source style.
 \ Document.
+\
+\ 2017-11-08: Update requirements.

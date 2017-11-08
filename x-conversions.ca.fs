@@ -1,16 +1,17 @@
-\ galope/xcase_ca.fs
-\ `xcase` conversion table of Catalan UTF-8 chars.
+\ galope/x-conversions.ca.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
+
+\ Description: An `x-conversion` table for Catalan.
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017.
 
 \ ==============================================================
 
-require ./xcase.fs
+require ./x-conversions.fs
 
-xcase[
+xconversions
   char à char À
   char é char É
   char è char È
@@ -22,7 +23,7 @@ xcase[
   char ü char Ü
   char ç char Ç
   char ŀ char Ŀ
-]xcase
+end-xconversions
 
 \ ==============================================================
 \ Change log
@@ -34,3 +35,5 @@ xcase[
 \ 2016-07-11: Update source layout.
 \
 \ 2017-07-03: Add letter L with middle dot.
+\
+\ 2017-11-08: Update requirements and names.
