@@ -19,6 +19,8 @@ require ./x-capitalize.fs \ `xcapitalize`
   \ Copy UTF-8 character string _xca1 len_ to the heap and return it
   \ as _xca2 len_ with its first character converted to uppercase.
   \
+  \ A conversion table must be defined first with `xtable[`.
+  \
   \ See: `xcapitalize`, `capitalized`.
   \
   \ }doc
@@ -28,3 +30,5 @@ require ./x-capitalize.fs \ `xcapitalize`
 
 \ 2017-11-07: Start. Move from _La pistola de agua_
 \ (http://programandala.net/es.programa.la_pistola_de_agua.fs).
+\
+\ 2017-11-08: Improve documentation.

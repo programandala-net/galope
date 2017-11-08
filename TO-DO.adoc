@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-07
+:revdate: 2017-11-08
 
 == 2012-09-14
 
@@ -355,3 +355,13 @@ Alternative from
   `capitalized` from project _La pistola de agua_. Create two
   variants, ASCII and UTF-8, and a deferred word `capitalized` which
   activates itself at compile time.
+
+== 2017-11-08
+
+- Extract `largest` from <xcase.fs> as `max-n`.
+- Improve `xcase[`: The translation table could be updated with more
+  chars; both the table and the bit array would be resized
+  transparently; the limits would be updated.
+- Improve `xcase[`: The caseness bit array could be created at compile
+  time.
+
