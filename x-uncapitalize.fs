@@ -8,7 +8,7 @@
 \ ==============================================================
 
 require ./x-c-store.fs
-require ./xcase.fs
+require ./x-to-lower.fs
 
 : xuncapitalize ( xca len -- )
   if dup xc@ xtolower swap xc! else drop then ;
@@ -20,7 +20,7 @@ require ./xcase.fs
   \ Convert the first character of UTF-8 character string _xca len_ to
   \ lowercase.
   \
-  \ A conversion table must be defined first with `xtable[`.
+  \ A conversion table must be defined first with `xconversions`.
   \
   \ See: `xuncapitalized`, `xcapitalize`.
   \

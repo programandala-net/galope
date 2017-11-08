@@ -359,9 +359,11 @@ Alternative from
 == 2017-11-08
 
 - Extract `largest` from <xcase.fs> as `max-n`.
-- Improve `xcase[`: The translation table could be updated with more
-  chars; both the table and the bit array would be resized
+- Improve `xconversions`: The translation table could be updated with
+  more chars; both the table and the bit array would be resized
   transparently; the limits would be updated.
-- Improve `xcase[`: The caseness bit array could be created at compile
-  time.
-
+- Improve `xconversions`: The caseness bit array could be created at
+  compile time.
+- Improve names of the private words of `xconversions`.
+- Rename and document modules <xbounds.fs>, <xlowercase.fs>, etc.
+- Finish `xtitlecase`.
