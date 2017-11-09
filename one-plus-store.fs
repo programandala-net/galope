@@ -15,7 +15,7 @@
   \
   \ Increment the single-cell number at _a_.
   \
-  \ See: `1-!`.
+  \ See: `?1+!`, `1-!`.
   \
   \ }doc
 
@@ -35,4 +35,4 @@
 \ 2017-10-25: Improve documentation.
 \
 \ 2017-11-09: Rename `++` `1+!`. Deprecate `++` and make it a synonym
-\ of `1+!`, in its own module.
+\ of `1+!`, in its own module. Improve documentation.
