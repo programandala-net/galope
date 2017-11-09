@@ -126,10 +126,6 @@ Replace underscore with hyphens in the `sb` module.
 Add Gforth-specific words which have an alternative definition in
 standard Forth.
 
-== 2017-07-16, 2017-08-17, 2017-08-20, 2017-10-25
-
-- Write `?1+!`.
-
 == 2017-08-14
 
 Improve and document `??` and `[??]`.
@@ -198,7 +194,7 @@ Finish adapting the source documentation to Glosara format.
 
 == 2017-10-25
 
-- Add `?1+!`, `?u1+!`.
+- Add `?u1+!`.
 
 - Rename `number<c>` (in module <xy.fs>) and move it to its own file.
   Possible names: `number/c`, `keys/c>decimal`, `keys>#`,
@@ -338,3 +334,8 @@ Alternative from
   one table and change the current one.
 - Rename <smove.fs> <s-move.fs>.
 - Rename `allocate-ss`.
+
+== 2017-11-09
+
+- Improve `max-n`: do not `abort`, but calculate using `cell`.
+- Add `max-d`, `max-u`, `max-ud`.

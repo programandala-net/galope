@@ -16,7 +16,7 @@
   \
   \ Decrement the single-cell number at _a_ to, but not beyond, zero.
   \
-  \ See: `1-!`.
+  \ See: `1-!` ,`?1+!`.
   \
   \ }doc
 
@@ -31,5 +31,5 @@
 \
 \ 2017-10-25: Improve documentation.
 \
-\ 2017-11-08: Rename `decrement` `?1-!`. Deprecate `decrement` as a
-\ synonym, in its own module.
+\ 2017-11-09: Rename `decrement` `?1-!`. Deprecate `decrement` as a
+\ synonym, in its own module. Improve documentation.
