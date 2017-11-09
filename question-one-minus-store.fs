@@ -1,4 +1,4 @@
-\ galope/decrement.fs
+\ galope/question-one-minus-store.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,17 +8,15 @@
 
 \ ==============================================================
 
-require ./question-one-minus-store.fs
-
-synonym decrement ?1-! ( -- )
+: ?1-! ( a -- ) dup @ ?dup if 1- swap ! else drop then ;
 
   \ doc{
   \
-  \ decrement ( a -- )
+  \ ?1-! ( a -- )
   \
   \ Decrement the single-cell number at _a_ to, but not beyond, zero.
   \
-  \ ``decrement`` is deprecated, but it's kept as a synonym of `?1-!`.
+  \ See: `1-!`.
   \
   \ }doc
 
@@ -33,5 +31,5 @@ synonym decrement ?1-! ( -- )
 \
 \ 2017-10-25: Improve documentation.
 \
-\ 2017-11-09: Move code to `?1-!`. Deprecate `decrement` and make it a
-\ synonym of `?1-!`.
+\ 2017-11-08: Rename `decrement` `?1-!`. Deprecate `decrement` as a
+\ synonym, in its own module.
