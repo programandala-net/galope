@@ -1,5 +1,4 @@
 \ galope/minus-minus.fs
-\ Decrement the content of an address
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,7 +7,9 @@
 
 \ ==============================================================
 
-: -- ( a -- ) -1 swap +! ;
+require ./one-minus-store.fs
+
+synonym -- 1-! ( a -- )
 
   \ doc{
   \
@@ -16,7 +17,7 @@
   \
   \ Decrement the single-cell number at _a_.
   \
-  \ See: `++`, `decrement`.
+  \ ``--`` is deprecated, but it's kept as a synonym of `1-!`.
   \
   \ }doc
 
@@ -35,3 +36,6 @@
 \ style.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-11-09: Move code to `1-!`. Deprecate `--` and make it a
+\ synonym of `1-!`.

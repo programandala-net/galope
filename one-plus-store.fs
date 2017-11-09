@@ -1,4 +1,4 @@
-\ galope/plus-plus.fs
+\ galope/one-plus-store.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -7,17 +7,15 @@
 
 \ ==============================================================
 
-require ./one-plus-store.fs
-
-synonym ++ 1+! ( a -- )
+: 1+! ( a -- ) 1 swap +! ;
 
   \ doc{
   \
-  \ ++ ( a -- )
+  \ 1+! ( a -- )
   \
   \ Increment the single-cell number at _a_.
   \
-  \ ``++`` is deprecated, but it's kept as a synonym of `1+!`.
+  \ See: `1-!`.
   \
   \ }doc
 
@@ -36,5 +34,5 @@ synonym ++ 1+! ( a -- )
 \
 \ 2017-10-25: Improve documentation.
 \
-\ 2017-11-09: Move code to `1+!`. Deprecate `++` and make it a
-\ synonym of `1+!`.
+\ 2017-11-09: Rename `++` `1+!`. Deprecate `++` and make it a synonym
+\ of `1+!`, in its own module.

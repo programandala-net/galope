@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-08
+:revdate: 2017-11-09
 
 == 2012-09-14
 
@@ -69,12 +69,6 @@ some conventional notation.  This way the files could be searched
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own
 files, when a similar word will need them.
 
-== 2014-03-12
-
-- rename `greater-of` to `>of` or `greater-than-of`?
-- rename `less-of` to `<of` or `less-than-of`?
-- write `<>of`?
-
 == 2014-03-13
 
 `among-of` ( run-time: x0 x'1...x'n n )
@@ -88,7 +82,6 @@ endcase
 ----
 
 == 2014-03-19
-
 
 ----
 ANEW  --CHARSCAN--                            \  Wil Baden  2002-03-17
@@ -135,7 +128,6 @@ standard Forth.
 
 == 2017-07-16, 2017-08-17, 2017-08-20, 2017-10-25
 
-- Deprecate `--` and `++`; use `1-!` and `1+!` instead.
 - Rename `decrement` to `?1-!`.
 - Write `?1+!`.
 
@@ -149,35 +141,17 @@ Rename `?keep` and `?empty`.
 
 == 2017-08-16
 
-Add `module`, by Ulrich Hoffmann.
-
-== 2017-08-16
-
-Rename `\eof` to `\\`.
+- Add `module`, by Ulrich Hoffmann.
+- Rename `\eof` to `\\`.
 
 == 2017-08-17
 
-Remove `[or]`.
-
-== 2017-08-17
-
-Rename <sarray.fs> to <s-array.fs>.
-
-== 2017-08-17
-
-Check dependency on `u+do` in `rolls`.
-
-== 2017-08-17
-
-Rewrite `#do` without `evaluate`.
-
-== 2017-08-17
-
-Finish or simplify or remove <headline.fs>.
-
-== 2017-08-17
-
-Homogenize "Author: Wil Baden" and "Taken from".
+- Remove `[or]`.
+- Rename <sarray.fs> to <s-array.fs>.
+- Check dependency on `u+do` in `rolls`.
+- Rewrite `#do` without `evaluate`.
+- Finish or simplify or remove <headline.fs>.
+- Homogenize "Author: Wil Baden" and "Taken from".
 
 == 2017-08-18, 2017-08-20
 
@@ -348,13 +322,6 @@ Alternative from
 - Fix checks of Gforth version: the flag returned by `environment?` is
   not checked. Eg.  `s" gforth" environment? drop s" 0.7.9" str<
   [if]`.
-
-== 2017-11-07
-
-- Extract `^uppercase` from project _Asalto y castigo_ and its variant
-  `capitalized` from project _La pistola de agua_. Create two
-  variants, ASCII and UTF-8, and a deferred word `capitalized` which
-  activates itself at compile time.
 
 == 2017-11-08
 
