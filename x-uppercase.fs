@@ -1,4 +1,4 @@
-\ galope/xuppercase.fs
+\ galope/x-uppercase.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -37,3 +37,5 @@ require ./x-to-upper.fs
 \ Document.
 \
 \ 2017-11-08: Update requirements.
+\
+\ 2017-11-09: Rename the module after current convention.
