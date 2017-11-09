@@ -319,7 +319,7 @@ Alternative from
 
 == 2017-11-08
 
-- Extract `largest` from <xcase.fs> as `max-n`.
+- Replace `largest` with `max-n` in <x-conversions.fs>.
 - Improve `xconversions`: The translation table could be updated with
   more chars; both the table and the bit array would be resized
   transparently; the limits would be updated.
@@ -337,5 +337,5 @@ Alternative from
 
 == 2017-11-09
 
-- Improve `max-n`: do not `abort`, but calculate using `cell`.
-- Add `max-d`, `max-u`, `max-ud`.
+- Improve `max-n` and family: do not `abort`, but calculate using
+  `cell`.

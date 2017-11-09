@@ -17,7 +17,7 @@ s" MAX-N" environment? 0=
   \
   \ _n_ is the largest usable signed integer.
   \
-  \ See: `?1+!`.
+  \ See: `?1+!`, `max-u`, `max-d`, `max-ud`.
   \
   \ }doc
 
