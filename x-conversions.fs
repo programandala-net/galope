@@ -5,7 +5,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2013, 2016, 2017.
 
-\ Last modified 201711081726
+\ Last modified 201711091702
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -14,6 +14,7 @@
 \ From Galope
 require ./package.fs
 require ./between.fs
+require ./max-n.fs
 
 \ From Forth Foundation Library
 require ffl/bar.fs \ bit array
@@ -75,10 +76,6 @@ variable xcase-depth \ depth before creating the table
   dup xtable ! swap erase ;
   \ Create the conversion table.
 
-: largest ( -- n ) s" MAX-N" environment? drop ;
-  \ Return the largest usable signed integer.
-  \ XXX TODO -- Rename to `max-n` and extract to its own module.
-
 : circumscribed? ( xc -- f ) lowest @ highest @ between ;
   \ Is _xc_ in the range of the conversion table?
 
@@ -112,7 +109,7 @@ public
   \
   \ }doc
 
-: xconversions ( -- ) largest lowest ! depth xcase-depth ! ;
+: xconversions ( -- ) max-n lowest ! depth xcase-depth ! ;
 
   \ doc{
   \
@@ -214,3 +211,5 @@ end-package
 \ `]xcase` `end-xconversions`; rename `tabled?` `xconversion?` and
 \ make it public.  Keep the words needed to define and manage the
 \ conversion table, and extract the rest into independent modules.
+\
+\ 2017-11-09: Replace `largest` with `max-n`.
