@@ -1,7 +1,4 @@
-\ galope/xtitlecase.fs
-\ 'xtitlecase'
-\ Convert a UTF-8 string to titlecase
-\ (change uppercase the first character of every word)
+\ galope/x-title-case.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,7 +8,6 @@
 \ ==============================================================
 
 require ./package.fs
-require ./tilde-tilde.fs
 require ./xbounds.fs
 require ./x-c-store.fs
 require ./x-to-upper.fs
@@ -20,12 +16,12 @@ package galope-xtitlecase
 
 variable apart?
 
-: ?word-separation ( xc -- )
-  dup bl = swap [char] - = or apart? !  ;
-  \ Update the word separation flag: is xc a word separation char?
+: ?word-separation ( xc -- ) dup bl = swap '-' = or apart? ! ;
+  \ Update the word separation flag: is _xc_ a word separator?
 
 : first-of-word? ( n -- f ) 0= apart? @ or ;
-  \ Is the n-position xchar the first character of a word?
+  \ Is the extendend character at position _n_ the first character of
+  \ a word?
 
 public
 
@@ -38,7 +34,8 @@ public
     over ?word-separation \ update for the **next** loop
     if xtoupper rot xc! else drop nip then
   loop drop ;
-  \ Convert a UTF-8 string to titlecase.
+  \ Convert a UTF-8 string _xca len_ to title-case, ie. convert
+  \ to uppercase the first letter of every word.
 
 end-package
 
@@ -54,3 +51,6 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-11-08: Update requirements and source layout.
+\
+\ 2017-11-09: Rename the module after current convention.  Improve
+\ documentation.

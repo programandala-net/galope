@@ -1,4 +1,4 @@
-\ galope/xlowercase.fs
+\ galope/x-lowercase.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -31,3 +31,5 @@ require ./x-upper-question.fs
 \ 2016-07-11: Update source layout.
 \
 \ 2017-11-08: Update requirements and source layout.
+\
+\ 2017-11-09: Rename the module after current convention.
