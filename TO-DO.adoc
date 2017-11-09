@@ -319,7 +319,6 @@ Alternative from
 
 == 2017-11-08
 
-- Replace `largest` with `max-n` in <x-conversions.fs>.
 - Improve `xconversions`: The translation table could be updated with
   more chars; both the table and the bit array would be resized
   transparently; the limits would be updated.
