@@ -308,7 +308,6 @@ Alternative from
 - Update module names to current convention, eg. "csv" to "c-s-v":
 - Rename `/csv` `split/comma` or something.
 - Rename `/ssv` `split/spaces` or something.
-- Remove `/random/`, which is equivalent to `random-range`.
 - Rename <smove.fs> <s-move.fs>.
 - Deprecate <sb.fs>, superseded by <stringer.fs>.
 - Rename <typecr.fs> <type-c-r.fs>.
@@ -338,3 +337,4 @@ Alternative from
 
 - Improve `max-n` and family: do not `abort`, but calculate using
   `cell`.
+- Add `?+!` and `?-!`.
