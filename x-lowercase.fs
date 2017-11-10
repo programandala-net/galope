@@ -17,7 +17,16 @@ require ./x-upper-question.fs
     dup >r xc@+ dup xupper? if   xtolower r> xc!
                             else drop rdrop then
   loop drop ;
-  \ Convert a UTF-8 string to lowercase.
+
+  \ doc{
+  \
+  \ xlowercase ( xca len -- )
+  \
+  \ Convert the UTF-8 character string _xca len_ to lowercase.
+  \
+  \ See: `xuppercase`, `xuncapitalize`, `xtolower`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -33,3 +42,5 @@ require ./x-upper-question.fs
 \ 2017-11-08: Update requirements and source layout.
 \
 \ 2017-11-09: Rename the module after current convention.
+\
+\ 2017-11-10: Improve documentation.

@@ -15,7 +15,7 @@ require ./to-x-width.fs
   \
   \ xbounds ( xca1 len1 -- xca1 len2 0 ) >x-width 0 ;
   \
-  \ Convert a UTF-8 string _xca len_ to the parameters needed to
+  \ Convert the UTF-8 string _xca len_ to the parameters needed to
   \ explore it in a ``do loop`` structure.
   \
   \ Usage example:
@@ -39,3 +39,5 @@ require ./to-x-width.fs
 \
 \ 2017-08-19: Update change log layout. Update source style and stack
 \ notation. Document.
+\
+\ 2017-11-08: Improve documentation.
