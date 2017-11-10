@@ -16,12 +16,12 @@ require ./x-uncapitalize.fs \ `xuncapitalize`
   \
   \ xuncapitalized ( xca1 len -- xca2 len )
   \
-  \ Copy UTF-8 character string _xca1 len_ to the heap and return it
-  \ as _xca2 len_ with its first character converted to lowercase.
+  \ Copy the UTF-8 character string _xca1 len_ to the heap and return
+  \ it as _xca2 len_ with its first character converted to lowercase.
   \
   \ A conversion table must be defined first with `xconversions`.
   \
-  \ See: `xuncapitalize`, `xcapitalized`.
+  \ See: `xuncapitalize`, `xlowercase`, `xtolower`, `xcapitalized`.
   \
   \ }doc
 
@@ -29,3 +29,5 @@ require ./x-uncapitalize.fs \ `xuncapitalize`
 \ Change log
 
 \ 2017-11-08: Start.
+\
+\ 2017-11-10: Improve documentation.

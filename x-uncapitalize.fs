@@ -17,12 +17,12 @@ require ./x-to-lower.fs
   \
   \ xuncapitalize ( xca len -- )
   \
-  \ Convert the first character of UTF-8 character string _xca len_ to
-  \ lowercase.
+  \ Convert the first character of the UTF-8 character string _xca
+  \ len_ to lowercase.
   \
   \ A conversion table must be defined first with `xconversions`.
   \
-  \ See: `xuncapitalized`, `xcapitalize`.
+  \ See: `xuncapitalized`, `xlowercase`, `xtolower`, `xcapitalize`.
   \
   \ }doc
 
@@ -30,3 +30,5 @@ require ./x-to-lower.fs
 \ Change log
 
 \ 2017-11-08: Start.
+\
+\ 2017-11-10: Improve documentation.

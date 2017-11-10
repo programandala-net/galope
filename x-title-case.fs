@@ -34,8 +34,17 @@ public
     over ?word-separation \ update for the **next** loop
     if xtoupper rot xc! else drop nip then
   loop drop ;
-  \ Convert a UTF-8 string _xca len_ to title-case, ie. convert
-  \ to uppercase the first letter of every word.
+
+  \ doc{
+  \
+  \ xtitlecase ( xca len -- )
+  \
+  \ Convert the UTF-8 character string _xca len_ to title-case, ie.
+  \ convert to uppercase the first letter of every word.
+  \
+  \ See: `xcapitalize`, `xtoupper`.
+  \
+  \ }doc
 
 end-package
 
@@ -54,3 +63,5 @@ end-package
 \
 \ 2017-11-09: Rename the module after current convention.  Improve
 \ documentation.
+\
+\ 2017-11-08: Improve documentation.

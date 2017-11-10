@@ -22,7 +22,9 @@ require ./x-to-upper.fs
   \
   \ xuppercase ( xca len -- )
   \
-  \ Convert a UTF-8 string _xca len_ to uppercase.
+  \ Convert the UTF-8 character string _xca len_ to uppercase.
+  \
+  \ See: `xlowercase`, `xtitlecase`, `xcapitalize`, `xtoupper`.
   \
   \ }doc
 
@@ -39,3 +41,5 @@ require ./x-to-upper.fs
 \ 2017-11-08: Update requirements.
 \
 \ 2017-11-09: Rename the module after current convention.
+\
+\ 2017-11-10: Improve documentation.
