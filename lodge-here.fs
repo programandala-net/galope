@@ -18,9 +18,11 @@ require ./lodge.fs
   \ Return the offset _+n_ of the next free available address
   \ of the `lodge`, which is its length contained in `/lodge`.
   \
+  \ See: `lodge-allot`.
+  \
   \ }doc
 
 \ ==============================================================
 \ Change log
 
-\ 2017-11-12: Extract from <lodge.fs>.
+\ 2017-11-12: Extract from <lodge.fs>. Improve documentation.

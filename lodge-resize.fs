@@ -29,11 +29,11 @@ require ./lodge.fs
   \ _+n_ is unimportant and _ior_ in the corresponding I/O
   \ result code.
   \
-  \ See: `lodge-allocate`.
+  \ See: `lodge-allocate`, `lodge-allot`, `lodge-here`.
   \
   \ }doc
 
 \ ==============================================================
 \ Change log
 
-\ 2017-11-12: Extract from <lodge.fs>.
+\ 2017-11-12: Extract from <lodge.fs>. Improve documentation.

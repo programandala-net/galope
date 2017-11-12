@@ -23,7 +23,7 @@ require ./lodge-resize.fs
   \ fails, the value of _+n2_ is unimportant and _ior_ is the
   \ corresponding I/O result code.
   \
-  \ See: `lodge-resize`, `lodge-allot`.
+  \ See: `lodge-resize`, `lodge-allot`, `lodge-here`.
   \
   \ }doc
 

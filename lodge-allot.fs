@@ -24,4 +24,4 @@ require ./lodge-allocate.fs
 \ ==============================================================
 \ Change log
 
-\ 2017-11-12: Extract from <lodge.fs>.
+\ 2017-11-12: Extract from <lodge.fs>. Improve documentation.

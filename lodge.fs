@@ -18,18 +18,18 @@ variable lodge  0 allocate throw lodge !
   \
   \ A lodge is a self-growing buffer allocated from the heap,
   \ where data can be stored and retrieved transparently, using
-  \ offsets, regardless of the actual address of the buffer,
-  \ provided the definer words `lodge-create`,
-  \ `lodge-variable`, `lodge-constant` and others are used.
-  \ The words so defined store in their data field the offset
-  \ to the actual data in the lodge, which is resolved at
+  \ offsets, regardless of the actual address of the buffer.
+  \
+  \ Words that use the lodge store in their data field the
+  \ offset to the actual data in the lodge, which is resolved at
   \ run-time.
   \
   \ A lodge makes it possible to concentrate the application
   \ data into one relocatable and transparent buffer, which can
   \ be saved and restored as a whole (e.g. for game sessions).
   \
-  \ See: `/lodge`.
+  \ See: `/lodge`, `lodge-create`, `lodge-variable`,
+  \ ``lodge-constant`, `lodge-value`, `lodge-field:`.
   \
   \ }doc
 
@@ -42,7 +42,7 @@ variable /lodge  0 /lodge !
   \ _a_ is the address of a cell containing the length of the
   \ `lodge` in address units.
   \
-  \ See: `lodge-here`.
+  \ See: `lodge-here`, `lodge-allocate`, `lodge-resize`.
   \
   \ }doc
 
@@ -55,10 +55,10 @@ variable /lodge  0 /lodge !
   \ Convert `lodge` offset _+n_ to its absolute address _a_.
   \
   \ Words created by `lodge-variable`, `lodge-2variable`,
-  \ `lodge-value`, `lodge-2value` and `lodge-create` save in
-  \ their data field address the current value returned by
-  \ `lodge-here`, and convert it to its corresponding `lodge`
-  \ address at run-time.
+  \ `lodge-value`, `lodge-2value` and `lodge-create` save the
+  \ current value returned by `lodge-here` into their data field
+  \ address, and convert it to its corresponding `lodge` address
+  \ at run-time. Also `lodge-field:` uses `lodge+`.
   \
   \ }doc
 
