@@ -8,13 +8,20 @@
 
 \ ==============================================================
 
-: ?++ ( a -- ) dup @ 1+ 0>= abs swap +! ;
-  \ Increment the contents of _a_, but only if it's not the largest
-  \ usable signed integer.
+require ./question-one-plus-store.fs
 
-  \ XXX OLD
-  \ dup @ 1+ dup 0< if 2drop else swap ! then ;
-  \ dup @ 1+ dup 0< if 2drop exit then swap ! ;
+synonym ?++ ?1+! ( a -- )
+
+  \ doc{
+  \
+  \ ?++ ( a -- )
+  \
+  \ Increment the single-cell number at _a_ to, but not beyond, the
+  \ largest usable signed integer.
+  \
+  \ ``?++`` is a depreacted synonym of `?1+!`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -24,3 +31,5 @@
 \ and improve.
 \
 \ 2017-08-17: Fix change log title. Update source style.
+\
+\ 2017-11-12: Move its definition to `?1+!`, which was slower.
