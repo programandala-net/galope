@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-09
+:revdate: 2017-11-12
 
 == 2012-09-14
 
@@ -175,11 +175,7 @@ Check if `$@` is needed in Gforth 0.7.9.
 Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 `2arrayed`. The HTML version is fine.
 
-== 2017-08-24
-
-Move lodge tool words to their own files.
-
-== 2017-10-22
+== 2017-10-22, 2017-11-12
 
 Improve `ltype`:
 
@@ -187,6 +183,7 @@ Improve `ltype`:
 - Left margin.
 - Real time `lwidth`.
 - UTF-8 support.
+- More/Pause control.
 
 == 2017-10-22
 
@@ -338,3 +335,10 @@ Alternative from
 - Improve `max-n` and family: do not `abort`, but calculate using
   `cell`.
 - Add `?+!` and `?-!`.
+
+== 2017-11-11
+
+- Rename `choose{ }choose` `among end-among`?
+- Rename `2choose{ }2choose` `2among end-2among`?
+- Rename `choose{ }choose` `from end-from`?
+- Rename `2choose{ }2choose` `2from end-2from`?
