@@ -26,14 +26,14 @@ require ./l-type.fs
   \ Run-time: Display the string _ccc_ left justified with
   \ `ltype`.
   \
-  \ See: `/l."`.
+  \ See: `/l."`, `l.""`.
   \
   \ }doc
 
 : /l." \ Compilation: ( "ccc<quote>" -- )
        \ Run-time:    ( -- )
   postpone s"
-  ['] /ltype compile,  ; immediate compile-only
+  ['] /ltype compile, ; immediate compile-only
 
   \ doc{
   \
@@ -47,7 +47,7 @@ require ./l-type.fs
   \ Run-time: Display _ccc_ left justified in a new paragraph
   \ with `/ltype`.
   \
-  \ See: `l."`.
+  \ See: `l."`, `/l.""`.
   \
   \ }doc
 
