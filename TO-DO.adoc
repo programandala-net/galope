@@ -342,3 +342,9 @@ Alternative from
 - Rename `2choose{ }2choose` `2among end-2among`?
 - Rename `choose{ }choose` `from end-from`?
 - Rename `2choose{ }2choose` `2from end-2from`?
+
+== 2017-11-13
+
+- Rename `yyyymmdd>iso` and check if any of its private words can be
+  useful.
+- Split module of `time&date>iso` and rename the words using ">iso".
