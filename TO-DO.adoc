@@ -345,6 +345,8 @@ Alternative from
 
 == 2017-11-13
 
+- Rewrite `yyyymmdd>iso` to integrate it with the rest of ISO-8601
+  converters.
 - Rename `yyyymmdd>iso` and check if any of its private words can be
   useful.
-- Split module of `time&date>iso` and rename the words using ">iso".
+- Add `time-zone` string to ISO-8601 converters.
