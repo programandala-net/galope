@@ -9,36 +9,45 @@
 
 require ./l-type.fs
 
-: l."  ( "ccc<quote>" -- )
+: l." \ Compilation: ( "ccc<quote>" -- )
+      \ Run-time:    ( -- )
   postpone s"
-  ['] ltype compile,  ; immediate compile-only
-  \ Parse the input stream until a double quote is found,
-  \ and print the parsed string left justified.
+  ['] ltype compile, ; immediate compile-only
 
   \ doc{
   \
-  \ l."  ( "ccc<quote>" -- )
+  \ l." \ Compilation: ( "ccc<quote>" -- )
+  \     \ Run-time:    ( -- )
+
+  \ Compilation: Parse _ccc_ delimited by a double quote.
+  \ Append the run-time semantics below to the current
+  \ definition.
   \
-  \ A variant of ``."`` that displays texts left justifed.
+  \ Run-time: Display the string _ccc_ left justified with
+  \ `ltype`.
   \
-  \ See: `/l."`, `ltype`.
+  \ See: `/l."`.
   \
   \ }doc
 
-: /l."  ( "ccc<quote>" -- )
+: /l." \ Compilation: ( "ccc<quote>" -- )
+       \ Run-time:    ( -- )
   postpone s"
   ['] /ltype compile,  ; immediate compile-only
-  \ Parse the input stream until a double quote is found,
-  \ and print the parsed string left justified, indented
-  \ with the value returned by `l-indentation`.
 
   \ doc{
   \
-  \ /l."  ( "ccc<quote>" -- )
+  \ /l." \ Compilation: ( "ccc<quote>" -- )
+  \      \ Run-time:    ( -- )
   \
-  \ A variant of `l."` that starts a new paragraph.
+  \ Compilation: Parse _ccc_ delimited by a double quote.
+  \ Append the run-time semantics below to the current
+  \ definition.
   \
-  \ See: `l."`, `/ltype`.
+  \ Run-time: Display _ccc_ left justified in a new paragraph
+  \ with `/ltype`.
+  \
+  \ See: `l."`.
   \
   \ }doc
 
@@ -47,5 +56,7 @@ require ./l-type.fs
 
 \ 2016-06-22: Start.
 \
-\ 2017-08-17: Update to the changes in the <l-type.fs> module. Rename
-\ `pl."` to `/l."`. Document.
+\ 2017-08-17: Update to the changes in the <l-type.fs> module.
+\ Rename `pl."` to `/l."`. Document.
+\
+\ 2017-11-12: Improve documentation.
