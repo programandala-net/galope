@@ -333,10 +333,6 @@ Alternative from
 
 == 2017-11-13
 
-- Rewrite `yyyymmdd>iso` to integrate it with the rest of ISO-8601
-  converters.
-- Rename `yyyymmdd>iso` and check if any of its private words can be
-  useful.
 - Add `time-zone` string to ISO-8601 converters.
 - Replace `aliases:`'s `parse-alias` with `do-parse-name`, moved from
   _La pistola de agua_.
@@ -349,3 +345,7 @@ Alternative from
 == 2017-11-14
 
 - Copy `sconstants` from Solo Forth.
+- Extend `iso-date>extended` to support longer date strings.
+- Write `iso-date>basic`.
+- Check if any private word of `iso-date>extended` can be useful.
+- Add warnings to all modules that contain deprecated words.
