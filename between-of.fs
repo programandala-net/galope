@@ -36,7 +36,8 @@ require ./between.fs
 
   \ ----
   \
-  \ See: `within-of`, `or-of`, `less-of`, `greater-of`, `default-of`.
+  \ See: `within-of`, `any-of`. `or-of`, `less-of`, `greater-of`,
+  \ `default-of`.
   \
   \ }doc
 
@@ -53,3 +54,5 @@ require ./between.fs
 \ 2017-08-20: Update change log layout and source style.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-14: Update documentation.

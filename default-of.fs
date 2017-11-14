@@ -32,7 +32,8 @@
 
   \ ----
   \
-  \ See: `less-of`, `greater-of`, `between-of`, `within-of`, `or-of`.
+  \ See: `less-of`, `greater-of`, `between-of`, `within-of`, `or-of`,
+  \ `any-of`.
   \
   \ }doc
 
@@ -48,3 +49,5 @@
 \ stack comment.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-14: Update documentation.

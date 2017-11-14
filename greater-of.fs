@@ -29,14 +29,14 @@ require ./nup.fs
 
   \ : test ( x -- )
   \   case
-  \     10      of ." ten!"         endof
+  \     10         of ." ten!"              endof
   \     15 greater-of  ." greater than 15"  endof
   \     ." less than 10 or 11..15"
   \   endcase ;
 
   \ ----
   \
-  \ See: `less-of`, `between-of`, `within-of`, `or-of`,
+  \ See: `less-of`, `between-of`, `within-of`, `or-of`, `any-of`,
   \ `default-of`.
   \
   \ }doc
@@ -53,3 +53,5 @@ require ./nup.fs
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-14: Update documentation.

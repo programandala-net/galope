@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-12
+:revdate: 2017-11-14
 
 == 2012-09-14
 
@@ -68,18 +68,6 @@ some conventional notation.  This way the files could be searched
 
 Move the tool words of <galope/to-yyyymmddhhmmss.fs> to their own
 files, when a similar word will need them.
-
-== 2014-03-13
-
-`among-of` ( run-time: x0 x'1...x'n n )
-
-----
-x case
-  a b c 3 among-of ... endof
-  d e 2 among-of ... endof
-  f g h i 4 among-of ... endof
-endcase
-----
 
 == 2014-03-19
 
@@ -350,3 +338,14 @@ Alternative from
 - Rename `yyyymmdd>iso` and check if any of its private words can be
   useful.
 - Add `time-zone` string to ISO-8601 converters.
+- Replace `aliases:`'s `parse-alias` with `do-parse-name`, moved from
+  _La pistola de agua_.
+- Rename `aliases: ;aliases` `aliases end-aliases`.
+- Simplify (with `recurse`) and document `(*`.
+- Deprecate <stream-to-str.fs>, which was superseded by <heredoc.fs>.
+- Review all words that use `refill`. Maybe `do-parse-name` can be
+  reused.
+
+== 2017-11-14
+
+- Copy `sconstants` from Solo Forth.

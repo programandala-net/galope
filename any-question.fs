@@ -12,14 +12,16 @@
 
 variable (any?)
 
-: any? ( x0 x1..xn n -- f )
-  dup 1+ roll (any?) ! 0 swap 0 do swap (any?) @ = or loop ;
+: any? ( x#0 x#1 .. x#n n -- f )
+  dup 1+ roll (any?) ! 0 swap 0 ?do swap (any?) @ = or loop ;
 
   \ doc{
   \
-  \ any? ( x0 x1..xn n -- f )
+  \ any? ( x#0 x#1 .. x#n n -- f )
   \
-  \ Is any _x1..xn_ equal to _x0_?
+  \ Is any _x#1 .. x#n_ equal to _x#0_?
+  \
+  \ See: `any-of`.
   \
   \ }doc
 
@@ -36,3 +38,5 @@ variable (any?)
 \ 2017-08-17: Update header layout.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-14: Improve documentation. Replace `do` with `?do`.
