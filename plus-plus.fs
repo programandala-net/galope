@@ -8,6 +8,13 @@
 \ ==============================================================
 
 require ./one-plus-store.fs
+require ./warning-paren.fs
+
+warnings @ [if]
+
+  warning( `++` is the deprecated name of `1+!`)
+
+[then]
 
 synonym ++ 1+! ( a -- )
 
@@ -38,3 +45,5 @@ synonym ++ 1+! ( a -- )
 \
 \ 2017-11-09: Move code to `1+!`. Deprecate `++` and make it a
 \ synonym of `1+!`.
+\
+\ 2017-11-14: Add a warning about the deprecation.

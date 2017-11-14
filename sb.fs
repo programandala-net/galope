@@ -1,8 +1,10 @@
 \ galope/sb.fs
-\ Circular string buffer
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
+
+\ Description: A circular string buffer. Deprecated, superseded by
+\ <stringer.fs>.
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017.
 
@@ -24,6 +26,13 @@ require ./smove.fs
 require ./both-lengths.fs
 require ./either-empty-question.fs
 require ./s-plus.fs
+require ./warning-paren.fs
+
+warnings @ [if]
+
+  warning( This module is deprecated, superseded by <stringer.fs>)
+
+[then]
 
 package galope-sb
 
@@ -227,3 +236,5 @@ end-package
 \ Update layout. Improve documentation.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-11-14: Add a warning about the deprecation.
