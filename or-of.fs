@@ -34,7 +34,7 @@
 
   \ ----
   \
-  \ See: `within-of`, `between-of`, `less-of`, `greater-of`,
+  \ See: `any-of`, `within-of`, `between-of`, `less-of`, `greater-of`,
   \ `default-of`.
   \
   \ }doc
@@ -47,3 +47,5 @@
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-10-24: Improve documentation.
+\
+\ 2017-11-14: Update documentation.
