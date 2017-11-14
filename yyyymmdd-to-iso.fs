@@ -11,9 +11,9 @@
 require ./iso-date-to-extended.fs
 require ./warning-paren.fs
 
-warnings [if]
+warnings @ [if]
 
-  warning( `yyyymmdd>iso` is a deprecated name of `iso-date>extended`)
+  warning( `yyyymmdd>iso` is the deprecated name of `iso-date>extended`)
 
 [then]
 

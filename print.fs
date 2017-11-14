@@ -1,5 +1,4 @@
 \ galope/print.fs
-\ Left justified print
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -28,9 +27,16 @@ require ./column.fs
 require ./home.fs
 require ./last-row.fs
 require ./question-question.fs
+require ./warning-paren.fs
 require ./xy.fs
 
 require ffl/trm.fs
+
+warnings @ [if]
+
+  warning( `print` is deprecated, superseded by `ltype`)
+
+[then]
 
 package galope-print
 
@@ -239,8 +245,13 @@ end-package
 \
 \ 2015-10-16: Fixed some comments.
 \
+\ 2016-06-22: Fork to <l-type.fs>, in order to improve it
+\ and replace it gradually, without breaking existing code.
+\
 \ 2017-08-17: Update change log layout. Update stack notation. Update
 \ section rulers.
 \
 \ 2017-08-18: Use `package` instead of `module:`. Add missing
 \ requirement of `xy`.
+\
+\ 2017-11-14: Add a warning about the deprecation.

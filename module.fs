@@ -22,6 +22,16 @@
 \   License: GNU GPL
 
 \ ==============================================================
+
+require ./warning-paren.fs
+
+warnings @ [if]
+
+  warning( `module` is deprecated, superseded by `package`)
+
+[then]
+
+\ ==============================================================
 \ Inner words
 
 get-order get-current
@@ -188,3 +198,5 @@ set-order
 \ 2017-10-24: Improve documentation.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-11-14: Add a warning about the deprecation.
