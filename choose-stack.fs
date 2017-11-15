@@ -56,7 +56,7 @@ init-choose-stack
 
 : <choose-stack ( -- n )
   ?choose-stack-empty
-  choose-stack-tos @ choose-stack-used --  ;
+  choose-stack-tos @ choose-stack-used 1-!  ;
   \ Fetch the top of the choose stack.
 
 \ ==============================================================
