@@ -5,14 +5,14 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2011, 2012, 2013, 2014,
-\ 2016.
+\ 2016, 2017.
 
 \ ==============================================================
 
 require ./module.fs
+require ./one-minus-store.fs
+require ./one-plus-store.fs
 require ./two-choose.fs
-require ./plus-plus.fs
-require ./minus-minus.fs
 
 \ ==============================================================
 
@@ -47,7 +47,7 @@ init-choose-stack
 
 : >choose-stack ( n -- )
   ?choose-stack-full
-  choose-stack-used ++ choose-stack-tos !  ;
+  choose-stack-used 1+! choose-stack-tos !  ;
   \ Store _n_ in the choose stack.
 
 : ?choose-stack-empty  ( -- )
@@ -65,3 +65,5 @@ init-choose-stack
 \ 2016-07-22: Move from the old module <random_strings.fs>, improve
 \ and rename the words, in order to reuse them for the new `2choose{
 \ }2choose` and `choose{ }choose`.
+\
+\ 2017-11-15: Update `++` to `1+!`, and `--` to `1-!`.

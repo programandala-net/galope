@@ -3,8 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Brad Rodriguez, 2012
-\ (http://camelforth.com/news.php?extend.44.2)
+\ Author: Marcos Cruz (programandala.net), 2017.
 
 \ ==============================================================
 
@@ -44,3 +43,5 @@ synonym decrement ?1-! ( -- )
 \ synonym of `?1-!`.
 \
 \ 2017-11-14: Add a warning about the deprecation.
+\
+\ 2017-11-15: Update header.
