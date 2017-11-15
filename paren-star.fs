@@ -28,14 +28,14 @@ false [if]
 
 \ Second version, block comments can be nested
 
-require ./plus-plus.fs  \ '++'
-require ./minus-minus.fs  \ '--'
+require ./one-minus-store.fs
+require ./one-plus-store.fs
 
 variable (*_count
 : ((*)  { D: parsed_name -- f }
   \ f = end of the comment block?
-  parsed_name s" (*" str= if  (*_count ++ false exit  then
-  parsed_name s" *)" str= if  (*_count dup -- @ 0< exit  then
+  parsed_name s" (*" str= if  (*_count 1+! false exit  then
+  parsed_name s" *)" str= if  (*_count dup 1-! @ 0< exit  then
   false
   ;
 : (*  ( -- )
@@ -110,3 +110,5 @@ instance toggles rather than nests)
 \ <http://www.forth200x.org/paren-star.txt>, for reference.
 \
 \ 2017-08-17: Update change log layout. Update stack notation.
+\
+\ 2017-11-15: Update `++` to `1+!`, and `--` to `1-!`.
