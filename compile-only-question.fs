@@ -27,6 +27,9 @@ require ./name-to-flags.fs
   \ has no interpretation semantics. `comp' _name_ drop >name` can be
   \ used instead, or simply `(') _name_`.
   \
+  \ NOTE: ``compile-only?`` is included in Gforth 0.7.9. If
+  \ ``compile-only?`` is defined already, this module does nothing.
+  \
   \ See: `immediate?`, `name>flags`.
   \
   \ }doc
