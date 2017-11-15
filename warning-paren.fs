@@ -7,6 +7,8 @@
 
 \ ==============================================================
 
+require ./question-warning.fs
+
 : warning( ( "ccc<paren>" -- )
   ')' parse true ['] type ?warning ; immediate
 
@@ -18,9 +20,14 @@
   \
   \ ``warning(`` is an immediate word.
   \
+  \ See: `?warning`.
+  \
   \ }doc
 
 \ ==============================================================
 \ Change log
 
 \ 2017-11-14: Start.
+\
+\ 2017-11-15: Require `?warning`, which is provided only by Gforth
+\ 0.7.9.
