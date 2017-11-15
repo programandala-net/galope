@@ -22,6 +22,9 @@ require ./name-to-flags.fs
   \
   \ _f_ is true if the word _nt_ is immediate.
   \
+  \ NOTE: ``immediate?`` is included in Gforth 0.7.9. If
+  \ ``immediate?`` is defined already, this module does nothing.
+  \
   \ See: `compile-only?`, `name>flags`.
   \
   \ }doc
