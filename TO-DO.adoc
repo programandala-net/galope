@@ -349,3 +349,8 @@ Alternative from
 - Extend `iso-date>extended` to support longer date strings.
 - Write `iso-date>basic`.
 - Check if any private word of `iso-date>extended` can be useful.
+
+== 2017-11-17
+
+- It seems `#indented` can be removed from <l-type.fs>. Confirm it and
+  remove it.
