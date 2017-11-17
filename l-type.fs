@@ -1,74 +1,121 @@
 \ galope/l-type.fs
-\ Left justified version of `type`.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
+
+\ Description:
+\
+\ Left justified version of `type`.
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2013, 2014, 2015,
 \ 2016, 2017.
 
 \ Credits:
 \
-\ This code is based on:
+\ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
-\ You can redistribute this file and/or modify it under
-\ the terms of the GNU General Public License
 
-\ Last modified 201711032231
+\ Last modified 201711171328
 \ See change log at the end of the file.
 
 \ ==============================================================
-\ XXX TODO
+\ Requirements
 
-\ - Top left coordinates.
-\ - Left margin.
-\ - Real time `lwidth`.
-\ - UTF-8 support.
+require ./column.fs             \ `column`
+require ./home-question.fs      \ `home?`
+require ./home.fs               \ `home`
+require ./package.fs            \ `package`
+require ./row.fs                \ `row`
+require ./slash-first-name.fs   \ `/first-name`
 
-\ ==============================================================
-
-require ./column.fs
-require ./home-question.fs
-require ./home.fs
-require ./last-row.fs
-require ./package.fs
-require ./slash-name.fs
-require ./slash-first-name.fs
+\ From Forth Foundation Library:
 
 require ffl/trm.fs
 
+\ ==============================================================
+
 package galope-l-type
-
-variable #lline \ Current line of the paragraph (the first one is 0).
-
-: next-lline ( -- ) 1 #lline +! ;
-
-variable #ltyped \ Printed chars in the current line.
-
-: ltyped+ ( u -- ) #ltyped +! ;
-
-variable #indented \ Indented chars in the current line.
-
-: indented+ ( u -- ) #indented +! ;
-
-: (indent) ( u -- )
-  dup trm+move-cursor-right dup indented+ ltyped+ ;
-
-: (.word) ( ca len -- ) dup ltyped+ type ;
-
-: no-ltyped ( -- ) #ltyped off #indented off ;
 
 public
 
-: indent ( u -- ) ?dup if (indent) then ;
+variable lrow#
+  \ Current line of the paragraph (the first one is 0).
+
+variable lrows# 0 lrows# !
+  \ Lines displayed on the current page.
+
+: next-lrow ( -- ) 1 lrow# +!  1 lrows# +! ;
+
+variable ltyped#
+  \ Characters typed in the current line.
+
+: ltyped ( u -- ) ltyped# +! ;
+
+private
+
+variable #indented
+  \ Indented chars in the current line.
+
+: (indent) ( u -- )
+  dup trm+move-cursor-right dup #indented +! ltyped ;
+
+: (.word) ( ca len -- ) dup ltyped type ;
+
+public
+
+: no-ltyped ( -- ) ltyped# off #indented off ;
+
+variable lmore lmore off
 
   \ doc{
   \
-  \ indent ( u -- )
+  \ lmore ( -- a )
   \
-  \ Indent _u_ spaces.
+  \ _a_ is the address of a cell containing a flag, whose default
+  \ value is _false_. When ``lmore`` is _true_, the left-justified
+  \ diplaying system displays a prompt when the screen is full.
   \
-  \ See: `proper-indent`.
+  \ See: `lprompt`, `ltype`.
+  \
+  \ }doc
+
+  \ Flag: Show a prompt when the screen is full?
+
+: (lprompt)$ ( -- ca len ) s" ..." ;
+
+  \ doc{
+  \
+  \ (lprompt)$ ( -- ca len ) s" ..." ;
+  \
+  \ _ca len_ is the default prompt used by the `ltype` displaying system
+  \ when the screen is full.  ``(lprompt)$`` is the default action
+  \ of `lprompt$`.
+  \
+  \ }doc
+
+defer lprompt$ ( -- ca len )
+
+  \ doc{
+  \
+  \ lprompt$ ( -- ca len )
+  \
+  \ _ca len_ is the prompt used by the `ltype` displaying system when
+  \ the screen is full. ``lprompt$``is a deferred word whose
+  \ default action is `(lprompt)$`.
+  \
+  \ }doc
+
+' (lprompt)$ is lprompt$
+
+: ?indent ( u -- ) ?dup if (indent) then ;
+
+  \ doc{
+  \
+  \ ?indent ( u -- )
+  \
+  \ ?indent _u_ spaces.
+  \
+  \ See: `indent`.
   \
   \ }doc
 
@@ -79,8 +126,8 @@ public
   \ indentation1 ( -- n )
   \
   \ Return the number _n_ of spaces at the left of the first line of a
-  \ new paragraph. ``indentation1`` is a value. Its default value is
-  \ 2.
+  \ new paragraph. ``indentation1`` is a ``value``. Its default value
+  \ is 2.
   \
   \ See `indentation2`, `/paragraph`.
   \
@@ -103,34 +150,59 @@ synonym indentation indentation1 \ XXX OLD -- for retrocompatibility
   \ indentation2 ( -- n )
   \
   \ Return the number _n_ of spaces at the left of the second and
-  \ following lines of a new paragraph. ``indentation2`` is a value.
-  \ Its default value is 0.
+  \ following lines of a new paragraph. ``indentation2`` is a
+  \ ``value``.  Its default value is 0.
   \
   \ See `indentation1`, `/paragraph`.
   \
   \ }doc
 
-: proper-indent ( -- )
-  #lline @ if indentation2 else indentation1 then indent ;
+variable indent-top
 
   \ doc{
   \
-  \ proper-indent ( -- )
+  \ indent-top ( -- a )
+  \
+  \ _a_ is the address of a cell containing a flag. If the flag is
+  \ _true_, the first line of a paragraph is indented even at the top
+  \ of the page, ie. at row zero. If the flag is _false_ (the default
+  \ value), the first line of a paragraph is not indented at the top
+  \ of the page.
+  \
+  \ See: `indent`, `indentation1`.
+  \
+  \ }doc
+
+private
+
+: (indentation1) ( -- n )
+  indentation1 row 0= if indent-top @ and then ;
+  \ Actual value of `indentation1`, depending on the flag
+  \ `indent-top`.
+
+public
+
+: indent ( -- )
+  lrow# @ if indentation2 else (indentation1) then ?indent ;
+
+  \ doc{
+  \
+  \ indent ( -- )
   \
   \ Indent the proper number of spaces (`indentation1` or
   \ `indentation2`) depending on the current line of the paragraph.
   \
-  \ See: `indent`.
+  \ See: `?indent`.
   \
   \ }doc
 
-: lemit ( c -- ) emit 1 ltyped+ ;
+: lemit ( c -- ) emit 1 ltyped ;
 
   \ doc{
   \
   \ lemit ( c -- )
   \
-  \ Display character _c_ as part of the left-justified printing
+  \ Display character _c_ as part of the left-justified displaying
   \ system.
   \
   \ See: `ltype`, `lspace`.
@@ -143,13 +215,13 @@ synonym indentation indentation1 \ XXX OLD -- for retrocompatibility
   \
   \ lspace ( -- )
   \
-  \ Display a space as part of the left-justified printing system.
+  \ Display a space as part of the left-justified displaying system.
   \
   \ See: `lemit`, `ltype`.
   \
   \ }doc
 
-: lhome ( -- ) home no-ltyped #lline off ;
+: lhome ( -- ) home no-ltyped lrow# off lrows# off ;
 
   \ doc{
   \
@@ -171,29 +243,124 @@ synonym indentation indentation1 \ XXX OLD -- for retrocompatibility
   \
   \ }doc
 
-private
-
-: not-at-start-of-line? ( -- f ) column 0<> ;
-
-: lcr? ( -- f ) home? 0= not-at-start-of-line? and ;
-
-public
-
-defer do-cr ( -- )
-' cr is do-cr
+rows 2 - value lrows ( -- n )
 
   \ doc{
   \
-  \ do-cr ( -- )
+  \ lrows ( -- n )
   \
-  \ A deferred word whose default action is ``cr``.
-  \ Used by `lcr`.
-  \
-  \ See: `lcr`.
+  \ _n_ is the number of rows per page displayed by `ltype`.
+  \ ``lrows`` is a ``value`` whose default content is ``rows 2 -``.
   \
   \ }doc
 
-: (lcr) ( -- ) do-cr next-lline no-ltyped proper-indent ;
+: lcr? ( -- f ) home? 0= column 0<> and ;
+
+  \ doc{
+  \
+  \ lcr? ( -- f )
+  \
+  \ Is the cursor to the next row neither at the home position nor at
+  \ the start of a line?  ``lcr?`` is part of the left-justified
+  \ displaying system.
+  \
+  \ See: `lcr`, `ltype`.
+  \
+  \ }doc
+
+: lpage? ( -- ? ) lrows# @ lrows > ;
+
+  \ doc{
+  \
+  \ lpage? ( -- f )
+  \
+  \ Is the page full?  ``lpage?`` is part of the left-justified
+  \ displaying system.
+  \
+  \ See: `ltype`,  `lcr?`,
+  \
+  \ }doc
+
+: (lprompt-pause) ( -- ) key drop ;
+
+  \ doc{
+  \
+  \ (lprompt-pause) ( -- )
+  \
+  \ Default action of `lprompt-pause`: wait for a key press.
+  \
+  \ }doc
+
+defer lprompt-pause ( -- ) ' (lprompt-pause) is lprompt-pause
+
+  \ doc{
+  \
+  \ lprompt-pause ( i*x -- )
+  \
+  \ A deferred word used by `this-lprompt`, which is part of the
+  \ `ltype` system; its default action is `(lprompt-pause)`.  _i*x_ is
+  \ a possible optional parameter needed by alternative actions.
+  \
+  \ }doc
+
+: this-lprompt ( i*x ca len -- )
+  xy    2>r dup >r type lprompt-pause r>
+        2r> at-xy spaces
+        2r@ at-xy
+  lrows# off ;
+
+  \ doc{
+  \
+  \ this-lprompt ( i*x ca len -- )
+  \
+  \ Display prompt _ca len_, execute `lprompt-pause` with optional
+  \ parameters _i*x_ and remove the prompt restoring the original
+  \ position of the cursor.
+  \
+  \ ``this-lprompt`` is a factor of `lprompt`, which is part of the
+  \ `ltype` displaying system.
+  \
+  \ }doc
+
+: lprompt ( i*x -- ) lprompt$ this-lprompt ;
+
+  \ doc{
+  \
+  \ lprompt ( i*x -- )
+  \
+  \ Manage the prompt of the `ltype` system: Execute `this-lprompt`
+  \ with `lprompt$` as parameter. _i*x_ is an optional parameter for
+  \ `lprompt-pause`.
+  \
+  \ }doc
+
+defer ((lcr)) ( -- ) ' cr is ((lcr))
+
+  \ doc{
+  \
+  \ ((lcr)) ( -- )
+  \
+  \ A deferred word whose default action is ``cr``.  This is the
+  \ actual carriage return done by `(lcr)`, before updating the data
+  \ of the left-justified displaying system.  ``((lcr))`` is a hook
+  \ for the application, for special cases.
+  \
+  \ }doc
+
+: (lcr) ( -- )
+  ((lcr)) next-lrow no-ltyped lpage? if lprompt then indent ;
+
+  \ doc{
+  \
+  \ (lcr) ( -- )
+  \
+  \ Move the cursor to the next row, if it's neither at the home
+  \ position nor at the start of a line. ``lcr`` is part of the
+  \ left-justified displaying system.
+  \
+  \ See: `ltype`.
+  \
+  \ }doc
 
 : lcr ( -- ) lcr? if (lcr) then ;
 
@@ -201,35 +368,32 @@ defer do-cr ( -- )
   \
   \ lcr ( -- )
   \
-  \ Move the cursor to the next row, if it's neither at the home
-  \ position nor at the start of a line. ``lcr`` is part of the
-  \ left-justified printing system.
+  \ If needed, move the cursor to the next row, ``lcr`` is part of the
+  \ left-justified displaying system.
   \
-  \ See: `ltype`.
+  \ See: `lcr?`, `(lcr)`, `ltype`.
   \
   \ }doc
 
-variable lwidth
+variable lwidth cols lwidth !
 
   \ doc{
   \
   \ lwidth ( -- a )
   \
-  \ A variable containing the text width used by `ltype` and related
-  \ words. Its default value is zero, which means all columns are used
-  \ (the value returned by ``cols``).
+  \ A variable containing the text width in columns used by `ltype`
+  \ and related words. Its default value is ``cols``, ie. the current
+  \ width of the screen.
   \
   \ }doc
 
 private
 
-: previous-word? ( -- f ) #ltyped @ #indented @ > ;
+: previous-word? ( -- f ) ltyped# @ #indented @ > ;
 
 : ?space ( -- ) previous-word? if lspace then ;
 
-: width ( -- u ) lwidth @ ?dup 0= if cols then ;
-
-: unfit? ( u -- f ) 1+ #ltyped @ + width > ;
+: unfit? ( u -- f ) 1+ ltyped# @ + lwidth @ > ;
 
 : .word ( ca len -- )
   dup unfit? if lcr else ?space then (.word) ;
@@ -255,20 +419,21 @@ public
   \
   \ /paragraph ( -- n )
   \
-  \ Blank rows between paragraphs. ``/paragraph`` is a value.
+  \ Blank rows between paragraphs. ``/paragraph`` is a ``value`` whose
+  \ default value is 1.
   \
-  \ See: `indentation`, `paragraph`.
+  \ See: `indentation1`, `indentation2`, `paragraph`.
   \
   \ }doc
 
 private
 
-: separate-paragraph ( -- ) /paragraph 1+ 0 ?do (lcr) loop ;
+: (paragraph) ( -- ) /paragraph 1+ 0 ?do (lcr) loop ;
 
 public
 
 : paragraph ( -- )
-  #lline off separate-paragraph proper-indent ;
+  home? 0= if (paragraph) then lrow# off indent ;
 
   \ doc{
   \
@@ -291,6 +456,16 @@ public
   \ }doc
 
 end-package
+
+require ./n-to-str.fs
+
+: t ( n -- )
+  0 ?do
+    lrow#  @ n>str ltype
+    lrows# @ n>str ltype
+    s" En un lugar de La Mancha."
+    ltype
+  loop ;
 
 \ ==============================================================
 \ Change log
@@ -377,3 +552,11 @@ end-package
 \ 2017-10-24: Improve documentation.
 \
 \ 2017-11-03: Improve change log.
+\
+\ 2017-11-16: Start implementation of a configurable "more?" control.
+\
+\ 2017-11-17: Improve factoring, names and documentation. Update
+\ requirements. Add flag `indent-top`, `lprompt-pause`, and others.
+\ Expand the public interface.  Fix `paragraph`: do not separate the
+\ new paragraph if cursor is at the top left corner of the screen.
+\ Remove GPL license.
