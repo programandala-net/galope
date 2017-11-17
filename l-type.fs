@@ -15,18 +15,20 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201711172219
+\ Last modified 201711172245
 \ See change log at the end of the file.
 
 \ ==============================================================
 \ Requirements
 
-require ./column.fs             \ `column`
-require ./home-question.fs      \ `home?`
-require ./home.fs               \ `home`
-require ./package.fs            \ `package`
-require ./row.fs                \ `row`
-require ./slash-first-name.fs   \ `/first-name`
+require ./column.fs                   \ `column`
+require ./home-question.fs            \ `home?`
+require ./home.fs                     \ `home`
+require ./one-plus-store.fs           \ `1+!`
+require ./package.fs                  \ `package`
+require ./question-one-minus-store.fs \ `?1-!`
+require ./row.fs                      \ `row`
+require ./slash-first-name.fs         \ `/first-name`
 
 \ From Forth Foundation Library:
 
@@ -39,17 +41,80 @@ package galope-l-type
 public
 
 variable lrow#
-  \ Current line of the paragraph (the first one is 0).
+
+  \ doc{
+  \
+  \ lrow# ( -- a )
+  \
+  \ _a_ is the address of a cell containing the current row of
+  \ the paragraph (the first one is 0).
+  \
+  \ See: `lrows#`, `ltyped#`.
+  \
+  \ }doc
 
 variable lrows# 0 lrows# !
-  \ Lines displayed on the current page.
 
-: next-lrow ( -- ) 1 lrow# +!  1 lrows# +! ;
+  \ doc{
+  \
+  \ lrows# ( -- a )
+  \
+  \ _a_ is the address of a cell containing the number of rows
+  \ displayed on the current page of the screen.
+  \
+  \ See: `lrow#`, `ltyped#`.
+  \
+  \ }doc
+
+: next-lrow ( -- ) lrow# 1+! lrows# 1+! ;
+
+  \ doc{
+  \
+  \ next-lrow ( -- )
+  \
+  \ Increase `lrow#` and `lrows#`.
+  \
+  \ See: `previous-lrow`.
+  \
+  \ }doc
+
+: previous-lrow ( -- )
+  lrow# ?1-! lrows# ?1-! 1 trm+move-cursor-up ;
+
+  \ doc{
+  \
+  \ previous-lrow ( -- )
+  \
+  \ Decrement `lrow#` and `lrows#` and move the cursor up.
+  \
+  \ See: `next-lrow`.
+  \
+  \ }doc
 
 variable ltyped#
-  \ Characters typed in the current line.
 
-: ltyped ( u -- ) ltyped# +! ;
+  \ doc{
+  \
+  \ ltyped# ( -- a )
+  \
+  \ _a_ is the address of a cell containing the number of
+  \ characters displayed by `ltype` or `/ltype` on the current
+  \ row.
+  \
+  \ See: `ltyped`.
+  \
+  \ }doc
+
+: ltyped ( n -- ) ltyped# +! ;
+
+  \ doc{
+  \
+  \ ltyped ( n -- )
+  \
+  \ Update `ltyped#` with _n_ characters typed by `ltype` or
+  \ `/ltype`.
+  \
+  \ }doc
 
 private
 
@@ -64,6 +129,16 @@ variable #indented
 public
 
 : no-ltyped ( -- ) ltyped# off #indented off ;
+
+  \ doc{
+  \
+  \ no-ltyped ( -- )
+  \
+  \ Set `ltyped#` to zero.
+  \
+  \ See: `ltyped`.
+  \
+  \ }doc
 
 variable lmore lmore off
 
@@ -564,7 +639,7 @@ require ./n-to-str.fs
 \ control.
 \
 \ 2017-11-17: Improve factoring, names and documentation.
-\ Update requirements. Add flag `indent-top`, `lprompt-pause`,
-\ and others.  Expand the public interface.  Fix `paragraph`:
-\ do not separate the new paragraph if cursor is at the top
-\ left corner of the screen.  Remove GPL license.
+\ Update requirements. Add `indent-top`, `lprompt-pause`,
+\ `previous-lrow`, and others.  Expand the public interface.
+\ Fix `paragraph`: do not separate the new paragraph if cursor
+\ is at the top left corner of the screen.  Remove GPL license.
