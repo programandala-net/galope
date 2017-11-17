@@ -1,8 +1,8 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-14
+:revdate: 2017-11-17
 
-== 2012-09-14
+== 2012-09-14, 2017-11-17
 
 Rename `seconds` and `microseconds`:
 
@@ -12,10 +12,11 @@ seconds|key
 seconds-or-keypress
 seconds|keypress
 /seconds
+?seconds
 ----
 
-Then use `seconds` and `microseconds` for versions where the pause
-that can not be shortened with a keypress.
+Then use `seconds` and `microseconds` for versions where the pause can
+not be shortened with a keypress.
 
 == 2012-09-20
 
@@ -163,15 +164,15 @@ Check if `$@` is needed in Gforth 0.7.9.
 Fix: UTF-8 chars are corrupted in the PDF manual. See usage example of
 `2arrayed`. The HTML version is fine.
 
-== 2017-10-22, 2017-11-12
+== 2017-10-22, 2017-11-12, 2017-11-16
 
 Improve `ltype`:
 
 - Top left coordinates.
 - Left margin.
-- Real time `lwidth`.
 - UTF-8 support.
-- More/Pause control.
+- More/Pause control [under development as of 2017-11-16]
+- Right margin.
 
 == 2017-10-22
 
