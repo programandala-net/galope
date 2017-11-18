@@ -15,7 +15,7 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201711172245
+\ Last modified 201711181222
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -374,14 +374,14 @@ defer lprompt-pause ( -- ) ' (lprompt-pause) is lprompt-pause
   \
   \ lprompt-pause ( i*x -- )
   \
-  \ A deferred word used by `this-lprompt`, which is part of
+  \ A deferred word used by `lprompted`, which is part of
   \ the `ltype` system; its default action is
   \ `(lprompt-pause)`.  _i*x_ is a possible optional parameter
   \ needed by alternative actions.
   \
   \ }doc
 
-: this-lprompt ( i*x ca len -- )
+: lprompted ( i*x ca len -- )
   xy    2>r dup >r type lprompt-pause r>
         2r@ at-xy spaces
         2r> at-xy
@@ -389,24 +389,24 @@ defer lprompt-pause ( -- ) ' (lprompt-pause) is lprompt-pause
 
   \ doc{
   \
-  \ this-lprompt ( i*x ca len -- )
+  \ lprompted ( i*x ca len -- )
   \
   \ Display prompt _ca len_, execute `lprompt-pause` with
   \ optional parameters _i*x_ and remove the prompt restoring
   \ the original position of the cursor.
   \
-  \ ``this-lprompt`` is a factor of `lprompt`, which is part of
+  \ ``lprompted`` is a factor of `lprompt`, which is part of
   \ the `ltype` displaying system.
   \
   \ }doc
 
-: lprompt ( i*x -- ) lprompt$ this-lprompt ;
+: lprompt ( i*x -- ) lprompt$ lprompted ;
 
   \ doc{
   \
   \ lprompt ( i*x -- )
   \
-  \ Manage the prompt of the `ltype` system: Execute `this-lprompt`
+  \ Manage the prompt of the `ltype` system: Execute `lprompted`
   \ with `lprompt$` as parameter. _i*x_ is an optional parameter for
   \ `lprompt-pause`.
   \
@@ -643,3 +643,5 @@ require ./n-to-str.fs
 \ `previous-lrow`, and others.  Expand the public interface.
 \ Fix `paragraph`: do not separate the new paragraph if cursor
 \ is at the top left corner of the screen.  Remove GPL license.
+\
+\ 2017-11-18: Rename `this-lprompt` `lprompted`.
