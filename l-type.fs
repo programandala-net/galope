@@ -15,7 +15,7 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201711181222
+\ Last modified 201711181239
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -297,7 +297,17 @@ public
   \
   \ }doc
 
-: lhome ( -- ) home no-ltyped lrow# off lrows# off ;
+: init-lrows ( -- ) lrow# off lrows# off ;
+
+  \ doc{
+  \
+  \ init-lrows ( -- )
+  \
+  \ Set `lrow#` and `lrows#` to zero.
+  \
+  \ }doc
+
+: lhome ( -- ) home no-ltyped init-lrows ;
 
   \ doc{
   \
@@ -385,7 +395,7 @@ defer lprompt-pause ( -- ) ' (lprompt-pause) is lprompt-pause
   xy    2>r dup >r type lprompt-pause r>
         2r@ at-xy spaces
         2r> at-xy
-  lrows# off ;
+  init-lrows ;
 
   \ doc{
   \
@@ -644,4 +654,4 @@ require ./n-to-str.fs
 \ Fix `paragraph`: do not separate the new paragraph if cursor
 \ is at the top left corner of the screen.  Remove GPL license.
 \
-\ 2017-11-18: Rename `this-lprompt` `lprompted`.
+\ 2017-11-18: Rename `this-lprompt` `lprompted`. Add `init-lrows`.
