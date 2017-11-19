@@ -7,9 +7,19 @@
 
 \ ==============================================================
 
-: sconstant (  ca len "name" -- )
+: sconstant ( ca len "name" -- )
   create s,
   does> ( -- ca len ) ( dfa ) count ;
+
+  \ doc{
+  \
+  \ sconstant ( ca len "name" -- )
+  \
+  \ Create a string constant _name_ with value _ca len_.
+  \
+  \ See also: `strings:`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -23,3 +33,5 @@
 \
 \ 2017-11-04: Rename module after the general convention, ie.
 \ <s-constant.fs>.
+\
+\ 2017-11-19: Improv documentation.

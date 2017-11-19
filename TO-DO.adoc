@@ -354,3 +354,8 @@ Alternative from
 
 - It seems `#indented` can be removed from <l-type.fs>. Confirm it and
   remove it.
+
+== 2017-11-19
+
+- Improve `sconstant` to store long strings: store only the text, not
+  the length, and create a `2constant` to return address and length.
