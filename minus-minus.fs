@@ -24,7 +24,7 @@ synonym -- 1-! ( a -- )
   \
   \ Decrement the single-cell number at _a_.
   \
-  \ ``--`` is deprecated, but it's kept as a synonym of `1-!`.
+  \ NOTE: ``--`` is deprecated, replaced by `1-!`.
   \
   \ }doc
 
@@ -48,3 +48,5 @@ synonym -- 1-! ( a -- )
 \ synonym of `1-!`.
 \
 \ 2017-11-14: Add a warning about the deprecation.
+\
+\ 2017-11-22: Improve documentation.

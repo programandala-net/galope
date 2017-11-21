@@ -106,6 +106,9 @@ set-current
   \
   \ As an alternative, the word `:module` starts an unnamed module.
   \
+  \ NOTE: This implementation of `module:` is deprecated, superseded
+  \ by `package`.
+  \
   \ See: `export`, `hide`, `;module`, `package`.
 
   \ }doc
@@ -138,6 +141,9 @@ set-current
   \ ----
   \
   \ As an alternative, the word `module:` starts a named module.
+  \
+  \ NOTE: This implementation of `module` is deprecated, superseded by
+  \ `package`.
   \
   \ See: `export`, `hide`, `;module`, `package`.
 
@@ -200,3 +206,5 @@ set-order
 \ 2017-10-25: Improve documentation.
 \
 \ 2017-11-14: Add a warning about the deprecation.
+\
+\ 2017-11-22: Improve documentation.

@@ -359,3 +359,10 @@ Alternative from
 
 - Improve `sconstant` to store long strings: store only the text, not
   the length, and create a `2constant` to return address and length.
+
+== 2017-11-21
+
+- Rename `translations:` `translations`.
+- Rename `/translations` `end-translations`.
+- Remove `;translations`.
+- Remove deprecated `yyyymmdd>iso`.

@@ -15,9 +15,10 @@
   \
   \ buffer: ( u "name" -- )
   \
-  \ Forth-2012's ``buffer:``.  This module is deprecated: If
-  \ ``buffer:`` is already defined in the Forth system, this module
-  \ does nothing.
+  \ Forth-2012's ``buffer:``.
+  \
+  \ NOTE: This module is deprecated: If ``buffer:`` is already defined
+  \ in the Forth system, this module does nothing.
   \
   \ }doc
 
@@ -38,3 +39,5 @@
 \ style.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-11-22: Improve documentation.
