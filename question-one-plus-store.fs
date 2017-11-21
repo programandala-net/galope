@@ -16,7 +16,7 @@
   \ Increment the single-cell number at _a_ to, but not beyond, the
   \ largest usable signed integer.
   \
-  \ See: `max-n`, `1+!`, `?1-!`.
+  \ See: `max-n`, `1+!`, `?1-!`, `?1+`.
   \
   \ }doc
 
@@ -80,3 +80,5 @@ variable counter
 \ which already existed and was faster. Benchmark.  (`?++` was moved
 \ and improved on 2016-07-11 from "Asalto y castigo":
 \ http://programandala.net/en.program.asalto_y_castigo.forth.html).
+\
+\ 2017-11-22: Update documentation.

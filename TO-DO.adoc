@@ -366,3 +366,4 @@ Alternative from
 - Rename `/translations` `end-translations`.
 - Remove `;translations`.
 - Remove deprecated `yyyymmdd>iso`.
+- Improve naming convention: `?1+!` vs `?1+`.
