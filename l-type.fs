@@ -15,7 +15,7 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201711181239
+\ Last modified 201711211330
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -159,7 +159,7 @@ variable lmore lmore off
 
   \ doc{
   \
-  \ (lprompt)$ ( -- ca len ) s" ..." ;
+  \ (lprompt)$ ( -- ca len )
   \
   \ _ca len_ is the default prompt used by the `ltype`
   \ displaying system when the screen is full.  ``(lprompt)$``
@@ -655,3 +655,5 @@ require ./n-to-str.fs
 \ is at the top left corner of the screen.  Remove GPL license.
 \
 \ 2017-11-18: Rename `this-lprompt` `lprompted`. Add `init-lrows`.
+\
+\ 2017-11-21: Fix documentation.

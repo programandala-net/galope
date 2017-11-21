@@ -3,22 +3,24 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012.
+\ Author: Neil Bawd, 1986-11-29 (presented at FORML 1986)
 
-\ '??' was presented at FORML 1986 by Neil Bawd.
+\ ==============================================================
 
-require ./bracket-gforth-question.fs  \ '[gforth?]'
-
-: ??  \ Compilation: ( "name" -- )
-      \ Run-time: ( run-time: f -- )
+: ?? \ Compilation: ( "name" -- )
+     \ Run-time:    ( f -- )
   postpone if parse-name evaluate postpone then ; immediate
+                                                  compile-only
 
   \ doc{
   \
-  \ ?? ( "name" -- )
+  \ ?? \ Compilation: ( "name" -- )
+  \    \ Run-time:    ( f -- )
   \
-  \ Parse _name_. If _f_ is non-zero, evaluate _name_.
-  \ Otherwise do nothing.
+  \ Compilation: Parse and evaluate _name_.
+  \
+  \ Run-time: If _f_ is non-zero, execute _name_, which was
+  \ compiled.  Otherwise do nothing.
   \
   \ See: `[??]`.
   \
@@ -36,3 +38,6 @@ require ./bracket-gforth-question.fs  \ '[gforth?]'
 \ 2015-10-16: Version with `postpone`.
 \
 \ 2017-08-14: Simplified: No Gforth check; use `parse-name`. Document.
+\
+\ 2017-11-20: Improve documentation and header. Make `??` a
+\ compile-only word.

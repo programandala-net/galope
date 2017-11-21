@@ -24,7 +24,7 @@ synonym decrement ?1-! ( -- )
   \
   \ Decrement the single-cell number at _a_ to, but not beyond, zero.
   \
-  \ ``decrement`` is deprecated, but it's kept as a synonym of `?1-!`.
+  \ NOTE: ``decrement`` is deprecated, replaced by `?1-!`.
   \
   \ }doc
 
@@ -45,3 +45,5 @@ synonym decrement ?1-! ( -- )
 \ 2017-11-14: Add a warning about the deprecation.
 \
 \ 2017-11-15: Update header.
+\
+\ 2017-11-22: Improve documentation.

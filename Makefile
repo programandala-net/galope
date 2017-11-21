@@ -3,7 +3,7 @@
 # This file is part of Galope
 # http://programandala.net/en.program.galope.html
 
-# Last modified 201708171718
+# Last modified 201711211340
 
 # ==============================================================
 # Author
@@ -74,6 +74,11 @@ cleandoc:
 # ==============================================================
 # Documentation
 
+.PHONY: doc
+doc: \
+	doc/galope_manual.html \
+	doc/galope_manual.pdf
+
 # ----------------------------------------------
 # Common rules
 
@@ -100,6 +105,12 @@ tmp/glossary.adoc: tmp/files.txt
 %.docbook: %.adoc
 	asciidoctor --backend=docbook --out-file=$@ $<
 
+%.texi: %.docbook
+	pandoc -o $@ $<
+
+%.info: %.texi
+	makeinfo -o $@ $<
+
 # ----------------------------------------------
 # Main
 
@@ -124,11 +135,20 @@ tmp/galope_manual.adoc: \
 	tmp/glossary.adoc
 	cat $^ > $@
 
-.PHONY: doc
-doc: doc/galope_manual.html doc/galope_manual.pdf
+doc/galope_manual.texi: tmp/galope_manual.docbook
+	pandoc -o $@ $<
+
+doc/galope_manual.info: doc/galope_manual.texi
+	makeinfo -o $@ $<
 
 # ==============================================================
 # Change log
 
 # 2017-07-14: Start.
+#
 # 2017-07-15: Try Glosara `--output` parameter.
+#
+# 2017-11-20: First try to create Texinfo and Info versions of
+# the manual.
+#
+# 2017-11-21: Improve.

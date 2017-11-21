@@ -1,8 +1,9 @@
 \ galope/translated.fs
-\ Tool to translate substrings of a string.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
+
+\ Description: Tool to translate substrings of a string.
 
 \ Author: Marcos Cruz (programandala.net), 2013, 2017.
 
@@ -66,7 +67,7 @@ public
 
   \ doc{
   \
-  \ translations: ( "name" -- a1 )
+  \ translations: ( "name" -- a )
   \
   \ Start the definition of a translation table, to be used by
   \ `translated`, leaving address _a_ of the translation table, which
@@ -154,3 +155,5 @@ end-package
 \
 \ 2017-10-26: Update source style. Reorganize public and private
 \ words. Improve documentation.
+\
+\ 2017-11-21: Fix stack comment. Improve header.
