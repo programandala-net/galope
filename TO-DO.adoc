@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-17
+:revdate: 2017-11-22
 
 == 2012-09-14, 2017-11-17
 
@@ -367,3 +367,9 @@ Alternative from
 - Remove `;translations`.
 - Remove deprecated `yyyymmdd>iso`.
 - Improve naming convention: `?1+!` vs `?1+`.
+
+== 2017-11-22
+
+- Rename `random-range` `random-between`, after `random-within`. This
+  change makes `random-within` and `random-between` parallel to
+  `within` and `between`.
