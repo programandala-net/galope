@@ -16,7 +16,10 @@
   \
   \ home ( -- )
   \
-  \ Move the cursor to its top left position (row 0, column 0).
+  \ Move the cursor to the top left position of the screen (row
+  \ 0, column 0).
+  \
+  \ See: `home`, `xy`.
   \
   \ }doc
 
@@ -33,3 +36,5 @@
 \ style.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-11-22: Update and improve documentation.
