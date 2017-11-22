@@ -15,6 +15,8 @@
   \
   \ Remove all keys from the keyboard buffer.
   \
+  \ See: `-ekeys`.
+  \
   \ }doc
 
 \ ==============================================================
@@ -28,3 +30,5 @@
 \ style. Remove `module`.
 \
 \ 2017-11-04: Improve documentation.
+\
+\ 2017-11-22: Update documentation.
