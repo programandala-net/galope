@@ -15,6 +15,8 @@ require ffl/trm.fs
 
   \ doc{
   \
+  \ lighter ( x1 -- x2 )
+  \
   \ Change a color code _x1_ to its lighter counterpart _x2_.
   \
   \ See: `blue`, `light-blue`, `brown`, `cyan`, `light-cyan`, `green`,
@@ -32,3 +34,5 @@ require ffl/trm.fs
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2017-11-24: Fix documentation.
