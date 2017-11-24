@@ -22,7 +22,7 @@ require random.fs
   \ NOTE: This word uses Gforth's ``utime`` instead of
   \ ``random``.
   \
-  \ See: `random-range`, `randomize`.
+  \ See: `random-between`, `randomize`.
   \
   \ }doc
 
@@ -34,3 +34,5 @@ require random.fs
 \ Original code by Robert Pfeiffer, 2009, `myrand`:
 \ <https://github.com/robertpfeiffer/forthsnake>. Rename.
 \ Replace `utime +` with `rnd`.
+\
+\ 2017-11-24: Update documentation.
