@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-22
+:revdate: 2017-11-24
 
 == 2012-09-14, 2017-11-17
 
@@ -355,10 +355,11 @@ Alternative from
 - It seems `#indented` can be removed from <l-type.fs>. Confirm it and
   remove it.
 
-== 2017-11-19
+== 2017-11-19, 2017-11-22
 
 - Improve `sconstant` to store long strings: store only the text, not
   the length, and create a `2constant` to return address and length.
+  Or define `lsconstant`.
 
 == 2017-11-21
 
@@ -373,3 +374,8 @@ Alternative from
 - Rename `random-range` `random-between`, after `random-within`. This
   change makes `random-within` and `random-between` parallel to
   `within` and `between`.
+
+== 2017-11-24
+
+Include `paper`, `ink` and `sgr` in the documentation of <lighter.fs>
+and <colors.fs>.
