@@ -18,7 +18,7 @@ require random.fs  \ Gforth's 'random'
   \ Set the ``random``'s ``seed`` using the values returned by
   \ ``utime``.
   \
-  \ See: `random-range`.
+  \ See: `random-between`, `random-within`.
   \
   \ }doc
 
@@ -30,3 +30,5 @@ require random.fs  \ Gforth's 'random'
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-11-09: Improve documentation.
+\
+\ 2017-11-24: Update documentation.

@@ -1,4 +1,4 @@
-\ galope/random-range.fs
+\ galope/random-between.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -9,11 +9,11 @@
 
 require galope/random-within.fs
 
-: random-range ( n1 n2 -- n3 ) 1+ random-within ;
+: random-between ( n1 n2 -- n3 ) 1+ random-within ;
 
   \ doc{
   \
-  \ random-range ( n1 n2 -- n3 )
+  \ random-between ( n1 n2 -- n3 )
   \
   \ Return a random number _n3_ from _n1_ (minimum) to _n2_
   \ (maximum).
@@ -84,3 +84,5 @@ variable counter
 \
 \ 2017-11-22: Fix and update documentation. Benchmark three
 \ variants. Rewrite after `random-within`.
+\
+\ 2017-11-24: Rename `random-range` `random-between`.

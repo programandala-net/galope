@@ -369,12 +369,6 @@ Alternative from
 - Remove deprecated `yyyymmdd>iso`.
 - Improve naming convention: `?1+!` vs `?1+`.
 
-== 2017-11-22
-
-- Rename `random-range` `random-between`, after `random-within`. This
-  change makes `random-within` and `random-between` parallel to
-  `within` and `between`.
-
 == 2017-11-24
 
 Include `paper`, `ink` and `sgr` in the documentation of <lighter.fs>
