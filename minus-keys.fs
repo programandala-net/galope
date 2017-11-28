@@ -15,7 +15,7 @@
   \
   \ Remove all keys from the keyboard buffer.
   \
-  \ See: `-ekeys`.
+  \ See: `-ekeys`, `new-key`.
   \
   \ }doc
 
@@ -32,3 +32,5 @@
 \ 2017-11-04: Improve documentation.
 \
 \ 2017-11-22: Update documentation.
+\
+\ 2017-11-28: Update documentation.
