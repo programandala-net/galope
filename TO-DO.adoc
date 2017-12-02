@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-11-24
+:revdate: 2017-12-02
 
 == 2012-09-14, 2017-11-17
 
@@ -373,3 +373,17 @@ Alternative from
 
 Include `paper`, `ink` and `sgr` in the documentation of <lighter.fs>
 and <colors.fs>.
+
+== 2017-12-02
+
+Benchmark strings constants created by the current definition of
+`sconstant` vs the definition of Solo Forth, which probably is faster:
+
+----
+: sconstant ( ca len "name" -- )
+  here >r s, r> count 2constant ;
+----
+
+== 2017-12-02
+
+Document relation between <sarray.fs>, <two-array.fs>, etc.
