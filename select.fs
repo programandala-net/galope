@@ -11,14 +11,14 @@
 \   Public domain
 \
 \ Adapted to Galope:
-\   Marcos Cruz (programandala.net), 2013.
+\   Marcos Cruz (programandala.net), 2013, 2015, 2017.
 
 \ ==============================================================
 \ Syntax
 
 0 [if]
 
-  select  ( x0 )
+  select ( x0 )
      cond  <tests>  when    ... else
            <test>   if drop ... else
      ...   ( default )
@@ -49,37 +49,34 @@ clauses that would otherwise pass to 'endselect'. It provides
 \ Requirements
 
 require ./between.fs
-\ require ./thens.fs  \ XXX TODO
+require ./cond.fs
+require ./thens.fs
 
 \ ==============================================================
 \ Code
 
-0 constant select  immediate
-0 constant cond  immediate
+0 constant select immediate compile-only
 
-: thens  ( 0 a'1 ... a'n -- )
-  \ Compile the pending 'then'.
-  begin  ?dup while  postpone then  repeat
-  ;
-: endselect  ( compile-time: 0 a'1 ... a'n -- ) ( run-time: x0 -- )
-  postpone drop  thens
-  ;  immediate
-: when  ( compile-time: xxx ) ( run-time: xxx )  \ xxx todo stack
-  postpone else  >r >r >r  thens  r> r> r>  postpone drop
-  ;  immediate
-: continue  ( compile-time: xxx ) ( run-time: xxx )  \ xxx todo stack
-  >r >r >r thens  0  r> r> r>
-  ;  immediate
-: equal  ( compile-time:  -- ) ( run-time: x0 x1 -- )
-  postpone over  postpone -  postpone if
-  ;  immediate
-: (range)  ( x0 x1 x2 -- x0 f )
+: endselect ( compile-time: 0 a'1 ... a'n -- ) ( run-time: x0 -- )
+  postpone drop postpone thens ; immediate compile-only
+
+: when ( compile-time: xxx ) ( run-time: xxx )  \ xxx todo stack
+  postpone else  >r >r >r postpone thens r> r> r> postpone drop
+  ; immediate compile-only
+
+: continue ( compile-time: xxx ) ( run-time: xxx )  \ xxx todo stack
+  >r >r >r postpone thens 0 r> r> r> ; immediate compile-only
+
+: equal ( compile-time:  -- ) ( run-time: x0 x1 -- )
+  postpone over postpone - postpone if ; immediate compile-only
+
+: (range) ( x0 x1 x2 -- x0 f )
   2>r dup 2r> over - -rot - u<
-  \ 2>r dup 2r> between
+  \ 2>r dup 2r> between \ XXX TODO --
   ;
-: range  ( -- )
-  postpone (range)  postpone if
-  ;  immediate
+
+: range ( -- )
+  postpone (range) postpone if ; immediate compile-only
 
 \ ==============================================================
 \ Usage example
@@ -121,24 +118,27 @@ cr  128            dup 3 .r  select_test
 \ ==============================================================
 \ Change log
 
-0 [if]
+\ 2013-08-16: First changes to the original code:
 
-2013-08-16: First changes to the original code:
+\ - Change words to lowercase.
+\ - Rename 'case' and 'endcase' to 'select' and 'endselect'
+\   (from SuperBASiC)
+\ - Remove 'of' and 'endof'.
+\ - Remove the code for other Forth systems than Gforth.
+\ - Add stack and purpouse comments.
+\ - Format the source after my house style.
+\ - Use 'between' in '(range)'.
 
-- Change words to lowercase.
-- Rename 'case' and 'endcase' to 'select' and 'endselect' (from SuperBASiC)
-- Remove 'of' and 'endof'.
-- Remove the code for other Forth systems than Gforth.
-- Add stack and purpouse comments.
-- Format the source after my house style.
-- Use 'between' in '(range)'.
-
-2013-08-17: Corrected the title of the test.  Note: 'thens' is not
-immediate; Wil Baden's 'thens' is equivalent but immediate.
-
-2015-10-25: Fixed the usage example.
-
-2017-08-17: Update change log layout. Update header. Update section
-rulers. Update stack notation.
+\ 2013-08-17: Corrected the title of the test.  Note: 'thens' is
+\ not immediate; Wil Baden's 'thens' is equivalent but
+\ immediate.
+\
+\ 2015-10-25: Fixed the usage example.
+\
+\ 2017-08-17: Update change log layout. Update header. Update
+\ section rulers. Update stack notation.
+\
+\ 2017-12-02: Extract `thens` and `cond`. Make all control-flow
+\ words compile-only.
 
 [then]
