@@ -1,5 +1,4 @@
 \ galope/n-to-str-plus.fs
-\ `n>str+`
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -11,8 +10,7 @@
 require ./n-to-str.fs
 require ./s-plus.fs
 
-: n>str+ ( ca1 len1 n -- ca2 len2 )
-  n>str s+ ;
+: n>str+ ( ca1 len1 n -- ca2 len2 ) n>str s+ ;
 
   \ doc{
   \
@@ -36,3 +34,5 @@ require ./s-plus.fs
 \
 \ 2017-07-15: Require `s+`, which was removed from Gforth 0.7.9.
 \ Update layout. Improve documentation.
+\
+\ 2017-12-04: Update source layout.

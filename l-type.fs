@@ -15,7 +15,7 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201711211330
+\ Last modified 201712041856
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -134,7 +134,7 @@ public
   \
   \ no-ltyped ( -- )
   \
-  \ Set `ltyped#` to zero.
+  \ Set `ltyped#` and `#indented` to zero.
   \
   \ See: `ltyped`.
   \
@@ -347,9 +347,8 @@ rows 2 - value lrows ( -- n )
   \
   \ lcr? ( -- f )
   \
-  \ Is the cursor to the next row neither at the home position
-  \ nor at the start of a line?  ``lcr?`` is part of the
-  \ left-justified displaying system.
+  \ Is the cursor neither at the home position nor at the start of a
+  \ line?  ``lcr?`` is part of the left-justified displaying system.
   \
   \ See: `lcr`, `ltype`.
   \
@@ -368,7 +367,7 @@ rows 2 - value lrows ( -- n )
   \
   \ }doc
 
-: (lprompt-pause) ( -- ) key drop ;
+: (lprompt-pause) ( -- ) new-key drop ;
 
   \ doc{
   \
@@ -479,13 +478,20 @@ variable lwidth cols lwidth !
 private
 
 : previous-word? ( -- f ) ltyped# @ #indented @ > ;
+  \ Has a word been displayed before in the current line?
 
 : ?space ( -- ) previous-word? if lspace then ;
+  \ If a word was displayed before in the current line, display
+  \ a space as separator.
 
 : unfit? ( u -- f ) 1+ ltyped# @ + lwidth @ > ;
+  \ Is word length _len_ too long to be displayed in the
+  \ current line?
 
 : .word ( ca len -- )
   dup unfit? if lcr else ?space then (.word) ;
+  \ Display word _ca len_ left-justified from the current
+  \ cursor position.
 
 public
 
@@ -496,7 +502,8 @@ public
   \
   \ ltype ( ca len -- )
   \
-  \ Type _ca len_ left justified.
+  \ Display character string _ca len_ left justified from the current
+  \ cursor position.
   \
   \ See: `/ltype`, `l."`.
   \
@@ -546,15 +553,21 @@ public
 
 end-package
 
+\ ==============================================================
+\ Debugging test
+
+false [if]
+
 require ./n-to-str.fs
 
 : t ( n -- )
   0 ?do
     lrow#  @ n>str ltype
     lrows# @ n>str ltype
-    s" En un lugar de La Mancha."
-    ltype
+    s" En un lugar de La Mancha." ltype
   loop ;
+
+[then]
 
 \ ==============================================================
 \ Change log
@@ -657,3 +670,5 @@ require ./n-to-str.fs
 \ 2017-11-18: Rename `this-lprompt` `lprompted`. Add `init-lrows`.
 \
 \ 2017-11-21: Fix documentation.
+\
+\ 2017-12-04: Improve documentation.
