@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-12-02
+:revdate: 2017-12-04
 
 == 2012-09-14, 2017-11-17
 
@@ -337,7 +337,6 @@ Alternative from
 - Add `time-zone` string to ISO-8601 converters.
 - Replace `aliases:`'s `parse-alias` with `do-parse-name`, moved from
   _La pistola de agua_.
-- Rename `aliases: ;aliases` `aliases end-aliases`.
 - Simplify (with `recurse`) and document `(*`.
 - Deprecate <stream-to-str.fs>, which was superseded by <heredoc.fs>.
 - Review all words that use `refill`. Maybe `do-parse-name` can be
