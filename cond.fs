@@ -46,6 +46,21 @@
   \   thens ;
   \ ----
 
+  \ ``cond`` and `thens` may be used also to resolve all additional
+  \ ``while`` of a ``begin`` structure, instead of adding all the
+  \ corresponding ``then`` at the end, this way:
+
+  \ ----
+  \ : test ( x -- )
+  \   cond begin
+  \     while action1
+  \     while action2
+  \     while action3
+  \     while action4
+  \     while action5
+  \   repeat thens ;
+  \ ----
+
   \ }doc
 
 \ ==============================================================
@@ -53,3 +68,5 @@
 
 \ 2017-12-02: Copy from Solo Forth
 \ (http://programandala.net/en.program.solo_forth.html).
+\
+\ 2017-12-03: Improve documentation.
