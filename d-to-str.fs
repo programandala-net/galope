@@ -15,6 +15,8 @@
   \
   \ Convert _d_ to string _ca len_.
   \
+  \ See: `n>str`.
+  \
   \ }doc
 
 \ ==============================================================
@@ -28,3 +30,5 @@
 \ optional definition of `tuck`. Update header.
 \
 \ 2017-11-03: Fix stack notation. Improve documentation.
+\
+\ 2017-12-04: Update documentation.
