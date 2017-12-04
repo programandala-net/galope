@@ -1,45 +1,79 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-10-11
+:revdate: 2017-12-01
+:linkattrs:
 
 // This file is part of Galope
 // http://programandala.net/en.program.galope.html
-
-// Last modified 201710111431
 
 // tag::description[]
 
 == Description
 
-Galope is a Forth library under development. It started in 2012 in
-order to make the development of some Forth programs easier and
-faster.
+Galope is a general-purpose
+http://forth-standard.org[Forth,role="external"] library. It started
+in 2012 in order to compile Forth code that was common to several
+Forth projects under development by the author, and also Forth code
+that was generic enough to be useful in future projects.
 
-The library consists of more than 220 files. Many of them contain only
-one definition; some of them contain whole tools.
+Galope is focused on
+http://gnu.org/software/gforth[Gforth,role="external"], but most of
+its code is sytem-independent. In fact Galope has shared code with the
+library of http://programandala.net/en.program.solo_forth.html[Solo
+Forth], in both directions.
 
-Galope is focused on Gforth, but most of the code is
-sytem-independent.
+The home page of the project is
+http://programandala.net/en.program.galope.html.
 
 // end::description[]
 
+// tag::status[]
+
+== Current status
+
+As of 2017-12 Galope consists of 320 module files. Many of them
+contain only one definition, even simple one-liner ones; others
+contain whole tools.
+
+Galope is used by most Forth projects of the author, but anything in
+the library may be changed before its first public release.
+
+The documentation is 60% finished. Its main part is a detailed
+glossary, in PDF and HTML formats, with full descriptions, usage
+examples and cross references.  The manual (currently in HTML and PDF
+formats) is built from the source code by
+http://programandala.net/en.program.glosara.html[Glosara].
+
+// end::status[]
+
 // tag::name[]
 
-== The name
+== About the name
 
 "Galope" stands for "Gforth Accessory Library Of Particular Elements".
 In Spanish, "galope" is a noun that means "gallop"; in Esperanto,
 "galope" is an adverb (the "-e" ending marks the adverbs in this
-language) that means "at a gallop".  "Galope" is pronounced as in
-Spanish and Esperanto.
-
-// Spanish and Esperanto: /Ga'lope/.
+language) that means "at a gallop".  "Galope" is pronounced
+identically in Spanish and Esperanto; its phonemic transcription using
+the International Phonetic Alphabet (IPA) is: /ɡa'lope/.
 
 // end::name[]
 
+// tag::intallation[]
+
+== Installation
+
+At the moment the installation must be manual: Copy or link the
+<galope> directory into a directory included in your Forth system's
+search paths. For a locally compiled Gforth, it can be
+</usr/local/share/gforth/site-forth>. As an alternative, you can link
+the <galope> directory into the directory of your application.
+
+// end::installation[]
+
 == The Git repository
 
-In order to resume the development and prepare the first public
-release, a Git repository was created on 2016-06-21, out of
+In order to preserve the evolution of the code and prepare the first
+public release, a Git repository was created on 2016-06-21, out of
 development and ordinary backups created since 2013 (one year after
 the beginning of the project).
