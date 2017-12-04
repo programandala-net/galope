@@ -2,22 +2,6 @@
 :author: Marcos Cruz (programandala.net)
 :revdate: 2017-12-04
 
-== 2012-09-14, 2017-11-17
-
-Rename `seconds` and `microseconds`:
-
-----
-seconds/key
-seconds|key
-seconds-or-keypress
-seconds|keypress
-/seconds
-?seconds
-----
-
-Then use `seconds` and `microseconds` for versions where the pause can
-not be shortened with a keypress.
-
 == 2012-09-20
 
 r.s  [ 2015-02-03: better name: .rs ]

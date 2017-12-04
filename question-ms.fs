@@ -1,16 +1,25 @@
-\ galope/miliseconds.fs
+\ galope/question-ms.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012.
+\ Author: Marcos Cruz (programandala.net), 2012, 2017.
 
 \ ==============================================================
 
-require ./microseconds.fs
+require ./question-microseconds.fs
 
-: miliseconds ( u -- ) 1000 * microseconds ;
-  \ Wait a number of miliseconds or until a key is pressed.
+: ?ms ( u -- ) 1000 * ?microseconds ;
+
+  \ doc{
+  \
+  \ ?ms ( u -- )
+  \
+  \ Wait at least _u_ miliseconds or until a key is pressed.
+  \
+  \ See: `?microseconds`, `?seconds`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -22,3 +31,5 @@ require ./microseconds.fs
 \
 \ 2017-08-17: Update change log layout. Update header. Update source
 \ style.
+\
+\ 2017-12-04: Rename `miliseconds` `?ms`.
