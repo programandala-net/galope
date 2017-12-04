@@ -5,7 +5,7 @@
 
 \ Description: Tool to translate substrings of a string.
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2017.
+\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2017.
 
 \ ==============================================================
 
@@ -42,10 +42,9 @@ cells/translation cells constant /translation
 false [if]  \ XXX -- Not used
 
 : translation@+ ( a -- a' ca1 len1 ca2 len2 )
-  dup 2@ 2>r
-  2 cells + dup 2@ 2>r
-  /translation +
-  2r> 2r> ;
+  dup 2@ 2>r [ 2 cells ] literal +
+  dup 2@ 2>r /translation +
+         2r> 2r> ;
   \ a = address of the current translation
   \ a' = address of the next translation
   \ ca1 len1 = original string
@@ -61,13 +60,13 @@ false [if]  \ XXX -- Not used
 
 public
 
-: translations: ( "name" -- a1 )
+: translations ( "name" -- a1 )
   create init-translations
   does> ( -- a2 n ) ( dfa ) dup @ swap cell+ swap ;
 
   \ doc{
   \
-  \ translations: ( "name" -- a )
+  \ translations ( "name" -- a )
   \
   \ Start the definition of a translation table, to be used by
   \ `translated`, leaving address _a_ of the translation table, which
@@ -77,37 +76,22 @@ public
   \ _a2 n_ on the stack, being _a2_ the address of the first
   \ translation and _n_ the number of translations.
   \
-  \ See: `;translations`, `/translations`.
+  \ See: `end-translations`, `/translations`.
   \
   \ }doc
 
-: /translations ( a ca#1 len#1 .. ca#n len#n -- n )
+: end-translations ( a ca#1 len#1 .. ca#n len#n -- )
   #translations dup >r translations, r@ swap ! r> ;
 
   \ doc{
   \
-  \ /translations ( a ca#1 len#1 .. ca#n len#n -- n )
+  \ end-translations ( a ca#1 len#1 .. ca#n len#n -- n )
   \
   \ End the definition of a translation table _a_ started by
-  \ `translations:`, compiling translations _ca#1 len#1 .. ca#n
+  \ `translations`, compiling translations _ca#1 len#1 .. ca#n
   \ len#n_. Return the number _n_ of compiled translations.
   \
-  \ See: `;translations`, `translated`.
-  \
-  \ }doc
-
-: ;translations ( a ca#1 len#1 .. ca#n len#n -- )
-  /translations drop ;
-
-  \ doc{
-  \
-  \ ;translations ( a ca#1 len#1 .. ca#n len#n -- )
-  \
-  \ End the definition of a translation table _a_ started by
-  \ `translations:`, compiling translations _ca#1 len#1 .. ca#n
-  \ len#n_.
-  \
-  \ See: `/translations`, `translated`.
+  \ See: `translated`.
   \
   \ }doc
 
@@ -121,18 +105,18 @@ public
   \ translated ( ca1 len1 a n -- ca2 len2 )
   \
   \ Translate a string _ca1 len2_ using a translation table identified
-  \ by _a n_ and previously defined by `translations:`, resulting the
+  \ by _a n_ and previously defined by `translations`, resulting the
   \ translated string _ca2 len2_.
   \
   \ Usage example:
   \
   \ ----
 
-  \ translations: table0
+  \ translations table0
   \   s" from3" s" to3"  \ last translation to be done
   \   s" from2" s" to2"
   \   s" from1" s" to1"  \ first translation to be done
-  \ ;translations
+  \ end-translations drop
 
   \ s" bla from2 bla from3 bla from1" table0 translated
 
@@ -157,3 +141,6 @@ end-package
 \ words. Improve documentation.
 \
 \ 2017-11-21: Fix stack comment. Improve header.
+\
+\ 2017-12-04: Rename `translations:` `translations`; rename
+\ `/translations` `end-translations`; remove `;translations`.

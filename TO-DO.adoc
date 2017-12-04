@@ -346,9 +346,6 @@ Alternative from
 
 == 2017-11-21
 
-- Rename `translations:` `translations`.
-- Rename `/translations` `end-translations`.
-- Remove `;translations`.
 - Remove deprecated `yyyymmdd>iso`.
 - Improve naming convention: `?1+!` vs `?1+`.
 
@@ -370,3 +367,8 @@ Benchmark strings constants created by the current definition of
 == 2017-12-02
 
 Document relation between <sarray.fs>, <two-array.fs>, etc.
+
+== 2017-12-04
+
+Improve <uncodepaged.fs>. Find a better name, related to
+`translations`, which is very similar.
