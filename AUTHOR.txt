@@ -1,2 +1,4 @@
 Marcos Cruz (programandala.net)
 http://programandala.net
+
+See <ACKNOWLEDGMETNS.adoc>.
