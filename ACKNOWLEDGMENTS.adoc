@@ -1,0 +1,30 @@
+= Acknowledgments
+:author: Marcos Cruz (programandala.net)
+:revdate: 2017-12-06
+
+// This file is part of Galope
+// http://programandala.net/en.program.galope.html
+
+Some parts of Galope were possible thanks to code, documentation,
+ideas or inspiration from the following Forth systems, libraries and
+programs, listed in alphabetical order:
+
+- 4tH, by J.L. Bezemer, 1994..2016.
+- CamelForth (for Z80), by Bradford J. Rodriguez, 1994..1995.
+- DX-Forth (version 4.x for CP/M), by Ed, 2013..2015.
+- F83 (for CP/M and DOS), by Mike Perry and Henry Laxen, 1984.
+- Forth Foundation Library, by Dick van Oudheusden, <2006..2015.
+- forthsnake, by Robert Pfeiffer, 2009.
+- Gforth, by Anton Ertl, Bernd Paysan et al., 1995..2017.
+- kForth (for Linux, v1.5.2), by  Krishna Myneni, 1999..2010.
+- lina (for x86 Linux), by Albert van der Horst, 2000..2004.
+- Modules (for ANS Forth, v1.0.2), by Ulrich Hoffmann, 2015..2016.
+- MPE Forth for TiniARM, by MicroProcessor Engineering Limited,
+  1996..2004.
+- Solo Forth (for ZX Spectrum 128), by Marcos Cruz
+  (programandala.net), 2015..2017.
+- SwiftForth (for Windows, Linux and MacOS), by Forth Inc.
+- Win32Forth (for Windows), by Andrew McKewan, Tom Zimmer, Robert
+  Smith, Jim Schneider, Tom A. Peters et al., 1994..2010.
+
+Specific credits and acknowledgment notes are included in the source.
