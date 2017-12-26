@@ -15,7 +15,7 @@
 \ This code was inspired by:
 \ 4tH library - PRINT - Copyright 2003,2010 J.L. Bezemer
 
-\ Last modified 201712041856
+\ Last modified 201712261216
 \ See change log at the end of the file.
 
 \ ==============================================================
@@ -24,6 +24,7 @@
 require ./column.fs                   \ `column`
 require ./home-question.fs            \ `home?`
 require ./home.fs                     \ `home`
+require ./new-key.fs                  \ `new-key`
 require ./one-plus-store.fs           \ `1+!`
 require ./package.fs                  \ `package`
 require ./question-one-minus-store.fs \ `?1-!`
@@ -672,3 +673,5 @@ require ./n-to-str.fs
 \ 2017-11-21: Fix documentation.
 \
 \ 2017-12-04: Improve documentation.
+\
+\ 2017-12-26: Add requirement: `new-key`.
