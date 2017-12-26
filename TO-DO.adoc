@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-12-04
+:revdate: 2017-12-12
 
 == 2012-09-20
 
@@ -366,9 +366,19 @@ Benchmark strings constants created by the current definition of
 
 == 2017-12-02
 
-Document relation between <sarray.fs>, <two-array.fs>, etc.
+Document the relation between <sarray.fs>, <two-array.fs>, etc.
 
 == 2017-12-04
 
 Improve <uncodepaged.fs>. Find a better name, related to
 `translations`, which is very similar.
+
+== 2017-12-06
+
+Adapt `ticks`, `dticks` and family from Solo Forth.
+
+== 2017-12-12
+
+Benchmark `range-within` with the variant used in Solo Forth, which is
+faster.
+
