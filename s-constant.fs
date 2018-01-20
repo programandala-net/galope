@@ -34,4 +34,4 @@
 \ 2017-11-04: Rename module after the general convention, ie.
 \ <s-constant.fs>.
 \
-\ 2017-11-19: Improv documentation.
+\ 2017-11-19: Improve documentation.
