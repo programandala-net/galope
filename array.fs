@@ -7,9 +7,11 @@
 
 \ ==============================================================
 
+require ./array-to.fs
+
 : array ( n "name" -- )
   create cells allot
-  does> ( n -- a ) ( n dfa ) swap cells + ;
+  does> ( n -- a ) ( n dfa ) array> ;
 
   \ doc{
   \
@@ -37,3 +39,5 @@
 \ (http://programandala.net/en.program.solo_forth.html).
 \
 \ 2017-10-24: Update documentation markup.
+\
+\ 2018-05-01: Use `array>`.

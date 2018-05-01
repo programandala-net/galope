@@ -7,9 +7,11 @@
 
 \ ==============================================================
 
+require ./two-array-to.fs
+
 : 2array ( n "name" -- )
   create [ 2 cells ] literal * allot
-  does> ( n -- a ) ( n dfa ) swap [ 2 cells ] literal * + ;
+  does> ( n -- a ) ( n dfa ) 2array> ;
 
   \ doc{
   \
@@ -26,7 +28,7 @@
   \
   \ Return address _a_ of element _n_.
   \
-  \ See: `2arrayed`, `strings:`, `array`
+  \ See: `2arrayed`, `2array>`, `strings:`, `array`
   \
   \ }doc
 
@@ -39,3 +41,5 @@
 \ 2017-10-24: Update documentation markup.
 \
 \ 2017-11-05: Improve documentation.
+\
+\ 2018-05-01: Use `2array>`.

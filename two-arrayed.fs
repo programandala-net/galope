@@ -3,13 +3,15 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2017.
+\ Author: Marcos Cruz (programandala.net), 2017, 2018.
 
 \ ==============================================================
 
+require ./two-array-to.fs
+
 : 2arrayed ( a "name" -- )
   create ,
-  does> ( n -- ca len ) ( n dfa ) @ swap [ 2 cells ] literal * + ;
+  does> ( n -- ca len ) ( n dfa ) @ 2array> ;
 
   \ doc{
   \
@@ -21,10 +23,10 @@
   \ _name_ execution:
   \
   \ ----
-  \ name ( n -- a )
+  \ name ( n1 -- a1 )
   \ ----
   \
-  \ Return address _a_ of element _n_.
+  \ Return address _a1_ of element _n1_.
 
   \ Usage example with double numbers:
   \
@@ -57,7 +59,7 @@
 
   \ ----
   \
-  \ See: `2array`, `strings:`, `array`.
+  \ See: `2array`, `2array>`. `strings:`, `array`.
   \
   \ }doc
 
@@ -69,3 +71,7 @@
 \ 2017-10-24: Update documentation markup.
 \
 \ 2017-11-05: Improve documentation.
+\
+\ 2018-05-01: Improve documentation.
+\
+\ 2018-05-01: Use `2array>`.
