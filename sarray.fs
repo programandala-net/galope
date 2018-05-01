@@ -47,55 +47,27 @@ along with this library; if not, see
 
 \ ==============================================================
 
-require ./package.fs
+require ./n-two-comma.fs    \ `n2,`
+require ./two-array-from.fs \ `2array<`
 
-package galope-sarray
+: s[ ( -- ) depth start-depth ! ;
+  \ Start a string array definition.
 
-variable start_depth
+: ]s ( ca#1 len#1 .. ca#n len#n -- a n )
+  depth start-depth @ - 2/
+  dup align here >r >r n2, 2r> ;
+  \ Finish the array definition started by `s[` by storing the
+  \ character string identifiers _ca#1 len#1 .. ca#n len#n_ into data
+  \ space; return the address _a_ of the array string and the number
+  \ _n_ of strings.
 
-public
+: }s@ ( a n -- ca len ) 2array< 2@ ;
+  \ Fetch the character string identifier _ca len_ from element number
+  \ _n_ of string array _a_
 
-: s[
-  \ Start the array definition.
-  depth start_depth !
-  ;
-: []s!  ( a1 u1 ... an un n -- )
-  \ Store the array strings.
-  \ a1 u1 ... an un = strings
-  \ n = number of strings
-  0 do  , ,  loop
-  ;
-: ]s  ( a1 u1 ... an n -- a n )
-  \ Finish the array definition.
-  \ a1 u1 ... an un = strings
-  \ a = array address
-  \ n = number of strings
-  depth start_depth @ - 2 /
-  dup align here >r >r []s! 2r>
-  ;
-: '{}s  ( a1 u -- a2 )
-  \ Return an array string address.
-  \ a1 = array address
-  \ u = string number
-  \ a2 = string address
-  2* cells +
-  ;
-: }s@  ( a1 u -- a2 u2 )
-  \ Fetch a string from an array.
-  \ a1 = array address
-  \ u = string number
-  \ a2 u2 = string
-  '{}s 2@
-  ;
-: }s!  ( a1 u1 a2 u -- )
-  \ Store a string into an array.
-  \ a1 u1 = string
-  \ a2 = array string
-  \ u = string number
-  '{}s 2!
-  ;
-
-end-package
+: }s! ( ca len a n -- ) 2array< 2! ;
+  \ Store the character string identifier _ca len_ into element number
+  \ _n_ of string array _a_
 
 0 [if]
 
@@ -141,3 +113,10 @@ number{ #numbers random }s@ cr type
 \ 2017-08-17: Update change log layout. Update header.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2017-12-02: Update source style, including comments and stack
+\ comments. Make two inner words private.
+\
+\ 2017-12-04: Rename `[]s!` `n2,` and move it to its own module.
+\
+\ 2018-05-01: Replace `'{}s` with `2array<`.
