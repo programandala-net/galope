@@ -5,11 +5,10 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2011, 2012, 2013, 2014,
-\ 2016, 2017.
+\ 2016, 2017, 2018.
 
 \ ==============================================================
 
-require ./module.fs
 require ./one-minus-store.fs
 require ./one-plus-store.fs
 require ./two-choose.fs
@@ -67,3 +66,5 @@ init-choose-stack
 \ }2choose` and `choose{ }choose`.
 \
 \ 2017-11-15: Update `++` to `1+!`, and `--` to `1-!`.
+\
+\ 2018-05-01: Remove useless requirement of <module.fs>.
