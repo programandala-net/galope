@@ -39,6 +39,13 @@
 
 require ./n-two-comma.fs    \ `n2,`
 require ./two-array-from.fs \ `2array<`
+require ./package.fs
+
+package galope-s-bracket
+
+variable start-depth
+
+public
 
 : s[ ( -- ) depth start-depth ! ;
 
@@ -122,6 +129,8 @@ require ./two-array-from.fs \ `2array<`
   \ See: `}s@`.
   \
   \ }doc
+
+end-package
 
 \ ==============================================================
 \ Change log
