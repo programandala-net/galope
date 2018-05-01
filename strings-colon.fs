@@ -3,21 +3,20 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2013, 2014, 2016, 2017,
+\ 2018.
 
 \ ==============================================================
 
+require ./n-two-comma.fs \ `n2,`
 require ./package.fs
 
 package galope-strings-colon
 
 variable depth0
 
-: #strings ( -- n ) depth depth0 @ - 2/ ;
-
-: strings, ( ca'1 len'1 ... ca'n len'n n -- )
-  0 ?do 2, loop ;
-  \ Compile the addresses and lengths of the strings.
+: #strings ( ca#1 len#1 ... ca#n len#n -- ca#1 len#1 ... ca#n len#n n )
+  depth depth0 @ - 2/ ;
 
 : last! ( dfa -- ) here [ 2 cells ] literal - swap ! ;
   \ Store the address of the last string compiled.
@@ -26,7 +25,8 @@ public
 
 : strings: ( "name" -- a )
   create here 0 , depth depth0 !
-  does> ( n -- ca len ) ( n dfa ) @ swap 2 cells * - 2@ ;
+  does> ( n -- ca len )
+    ( n dfa ) @ swap [ 2 cells ] literal * - 2@ ;
 
   \ doc{
   \
@@ -37,11 +37,11 @@ public
   \ will hold the address of the last string compiled by `/strings`.
   \
   \ Execution of _name_:
-  \
+
   \ ----
   \ name ( n -- ca len )
   \ ----
-  \
+
   \ Return character string _ca len_ number _n_.
 
   \ Usage example:
@@ -66,16 +66,16 @@ public
   \
   \ }doc
 
-: /strings ( a ca'1 len'1 ... ca'n len'n -- n )
-  #strings dup >r strings, ( dfa ) last! r> ;
+: /strings ( a ca#1 len#1 ... ca#n len#n -- n )
+  #strings dup >r n2, ( dfa ) last! r> ;
 
   \ doc{
   \
-  \ /strings ( a ca'1 len'1 ... ca'n len'n -- n )
+  \ /strings ( a ca#1 len#1 ... ca#n len#n -- n )
   \
   \ End the definition of a constant string array, whose
-  \ _a_ was left by `strings:`, compiling strings _ca'1 len'1
-  \ ... ca'n len'n_ and leaving their number _n_.
+  \ _a_ was left by `strings:`, compiling strings _ca#1 len#1
+  \ ... ca#n len#n_ and leaving their number _n_.
   \
   \ See `strings:` for a usage example.
   \
@@ -110,3 +110,6 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-11-05: Improve documentation.
+\
+\ 2018-05-01: Improve `strings:` with `literal`. Improve
+\ documentation. Replace `strings,` with `n2,`.

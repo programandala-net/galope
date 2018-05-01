@@ -382,5 +382,7 @@ faster.
 
 == 2018-05-01
 
-Deprecate <s-bracket.fs>. Use `2array` instead. `s[` is used only in
-project _Consulta privada_.
+Deprecate <s-bracket.fs>. Use `2array` or `strings:` instead. `s[` is
+used only in project _Consulta privada_.
+
+Simplify `strings:`. Rename `/strings`.
