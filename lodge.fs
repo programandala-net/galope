@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -58,7 +58,7 @@ variable /lodge  0 /lodge !
   \ `lodge-value`, `lodge-2value` and `lodge-create` save the
   \ current value returned by `lodge-here` into their data field
   \ address, and convert it to its corresponding `lodge` address
-  \ at run-time. Also `lodge-field:` uses `lodge+`.
+  \ at run-time. Also `lodge-field:` uses ``lodge+``.
   \
   \ }doc
 
@@ -153,3 +153,5 @@ variable /lodge  0 /lodge !
 \ `lodge-two-comma`, `lodge-two-value`, `lodge-two-variable`,
 \ `lodge-value` and `lodge-variable` to their own files. Improve
 \ documentation.
+\
+\ 2018-06-23: Fix typo in documentation.
