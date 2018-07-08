@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-05-01
+:revdate: 2018-05-14
 
 == 2012-09-20
 
@@ -386,3 +386,7 @@ Deprecate <s-bracket.fs>. Use `2array` or `strings:` instead. `s[` is
 used only in project _Consulta privada_.
 
 Simplify `strings:`. Rename `/strings`.
+
+== 2018-05-14
+
+Fix: Make `lprompted` support UTF-8.
