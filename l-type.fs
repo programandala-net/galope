@@ -396,6 +396,8 @@ defer lprompt-pause ( -- ) ' (lprompt-pause) is lprompt-pause
         2r@ at-xy spaces
         2r> at-xy
   init-lrows ;
+  \ XXX FIXME -- 2018-05-14: If _ca len_ contains multibyte
+  \ characters, `spaces` fails`.
 
   \ doc{
   \
