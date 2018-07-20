@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018.
 
 \ Description: A configurable circular string buffer.
 
@@ -95,8 +95,7 @@ public
   \
   \ }doc
 
-: free-stringer ( -- )
-  stringer if stringer free throw 0 to stringer then ;
+: free-stringer ( -- ) stringer free throw 0 to stringer ;
 
   \ doc{
   \
@@ -141,11 +140,11 @@ public
   \
   \ }doc
 
-: allocate-ss ( len -- ca ) use-stringer stringer-pointer ;
+: allocate-in-stringer ( len -- ca ) use-stringer stringer-pointer ;
 
   \ doc{
   \
-  \ allocate-ss ( len -- ca )
+  \ allocate-in-stringer ( len -- ca )
   \
   \ Allocate _len_ address units in the `stringer`, returning the
   \ address _ca_ of the allocated space.
@@ -155,7 +154,7 @@ public
   \ }doc
 
 : >stringer ( ca1 len -- ca2 len )
-  dup allocate-ss 2dup 2>r smove 2r> swap ;
+  dup allocate-in-stringer 2dup 2>r smove 2r> swap ;
 
   \ doc{
   \
@@ -164,7 +163,7 @@ public
   \ Copy string _ca1 len_ to the `stringer`, returning it as _ca2
   \ len_.
   \
-  \ See: `allocate-ss`.
+  \ See: `allocate-in-stringer`.
   \
   \ }doc
 
@@ -182,3 +181,6 @@ end-package
 \ `allocate-stringer` into `create-stringer`, then rename
 \ `create-stringer` `allocate-stringer`, making the public interface
 \ clearer. Remove useless `chars`. Improve documentation.
+\
+\ 2018-07-20: Remove the check from `free-stringer`. Rename
+\ `allocate-ss` `allocate-in-stringer`.
