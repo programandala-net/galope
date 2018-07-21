@@ -163,7 +163,7 @@ public
   \ Copy string _ca1 len_ to the `stringer`, returning it as _ca2
   \ len_.
   \
-  \ See: `allocate-in-stringer`.
+  \ See: `allocate-in-stringer`, `ss+`.
   \
   \ }doc
 
@@ -184,3 +184,5 @@ end-package
 \
 \ 2018-07-20: Remove the check from `free-stringer`. Rename
 \ `allocate-ss` `allocate-in-stringer`.
+\
+\ 2018-07-21: Improve documentation of `>stringer`.
