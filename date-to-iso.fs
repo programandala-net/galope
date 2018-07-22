@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -22,7 +22,8 @@ require ./time-to-d.fs
   \
   \ The format can be configured by `extended-iso-8601`.
   \
-  \ See: `time>iso`, `time&date>iso`, `time>d`.
+  \ See: `extended-iso-8601`, `time>iso`, `time&date>iso`, `time>d`,
+  \ `iso-8601-hyphen`, `iso-date>extended`.
   \
   \ }doc
 
@@ -31,3 +32,5 @@ require ./time-to-d.fs
 
 \ 2017-11-13: Extract from <time-and-date-to-iso.fs>, fix (add
 \ leading zeroes) improve (make configurable) and document.
+\
+\ 2018-07-22: Improve documentation.

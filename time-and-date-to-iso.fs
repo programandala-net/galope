@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -24,7 +24,8 @@ require ./time-to-iso.fs
   \ The format can be configured by `extended-iso-8601` and
   \ `iso-8601-t`.
   \
-  \ See: `time>iso`, `date>iso`.
+  \ See: `extended-iso-8601`, `time>iso`, `date>iso`,
+  \ `>yyyymmddhhmmss`, `iso-date>extended`.
   \
   \ }doc
 
@@ -42,3 +43,5 @@ require ./time-to-iso.fs
 \ 2017-11-13: Rename secondary words after notation ">iso". Split the
 \ module: Move `time>d` `date>iso` and `time>iso` to their own
 \ modules. Improve documentation.
+\
+\ 2018-07-22: Improve documentation.

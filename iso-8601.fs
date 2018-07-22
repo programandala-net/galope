@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2017.
+\ Author: Marcos Cruz (programandala.net), 2017, 2018.
 
 \ ==============================================================
 
@@ -14,14 +14,14 @@ variable extended-iso-8601  extended-iso-8601 on
   \ extended-iso-8601 ( -- a )
   \
   \ _a_ is the address of a cell containing a flag. If the flag is
-  \ non-zero, ISO 8601 stringes are created in extended format (with
+  \ non-zero, ISO 8601 strings are created in extended format (with
   \ separators) instead of basic format (without them).  Otherwise the
   \ basic format is used.
   \
   \ The default value of ``extended-iso-8061`` is _true_.
   \
   \ See: `iso-8601-t`, `iso-8601-colon`, `iso-8601-hyphen`,
-  \ `date>iso`, `time>iso`, `time&date>iso`.
+  \ `date>iso`, `time>iso`, `time&date>iso`, `>yyyymmddhhmmss`.
   \
   \ }doc
 
@@ -88,3 +88,5 @@ variable iso-8601-t iso-8601-t on
 \ Change log
 
 \ 2017-11-13: Start. New words to configure the ISO 8601 converters.
+\
+\ 2018-07-22: Improve documentation.
