@@ -4,7 +4,7 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2006, 2013, 2014,
-\ 2017.
+\ 2017, 2018.
 
 \ ==============================================================
 
@@ -65,6 +65,8 @@ public
   \ format "yyyy[mm[dd]]" to extended format _ca2 len2_
   \ "yyyy[-mm[-dd]]".
   \
+  \ See: `time&date>iso`, `>yyyymmddhhmmss`.
+  \
   \ }doc
 
 end-package
@@ -90,3 +92,5 @@ end-package
 \
 \ 2017-11-14: Rename `yyyymmdd>iso` `iso-date>extended`. Rename
 \ module accordingly. Update first entry of the change log.
+\
+\ 2018-07-22: Improve documentation.

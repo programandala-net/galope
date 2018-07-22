@@ -4,7 +4,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014..2017.
+\ Author: Marcos Cruz (programandala.net), 2014..2018.
 
 \ ==============================================================
 
@@ -21,8 +21,17 @@ public
 
 : >yyyymmddhhmmss ( second minute hour day month year -- ca len )
   n>str <##>+ <##>+ <##>+ <##>+ <##>+ ;
-  \ Convert the given date and time to a string with the ISO format
-  \ "yyyymmddhhmmss".
+
+  \ doc{
+  \
+  \ >yyyymmddhhmmss ( second minute hour day month year -- ca len )
+  \
+  \ Convert the given date and time, as returned by ``time&date``,
+  \ into a string _ca len_ with the ISO format "yyyymmddhhmmss".
+  \
+  \ See: `time&date>iso`, `iso-date>extended`.
+  \
+  \ }doc
 
 end-package
 
@@ -46,3 +55,5 @@ end-package
 \ 2017-08-17: Update source style.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2018-07-22: Improve documentation.
