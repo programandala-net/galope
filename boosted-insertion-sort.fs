@@ -3,11 +3,12 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Last modified: 201807231851
+\ See change log at the end of the file.
+
 \ Authors:
 \   Hans Bezemer, 2014
 \   Marcos Cruz (programandala.net) adapted the code to Galope, 2018.
-
-\ XXX UNDER DEVELOPMENT
 
 \ ==============================================================
 \ Credit
@@ -35,62 +36,56 @@ Date: Mon, 14 Apr 2014 16:10:38 +0200
 
 \ ==============================================================
 
-[UNDEFINED] cell- [IF]
-: cell- 1 cells - ;
-[THEN]
+defer precedes? ( x1 x2 -- f )
 
-defer precedes                         \ compatible with QSORT
+' < ' precedes? defer!
 
 : (insert) ( start end -- start )
   dup @ >r                             \ v = a[i] ( r: v )
   begin
-    over over <                        \ j>0
+    2dup <                             \ j>0
   while
-    r@ over cell- @ precedes           \ a[j-1] > v
+    r@ over cell- @ precedes?          \ a[j-1] > v
   while
     cell-                              \ j--
     dup @ over cell+ !                 \ a[j] = a[j-1]
-  repeat
-[UNDEFINED] 4TH# [IF] then [THEN]
+  repeat then
   r> swap ! ;                          \ a[j] = v
 
 : insertion-sort ( a len -- )
   dup 2 < if 2drop exit then
   1 ?do dup i cells + (insert) loop drop ;
 
-variable (swaps)
+variable #swaps
 
-: (circlesort) ( a len )
+: (circle-sort) ( a len --)
   dup 1 > if
-    over over                          ( array len)
-    1- cells over + swap               ( 'end 'begin)
+    2dup                          ( a len)
+    1- cells over + swap          ( 'end 'begin)
     begin
-      over over >                      \ if we didn't pass the middle
-    while                              \ check and swap opposite elements
-      over @ over @ precedes           \ if swapped, increment (swaps)
-      if over over over @ over @ swap rot ! swap ! 1 (swaps) +! then
+      2dup > \ if we didn't pass the middle
+    while    \ check and swap opposite elements
+      over @ over @ precedes? \ if swapped, increment #swaps
+      if 2dup over @ over @ swap rot ! swap ! 1 #swaps +! then
       swap cell- swap cell+
     repeat
-    drop drop over over 2/ recurse     \ sort first partition
-    dup 2/ cells rot + swap dup 2/ - recurse exit
-  then                                 \ sort second partition
-  drop drop                            \ nothing to sort
-;
+    2drop 2dup 2/ recurse \ sort 1st partition
+    dup 2/ cells rot + swap dup 2/ - recurse exit \ sort 2nd partition
+  then 2drop ;
 
 : boosted-insertion-sort ( a len --)
-  begin 0 (swaps) ! over over (circlesort) (swaps) @ over 2* <
+  begin 0 #swaps ! 2dup (circle-sort) #swaps @ over 2* <
   until
   insertion-sort ;
-
-:noname < ; is precedes
 
 \ ==============================================================
 \ Benchmark
 
 false [if]
 
-: array create cells allot ;
-: th cells + ;
+[undefined] th [if]
+  : th ( a1 u -- a2 ) cells + ;
+[then]
 
 variable seed                         \ seed variable
 32767 constant max-rand               \ maximum random number
@@ -103,19 +98,19 @@ variable seed                         \ seed variable
 randomize
 
 100000 constant /size
-/size array example
+/size buffer: example
 
-: array! /size 0 do max-rand choose example i th ! loop ;
-: .array /size 0 do example i th ? loop cr ;
+: array! ( -- )
+  /size 0 do max-rand choose example i th ! loop ;
 
-array!
+: .array ( -- )
+  /size 0 do example i th ? loop cr ;
 
-
-\ cr ." Boosted insertion sort:"
-\ utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
-\ cr ." Insertion sort:"
-\ utime example /size insertion-sort utime 2swap d- d. ." microseconds" cr
-\ cr ." Circle sort:"
+array! cr ." Insertion sort:"
+utime example /size insertion-sort utime 2swap d- d. ." microseconds" cr
+array! cr ." Boosted insertion sort:"
+utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
+\ array! cr ." Circle sort:"
 \ utime example /size (circlesort) utime 2swap d- d. ." microseconds" cr
 
 \ .Benchmark results (in microseconds)
@@ -124,6 +119,7 @@ array!
 \
 \ | 2014       |    112 448 573 |                502 108 | (1)
 \ | 2018-07-23 |    538 090 404 |              3 124 079 | (2)
+\ | 2018-07-23 |    478 182 675 |              2 658 325 | (2) Stack operations optimized
 \ |===
 
 \ Notes:
@@ -136,4 +132,5 @@ array!
 \ ==============================================================
 \ Change log
 
-\ 2018-07-23: Begin to adapt the code to Galope.
+\ 2018-07-23: Begin to adapt the code to Galope. Optimize stack
+\ operations. Improve names.
