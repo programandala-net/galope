@@ -1,5 +1,4 @@
 \ galope/choose-stack.fs
-\ A stack used by `choose{` and `2choose`.
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
@@ -8,6 +7,12 @@
 \ 2016, 2017, 2018.
 
 \ ==============================================================
+\ Description
+
+\ A stack used by `choose{` and `2choose`.
+
+\ ==============================================================
+\ Requirements
 
 require ./one-minus-store.fs
 require ./one-plus-store.fs
@@ -68,3 +73,5 @@ init-choose-stack
 \ 2017-11-15: Update `++` to `1+!`, and `--` to `1-!`.
 \
 \ 2018-05-01: Remove useless requirement of <module.fs>.
+\
+\ 2018-07-24: Improve file header.
