@@ -1,29 +1,27 @@
 \ galope/two-choose.fs
-\ `2choose`
-\ Random double element of the stack
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2011, 2012, 2016, 2017,
+\ 2018.
 
 \ ==============================================================
 
-require random.fs  \ Gforth's 'random'
+require random.fs \ Gforth's 'random'
 require ./two-drops.fs
 
-: 2choose  ( d1...dn n -- d' )
-  dup >r random 2*  ( d1...dn n' -- ) ( r: n )
-  dup 1+ pick swap 2 + pick swap  ( d1...dn dn' -- ) ( r: n )
-  r> rot rot 2>r  2drops  2r>  ;
+: 2choose ( xd[u-1]..xd[0] u -- xd )
+  dup >r random 2pick r> rot rot 2>r 2drops 2r> ;
+
   \ doc{
   \
-  \ 2choose  ( d1..dn n -- d' )
+  \ 2choose ( xd[u]..xd[0] u -- xd[x] )
   \
-  \ Return _d'_, randomly chosen among the _n_ top elements _d1..dn_,
+  \ Return _xd_, randomly chosen among the _u_ top elements _xd[u]..dn_,
   \ and remove the rest.
   \
-  \ See: `choose`.
+  \ See: `choose`, `2pick`.
   \
   \ }doc
 
@@ -40,4 +38,5 @@ require ./two-drops.fs
 \ 2016-07-11: Update source layout and file header.
 \
 \ 2017-07-14: Improve documentation.
-
+\
+\ 2018-07-24: Update source style. Improve documentation.
