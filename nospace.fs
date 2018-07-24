@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -27,7 +27,17 @@ public
   over dup >r destination !
   bounds ?do i c@ (nospace) loop
   r> dup destination @ swap - ;
-  \ Remove all spaces from a string.
+
+  \ doc{
+  \
+  \ nospace ( ca len -- ca len' )
+  \
+  \ Remove all spaces from string _ca len_, returning the result
+  \ _ca len'_.
+  \
+  \ See: `unspace`, `trim`, `-leading`.
+  \
+  \ }doc
 
 end-package
 
@@ -40,3 +50,5 @@ end-package
 \ style.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2018-07-24: Improve documentation.

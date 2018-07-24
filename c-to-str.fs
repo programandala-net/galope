@@ -3,17 +3,9 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2017.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017, 2018.
 
 \ ==============================================================
-
-0 [if]  \ old
-require ./buffer-colon.fs
-2 chars buffer: (c>str)
-: c>str  ( c -- ca len )
-  (c>str) c! (c>str) 1  ;
-  \ Convert an ASCII char to a string.
-[then]
 
 : c>str ( c -- ca len ) 1 allocate throw tuck c! 1 ;
 
@@ -21,9 +13,10 @@ require ./buffer-colon.fs
   \
   \ c>str ( c -- ca len )
   \
-  \ Convert a single-byte character _c_ to a string _ca len_
-  \ in data space allocated by ``allocate``. _ca_ is the aligned
-  \ address where _c_ is stored, and _len_ is 1.
+  \ Convert char _c_ to a string _ca len_ in data space allocated by
+  \ ``allocate``.
+  \
+  \ See: `n>str`, `d>str`, `ud>str`.
   \
   \ }doc
 
@@ -48,3 +41,6 @@ require ./buffer-colon.fs
 \ 2017-10-25: Improve documentation.
 \
 \ 2017-11-14: Remove deprecated alias `c>s`.
+\
+\ 2018-07-24: Improve documentation. Remove the old version, which was
+\ commented out.

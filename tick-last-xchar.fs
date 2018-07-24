@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2017, 2018.
 
 \ ==============================================================
 
@@ -19,6 +19,8 @@ require ./xbounds.fs
   \ Return the address _ca2_ of the last xchar of a UTF-8 string _ca1
   \ len1_.
   \
+  \ See: `last-xchar`, `xbounds`, `xchar-count`.
+  \
   \ }doc
 
 \ ==============================================================
@@ -33,3 +35,5 @@ require ./xbounds.fs
 \
 \ 2017-08-19: Update change log layout. Update source style and stack
 \ notation. Document.
+\
+\ 2018-07-24: Improve documentation.

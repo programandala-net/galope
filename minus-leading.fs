@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2015, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2015, 2017, 2018.
 
 \ ==============================================================
 
@@ -16,7 +16,7 @@
   \ Remove leading spaces from character string _ca1 len1_, resulting
   \ character string _ca2 len2_.
   \
-  \ See: `-prefix`.
+  \ See: `-prefix`, `trim`, `nospace`, `unspace`.
   \
   \ }doc
 
@@ -35,3 +35,5 @@
 \ style.
 \
 \ 2017-11-04: Improve documentation.
+\
+\ 2018-07-24: Improve documentation.

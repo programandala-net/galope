@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -11,31 +11,43 @@ require ./package.fs
 
 package galope-unspace
 
-variable spaces?  \ flag: does the current char belongs to a HTML tag?
-variable destination  \ address to store the next valid char into
-: keep  ( c -- )
-  \ Keep the given char and update 'spaces?'.
-  dup bl = spaces? !
-  destination @ c!  1 chars destination +!
-  ;
-: extra_space?  ( c -- f )
-  \ Is the given current char and extra space?
+variable spaces?
+  \ Flag: does the current char belongs to a HTML tag?
+
+variable destination
+  \ Address where the next valid char will be stored.
+
+: keep ( c -- ) dup bl = spaces? !
+                destination @ c!
+                1 chars destination +! ;
+  \ Keep char _c_ and update 'spaces?'.
+
+: extra-space? ( c -- f )
+  bl = dup spaces? @ and swap spaces? ! ;
+  \ Is the current char _c_ and extra space?
   \ Also, update 'spaces?'.
-  bl = dup spaces? @ and  swap spaces? !
-  ;
-: (unspace)  ( c -- )
-  \ Ignore or keep the given current char.
-  dup extra_space? if  drop  else  keep  then
-  ;
+
+: (unspace) ( c -- )
+  dup extra-space? if drop else keep then ;
+  \ Ignore or keep the current char _c_.
 
 public
 
-: unspace  ( ca len -- ca len' )
-  \ Remove double spaces from a string.
+: unspace ( ca len -- ca len' )
   over dup >r destination !
-  bounds ?do  i c@ (unspace)  loop
-  r> dup destination @ swap -
-  ;
+  bounds ?do i c@ (unspace) loop
+  r> dup destination @ swap - ;
+
+  \ doc{
+  \
+  \ unspace ( ca len -- ca len' )
+  \
+  \ Remove double spaces from string _ca len_, returning the result
+  \ _ca len'_.
+  \
+  \ See: `nospace`, `trim`, `-leading`.
+  \
+  \ }doc
 
 end-package
 
@@ -47,3 +59,5 @@ end-package
 \ 2017-08-17: Update change log layout.  Update stack notation.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
+\
+\ 2018-07-24: Update source style. Improve documentation.
