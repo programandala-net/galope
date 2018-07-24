@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2017, 2018.
 
 \ ==============================================================
 
@@ -15,7 +15,7 @@ require ./to-x-width.fs
   \
   \ xbounds ( xca1 len1 -- xca1 len2 0 ) >x-width 0 ;
   \
-  \ Convert the UTF-8 string _xca len_ to the parameters needed to
+  \ Convert string _xca len_ to the parameters needed to
   \ explore it in a ``do loop`` structure.
   \
   \ Usage example:
@@ -30,6 +30,8 @@ require ./to-x-width.fs
   \ : output ( ca len -- ) bounds do i c@ emit loop ;
   \ ----
 
+  \ See: `'last-xchar`, `xchar-count`.
+  \
   \ }doc
 
 \ ==============================================================
@@ -41,3 +43,5 @@ require ./to-x-width.fs
 \ notation. Document.
 \
 \ 2017-11-08: Improve documentation.
+\
+\ 2018-07-24: Improve documentation.

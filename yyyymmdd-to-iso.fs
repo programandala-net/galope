@@ -4,7 +4,7 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2006, 2013, 2014,
-\ 2017.
+\ 2017, 2018.
 
 \ ==============================================================
 
@@ -18,6 +18,14 @@ warnings @ [if]
 [then]
 
 synonym yyyymmdd>iso iso-date>extended
+
+  \ doc{
+  \
+  \ yyyymmdd>iso ( ca1 len1 -- ca2 len2 )
+  \
+  \ A deprecated synonym of `iso-date>extended`.
+  \
+  \ }doc
 
 \ ==============================================================
 \ Change log
@@ -40,3 +48,5 @@ synonym yyyymmdd>iso iso-date>extended
 \
 \ 2017-11-14: Deprecate. Move to <iso-date-to-extended.fs>.
 \ Keep `yyyymmdd>iso` as a synonym, with a warning.
+\
+\ 2018-07-24: Improve documentation.

@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-05-14
+:revdate: 2018-07-24
 
 == 2012-09-20
 
@@ -390,3 +390,10 @@ Simplify `strings:`. Rename `/strings`.
 == 2018-05-14
 
 Fix: Make `lprompted` support UTF-8.
+
+== 2018-07-24
+
+- Rename `'last-xchar`.
+- Rename `nospace` -> `no-space`.
+- Rename `unspace` -> `no-double-space`.
+- Rewrite `c>str` to use the pictured numeric buffer.
