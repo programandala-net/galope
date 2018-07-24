@@ -3,11 +3,11 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807231851
+\ Last modified: 201807241422
 \ See change log at the end of the file.
 
 \ Authors:
-\   Hans Bezemer, 2014
+\   Hans Bezemer (?), 2014
 \   Marcos Cruz (programandala.net) adapted the code to Galope, 2018.
 
 \ ==============================================================
@@ -35,26 +35,15 @@ Date: Mon, 14 Apr 2014 16:10:38 +0200
 [then]
 
 \ ==============================================================
+\ Requirements
 
-defer precedes? ( x1 x2 -- f )
+require ./insertion-sort.fs    \ `insertion-sort`
+require ./package.fs           \ `package`
+require ./precedes-question.fs \ `precedes?`
 
-' < ' precedes? defer!
+\ ==============================================================
 
-: (insert) ( start end -- start )
-  dup @ >r                             \ v = a[i] ( r: v )
-  begin
-    2dup <                             \ j>0
-  while
-    r@ over cell- @ precedes?          \ a[j-1] > v
-  while
-    cell-                              \ j--
-    dup @ over cell+ !                 \ a[j] = a[j-1]
-  repeat then
-  r> swap ! ;                          \ a[j] = v
-
-: insertion-sort ( a len -- )
-  dup 2 < if 2drop exit then
-  1 ?do dup i cells + (insert) loop drop ;
+package galope-boosted-insertion-sort
 
 variable #swaps
 
@@ -73,10 +62,25 @@ variable #swaps
     dup 2/ cells rot + swap dup 2/ - recurse exit \ sort 2nd partition
   then 2drop ;
 
+public
+
 : boosted-insertion-sort ( a len --)
   begin 0 #swaps ! 2dup (circle-sort) #swaps @ over 2* <
   until
   insertion-sort ;
+
+  \ doc{
+  \
+  \ boosted-insertion-sort ( a len --)
+  \
+  \ Sort cells stored in memory zone _a len_, using a boosted, faster
+  \ version of `insertion-sort`.
+  \
+  \ The sorting is configurable with `precedes?`.
+  \
+  \ }doc
+
+end-package
 
 \ ==============================================================
 \ Benchmark
@@ -93,12 +97,13 @@ variable seed                         \ seed variable
 : (random) seed @ * + dup seed ! 16 rshift max-rand and ;
 : random 12345 1103515245 (random) ;
 : randomize random seed ! ;             ( -- )
-: CHOOSE random * max-rand 1+ / ;
+: choose random * max-rand 1+ / ;
 
 randomize
 
-100000 constant /size
-/size buffer: example
+\ 100000 constant /size
+1000 constant /size
+/size cells buffer: example
 
 : array! ( -- )
   /size 0 do max-rand choose example i th ! loop ;
@@ -110,16 +115,18 @@ array! cr ." Insertion sort:"
 utime example /size insertion-sort utime 2swap d- d. ." microseconds" cr
 array! cr ." Boosted insertion sort:"
 utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
+
 \ array! cr ." Circle sort:"
 \ utime example /size (circlesort) utime 2swap d- d. ." microseconds" cr
 
-\ .Benchmark results (in microseconds)
+\ .Benchmark results (in microseconds) with 100000 items
 \ |===
-\ | Date       | insertion-sort | boosted-insertion-sort | Notes
+\ | Date       | items   | insertion-sort | boosted-insertion-sort | Notes
 \
-\ | 2014       |    112 448 573 |                502 108 | (1)
-\ | 2018-07-23 |    538 090 404 |              3 124 079 | (2)
-\ | 2018-07-23 |    478 182 675 |              2 658 325 | (2) Stack operations optimized
+\ | 2014       | 100 000 | 112 448 573    |   502 108              | (1)
+\ | 2018-07-23 | 100 000 | 538 090 404    | 3 124 079              | (2)
+\ | 2018-07-23 | 100 000 | 478 182 675    | 2 658 325              | (2) Stack operations optimized
+\ | 2018-07-24 |   1 000 |      46 858    |     8 275              | (2)
 \ |===
 
 \ Notes:
@@ -134,3 +141,7 @@ utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
 
 \ 2018-07-23: Begin to adapt the code to Galope. Optimize stack
 \ operations. Improve names.
+\
+\ 2018-07-24: Move `precedes?` and `insertion-sort` to their own
+\ modules. Use `package` to hide the internal words. Document. Fix
+\ recent bug introduced in the benchmark.

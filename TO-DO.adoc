@@ -397,3 +397,4 @@ Fix: Make `lprompted` support UTF-8.
 - Rename `nospace` -> `no-space`.
 - Rename `unspace` -> `no-double-space`.
 - Rewrite `c>str` to use the pictured numeric buffer.
+- Use `th` in `array>`?
