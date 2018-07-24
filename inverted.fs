@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2014, 2017, 2018.
 
 \ ==============================================================
 
@@ -13,7 +13,7 @@
   \
   \ inverted ( a -- )
   \
-  \ Invert all bits of the single-cell number at _a_.
+  \ Invert all bits of the cell stored at _a_.
   \
   \ See: `inverted@`.
   \
@@ -28,3 +28,5 @@
 \ 2017-08-17: Update change log layout and source style.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2018-07-24: Improve the description.
