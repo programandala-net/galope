@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807241422
+\ Last modified: 201807251750
 \ See change log at the end of the file.
 
 \ Authors:
@@ -83,60 +83,6 @@ public
 end-package
 
 \ ==============================================================
-\ Benchmark
-
-false [if]
-
-[undefined] th [if]
-  : th ( a1 u -- a2 ) cells + ;
-[then]
-
-variable seed                         \ seed variable
-32767 constant max-rand               \ maximum random number
-                                      ( -- n)
-: (random) seed @ * + dup seed ! 16 rshift max-rand and ;
-: random 12345 1103515245 (random) ;
-: randomize random seed ! ;             ( -- )
-: choose random * max-rand 1+ / ;
-
-randomize
-
-\ 100000 constant /size
-1000 constant /size
-/size cells buffer: example
-
-: array! ( -- )
-  /size 0 do max-rand choose example i th ! loop ;
-
-: .array ( -- )
-  /size 0 do example i th ? loop cr ;
-
-array! cr ." Insertion sort:"
-utime example /size insertion-sort utime 2swap d- d. ." microseconds" cr
-array! cr ." Boosted insertion sort:"
-utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
-
-\ array! cr ." Circle sort:"
-\ utime example /size (circlesort) utime 2swap d- d. ." microseconds" cr
-
-\ .Benchmark results (in microseconds) with 100000 items
-\ |===
-\ | Date       | items   | insertion-sort | boosted-insertion-sort | Notes
-\
-\ | 2014       | 100 000 | 112 448 573    |   502 108              | (1)
-\ | 2018-07-23 | 100 000 | 538 090 404    | 3 124 079              | (2)
-\ | 2018-07-23 | 100 000 | 478 182 675    | 2 658 325              | (2) Stack operations optimized
-\ | 2018-07-24 |   1 000 |      46 858    |     8 275              | (2)
-\ |===
-
-\ Notes:
-\
-\ (1) By Hans Bezemer. Running on 4tH. Unknown machine.
-\ (2) Running on Gforth 0.7.9_20171005 on a Raspberry Pi 2.
-
-[then]
-
-\ ==============================================================
 \ Change log
 
 \ 2018-07-23: Begin to adapt the code to Galope. Optimize stack
@@ -145,3 +91,5 @@ utime example /size boosted-insertion-sort utime 2swap d- d. ." microseconds" cr
 \ 2018-07-24: Move `precedes?` and `insertion-sort` to their own
 \ modules. Use `package` to hide the internal words. Document. Fix
 \ recent bug introduced in the benchmark.
+\
+\ 2018-07-25: Move the benchmark to <boosted-insertion-sort.demo.fs>.
