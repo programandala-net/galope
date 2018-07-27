@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807262217
+\ Last modified: 201807271643
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -13,9 +13,9 @@
 \ ==============================================================
 \ Requirements
 
-require ./emits.fs            \ `emits`
-require ./package.fs          \ `package`
-require ./question-perform.fs \ `?perform`
+require ./in-spaces.fs  \ `in-spaces`
+require ./package.fs    \ `package`
+require ./rectangle.fs  \ `rectangle`
 
 \ ==============================================================
 
@@ -31,8 +31,6 @@ public
   2field: ~menu-title       \ address and length of a string
   field: ~menu-options      \ address of array of counted strings
   field: ~menu-actions      \ address of array of execution tokens, or zero
-  field: ~menu-border-maker \ execution token
-  field: ~menu-title-maker  \ execution token
   field: ~menu-rounding     \ flag
 constant /menu
 
@@ -44,47 +42,17 @@ constant /menu
 
 \ private
 
-: last-column ( a -- n )
-  dup ~menu-column @ swap ~menu-width @ + ;
-  \ Last row _n_ of menu _a_.
+: options-first-row ( a -- row ) ~menu-row @ 2 + ;
 
-: border-bottom-row ( a -- n )
-  dup ~menu-row @ swap ~menu-height @ + ;
+: options-last-row ( a -- row )
+  dup ~menu-row @ swap ~menu-height @ 2 - + ;
 
-: last-row ( a -- n ) border-bottom-row 1- ;
-  \ Last row _n_ of menu _a_.
-
-: border-right-column ( a -- n )
-  dup ~menu-column @ swap ~menu-width @ + ;
-
-: border-left-column ( a -- n ) ~menu-column @ 1- ;
-
-: border-top-row ( a -- n ) ~menu-row @ 1- ;
-
-: horizontal-border ( a -- )
-  '+' emit '-' swap ~menu-width @ emits '+' emit ;
-
-: default-border-maker {: menu -- :}
-  menu border-left-column menu border-top-row at-xy
-  menu horizontal-border
-  menu last-row 1+ menu ~menu-row @ ?do
-    menu border-left-column  i at-xy '|' emit
-    menu border-right-column i at-xy '|' emit
-  loop
-  menu border-left-column menu border-bottom-row at-xy
-  menu horizontal-border ;
-
-: default-title-maker {: menu -- :}
-  menu ~menu-title 2@ dup
-  if   menu ~menu-column @ menu ~menu-row @ at-xy type
-  else 2drop then ;
+: #visible-options ( a -- n )
+  options-last-row options-first-row -1 + ;
 
 public
 
-: init-menu {: menu -- :}
-  menu /menu erase
-  ['] default-border-maker menu ~menu-border-maker !
-  ['] default-title-maker  menu ~menu-title-maker ! ;
+: init-menu ( menu -- ) /menu erase ;
 
 : create-menu ( "name" -- )
   here create /menu allot init-menu ;
@@ -92,15 +60,29 @@ public
 : allocate-menu ( "name" -- )
   /menu allocate throw dup constant init-menu ;
 
-: clear-menu {: menu -- :}
-  menu last-row menu ~menu-row @ ?do
-    menu ~menu-column @ i at-xy menu ~menu-width @ spaces
+: blank-menu {: menu -- :}
+  menu options-last-row 1+ menu options-first-row ?do
+    menu ~menu-column @ 1+ i at-xy
+    menu ~menu-width @ 2 - spaces
   loop ;
+  \ Blank the options of _menu_.
 
-: .menu {: menu -- :}
-  menu clear-menu
-  menu ~menu-border-maker @ ?dup if menu swap execute then
-  menu ~menu-title-maker  @ ?dup if menu swap execute then  ;
+: .menu-border {: menu -- :}
+  menu ~menu-column @ menu ~menu-row    @
+  menu ~menu-width  @ menu ~menu-height @ blank-rectangle ;
+
+: .menu-title {: menu -- :}
+  menu ~menu-title 2@ nip 0= ?exit
+  menu ~menu-title 2@ in-spaces dup
+  menu ~menu-width @ min menu ~menu-width @ swap - 2/
+  menu ~menu-column @ +
+  menu ~menu-row @ at-xy type ;
+
+: .menu-options ( menu -- ) drop ;
+
+: .menu ( menu -- ) dup .menu-border
+                    dup .menu-title
+                        .menu-options ;
 
 end-package
 
