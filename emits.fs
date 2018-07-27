@@ -3,6 +3,8 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
+\ Author: Marcos Cruz (programandala.net), 2013, 2017, 2018.
+
 \ ==============================================================
 
 : emits ( c n -- ) 0 max 0 ?do dup emit loop drop ;
@@ -13,7 +15,7 @@
   \
   \ If _n_ is greater than zero, display the character _c_ _n_ times.
   \
-  \ See: `ruler`.
+  \ See: `ruler`, `xemits`.
   \
   \ }doc
 
@@ -29,3 +31,5 @@
 \ if _n_ is negative. This is the code used also by Solo Forth
 \ (http://programandala.net/en.program.solo_forth.html).  Update sorce
 \ style.  Document.
+\
+\ 2018-07-27: Update documentation.
