@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807271643
+\ Last modified: 201807271830
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -13,9 +13,11 @@
 \ ==============================================================
 \ Requirements
 
-require ./in-spaces.fs  \ `in-spaces`
-require ./package.fs    \ `package`
-require ./rectangle.fs  \ `rectangle`
+require ./array-to.fs        \ `array>`
+require ./in-spaces.fs       \ `in-spaces`
+require ./package.fs         \ `package`
+require ./rectangle.fs       \ `rectangle`
+require ./type-left-field.fs \ `type-left-field`
 
 \ ==============================================================
 
@@ -24,14 +26,14 @@ package galope-menu
 public
 
 0
-  field: ~menu-column
-  field: ~menu-row
-  field: ~menu-width
-  field: ~menu-height
-  2field: ~menu-title       \ address and length of a string
-  field: ~menu-options      \ address of array of counted strings
-  field: ~menu-actions      \ address of array of execution tokens, or zero
-  field: ~menu-rounding     \ flag
+  field:  ~menu-column
+  field:  ~menu-row
+  field:  ~menu-width
+  field:  ~menu-height
+  2field: ~menu-title    \ address and length of a string
+  2field: ~menu-options  \ address and cells of an array of counted strings
+  field:  ~menu-actions  \ address of array of execution tokens, or zero
+  field:  ~menu-rounding \ flag
 constant /menu
 
   \
@@ -47,8 +49,15 @@ constant /menu
 : options-last-row ( a -- row )
   dup ~menu-row @ swap ~menu-height @ 2 - + ;
 
+: options-width ( a -- len ) ~menu-width @ 4 - ;
+
+: #options ( a -- n ) ~menu-options 2@ nip ;
+
+: #max-visible-options ( a -- n )
+  dup options-last-row swap options-first-row 1- - ;
+
 : #visible-options ( a -- n )
-  options-last-row options-first-row -1 + ;
+  dup #max-visible-options swap #options min ;
 
 public
 
@@ -78,7 +87,16 @@ public
   menu ~menu-column @ +
   menu ~menu-row @ at-xy type ;
 
-: .menu-options ( menu -- ) drop ;
+: option>xy ( n menu -- col row )
+  dup ~menu-column @ 2 + swap ~menu-row @ 2 + rot + ;
+
+: .option ( n menu -- )
+  dup >r 2dup option>xy at-xy
+         ~menu-options 2@ drop array> @ count
+      r> options-width type-left-field ;
+
+: .menu-options ( menu -- )
+  dup #visible-options 0 ?do i over cr .option loop drop ;
 
 : .menu ( menu -- ) dup .menu-border
                     dup .menu-title
@@ -89,4 +107,8 @@ end-package
 \ ==============================================================
 \ Change log
 
-\ 2018-07-25: Start: define the size, clear the box, draw the border...
+\ 2018-07-25: Start: define the size, clear the box, draw the
+\ border...
+\
+\ 2018-07-27: Rewrite using `blank-rectangle`. Implement
+\ `.menu-options`.
