@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807292033
+\ Last modified: 201807300102
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -16,6 +16,7 @@
 require ./array-to.fs        \ `array>`
 require ./in-spaces.fs       \ `in-spaces`
 require ./package.fs         \ `package`
+require ./polarity.fs        \ `polarity`
 require ./rectangle.fs       \ `rectangle`
 require ./type-left-field.fs \ `type-left-field`
 
@@ -102,15 +103,16 @@ public
 : option>right-margin-xy ( menu option -- col row )
   over >r option>xy r> options-width under+ ;
 
-: -option ( menu option -- )
+: unhighlight-option ( menu option -- )
   2dup option>left-margin-xy  at-xy space
        option>right-margin-xy at-xy space ;
-  \ Remove the highlighting of the current option.
+  \ Unhighlight _option_ of _menu_.
 
-: +option ( menu option -- )
+: highlight-option ( menu option -- )
+  \ 0. 2dup at-xy 70 spaces at-xy .s key drop \ XXX INFORMER
   2dup option>left-margin-xy at-xy ." >"
        option>right-margin-xy at-xy ." <" ;
-  \ Highlight the current option of _menu_.
+  \ Highlight _option_ of _menu_.
 
 : current-option? ( menu option -- f ) swap ~menu-option @ = ;
 
@@ -118,53 +120,68 @@ public
   menu option option>xy at-xy
   option menu ~menu-options 2@ drop array> @ count
   menu options-width type-left-field
-  menu option current-option? if menu option +option then ;
+  menu option current-option?
+  if menu option highlight-option then ;
+  \ Display _option_ of _menu_.
 
 : .menu-options ( menu -- )
   dup #visible-options 0 ?do dup i .option loop drop ;
+  \ Display the options of _menu_.
 
 : .menu ( menu -- ) dup .menu-border
                     dup .menu-title
                         .menu-options ;
+  \ Display _menu_.
 
-false [if]
+: round-option ( menu option -- option' )
+  swap {: menu :}
+  dup 0 menu ~menu-options @ within ?exit
+      polarity ( -1|1) 0< ( -1|0) menu ~menu-options @ 1- and ;
 
-: round-option ( n -- n' )
-  dup 0 menu-options c@ within ?exit
-      polarity ( -1|1) 0< ( -1|0) menu-options c@ 1- and ;
-  \ XXX TODO -- Adapt from Solo Forth.
+: limit-option ( menu option -- option' )
+  0 max swap ~menu-options @ 1- min ;
 
-: limit-option ( n -- n' ) 0 max menu-options c@ 1- min ;
-  \ XXX TODO -- Adapt from Solo Forth.
+: adjust-option ( menu option -- option' )
+  over ~menu-rounding @ if   round-option
+                        else limit-option then ;
 
-: adjust-option ( n -- n' )
-  menu-rounding @ if   round-option exit
-                  then limit-option ;
-  \ XXX TODO -- Adapt from Solo Forth.
-
-: option+ ( n -- ) current-option c@ + adjust-option +option ;
+: option+ ( menu n -- )
+  over tuck ~menu-option @ +
+            adjust-option 2dup swap ~menu-option !
+            highlight-option ;
   \ Add _n_ to the current option, make the result fit the
   \ valid range and make it the current option.
-  \
-  \ XXX TODO -- Adapt from Solo Forth.
 
-: previous-option ( -- ) -option -1 option+ ;
+: unhighlight-current-option ( menu -- )
+  dup ~menu-option @ unhighlight-option ;
 
-: next-option     ( -- ) -option  1 option+ ;
+: previous-option ( menu -- )
+  dup unhighlight-current-option -1 option+ ;
 
-: choose-option ( n1 -- )
-  current-option c@ actions-table @ array> perform ;
-  \ XXX TODO -- Adapt from Solo Forth.
+: next-option ( menu -- )
+  dup unhighlight-current-option 1 option+ ;
 
-: menu ( menu -- )
-  dup ~menu-option off +option
-  begin key case
-          menu-key-up     @ of previous-option endof
-          menu-key-down   @ of next-option     endof
-          menu-key-choose @ of choose-option   endof
-        endcase again ;
+k-up   value menu-key-up
+k-down value menu-key-down
+13     value menu-key-choose
 
-[then]
+: menu {: menu -- +n | -1 :}
+  menu menu ~menu-option @ highlight-option
+  begin ekey
+    ekey>fkey if
+      case
+        menu-key-up   of menu previous-option endof
+        menu-key-down of menu next-option     endof
+      endcase
+    else
+      ekey>char if
+        case
+          menu-key-choose of menu ~menu-option @ exit endof
+        endcase
+      else drop
+      then
+    then
+  again ;
 
 end-package
 
@@ -181,3 +198,5 @@ end-package
 \
 \ 2018-07-29: Change the order of parameters "option menu" to "menu
 \ option".
+\
+\ 2018-07-30: Finish the option selection. First working version.
