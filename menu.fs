@@ -1,11 +1,9 @@
 \ galope/menu.fs
 
-\ XXX UNDER DEVELOPMENT
-
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807300102
+\ Last modified: 201807300121
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -13,7 +11,6 @@
 \ ==============================================================
 \ Requirements
 
-require ./array-to.fs        \ `array>`
 require ./in-spaces.fs       \ `in-spaces`
 require ./package.fs         \ `package`
 require ./polarity.fs        \ `polarity`
@@ -27,15 +24,15 @@ package galope-menu
 public
 
 0
-  field:  ~menu-column
-  field:  ~menu-row
-  field:  ~menu-width
-  field:  ~menu-height
-  2field: ~menu-title    \ address and length of a string
-  2field: ~menu-options  \ address and cells of an array of counted strings
-  field:  ~menu-rounding \ flag
-  field:  ~menu-option   \ number (0 index)
-
+  field: ~menu-column
+  field: ~menu-row
+  field: ~menu-width
+  field: ~menu-height
+  field: ~menu-title-maker  \ xt ( -- ca len )
+  field: ~menu-options      \ number
+  field: ~menu-option-maker \ xt ( n -- ca len )
+  field: ~menu-rounding     \ flag
+  field: ~menu-option       \ number (0 index)
 constant /menu
 
   \
@@ -53,13 +50,11 @@ constant /menu
 
 : options-width ( a -- len ) ~menu-width @ 4 - ;
 
-: #options ( a -- n ) ~menu-options 2@ nip ;
-
 : #max-visible-options ( a -- n )
   dup options-last-row swap options-first-row 1- - ;
 
 : #visible-options ( a -- n )
-  dup #max-visible-options swap #options min ;
+  dup #max-visible-options swap ~menu-options @ min ;
 
 public
 
@@ -88,8 +83,8 @@ public
   menu ~menu-width  @ menu ~menu-height @ blank-rectangle ;
 
 : .menu-title {: menu -- :}
-  menu ~menu-title 2@ nip 0= ?exit
-  menu ~menu-title 2@ in-spaces dup
+  menu ~menu-title-maker @ ?dup 0= ?exit execute ( ca len )
+  in-spaces dup
   menu ~menu-width @ min menu ~menu-width @ swap - 2/
   menu ~menu-column @ +
   menu ~menu-row @ at-xy type ;
@@ -109,7 +104,6 @@ public
   \ Unhighlight _option_ of _menu_.
 
 : highlight-option ( menu option -- )
-  \ 0. 2dup at-xy 70 spaces at-xy .s key drop \ XXX INFORMER
   2dup option>left-margin-xy at-xy ." >"
        option>right-margin-xy at-xy ." <" ;
   \ Highlight _option_ of _menu_.
@@ -118,7 +112,7 @@ public
 
 : .option {: menu option -- :}
   menu option option>xy at-xy
-  option menu ~menu-options 2@ drop array> @ count
+  option menu ~menu-option-maker perform
   menu options-width type-left-field
   menu option current-option?
   if menu option highlight-option then ;
@@ -200,3 +194,4 @@ end-package
 \ option".
 \
 \ 2018-07-30: Finish the option selection. First working version.
+\ Replace title string and options string array with execution tokens.

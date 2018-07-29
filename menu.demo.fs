@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807300103
+\ Last modified: 201807300120
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -21,21 +21,26 @@ allocate-menu my-menu
 20 my-menu ~menu-width !
  9 my-menu ~menu-height !
 
-s" My title" my-menu ~menu-title 2!
+:noname ( -- ca len ) s" My title" ;
 
-here s" Option 3" s,
-here s" Option 2" s,
-here s" Option 1" s,
-here s" Option 0" s,
+my-menu ~menu-title-maker !
 
-create my-menu-options , , , ,
+4 my-menu ~menu-options !
 
-my-menu-options 4 my-menu ~menu-options 2!
+:noname ( n -- ca len )
+  case
+    0 of s" Option 0" endof
+    1 of s" Option 1" endof
+    2 of s" Option 2" endof
+    3 of s" Option 3" endof
+  endcase ;
+
+my-menu ~menu-option-maker !
 
 : menu.demo ( -- )
   my-menu .menu
   my-menu menu
-  my-menu free throw
+  \ my-menu free throw
   ;
 
 page menu.demo
