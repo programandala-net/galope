@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 20180728
+\ Last modified: 201807300103
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -34,6 +34,7 @@ my-menu-options 4 my-menu ~menu-options 2!
 
 : menu.demo ( -- )
   my-menu .menu
+  my-menu menu
   my-menu free throw
   ;
 
@@ -47,3 +48,5 @@ page menu.demo
 \ 2018-07-27: Add the menu options.
 \
 \ 2018-07-28: Rename the menu options (0 index).
+\
+\ 2018-07-30: Update.
