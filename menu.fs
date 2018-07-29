@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807281638
+\ Last modified: 201807292033
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -93,42 +93,35 @@ public
   menu ~menu-column @ +
   menu ~menu-row @ at-xy type ;
 
-: option>xy ( option menu -- col row )
-  dup ~menu-column @ 2 + swap ~menu-row @ 2 + rot + ;
+: option>xy ( menu option -- col row )
+  over ~menu-row @ 2 + + swap ~menu-column @ 2 + swap ;
 
-: option>margins-xy ( option menu -- col1 row1 col2 row2 )
-   dup >r ~menu-option @ r@ option>xy
-  2dup -1 under+
-       r> options-width 1- under+ ;
-
-: option>left-margin-xy ( option menu -- col row )
+: option>left-margin-xy ( menu option -- col row )
   option>xy -1 under+ ;
 
-: option>right-margin-xy ( option menu -- col row )
-  dup >r option>xy r> options-width under+ ;
+: option>right-margin-xy ( menu option -- col row )
+  over >r option>xy r> options-width under+ ;
 
-: -option ( option menu -- )
+: -option ( menu option -- )
   2dup option>left-margin-xy  at-xy space
        option>right-margin-xy at-xy space ;
   \ Remove the highlighting of the current option.
 
-: +option ( option menu -- )
+: +option ( menu option -- )
   2dup option>left-margin-xy at-xy ." >"
        option>right-margin-xy at-xy ." <" ;
   \ Highlight the current option of _menu_.
 
-: current-option? ( n menu -- f ) ~menu-option @ = ;
+: current-option? ( menu option -- f ) swap ~menu-option @ = ;
 
-: .option
-  \ over 0 swap at-xy .s key drop \ XXX INFORMER
-  {: option menu -- :}
-  option menu option>xy at-xy
+: .option {: menu option -- :}
+  menu option option>xy at-xy
   option menu ~menu-options 2@ drop array> @ count
-         menu options-width type-left-field
-  option menu current-option? if option menu +option then ;
+  menu options-width type-left-field
+  menu option current-option? if menu option +option then ;
 
 : .menu-options ( menu -- )
-  dup #visible-options 0 ?do i over .option loop drop ;
+  dup #visible-options 0 ?do dup i .option loop drop ;
 
 : .menu ( menu -- ) dup .menu-border
                     dup .menu-title
@@ -185,3 +178,6 @@ end-package
 \ `.menu-options`.
 \
 \ 2018-07-28: Implement current option and its highlighting.
+\
+\ 2018-07-29: Change the order of parameters "option menu" to "menu
+\ option".
