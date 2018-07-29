@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807271831
+\ Last modified: 20180728
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -23,10 +23,10 @@ allocate-menu my-menu
 
 s" My title" my-menu ~menu-title 2!
 
-here s" Option 4" s,
 here s" Option 3" s,
 here s" Option 2" s,
 here s" Option 1" s,
+here s" Option 0" s,
 
 create my-menu-options , , , ,
 
@@ -45,3 +45,5 @@ page menu.demo
 \ 2018-07-25: Start.
 \
 \ 2018-07-27: Add the menu options.
+\
+\ 2018-07-28: Rename the menu options (0 index).
