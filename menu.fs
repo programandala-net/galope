@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807301611
+\ Last modified: 201807301640
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -43,12 +43,33 @@ constant /menu
 
 \ private
 
-: options-first-row ( a -- row ) ~menu-row @ 2 + ;
+1 value menu-top-margin ( -- +n )
+  \ A ``value``. _+n_ is the number of empty rows between the top
+  \ border of a menu (its title line) and the first visible option.
+  \ Its default value is one.
+
+0 value menu-bottom-margin ( -- +n )
+  \ A ``value``. _+n_ is the number of empty rows between the bottom
+  \ border of a menu and the last visible option.  Its default value
+  \ is zero.
+
+1 value menu-left-margin ( -- +n )
+  \ A ``value``. _+n_ is the number of empty columns between the left
+  \ border of a menu and the options.  Its default value is one.
+
+1 value menu-right-margin ( -- +n )
+  \ A ``value``. _+n_ is the number of empty columns between the right
+  \ border of a menu and the options.  Its default value is one.
+
+: options-first-row ( a -- row )
+  ~menu-row @ 1+ menu-top-margin + ;
 
 : options-last-row ( a -- row )
-  dup ~menu-row @ swap ~menu-height @ 2 - + ;
+  dup ~menu-row @ swap ~menu-height @ +
+  2 - menu-bottom-margin - ;
 
-: options-width ( a -- len ) ~menu-width @ 4 - ;
+: options-width ( a -- len )
+  ~menu-width @ 2 - menu-left-margin - menu-right-margin - ;
 
 : #max-visible-options ( a -- n )
   dup options-last-row swap options-first-row 1- - ;
@@ -65,6 +86,15 @@ public
 
 : allocate-menu ( "name" -- )
   /menu allocate throw dup constant init-menu ;
+
+: center-menu-horizontally ( menu -- )
+  >r cols r@ ~menu-width @ - 2/ r> ~menu-column ! ;
+
+: center-menu-vertically ( menu -- )
+  >r rows r@ ~menu-height @ - 2/ r> ~menu-row ! ;
+
+: center-menu ( menu -- )
+  dup center-menu-horizontally center-menu-vertically ;
 
 : blank-menu-options {: menu -- :}
   menu options-last-row 1+ menu options-first-row ?do
@@ -90,7 +120,8 @@ public
   menu ~menu-row @ at-xy type ;
 
 : option>xy ( menu option -- col row )
-  over ~menu-row @ 2 + + swap ~menu-column @ 2 + swap ;
+  over ~menu-row @ 1+ menu-top-margin + +
+  swap ~menu-column @ 1+ menu-left-margin + swap ;
 
 : option>left-margin-xy ( menu option -- col row )
   option>xy -1 under+ ;
@@ -204,4 +235,5 @@ end-package
 \ 2018-07-30: Finish the option selection. First working version.
 \ Replace title string and options string array with execution tokens.
 \ Support a escape key. Add `ceasing-menu` and `unceasing-menu` as
-\ top-level interface.
+\ top-level interface. Add words to center the menu on the screen.
+\ Make inner margins configurable.
