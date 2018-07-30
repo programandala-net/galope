@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-07-27
+:revdate: 2018-07-29
 
 == 2012-09-20
 
@@ -402,3 +402,7 @@ Fix: Make `lprompted` support UTF-8.
 == 2018-07-27
 
 - Adapt `type-right-field` and `type-center-field` from Solo Forth.
+
+== 2018-07-30
+
+Improve the creation and configuration of menus.
