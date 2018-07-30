@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807300121
+\ Last modified: 201807301611
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -155,27 +155,35 @@ public
 : next-option ( menu -- )
   dup unhighlight-current-option 1 option+ ;
 
-k-up   value menu-key-up
-k-down value menu-key-down
-13     value menu-key-choose
+k-up   value menu-fkey-up
+k-down value menu-fkey-down
+13     value menu-key-choose \ enter key
+27     value menu-key-exit   \ escape key
 
-: menu {: menu -- +n | -1 :}
+: menu>option {: menu -- option | -1 :}
   menu menu ~menu-option @ highlight-option
   begin ekey
     ekey>fkey if
       case
-        menu-key-up   of menu previous-option endof
-        menu-key-down of menu next-option     endof
+        menu-fkey-up   of menu previous-option endof
+        menu-fkey-down of menu next-option     endof
       endcase
     else
       ekey>char if
         case
           menu-key-choose of menu ~menu-option @ exit endof
+          menu-key-exit   of                  -1 exit endof
         endcase
       else drop
       then
     then
   again ;
+
+: unceasing-menu ( menu -- option | -1 )
+  dup .menu menu>option ;
+
+: ceasing-menu ( menu -- option | -1 )
+  dup unceasing-menu swap blank-menu ;
 
 end-package
 
@@ -195,3 +203,5 @@ end-package
 \
 \ 2018-07-30: Finish the option selection. First working version.
 \ Replace title string and options string array with execution tokens.
+\ Support a escape key. Add `ceasing-menu` and `unceasing-menu` as
+\ top-level interface.
