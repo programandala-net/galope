@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807300120
+\ Last modified: 201807301610
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -37,9 +37,9 @@ my-menu ~menu-title-maker !
 
 my-menu ~menu-option-maker !
 
-: menu.demo ( -- )
+: menu.demo ( -- option | -1 )
   my-menu .menu
-  my-menu menu
+  my-menu ceasing-menu
   \ my-menu free throw
   ;
 
