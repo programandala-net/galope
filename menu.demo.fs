@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807301640
+\ Last modified: 201807301712
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -15,11 +15,6 @@
 require ./menu.fs
 
 allocate-menu my-menu
-
- 4 my-menu ~menu-column !
-16 my-menu ~menu-row !
-24 my-menu ~menu-width !
- 8 my-menu ~menu-height !
 
 :noname ( -- ca len ) s" My menu" ;
 
@@ -48,6 +43,11 @@ my-menu ~menu-option-maker !
 
 : menu.demo ( -- option | -1 )
 
+   4 my-menu ~menu-column !
+  16 my-menu ~menu-row !
+  24 my-menu ~menu-width !
+   8 my-menu ~menu-height !
+
   page ." Ceasing menu at column " my-menu ~menu-column @ .
                           ." row " my-menu ~menu-row @ . ." :"
   my-menu .menu
@@ -61,9 +61,9 @@ my-menu ~menu-option-maker !
 
   page ." Again, but with larger margins:"
   2 to menu-top-margin
-  2 to menu-left-margin
-  2 to menu-right-margin
-  \ 3 to menu-bottom-margin
+  3 to menu-left-margin
+  3 to menu-right-margin
+  2 to menu-bottom-margin
   my-menu ceasing-menu .menu-option
   press-any-key
 
