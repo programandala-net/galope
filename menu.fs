@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807301640
+\ Last modified: 201807301713
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -53,9 +53,9 @@ constant /menu
   \ border of a menu and the last visible option.  Its default value
   \ is zero.
 
-1 value menu-left-margin ( -- +n )
+2 value menu-left-margin ( -- +n )
   \ A ``value``. _+n_ is the number of empty columns between the left
-  \ border of a menu and the options.  Its default value is one.
+  \ border of a menu and the options.  Its default value is two.
 
 1 value menu-right-margin ( -- +n )
   \ A ``value``. _+n_ is the number of empty columns between the right
@@ -124,19 +124,23 @@ public
   swap ~menu-column @ 1+ menu-left-margin + swap ;
 
 : option>left-margin-xy ( menu option -- col row )
-  option>xy -1 under+ ;
+  option>xy menu-left-margin negate under+ ;
 
-: option>right-margin-xy ( menu option -- col row )
-  over >r option>xy r> options-width under+ ;
+: (unhighlight-option) ( menu option -- )
+  option>left-margin-xy at-xy menu-left-margin spaces ;
+  \ Unhighlight _option_ of _menu_ with the default method.
 
-: unhighlight-option ( menu option -- )
-  2dup option>left-margin-xy  at-xy space
-       option>right-margin-xy at-xy space ;
+defer unhighlight-option ( menu option -- )
+  ' (unhighlight-option) is unhighlight-option
   \ Unhighlight _option_ of _menu_.
 
-: highlight-option ( menu option -- )
-  2dup option>left-margin-xy at-xy ." >"
-       option>right-margin-xy at-xy ." <" ;
+: (highlight-option) ( menu option -- )
+  option>left-margin-xy menu-left-margin 2 - under+
+  at-xy ." >" ;
+  \ Highlight _option_ of _menu_ with the default method.
+
+defer highlight-option ( menu option -- )
+  ' (highlight-option) is highlight-option
   \ Highlight _option_ of _menu_.
 
 : current-option? ( menu option -- f ) swap ~menu-option @ = ;
@@ -153,7 +157,17 @@ public
   dup #visible-options 0 ?do dup i .option loop drop ;
   \ Display the options of _menu_.
 
-: .menu ( menu -- ) dup .menu-border
+: fix-menu-height ( menu -- )
+  dup >r ~menu-height  @
+      r@ ~menu-options @ menu-top-margin + menu-bottom-margin +
+                         2 + \ borders
+      max r> ~menu-height ! ;
+  \ Make sure the _menu_ height is enough.
+  \
+  \ XXX TMP -- Until the rounding is implemented.
+
+: .menu ( menu -- ) dup fix-menu-height
+                    dup .menu-border
                     dup .menu-title
                         .menu-options ;
   \ Display _menu_.
@@ -236,4 +250,5 @@ end-package
 \ Replace title string and options string array with execution tokens.
 \ Support a escape key. Add `ceasing-menu` and `unceasing-menu` as
 \ top-level interface. Add words to center the menu on the screen.
-\ Make inner margins configurable.
+\ Make inner margins configurable. Simplify the highlighting and make
+\ it configurable.
