@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807311440
+\ Last modified: 201807311543
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -121,6 +121,13 @@ public
 : resize-menu ( menu -- )
   dup resize-menu-horizontally resize-menu-vertically ;
 
+: shrink-menu ( menu -- )
+  1 to menu-top-margin
+  2 to menu-left-margin
+  1 to menu-right-margin
+  1 to menu-bottom-margin
+  resize-menu ;
+
 : blank-menu-options {: menu -- :}
   menu options-last-row 1+ menu options-first-row ?do
     menu ~menu-column @ 1+ i at-xy
@@ -148,9 +155,18 @@ public
   dup menu>title$ dup if   (.menu-title)
                       else 2drop drop then ;
 
+: option>x ( menu option -- col )
+  drop ~menu-column @ 1+ menu-left-margin + ;
+
+: option>y ( menu option -- row )
+  swap ~menu-row @ 1+ menu-top-margin + + ;
+
 : option>xy ( menu option -- col row )
-  over ~menu-row @ 1+ menu-top-margin + +
-  swap ~menu-column @ 1+ menu-left-margin + swap ;
+  2dup option>x -rot option>y ;
+
+: option>submenu-xy ( menu option -- col row )
+  over dup ~menu-column @ swap ~menu-width @ +
+  -rot option>y ;
 
 : option>left-margin-xy ( menu option -- col row )
   option>xy menu-left-margin negate under+ ;
@@ -282,4 +298,5 @@ end-package
 \ Make inner margins configurable. Simplify the highlighting and make
 \ it configurable.
 \
-\ 2018-07-31: Add `option>string`, `menu>title$`, `resize-menu`.
+\ 2018-07-31: Add `option>string`, `menu>title$`, `resize-menu`.  Add
+\ `option>submenu-xy` and `shrink-menu`.
