@@ -409,4 +409,6 @@ Improve the creation and configuration of menus.
 
 == 2018-07-31
 
-Make the justification of menu titles configurable.
+- Make the justification of menu titles configurable.
+- Adjust all sources to 63 columns.
+
