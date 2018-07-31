@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807301712
+\ Last modified: 201807311433
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -43,10 +43,10 @@ my-menu ~menu-option-maker !
 
 : menu.demo ( -- option | -1 )
 
-   4 my-menu ~menu-column !
-  16 my-menu ~menu-row !
-  24 my-menu ~menu-width !
-   8 my-menu ~menu-height !
+   8 my-menu ~menu-column !
+   4 my-menu ~menu-row !
+  48 my-menu ~menu-width !
+  16 my-menu ~menu-height !
 
   page ." Ceasing menu at column " my-menu ~menu-column @ .
                           ." row " my-menu ~menu-row @ . ." :"
@@ -67,6 +67,11 @@ my-menu ~menu-option-maker !
   my-menu ceasing-menu .menu-option
   press-any-key
 
+  page ." Again, but resized:"
+  my-menu resize-menu
+  my-menu ceasing-menu .menu-option
+  press-any-key
+
   page ." The End"
   \ my-menu free throw
   ;
@@ -83,3 +88,5 @@ page menu.demo
 \ 2018-07-28: Rename the menu options (0 index).
 \
 \ 2018-07-30: Update.
+\
+\ 2018-07-31: Update with `resize-menu`.

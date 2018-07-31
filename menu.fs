@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807301713
+\ Last modified: 201807311440
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -79,6 +79,12 @@ constant /menu
 
 public
 
+: option>string ( menu option -- ca len )
+  swap ~menu-option-maker perform ;
+
+: menu>title$ ( menu -- ca len )
+  ~menu-title-maker @ ?dup if execute else pad 0 then ;
+
 : init-menu ( menu -- ) /menu erase ;
 
 : create-menu ( "name" -- )
@@ -96,6 +102,25 @@ public
 : center-menu ( menu -- )
   dup center-menu-horizontally center-menu-vertically ;
 
+: resize-menu-horizontally {: menu -- :}
+  menu menu>title$ nip 2 -
+  menu ~menu-options @ 0 ?do
+    menu i option>string nip max
+  loop menu-left-margin +
+       menu-right-margin +
+       2 + \ borders
+       cols min menu ~menu-width ! ;
+
+: resize-menu-vertically ( menu -- )
+  dup >r ~menu-options @ menu-top-margin +
+                         menu-bottom-margin +
+                         2 + \ borders
+         rows min
+      r> ~menu-height ! ;
+
+: resize-menu ( menu -- )
+  dup resize-menu-horizontally resize-menu-vertically ;
+
 : blank-menu-options {: menu -- :}
   menu options-last-row 1+ menu options-first-row ?do
     menu ~menu-column @ 1+ i at-xy
@@ -112,12 +137,16 @@ public
   menu ~menu-column @ menu ~menu-row    @
   menu ~menu-width  @ menu ~menu-height @ blank-rectangle ;
 
-: .menu-title {: menu -- :}
-  menu ~menu-title-maker @ ?dup 0= ?exit execute ( ca len )
-  in-spaces dup
-  menu ~menu-width @ min menu ~menu-width @ swap - 2/
-  menu ~menu-column @ +
-  menu ~menu-row @ at-xy type ;
+: (.menu-title) ( menu ca len -- )
+  rot >r in-spaces dup
+      r@ ~menu-width @ min
+      r@ ~menu-width @ swap - 2/
+      r@ ~menu-column @ +
+      r> ~menu-row @ at-xy type ;
+
+: .menu-title ( menu -- )
+  dup menu>title$ dup if   (.menu-title)
+                      else 2drop drop then ;
 
 : option>xy ( menu option -- col row )
   over ~menu-row @ 1+ menu-top-margin + +
@@ -147,7 +176,7 @@ defer highlight-option ( menu option -- )
 
 : .option {: menu option -- :}
   menu option option>xy at-xy
-  option menu ~menu-option-maker perform
+  menu option option>string
   menu options-width type-left-field
   menu option current-option?
   if menu option highlight-option then ;
@@ -252,3 +281,5 @@ end-package
 \ top-level interface. Add words to center the menu on the screen.
 \ Make inner margins configurable. Simplify the highlighting and make
 \ it configurable.
+\
+\ 2018-07-31: Add `option>string`, `menu>title$`, `resize-menu`.
