@@ -406,3 +406,7 @@ Fix: Make `lprompted` support UTF-8.
 == 2018-07-30
 
 Improve the creation and configuration of menus.
+
+== 2018-07-31
+
+Make the justification of menu titles configurable.
