@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201807311541
+\ Last modified: 201808091840
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -106,7 +106,7 @@ my-submenu resize-menu
   my-menu ceasing-menu .menu-option ;
 
 : do-submenu ( -- )
-  my-menu swap option>submenu-xy
+  my-menu swap menu-option>submenu-xy
   my-submenu ~menu-row !
   my-submenu ~menu-column !
   my-submenu ceasing-menu .submenu-option ;
@@ -150,3 +150,5 @@ page menu-demo
 \
 \ 2018-07-31: Update with `resize-menu` and submenus. Factor the demo
 \ into pieces. Rename the main word and the file.
+\
+\ 2018-08-09: Update.
