@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201808131804
+\ Last modified: 201808131811
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -838,37 +838,19 @@ k-down value menu-fkey-down
   \
   \ }doc
 
-: unceasing-menu ( menu -- option f )
-  dup .menu menu>option ;
+: menu ( menu -- option f ) dup .menu menu>option ;
 
   \ doc{
   \
-  \ unceasing-menu ( menu -- option f )
+  \ menu ( menu -- option f )
   \
   \ Display and activate the menu identified by _menu_. Return the
   \ _option_ (0 index) marked when the user left the menu, either
   \ choosing the option (_f_ is true) or escaping the menu (_f_ is
-  \ false). The menu will remain on the screen.
+  \ false). The menu will remain on the screen, and may be removed by
+  \ `blank-menu`.
   \
-  \ See: `ceasing-menu`, `.menu`, `menu>option`, `create-menu`,
-  \ `allocate-menu`.
-  \
-  \ }doc
-
-: ceasing-menu ( menu -- option f )
-  dup unceasing-menu rot blank-menu ;
-
-  \ doc{
-  \
-  \ ceasing-menu ( menu -- option f )
-  \
-  \ Display and activate the menu identified by _menu_. Return the
-  \ _option_ (0 index) marked when the user left the menu, either
-  \ choosing the option (_f_ is true) or escaping the menu (_f_ is
-  \ false). Then the menu will be removed from the screen.
-  \
-  \ See: `unceasing-menu`, `.menu`, `menu>option`, `blank-menu`,
-  \ `create-menu`, `allocate-menu`.
+  \ See: `.menu`, `menu>option`, `create-menu`, `allocate-menu`.
   \
   \ }doc
 
@@ -907,5 +889,6 @@ end-package
 \
 \ 2018-08-09: Advance documentation.
 \
-\ 2018-08-13: Make `menu>option` always return a flag. This makes
-\ its usage simpler.
+\ 2018-08-13: Make `menu>option` always return a flag. This makes its
+\ usage simpler.  Remove `ceasing-menu`. Rename `unceasing-menu` to
+\ `menu`.
