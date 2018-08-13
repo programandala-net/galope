@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201808091840
+\ Last modified: 201808131803
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -59,19 +59,19 @@ my-submenu resize-menu
 
 : at-info ( -- ) 0 rows 2 - at-xy ;
 
-: .menu-option ( option | -1 )
+: .menu-option ( option f )
   at-info
-  dup -1 = if   ." You escaped the menu"
-           else ." You chose option "
-                my-menu ~menu-option-maker perform type
-           then 16 spaces ;
+  if   ." You chose option "
+  else ." You escaped the menu on option "
+  then my-menu ~menu-option-maker perform type
+       16 spaces ;
 
-: .submenu-option ( option | -1 )
+: .submenu-option ( option f )
   at-info
-  dup -1 = if   ." You escaped the submenu"
-           else ." You chose suboption "
-                my-submenu ~menu-option-maker perform type
-           then 16 spaces ;
+  if    ." You chose option "
+  else  ." You escaped the submenu on option "
+  then  my-submenu ~menu-option-maker perform type
+        16 spaces ;
 
 : press-any-key ( -- )
   cr ." Press any key to continue" key drop ;
@@ -105,7 +105,7 @@ my-submenu resize-menu
   my-menu resize-menu
   my-menu ceasing-menu .menu-option ;
 
-: do-submenu ( -- )
+: do-submenu ( option -- )
   my-menu swap menu-option>submenu-xy
   my-submenu ~menu-row !
   my-submenu ~menu-column !
@@ -115,15 +115,13 @@ my-submenu resize-menu
   page ." Shrinked and with 2 submenus"
   ['] my-menu-complex-options my-menu ~menu-option-maker !
   my-menu shrink-menu
-  begin my-menu unceasing-menu dup .menu-option
-                               dup -1 <>
+  begin my-menu unceasing-menu 2dup .menu-option
   while
-    dup case
-          1 of do-submenu endof
-          3 of do-submenu endof
-          drop
-        endcase
-  repeat my-menu blank-menu ;
+    case
+      1 of 1 do-submenu endof
+      3 of 3 do-submenu endof
+    endcase
+  repeat drop my-menu blank-menu ;
 
 : menu-demo ( -- option | -1 )
   menu-demo-0 press-any-key
@@ -152,3 +150,5 @@ page menu-demo
 \ into pieces. Rename the main word and the file.
 \
 \ 2018-08-09: Update.
+\
+\ 2018-08-13: Update to the new behavior of `menu>option`.
