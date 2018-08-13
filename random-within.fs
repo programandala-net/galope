@@ -3,8 +3,10 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Robert Pfeiffer, 2009
-\ (https://github.com/robertpfeiffer/forthsnake).
+\ Credit:
+\
+\ Code adapted from Robert Pfeiffer's forthsnake
+\ (https://github.com/robertpfeiffer/forthsnake), 2009.
 
 \ ==============================================================
 
