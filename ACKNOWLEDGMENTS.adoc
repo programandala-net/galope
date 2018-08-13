@@ -1,6 +1,6 @@
 = Acknowledgments
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-12-06
+:revdate: 2018-08-10
 
 // This file is part of Galope
 // http://programandala.net/en.program.galope.html
@@ -15,14 +15,14 @@ programs, listed in alphabetical order:
 - F83 (for CP/M and DOS), by Mike Perry and Henry Laxen, 1984.
 - Forth Foundation Library, by Dick van Oudheusden, <2006..2015.
 - forthsnake, by Robert Pfeiffer, 2009.
-- Gforth, by Anton Ertl, Bernd Paysan et al., 1995..2017.
+- Gforth, by Anton Ertl, Bernd Paysan et al., 1995..2018.
 - kForth (for Linux, v1.5.2), by  Krishna Myneni, 1999..2010.
 - lina (for x86 Linux), by Albert van der Horst, 2000..2004.
 - Modules (for ANS Forth, v1.0.2), by Ulrich Hoffmann, 2015..2016.
 - MPE Forth for TiniARM, by MicroProcessor Engineering Limited,
   1996..2004.
 - Solo Forth (for ZX Spectrum 128), by Marcos Cruz
-  (programandala.net), 2015..2017.
+  (programandala.net), 2015..2018.
 - SwiftForth (for Windows, Linux and MacOS), by Forth Inc.
 - Win32Forth (for Windows), by Andrew McKewan, Tom Zimmer, Robert
   Smith, Jim Schneider, Tom A. Peters et al., 1994..2010.
