@@ -10,6 +10,7 @@
 
 require random.fs \ Gforth's 'random'
 require ./two-drops.fs
+require ./two-pick.fs
 
 : 2choose ( xd[u-1]..xd[0] u -- xd )
   dup >r random 2pick r> rot rot 2>r 2drops 2r> ;
@@ -40,3 +41,5 @@ require ./two-drops.fs
 \ 2017-07-14: Improve documentation.
 \
 \ 2018-07-24: Update source style. Improve documentation.
+\
+\ 2018-08-13: Require `2pick`.
