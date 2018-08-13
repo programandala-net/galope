@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201808131803
+\ Last modified: 201808131812
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -85,12 +85,14 @@ my-submenu resize-menu
 
   page ." Menu at column " my-menu ~menu-column @ .
                   ." row " my-menu ~menu-row @ .
-  my-menu ceasing-menu .menu-option ;
+  my-menu menu .menu-option
+  my-menu blank-menu ;
 
 : menu-demo-1 ( -- option | -1 )
   page ." Centered"
   my-menu center-menu
-  my-menu ceasing-menu .menu-option ;
+  my-menu menu .menu-option
+  my-menu blank-menu ;
 
 : menu-demo-2 ( -- option | -1 )
   page ." With larger margins"
@@ -98,24 +100,27 @@ my-submenu resize-menu
   3 to menu-left-margin
   3 to menu-right-margin
   2 to menu-bottom-margin
-  my-menu ceasing-menu .menu-option ;
+  my-menu menu .menu-option
+  my-menu blank-menu ;
 
 : menu-demo-3 ( -- option | -1 )
   page ." Resized"
   my-menu resize-menu
-  my-menu ceasing-menu .menu-option ;
+  my-menu menu .menu-option
+  my-menu blank-menu ;
 
 : do-submenu ( option -- )
   my-menu swap menu-option>submenu-xy
   my-submenu ~menu-row !
   my-submenu ~menu-column !
-  my-submenu ceasing-menu .submenu-option ;
+  my-submenu menu .submenu-option
+  my-submenu blank-menu ;
 
 : menu-demo-4 ( -- option | -1 )
   page ." Shrinked and with 2 submenus"
   ['] my-menu-complex-options my-menu ~menu-option-maker !
   my-menu shrink-menu
-  begin my-menu unceasing-menu 2dup .menu-option
+  begin my-menu menu 2dup .menu-option
   while
     case
       1 of 1 do-submenu endof
@@ -151,4 +156,4 @@ page menu-demo
 \
 \ 2018-08-09: Update.
 \
-\ 2018-08-13: Update to the new behavior of `menu>option`.
+\ 2018-08-13: Update.
