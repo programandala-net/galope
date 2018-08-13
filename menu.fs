@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201808091840
+\ Last modified: 201808131804
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -801,7 +801,7 @@ k-down value menu-fkey-down
   \
   \ }doc
 
-: menu>option {: menu -- option | -1 :}
+: menu>option {: menu -- option f :}
   menu menu ~menu-option @ highlight-menu-option
   begin ekey
     ekey>fkey if
@@ -812,8 +812,8 @@ k-down value menu-fkey-down
     else
       ekey>char if
         case
-          menu-key-choose of menu ~menu-option @ exit endof
-          menu-key-exit   of                  -1 exit endof
+          menu-key-choose of menu ~menu-option @ true  exit endof
+          menu-key-exit   of menu ~menu-option @ false exit endof
         endcase
       else drop
       then
@@ -823,11 +823,12 @@ k-down value menu-fkey-down
 
   \ doc{
   \
-  \ menu>option ( menu -- option | -1 )
+  \ menu>option ( menu -- option f )
   \
   \ Activate the menu identified by _menu_, which is supposed to be
-  \ already displayed by `.menu`.  If the user escapes the menu,
-  \ return _-1_; otherwise return the chosen _option_ (0 index).
+  \ already displayed by `.menu`. Return the _option_ (0 index) marked
+  \ when the user left the menu, either choosing the option (_f_ is
+  \ true) or escaping the menu (_f_ is false).
   \
   \ The keys used to navigate the menu can be configured by
   \ `menu-fkey-up`, `menu-fkey-down`, `menu-key-choose`, and
@@ -837,34 +838,34 @@ k-down value menu-fkey-down
   \
   \ }doc
 
-: unceasing-menu ( menu -- option | -1 )
+: unceasing-menu ( menu -- option f )
   dup .menu menu>option ;
 
   \ doc{
   \
-  \ unceasing-menu ( menu -- option | -1 )
+  \ unceasing-menu ( menu -- option f )
   \
-  \ Display and activate _menu_ as an unceasing menu, i.e. the menu
-  \ will remain on the screen when the user chooses an option or
-  \ escapes. If the user escapes the menu, return _-1_; otherwise
-  \ return the chosen _option_ (0 index).
+  \ Display and activate the menu identified by _menu_. Return the
+  \ _option_ (0 index) marked when the user left the menu, either
+  \ choosing the option (_f_ is true) or escaping the menu (_f_ is
+  \ false). The menu will remain on the screen.
   \
   \ See: `ceasing-menu`, `.menu`, `menu>option`, `create-menu`,
   \ `allocate-menu`.
   \
   \ }doc
 
-: ceasing-menu ( menu -- option | -1 )
-  dup unceasing-menu swap blank-menu ;
+: ceasing-menu ( menu -- option f )
+  dup unceasing-menu rot blank-menu ;
 
   \ doc{
   \
-  \ ceasing-menu ( menu -- option | -1 )
+  \ ceasing-menu ( menu -- option f )
   \
-  \ Display and activate _menu_ as a ceasing menu, i.e. the menu will
-  \ be removed from the screen when the user chooses an option or
-  \ escapes. If the user escapes the menu, return _-1_; otherwise
-  \ return the chosen _option_ (0 index).
+  \ Display and activate the menu identified by _menu_. Return the
+  \ _option_ (0 index) marked when the user left the menu, either
+  \ choosing the option (_f_ is true) or escaping the menu (_f_ is
+  \ false). Then the menu will be removed from the screen.
   \
   \ See: `unceasing-menu`, `.menu`, `menu>option`, `blank-menu`,
   \ `create-menu`, `allocate-menu`.
@@ -905,3 +906,6 @@ end-package
 \ 2018-08-02: Advance documentation.
 \
 \ 2018-08-09: Advance documentation.
+\
+\ 2018-08-13: Make `menu>option` always return a flag. This makes
+\ its usage simpler.
