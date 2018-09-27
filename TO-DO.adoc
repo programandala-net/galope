@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-07-29
+:revdate: 2018-09-27
 
 == 2012-09-20
 
@@ -170,8 +170,6 @@ Finish adapting the source documentation to Glosara format.
   `keys>number`, `keys>#number`.
 
 - Remove old code from `instr`.
-
-- Remove unused <module.fs> from <choose-stack.fs>.
 
 == 2017-10-25
 
