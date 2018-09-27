@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013.
+\ Author: Marcos Cruz (programandala.net), 2013, 2018.
 
 \ ==============================================================
 
@@ -33,7 +33,7 @@ false [if] \ XXX OLD -- first version
   \ resulting character string _ca3 len3_.  If _ca2 len2_ is not a
   \ prefix of _ca1 len1_, return _ca1 len1_.
   \
-  \ See: `-suffix`, `-leading`.
+  \ See: `-suffix`, `-leading`, `-common-prefix`.
   \
   \ }doc
 
@@ -47,3 +47,5 @@ false [if] \ XXX OLD -- first version
 \ 2017-08-17: Update change log layout. Update header.
 \
 \ 2017-11-04: Improve stack comments. Improve documentation.
+\
+\ 2018-09-27: Update documentation.
