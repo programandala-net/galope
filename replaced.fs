@@ -9,7 +9,7 @@
 \ ==============================================================
 
 require ./package.fs
-require ffl/str.fs
+include ffl/str.fs
 
 package galope-replaced
 
@@ -45,3 +45,7 @@ end-package
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2018-05-07: Improve documentation.
+\
+\ 2018-09-27: Replace `require` with `include` to load <ffl/str.fs>.
+\ This solves a strange problem with Gforth's `require` (see its
+\ `.included`).
