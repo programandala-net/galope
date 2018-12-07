@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-09-27
+:revdate: 2018-12-07
 
 == 2012-09-20
 
@@ -410,3 +410,24 @@ Improve the creation and configuration of menus.
 - Make the justification of menu titles configurable.
 - Adjust all sources to 63 columns.
 
+== 2018-09-27
+
+Fix: In <galope/replaced.fs>, `require` was replaced with `include` in order to
+load <ffl/str.fs>.  This solved a strange problem with Gforth's `require`. See
+Gforth's `.included`.
+
+== 2018-12-07
+
+Improve description or behaviour of `-cell-bounds`:
+
+----
+: -cell-bounds ( a1 len1 -- a1 a2 ) 1+ -bounds cell - ;
+----
+
+Alternatives:
+
+----
+: -cell-bounds ( a1 n -- a1 a2 ) 1+ -bounds cell - ;
+
+: -cell-bounds ( a1 len1 -- a1 a2 ) cells 1+ -bounds cell - ;
+----
