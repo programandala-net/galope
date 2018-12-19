@@ -81,6 +81,8 @@ constant /queue
 
   \ doc{
   \
+  \ allocate-queue ( n "name" -- )
+  \
   \ Create a queue _name_ in the heap with a maximum size of _n_
   \ address units.
   \
@@ -98,6 +100,8 @@ constant /queue
   \ size of _n_ address units.
 
   \ doc{
+  \
+  \ allot-queue ( n "name" -- )
   \
   \ Create a queue _name_ in data space with a maximum size of
   \ _n_ address units.
@@ -410,3 +414,5 @@ zx .queue cr
 \ `allocate-queue` and write `allot-queue`. Factor `queue,`. Use
 \ a data structure for the queue header. Add `c!queue` and
 \ `c@queue`. Document.
+\
+\ 2018-12-19: Fix documentation.

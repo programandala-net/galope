@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201808131811
+\ Last modified: 201812191613
 \ See change log at the end of the file.
 
 \ Author: Marcos Cruz (programandala.net), 2018.
@@ -506,7 +506,7 @@ constant /menu
 
   \ doc{
   \
-  \ blank-menu ( menu -- )
+  \ blank-menu-options ( menu -- )
   \
   \ Blank the options of the menu identified by _menu_, by
   \ overwritting them with spaces. The border and the title are
@@ -892,3 +892,5 @@ end-package
 \ 2018-08-13: Make `menu>option` always return a flag. This makes its
 \ usage simpler.  Remove `ceasing-menu`. Rename `unceasing-menu` to
 \ `menu`.
+\
+\ 2018-12-19: Fix documentation.
