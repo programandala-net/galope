@@ -5,7 +5,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018.
 
 \ ==============================================================
 
@@ -87,6 +87,8 @@ public
 
   \ doc{
   \
+  \ bit-on ( u a -- )
+  \
   \ Turn a bit field _u a_ on.
   \
   \ See also: `bit-off`, `begin-bitfields`, `bitfield:`, `bit!`,
@@ -97,6 +99,8 @@ public
 : bit-off ( u a -- ) dup @ rot invert and swap ! ;
 
   \ doc{
+  \
+  \ bit-off ( u a -- )
   \
   \ Turn a bit field _u a_ off.
   \
@@ -230,3 +234,5 @@ constant /thing
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-11-28: Update source style. Improve documentation.
+\
+\ 2018-12-19: Fix documentation.

@@ -64,7 +64,7 @@ create simple-rectangle-style
 
   \ doc{
   \
-  \ ascii-rectangle-style ( -- a )
+  \ simple-rectangle-style ( -- a )
   \
   \ _a_ is the address of a `rectangle-style` definition that uses
   \ simple lines.
@@ -181,3 +181,5 @@ end-package
 \ Change log
 
 \ 2018-07-27: Written.
+\
+\ 2018-12-19: Fix documentation.

@@ -3,7 +3,7 @@
 # This file is part of Galope
 # http://programandala.net/en.program.galope.html
 
-# Last modified 201711211340
+# Last modified 201812191519
 
 # ==============================================================
 # Author
@@ -20,7 +20,10 @@
 # ==============================================================
 # Requirements
 
-# Asciidoctor (by Dan Allen)
+# Asciidoctor (by Dan Allen and Sara White)
+# 	http://asciidoctor.org
+
+# asciidoctor-pdf (by Dan Allen and Sara White)
 # 	http://asciidoctor.org
 
 # cat (from the GNU coreutils)
@@ -33,6 +36,9 @@
 
 # htmldoc (by Michael Sweet)
 # 	http://www.htmldoc.org
+
+# pandoc (by Johw Macfarlane)
+#	http://john-macfarlane.net/pandoc
 
 # ==============================================================
 # History
@@ -82,17 +88,8 @@ doc: \
 # ----------------------------------------------
 # Common rules
 
-%.pdf: %.html
-	htmldoc \
-		--book \
-		--no-toc \
-		--linkcolor blue \
-		--linkstyle plain \
-		--header " t " \
-		--footer "  1" \
-		--format pdf14 \
-		--webpage \
-		$< > $@
+doc/%.pdf: tmp/%.adoc
+	asciidoctor-pdf --out-file $@ $<
 
 %.html: %.adoc
 	asciidoctor --out-file=$@ $<
@@ -152,3 +149,7 @@ doc/galope_manual.info: doc/galope_manual.texi
 # the manual.
 #
 # 2017-11-21: Improve.
+#
+# 2018-12-07: Update requirements.
+#
+# 2018-12-19: Replace htmldoc with asciidoctor-pdf, the PDF is much better.

@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2017.
+\ Author: Marcos Cruz (programandala.net), 2013, 2017, 2018.
 
 \ ==============================================================
 
@@ -22,7 +22,7 @@ require ./minus-bounds.fs  \ '-bounds'
   \
   \ Remove the file extension from the filename identified by the
   \ character string _ca1 len1_.  The file extension is the substring
-  \ that start at the last '.' of the string.
+  \ that starts at the last '.' of the string.
   \
   \ See: `-suffix`, `-bounds`.
   \
@@ -39,3 +39,5 @@ require ./minus-bounds.fs  \ '-bounds'
 \ 2017-08-17: Update change log layout. Update header.
 \
 \ 2017-11-04: Improve documentation.
+\
+\ 2018-09-28: Fix typo.

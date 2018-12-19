@@ -431,3 +431,8 @@ Alternatives:
 
 : -cell-bounds ( a1 len1 -- a1 a2 ) cells 1+ -bounds cell - ;
 ----
+
+= 2018-12-07
+
+Check the improvements done in Fendo's Makefile, which was adapted
+from Galope's Makefile.
