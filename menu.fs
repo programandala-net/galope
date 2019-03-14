@@ -3,10 +3,10 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Last modified: 201812191613
+\ Last modified: 201903140243
 \ See change log at the end of the file.
 
-\ Author: Marcos Cruz (programandala.net), 2018.
+\ Author: Marcos Cruz (programandala.net), 2018, 2019.
 
 \ ==============================================================
 \ Requirements
@@ -31,12 +31,12 @@ public
   \
   \ ~menu-column ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the left column of the menu identified by _menu_.
   \
   \ See: `~menu-row`, `center-menu`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-rouding`, `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -46,12 +46,12 @@ public
   \
   \ ~menu-row ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the top row of the menu identified by _menu_.
   \
   \ See: `~menu-column`, `center-menu`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-rouding`, `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -61,13 +61,13 @@ public
   \
   \ ~menu-width ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the width of the menu identified by _menu_, in
   \ characters.
   \
   \ See: `~menu-height`, `resize-menu`, `~menu-column`, `~menu-row`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-rouding`, `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -77,13 +77,13 @@ public
   \
   \ ~menu-height ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the height of the menu identified by _menu_, in
   \ characters.
   \
   \ See: `~menu-width`, `resize-menu`, `~menu-column`, `~menu-row`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-rouding`, `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -93,14 +93,14 @@ public
   \
   \ ~menu-title-maker ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing an execution token, which, when executed, returns the
   \ title string of the menu identified by _menu_, as a string
   \ identified by its address and length: _ca len_.
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-options`, `~menu-option-maker`, `~menu-rouding`,
-  \ `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -110,13 +110,13 @@ public
   \
   \ ~menu-options ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the numbers of options of the menu identified by
   \ _menu_.
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-option-maker`, `~menu-rouding`,
-  \ `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -126,7 +126,7 @@ public
   \
   \ ~menu-option-maker ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing an execution token, which, when executed, converts an
   \ option number _n_ of the menu identified by _menu_ into its
   \ corresponding string, identified by its string and length: _ca
@@ -134,7 +134,7 @@ public
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-rouding`,
-  \ `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -144,13 +144,13 @@ public
   \
   \ ~menu-rounding ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing a flag. If the flag is false, the user can not navigate
   \ throw the first and last options of the menu identified by _menu_.
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-option`, `/menu`, `ceasing-menu`.
+  \ `~menu-option`, `/menu`.
   \
   \ }doc
 
@@ -160,13 +160,13 @@ public
   \
   \ ~menu-option ( menu -- a )
   \
-  \ Field of a menu data structure. _a_ is the address of a cell
+  \ Field of a `menu` data structure. _a_ is the address of a cell
   \ containing the number of the current option of the menu identified
   \ by _menu_.
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `/menu`, `ceasing-menu`.
+  \ `~menu-rouding`, `/menu`.
   \
   \ }doc
 
@@ -176,11 +176,11 @@ constant /menu
   \
   \ /menu ( -- len )
   \
-  \ Size of a menu data structure, in address units.
+  \ Size of a `menu` data structure, in address units.
   \
   \ See: `~menu-column`, `~menu-row`, `~menu-width`, `~menu-height`,
   \ `~menu-title-maker`, `~menu-options`, `~menu-option-maker`,
-  \ `~menu-rouding`, `~menu-option`, `ceasing-menu`.
+  \ `~menu-rouding`, `~menu-option`.
   \
   \ }doc
 
@@ -192,9 +192,9 @@ constant /menu
   \
   \ menu-borders ( -- n )
   \
-  \ A ``constant``. Width of two menu menu borders, in characters.
-  \ Its value is two. ``menu-borders`` is used to make some
-  \ calculation clearer.
+  \ A ``constant``. Width of two `menu` borders, in characters.  Its
+  \ value is two. ``menu-borders`` is used to make some calculations
+  \ clearer.
   \
   \ }doc
 
@@ -205,7 +205,7 @@ constant /menu
   \ menu-top-margin ( -- n )
   \
   \ A ``value``. _n_ is the number of empty rows between the top
-  \ border of a menu (its title line) and the first visible option.
+  \ border of a `menu` (its title line) and the first visible option.
   \ Its default value is one.
   \
   \ See: `menu-bottom-margin`, `menu-left-margin`,
@@ -220,7 +220,7 @@ constant /menu
   \ menu-bottom-margin ( -- n )
   \
   \ A ``value``. _n_ is the number of empty rows between the bottom
-  \ border of a menu and the last visible option.  Its default value
+  \ border of a `menu` and the last visible option.  Its default value
   \ is zero.
   \
   \ See: `menu-top-margin`, `menu-left-margin`, `menu-right-margin`.
@@ -234,7 +234,7 @@ constant /menu
   \ menu-left-margin ( -- n )
   \
   \ A ``value``. _n_ is the number of empty columns between the left
-  \ border of a menu and the options.  Its default value is two.
+  \ border of a `menu` and the options.  Its default value is two.
   \
   \ See: `menu-right-margin`, `menu-top-margin`, `menu-bottom-margin`.
   \
@@ -247,7 +247,7 @@ constant /menu
   \ menu-right-margin ( -- n )
   \
   \ A ``value``. _n_ is the number of empty columns between the right
-  \ border of a menu and the options.  Its default value is one.
+  \ border of a `menu` and the options.  Its default value is one.
   \
   \ See: `menu-left-margin`, `menu-top-margin`, `menu-bottom-margin`.
   \
@@ -260,7 +260,7 @@ constant /menu
   \
   \ menu-options-first-row ( menu -- row )
   \
-  \ Return the first _row_ of the visible options of the menu
+  \ Return the first _row_ of the visible options of the `menu`
   \ identified by _menu_.
   \
   \ See: `menu-options-last-row`, `menu-options-width`.
@@ -276,7 +276,7 @@ constant /menu
   \
   \ menu-options-last-row ( menu -- row )
   \
-  \ Return the last _row_ of the visible options of the menu
+  \ Return the last _row_ of the visible options of the `menu`
   \ identified by _menu_.
   \
   \ See: `menu-options-first-row`, `menu-options-width`.
@@ -292,7 +292,7 @@ constant /menu
   \
   \ menu-options-width ( menu -- len )
   \
-  \ Return the width of the visible options of the menu identified by
+  \ Return the width of the visible options of the `menu` identified by
   \ _menu_, in characters.
   \
   \ See: `menu-options-first-row`, `menu-options-last-row`.
@@ -312,7 +312,7 @@ constant /menu
   \
   \ menu-option>string ( menu option -- ca len )
   \
-  \ Return the menu option string _ca len_ of the menu identified by
+  \ Return the `menu` option string _ca len_ of the menu identified by
   \ _menu_.
   \
   \ See: `~menu-option-maker`, `menu>title$`.
@@ -326,7 +326,7 @@ constant /menu
   \
   \ menu>title$ ( menu -- ca len )
   \
-  \ Return the title string _ca len_ of the menu identified by _menu_.
+  \ Return the title string _ca len_ of the `menu` identified by _menu_.
   \ If no title has been specified, return an empty string in ``pad``.
   \
   \ See: `~menu-title-maker`, `menu-option>string`.
@@ -339,7 +339,7 @@ constant /menu
   \
   \ init-menu ( menu -- )
   \
-  \ Init the menu identified by _menu_, by erasing its data.
+  \ Init the `menu` identified by _menu_, by erasing its data.
   \ ``init-menu`` is executed by `create-menu` and `allocate-menu`.
   \
   \ See: `/menu`.
@@ -353,7 +353,7 @@ constant /menu
   \
   \ create-menu ( "name" -- )
   \
-  \ Create a menu called _name_ in data space. When _name_ is later
+  \ Create a `menu` called _name_ in data space. When _name_ is later
   \ executed, it will return the menu identifier, which is the address
   \ of its data structure.
   \
@@ -368,7 +368,7 @@ constant /menu
   \
   \ allocate-menu ( "name" -- )
   \
-  \ Create a menu called _name_ in the data space heap (therefore the
+  \ Create a `menu` called _name_ in the data space heap (therefore the
   \ data space can be freed by ``name free``).  When _name_ is later
   \ executed, it will return the menu identifier, which is the address
   \ of its data structure.
@@ -384,7 +384,7 @@ constant /menu
   \
   \ center-menu-horizontally ( menu -- )
   \
-  \ Set the `~menu-column` field of the menu identified by _menu_ to
+  \ Set the `~menu-column` field of the `menu` identified by _menu_ to
   \ make it horizontally centered on the screen.
   \
   \ See: `center-menu-vertically`, `center-menu`, `~menu-width`,
@@ -399,7 +399,7 @@ constant /menu
   \
   \ center-menu-vertically ( menu -- )
   \
-  \ Set the `~menu-row` field of the menu identified by _menu_ to make
+  \ Set the `~menu-row` field of the `menu` identified by _menu_ to make
   \ it vertically centered on the screen.
   \
   \ See: `center-menu-horizontally`, `center-menu`, `~menu-height`,
@@ -414,7 +414,7 @@ constant /menu
   \
   \ center-menu ( menu -- )
   \
-  \ Set the `~menu-column` and the `~menu-row` fields of the menu
+  \ Set the `~menu-column` and the `~menu-row` fields of the `menu`
   \ identified by _menu_ to make it centered on the screen.
   \
   \ See: `center-menu-horizontally`, `center-menu-vertically`,
@@ -435,7 +435,7 @@ constant /menu
   \
   \ resize-menu-horizontally ( menu -- )
   \
-  \ Set the `~menu-width` field of the menu identified by _menu_ to
+  \ Set the `~menu-width` field of the `menu` identified by _menu_ to
   \ make its title and options fit.
   \
   \ See: `resize-menu-vertically`, `resize-menu`,
@@ -455,7 +455,7 @@ constant /menu
   \
   \ resize-menu-vertically ( menu -- )
   \
-  \ Set the `~menu-height` field of the menu identified by _menu_ to
+  \ Set the `~menu-height` field of the `menu` identified by _menu_ to
   \ make its options fit.
   \
   \ See: `resize-menu-horizontally`, `resize-menu`,
@@ -471,7 +471,7 @@ constant /menu
   \
   \ resize-menu ( menu -- )
   \
-  \ Set the `~menu-width` and `~menu-height` fields of the menu
+  \ Set the `~menu-width` and `~menu-height` fields of the `menu`
   \ identified by _menu_ to make its titles and options fit.
   \
   \ See: `resize-menu-horizontally`, `resize-menu-vertically`,
@@ -490,7 +490,7 @@ constant /menu
   \
   \ shrink-menu ( menu -- )
   \
-  \ Set the generic menu margins (`menu-top-margin`,
+  \ Set the generic `menu` margins (`menu-top-margin`,
   \ `menu-bottom-margin`, `menu-left-margin`, `menu-right-margin`) to
   \ their default values.  Then resize the menu identified by _menu_.
   \
@@ -508,7 +508,7 @@ constant /menu
   \
   \ blank-menu-options ( menu -- )
   \
-  \ Blank the options of the menu identified by _menu_, by
+  \ Blank the options of the `menu` identified by _menu_, by
   \ overwritting them with spaces. The border and the title are
   \ preserved.
   \
@@ -526,7 +526,7 @@ constant /menu
   \
   \ blank-menu ( menu -- )
   \
-  \ Blank the menu identified by _menu_, by overwritting it with
+  \ Blank the `menu` identified by _menu_, by overwritting it with
   \ spaces.
   \
   \ See: `blank-menu-options`, `.menu`.
@@ -541,7 +541,7 @@ constant /menu
   \
   \ .menu-border ( menu -- )
   \
-  \ Display the border of the menu identified by _menu_, using
+  \ Display the border of the `menu` identified by _menu_, using
   \ `blank-rectangle`.
   \
   \ See: `.menu`, `~menu-column`, `~menu-row`, `~menu-width`,
@@ -567,7 +567,7 @@ public
   \
   \ .menu-title ( menu -- )
   \
-  \ Display the title of the menu identified by _menu_.
+  \ Display the title of the `menu` identified by _menu_.
   \
   \ See: `.menu`, `.menu-border`.
   \
@@ -597,7 +597,7 @@ public
   \ (unhighlight-menu-option) ( menu option -- )
   \
   \ Default action of `unhighlight-menu-option`: Unhighlight option number
-  \ _option_ of the menu identified by _menu_, by overwritting its
+  \ _option_ of the `menu` identified by _menu_, by overwritting its
   \ left margin with spaces.
   \
   \ }doc
@@ -609,14 +609,13 @@ defer unhighlight-menu-option ( menu option -- )
   \
   \ unhighlight-menu-option ( menu option -- )
   \
-  \ Unhighlight option number _option_ of the menu identified by
+  \ Unhighlight option number _option_ of the `menu` identified by
   \ _menu_.
   \
   \ ``unhighlight-menu-option`` is a deferred word whose default action is
   \ `(unhighlight-menu-option)`.
   \
-  \ See: `highlight-menu-option`, `.menu`, `ceasing-menu`,
-  \ `unceasing-menu`.
+  \ See: `highlight-menu-option`, `.menu`.
   \
   \ }doc
 
@@ -629,7 +628,7 @@ defer unhighlight-menu-option ( menu option -- )
   \ (highlight-menu-option) ( menu option -- )
   \
   \ Default action of `highlight-menu-option`: Highlight option number
-  \ _option_ of the menu identified by _menu_, by writting a '>'
+  \ _option_ of the `menu` identified by _menu_, by writting a '>'
   \ character on its left margin.
   \
   \ }doc
@@ -641,13 +640,12 @@ defer highlight-menu-option ( menu option -- )
   \
   \ highlight-menu-option ( menu option -- )
   \
-  \ Highlight option number _option_ of the menu identified by _menu_.
+  \ Highlight option number _option_ of the `menu` identified by _menu_.
   \
   \ ``highlight-menu-option`` is a deferred word whose default action is
   \ `(highlight-menu-option)`.
   \
-  \ See: `unhighlight-menu-option`, `.menu`, `ceasing-menu`,
-  \ `unceasing-menu`.
+  \ See: `unhighlight-menu-option`, `.menu`.
   \
   \ }doc
 
@@ -664,7 +662,7 @@ defer highlight-menu-option ( menu option -- )
   \
   \ .menu-option ( menu option -- )
   \
-  \ Display option number _option_ of the menu identified by _menu_.
+  \ Display option number _option_ of the `menu` identified by _menu_.
   \
   \ See: `.menu-options`, `.menu`.
   \
@@ -677,7 +675,7 @@ defer highlight-menu-option ( menu option -- )
   \
   \ .menu-options ( menu -- )
   \
-  \ Display the visible options of the menu identified by _menu_.
+  \ Display the visible options of the `menu` identified by _menu_.
   \
   \ See: `.menu`.
   \
@@ -705,11 +703,10 @@ public
   \
   \ .menu ( menu -- )
   \
-  \ Display the menu identified by _menu_.
+  \ Display the `menu` identified by _menu_.
   \
   \ See: `.menu-border`, `.menu-title`, `.menu-options`,
-  \ `center-menu`, `resize-menu`, `shrink-menu`, `ceasing-menu`,
-  \ `unceasing-menu`.
+  \ `center-menu`, `resize-menu`, `shrink-menu`.
   \
   \ }doc
 
@@ -751,7 +748,7 @@ k-up value menu-fkey-up
   \
   \ menu-fkey-up ( -- u )
   \
-  \ A ``value``. _u_ is the function key used to navigate the menu up.
+  \ A ``value``. _u_ is the function key used to navigate the `menu` up.
   \ Its default value is ``k-up``.
   \
   \ See: `menu-fkey-down`, `menu-key-choose`, `menu-key-exit`,
@@ -765,7 +762,7 @@ k-down value menu-fkey-down
   \
   \ menu-fkey-down ( -- u )
   \
-  \ A ``value``. _u_ is the function key used to navigate the menu
+  \ A ``value``. _u_ is the function key used to navigate the `menu`
   \ down.  Its default value is ``k-down``.
   \
   \ See: `menu-fkey-up`, `menu-key-choose`, `menu-key-exit`,
@@ -779,7 +776,7 @@ k-down value menu-fkey-down
   \
   \ menu-key-choose ( -- c )
   \
-  \ A ``value``. _c_ is the character used to choose a menu option.
+  \ A ``value``. _c_ is the character used to choose a `menu` option.
   \ Its default value is 13, corresponding to the Enter key.
   \
   \ See: `menu-fkey-up`, `menu-fkey-down`, `menu-key-exit`,
@@ -825,7 +822,7 @@ k-down value menu-fkey-down
   \
   \ menu>option ( menu -- option f )
   \
-  \ Activate the menu identified by _menu_, which is supposed to be
+  \ Activate the `menu` identified by _menu_, which is supposed to be
   \ already displayed by `.menu`. Return the _option_ (0 index) marked
   \ when the user left the menu, either choosing the option (_f_ is
   \ true) or escaping the menu (_f_ is false).
@@ -833,8 +830,6 @@ k-down value menu-fkey-down
   \ The keys used to navigate the menu can be configured by
   \ `menu-fkey-up`, `menu-fkey-down`, `menu-key-choose`, and
   \ `menu-key-exit`.
-  \
-  \ See: `ceasing-menu`, `unceasing-menu`.
   \
   \ }doc
 
@@ -894,3 +889,6 @@ end-package
 \ `menu`.
 \
 \ 2018-12-19: Fix documentation.
+\
+\ 2019-03-14: Update documentation: remove old words, add links to
+\ `menu` in all other words.
