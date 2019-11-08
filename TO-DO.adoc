@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2018-12-07
+:revdate: 2019-03-14
 
 == 2012-09-20
 
@@ -432,7 +432,14 @@ Alternatives:
 : -cell-bounds ( a1 len1 -- a1 a2 ) cells 1+ -bounds cell - ;
 ----
 
-= 2018-12-07
+== 2018-12-07
 
 Check the improvements done in Fendo's Makefile, which was adapted
 from Galope's Makefile.
+
+== 2019-03-14
+
+Improve `menu`:
+
+- Add separators, skipped by the option selector.
+- Add inactive options, with alternative texts.
