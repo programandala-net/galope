@@ -3,7 +3,8 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2008, 2014, 2017.
+\ Author: Marcos Cruz (programandala.net), 2008, 2014, 2017,
+\ 2019.
 
 \ ==============================================================
 
@@ -24,19 +25,18 @@ package galope-png
 
 /png-buffer buffer: png-buffer
 
-: not-png? ( -- f )
-  png-buffer @ 0x474e5089 <>
-  png-buffer cell+ @ 0x0a1a0a0d <> or ;
-  \ Is the current file not a PNG?
-  \ The first bytes in the buffer must be:
-  \ 89 50 4E 47 0D 0A 1A 0A
+: png? ( -- f )
+  png-buffer 8 s\" \x89\x50\x4E\x47\x0D\x0A\x1A\x0A" str= ;
+  \ Is the current file a PNG?
+  \ The first 8 bytes of the buffer must be:
+  \ 0x89 0x50 0x4E 0x47 0x0D 0x0A 0x1A 0x0A.
 
 variable png-fid
 
 : png-load ( fid -- )
   png-buffer /png-buffer  2dup erase
   rot read-file throw drop
-  not-png? abort" Not a PNG image file." ;
+  png? 0= abort" Not a PNG image file." ;
   \ Fill the buffer with the beginning of the PNG image file,
   \ to make it the current one.
 
@@ -126,19 +126,24 @@ img2 png-test
 \ ==============================================================
 \ Change log
 
-\ 2013-02-28: Code copied from a previous unfinished tool by the same
-\ author (<http://programandala.net/en.program.fpng.html>), written in
-\ 2008.  Changes: 'base' removed; 'bounds' used; 'default-of' used;
-\ 'throw' instead of several 'abort"'; one value converted to a local;
-\ new names; updated stack notations and code layout.
+\ 2013-02-28: Code copied from a previous unfinished tool by the
+\ same author (<http://programandala.net/en.program.fpng.html>),
+\ written in 2008.  Changes: 'base' removed; 'bounds' used;
+\ 'default-of' used; 'throw' instead of several 'abort"'; one
+\ value converted to a local; new names; updated stack notations
+\ and code layout.
 \
-\ 2017-08-17: Update change log layout. Update header. Update section
-\ rulers.
+\ 2017-08-17: Update change log layout. Update header. Update
+\ section rulers.
 \
 \ 2017-08-18: Add missing `;module`.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
 \
-\ 2017-10-25: Reorganize public and private words of the package: Now
-\ only `png-open`, `png-size` and `png-close` are public.  Improve
-\ code layout and documentation.
+\ 2017-10-25: Reorganize public and private words of the
+\ package: Now only `png-open`, `png-size` and `png-close` are
+\ public.  Improve code layout and documentation.
+\
+\ 2019-11-09: Convert `not-png?` to `png?` and make its PNG file
+\ type check independent from the cell size of the system (32 or
+\ 64 bits).
