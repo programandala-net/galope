@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2013, 2018.
+\ Author: Marcos Cruz (programandala.net), 2013, 2015, 2017, 2018.
 
 \ ==============================================================
 
