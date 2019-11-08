@@ -4,7 +4,7 @@
 \ http://programandala.net/en.program.galope.html
 
 \ Author: Marcos Cruz (programandala.net), 2006, 2007, 2009,
-\ 2013, 2014, 2017.
+\ 2013, 2014, 2017, 2019.
 
 \ ==============================================================
 
@@ -33,9 +33,16 @@ variable jpeg-fid
   7 + dup 16@ swap 2 - 16@ ;
    \ ca = address of the proper JPEG marker
 
+: jpeg? ( -- f )
+  jpeg-buffer 2 s\" \xFF\xD8" str= ;
+  \ Is the current file a JPEG?
+  \ The first two bytes of the buffer must be:
+  \ 0xFF 0xD8.
+
 : jpeg-load ( fid -- )
-  jpeg-buffer /jpeg-buffer 2dup erase rot read-file throw
-  drop jpeg-buffer @ 0xffff and 0xd8ff <> abort" Not a JPEG image file." ;
+  jpeg-buffer /jpeg-buffer 2dup erase
+  rot read-file throw drop
+  jpeg? 0= abort" Not a JPEG image file." ;
   \ Fill the buffer with the beginning of a JPEG image
   \ file.  This makes the image the current one all other words
   \ work with.
@@ -210,24 +217,29 @@ defer jpeg-found2
 \ ==============================================================
 \ Change log
 
-\ 2014-02-24: Code copied from a previous tool by the same author
-\ (<http://programandala.net/en.program.fjpg.html>). Changes: 'base'
-\ removed; 'bounds' used; 'default-of' used; 'throw' instead of
-\ several 'abort"'; one value converted to a local; new names; updated
-\ stack notations and code layout.
+\ 2014-02-24: Code copied from a previous tool by the same
+\ author (<http://programandala.net/en.program.fjpg.html>).
+\ Changes: 'base' removed; 'bounds' used; 'default-of' used;
+\ 'throw' instead of several 'abort"'; one value converted to a
+\ local; new names; updated stack notations and code layout.
 \
 \ 2014-02-28: Typo fixed in comment.
 \
-\ 2017-08-17: Update change log layout. Update header. Update section
-\ rulers.
+\ 2017-08-17: Update change log layout. Update header. Update
+\ section rulers.
 \
 \ 2017-08-18: Use `package` instead of `module:`.
 \
 \ 2017-08-23: Update source style.
 \
-\ 2017-09-09: Make the code back compatible with Gforth 0.7.3 using
-\ `{` instead of `{:`.
+\ 2017-09-09: Make the code back compatible with Gforth 0.7.3
+\ using `{` instead of `{:`.
 \
-\ 2017-10-25: Apart the remaining debug words and tools. Reorganize
-\ public and private words of the package: Now only `jpeg-open`,
-\ `jpeg-size` and `jpeg-close` are public.  Improve documentation.
+\ 2017-10-25: Apart the remaining debug words and tools.
+\ Reorganize public and private words of the package: Now only
+\ `jpeg-open`, `jpeg-size` and `jpeg-close` are public.  Improve
+\ documentation.
+\
+\ 2019-11-09: Factor `jpeg?` out of `jpeg-load` and make the
+\ JPEG file type check independent from the cell size of the
+\ system (32 or 64 bits).
