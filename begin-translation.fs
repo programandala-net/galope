@@ -5,7 +5,7 @@
 
 \ Author: Marcos Cruz (programandala.net), 2019.
 
-\ Last modified 201903140012
+\ Last modified 201912271508
 \ See change log at the end of the file
 
 \ ==============================================================
@@ -39,8 +39,8 @@ defer lang ( -- )
   \
   \ langs ( -- n )
   \
-  \ A ``value`` that returns the number of language sections of a
-  \ multilingual website. It must be configured by the application.
+  \ A ``value`` that returns the number of languages used by the
+  \ application. It must be configured by the application.
   \
   \ Usage example:
 
@@ -87,15 +87,16 @@ $variable default-translation
   \ value is an empty string.
   \
   \ When the dynamic string pointed by _a_ is not empty, it will be
-  \ returned by the variables created by `translation`, whenever the
-  \ translation in the current language is not available.
+  \ returned by the variables created by `begin-translation` or
+  \ `begin-noname-translation`, whenever the translation in the
+  \ current language is not available.
   \
   \ When the dynamic string pointed by _a_ is empty, which is the
   \ default, `default-lang` is used instead when the current
   \ translation of a `translation` variable is not available.
   \
-  \ By storing an identificable string ``default-translation``, missing
-  \ translations can be traced in the HTML.
+  \ By storing an identificable string in ``default-translation``, missing
+  \ translations can be traced application output.
   \
   \ See: `default-lang`, `langs`.
   \
@@ -388,3 +389,6 @@ end-translation
 \
 \ 2019-03-14: Move the code from Fendo to Galope. It is usable by
 \ other applications.
+\
+\ 2019-12-27: Fix documentation, which still mentioned its
+\ original usage as part of Fendo.
