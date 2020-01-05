@@ -3,12 +3,13 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018, 2020.
 
 \ Description: A configurable circular string buffer.
 
 \ ==============================================================
 
+require ./bracket-gforth-question.fs
 require ./package.fs
 require ./smove.fs
 
@@ -95,14 +96,17 @@ public
   \
   \ }doc
 
-: free-stringer ( -- ) stringer free throw 0 to stringer ;
+: free-stringer ( -- )
+  stringer [gforth?] [if]   free throw
+                     [else] ?dup if free throw stringer then
+                     [then] 0 to stringer ;
 
   \ doc{
   \
   \ free-stringer ( -- )
   \
-  \ Free the allocated data space used by the `stringer`, which should
-  \ had been created by `allocate-stringer`.
+  \ If `stringer` is not zero, free the allocated data space pointed
+  \ by it, as set by `allocate-stringer`, and set `stringer` to zero.
   \
   \ See: `resize-stringer`.
   \
@@ -186,3 +190,6 @@ end-package
 \ `allocate-ss` `allocate-in-stringer`.
 \
 \ 2018-07-21: Improve documentation of `>stringer`.
+\
+\ 2020-01-05: Improve `free-stringer` with a standard version of the
+\ code when not running on Gforth.
