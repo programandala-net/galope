@@ -16,7 +16,7 @@ require ./smove.fs
   r@ allocate-in-stringer >r  ( R: len3 ca3 )
   2 pick r@ +                 ( ca1 len1 ca2 len2 ca3+len1 )
   smove                       ( ca1 len1 )
-  r@ smove  r> r>  ;
+  r@ smove r> r> ;
 
   \ doc{
   \
@@ -28,7 +28,7 @@ require ./smove.fs
   \ This is an alternative to Gforth's ``s+``, which allocates the
   \ result in the common heap.
   \
-  \ See: `txt+`, `>stringer`.
+  \ See: `txt+`, `ss"`, `>stringer`.
   \
   \ }doc
 
@@ -47,3 +47,5 @@ require ./smove.fs
 \ documentation.
 \
 \ 2020-01-19: Improve documentation.
+\
+\ 2020-04-14: Improve documentation.

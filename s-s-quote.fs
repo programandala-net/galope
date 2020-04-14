@@ -72,12 +72,15 @@ public
   \ `stringer`.
   \
   \ Compilation: Parse a string _ccc_ delimited by a '"' (double
-  \ quote). At run-time, return the length, _len_, and the start
-  \ address, _ca_ of the string.
+  \ quote) and compile it into the current definition. At
+  \ run-time, return the length, _len_, and the start address,
+  \ _ca_ of the string.
   \
   \ Interpretation: parse a string _ccc_ delimited by a '"'
   \ (double quote), copy it to the `stringer` and return its
   \ address and length _ca len_.
+  \
+  \ See: `ss+`.
   \
   \ }doc
 
