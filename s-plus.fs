@@ -21,13 +21,15 @@
 
   \ doc{
   \
-  \ s+ {: ca1 len1 ca2 len2 -- ca3 len3 :}
+  \ s+ ( ca1 len1 ca2 len2 -- ca3 len3 )
   \
   \ Create a new string _ca3 len3_ in the heap, containing the
   \ concatenation of string _ca1 len1_ (first) and string _ca2 len2_
   \ (second).
   \
   \ NOTE: ``s+`` is already included in Gforth.
+  \
+  \ See: `ss+`.
   \
   \ }doc
 
@@ -39,3 +41,5 @@
 \
 \ 2017-08-20: Note: `s+` has been included back in Gforth 0.7.9, which
 \ is under development. Improve documentation.
+\
+\ 2020-04-09: Improve documentation.
