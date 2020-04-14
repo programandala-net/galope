@@ -435,3 +435,7 @@ Improve `menu`:
 
 - Add separators, skipped by the option selector.
 - Add inactive options, with alternative texts.
+
+== 2020-04-14
+
+Benchmark `string-suffix?` with the version included in Gforth.
