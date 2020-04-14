@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2019-03-14
+:revdate: 2020-04-14
 
 == 2012-09-20
 
@@ -253,9 +253,7 @@ Alternative from
 == 2017-11-03
 
 - Remove <paragraph.fs> and <print.fs>, superseded by <l-type.fs>.
-- Add to long strings support: `ls"`, `lsliteral` and an alternative
-  common-heap version of `lsconstant`, configurable with a deferred
-  word.
+- Add to long strings support: `ls"`, `lsliteral`.
 - Extract `string-prefix?` from `-prefix`.
 - Remove `basename` (already in Gforth 0.7.9).
 
@@ -333,12 +331,6 @@ Alternative from
 
 - It seems `#indented` can be removed from <l-type.fs>. Confirm it and
   remove it.
-
-== 2017-11-19, 2017-11-22
-
-- Improve `sconstant` to store long strings: store only the text, not
-  the length, and create a `2constant` to return address and length.
-  Or define `lsconstant`.
 
 == 2017-11-21
 
