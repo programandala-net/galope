@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018.
+\ Author: Marcos Cruz (programandala.net), 2016, 2017, 2018, 2020.
 
 \ ==============================================================
 
@@ -25,6 +25,9 @@ require ./smove.fs
   \ Concatenate strings _ca1 len1_ and _ca2 len2_, returning the
   \ result _ca3 len3_ in the `stringer`.
   \
+  \ This is an alternative to Gforth's ``s+``, which allocates the
+  \ result in the common heap.
+  \
   \ See: `txt+`, `>stringer`.
   \
   \ }doc
@@ -42,3 +45,5 @@ require ./smove.fs
 \
 \ 2018-07-21: Update `allocate-ss` to `allocate-in-stringer`. Improve
 \ documentation.
+\
+\ 2020-01-19: Improve documentation.
