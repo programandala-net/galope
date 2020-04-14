@@ -1,14 +1,16 @@
-\ galope/s-constant.fs
+\ galope/to-s-constant.fs
 
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2017.
+\ Author: Marcos Cruz (programandala.net), 2020
 
 \ ==============================================================
 
-: sconstant ( ca len "name" -- )
-  create s,
+require ./nup.fs
+
+: >sconstant ( ca len "name" -- )
+  nup create s, free throw
   does> ( -- ca len ) ( dfa ) count ;
 
   \ doc{
@@ -19,7 +21,10 @@
   \ _name_. When _name_ is later executed, it will return the address
   \ and length of the copy.
   \
-  \ See also: `>sconstant`, `strings:`.
+  \ The original address _ca_ is supposed to had been obtained by
+  \ ``allocate``. ``>sconstant`` frees region _ca len_ using ``free``.
+  \
+  \ See also: `sconstant`, `strings:`.
   \
   \ }doc
 
@@ -37,6 +42,3 @@
 \ <s-constant.fs>.
 \
 \ 2017-11-19: Improve documentation.
-\
-\ 2020-04-14: Improve and update documentation after the
-\ implementation of `>sconstant`.
