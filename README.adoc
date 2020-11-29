@@ -1,6 +1,6 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-12-01
+:revdate: 2020-11-29
 :linkattrs:
 
 // This file is part of Galope
@@ -31,17 +31,17 @@ http://programandala.net/en.program.galope.html.
 
 == Current status
 
-As of 2017-12 Galope consists of 320 module files. Many of them
+As of 2020-11 Galope consists of 360 module files. Many of them
 contain only one definition, even simple one-liner ones; others
 contain whole tools.
 
 Galope is used by most Forth projects of the author, but anything in
 the library may be changed before its first public release.
 
-The documentation is 60% finished. Its main part is a detailed
-glossary, in PDF and HTML formats, with full descriptions, usage
-examples and cross references.  The manual (currently in HTML and PDF
-formats) is built from the source code by
+The documentation is 80% finished. Its main part is a detailed
+glossary, with full descriptions, usage
+examples and cross references.  The manual (in EPUB, HTML and PDF)
+is built from the source code by
 http://programandala.net/en.program.glosara.html[Glosara].
 
 // end::status[]
@@ -63,17 +63,20 @@ the International Phonetic Alphabet (IPA) is: /ɡa'lope/.
 
 == Installation
 
-At the moment the installation must be manual: Copy or link the
-<galope> directory into a directory included in your Forth system's
-search paths. For a locally compiled Gforth, it can be
-</usr/local/share/gforth/site-forth>. As an alternative, you can link
-the <galope> directory into the directory of your application.
+At the moment the installation must be manual: Link the Galope
+directory containing the modules into a directory included in your
+Forth system's search paths (for a locally compiled Gforth, it usually
+is </usr/local/share/gforth/site-forth>) or into the directory of your
+application.
 
 // end::installation[]
 
-== The Git repository
+== The project repository
 
 In order to preserve the evolution of the code and prepare the first
 public release, a Git repository was created on 2016-06-21, out of
 development and ordinary backups created since 2013 (one year after
 the beginning of the project).
+
+On 2020-11-29 the repository was converted from Git to
+http://fossil-scm.org[Fossil]. GitHub will be used only as a mirror.
