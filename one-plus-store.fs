@@ -3,7 +3,7 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2016, 2017, 2020.
 
 \ ==============================================================
 
@@ -15,7 +15,7 @@
   \
   \ Increment the single-cell number at _a_.
   \
-  \ See: `?1+!`, `1-!`.
+  \ See: `?1+!`, `1-!`, `2+!`.
   \
   \ }doc
 
@@ -36,3 +36,5 @@
 \
 \ 2017-11-09: Rename `++` `1+!`. Deprecate `++` and make it a synonym
 \ of `1+!`, in its own module. Improve documentation.
+\
+\ 2020-12-06: Update documentation with `2+!`.
