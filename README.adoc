@@ -1,6 +1,6 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2020-11-29
+:revdate: 2020-12-11
 :linkattrs:
 
 // This file is part of Galope
@@ -63,11 +63,24 @@ the International Phonetic Alphabet (IPA) is: /ɡa'lope/.
 
 == Installation
 
-At the moment the installation must be manual: Link the Galope
-directory containing the modules into a directory included in your
-Forth system's search paths (for a locally compiled Gforth, it usually
-is </usr/local/share/gforth/site-forth>) or into the directory of your
-application.
+In order to use the library, the path to its modules must be
+accessible from your Forth system.
+
+For Gforth, two methods are suggested:
+
+One method is to add the Galope's source directory to Gforth's
+`fpath`. Consult the documentation of Gforth.
+
+A second method is to make a symbolic link to Galope's sources
+directory from Gforth's <site-forth> directory. In a locally compiled
+Gforth, the command on a Linux shell would be the following:
+
+----
+sudo ln -s ~/YOUR-PATH/ /usr/local/share/gforth/site-forth/galope
+----
+
+where "YOUR-PATH" must be replaced with the corresponding path to
+Galope's sources directory on your system.
 
 // end::installation[]
 
