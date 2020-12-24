@@ -3,22 +3,22 @@
 # This file is part of Galope
 # http://programandala.net/en.program.galope.html
 
-# Last modified 201812191519
+# Last modified 202012241742
 
 # ==============================================================
-# Author
+# Author {{{1
 
 # Marcos Cruz (programandala.net), 2017.
 
 # ==============================================================
-# License
+# License {{{1
 
 # You may do whatever you want with this work, so long as you
 # retain every copyright, credit and authorship notice, and this
 # license.  There is no warranty.
 
 # ==============================================================
-# Requirements
+# Requirements {{{1
 
 # Asciidoctor (by Dan Allen and Sara White)
 # 	http://asciidoctor.org
@@ -41,12 +41,12 @@
 #	http://john-macfarlane.net/pandoc
 
 # ==============================================================
-# History
+# History {{{1
 
 # See at the end of the file.
 
 # ==============================================================
-# Notes about make
+# Notes about make {{{1
 
 # $@ = the name of the target of the rule
 # $< = the name of the first prerequisite
@@ -56,7 +56,7 @@
 # `%` works only at the start of the filter pattern
 
 # ==============================================================
-# Config
+# Config {{{1
 
 VPATH = ./
 
@@ -65,7 +65,7 @@ MAKEFLAGS = --no-print-directory
 #.ONESHELL:
 
 # ==============================================================
-# Main
+# Main {{{1
 
 .PHONY: all
 all: doc
@@ -78,7 +78,7 @@ cleandoc:
 	-rm -f doc/*.html doc/*.pdf tmp/*.adoc
 
 # ==============================================================
-# Documentation
+# Documentation {{{1
 
 .PHONY: doc
 doc: \
@@ -86,7 +86,7 @@ doc: \
 	doc/galope_manual.pdf
 
 # ----------------------------------------------
-# Common rules
+# Common rules {{{2
 
 doc/%.pdf: tmp/%.adoc
 	asciidoctor-pdf --out-file $@ $<
@@ -109,7 +109,7 @@ tmp/glossary.adoc: tmp/files.txt
 	makeinfo -o $@ $<
 
 # ----------------------------------------------
-# Main
+# Main {{{2
 
 galope_modules=$(wildcard *.fs)
 
@@ -138,18 +138,47 @@ doc/galope_manual.texi: tmp/galope_manual.docbook
 doc/galope_manual.info: doc/galope_manual.texi
 	makeinfo -o $@ $<
 
+# ----------------------------------------------
+# Online documentation {{{2
+
+# Online documentation displayed on the Fossil repository.
+
+.PHONY: wwwdoc
+wwwdoc: wwwreadme
+
+.PHONY: cleanwww
+cleanwww:
+	rm -f \
+		doc/www/* \
+		tmp/README.*
+
+.PHONY: wwwreadme
+wwwreadme: doc/www/README.html
+
+doc/www/README.html: tmp/README.html
+	echo "<div class='fossil-doc' data-title='README'>" > $@;\
+	cat $< >> $@;\
+	echo "</div>" >> $@
+
+tmp/README.html: README.adoc
+	asciidoctor \
+		--embedded \
+		--out-file=$@ $<
+
 # ==============================================================
-# Change log
+# Change log {{{1
 
 # 2017-07-14: Start.
 #
 # 2017-07-15: Try Glosara `--output` parameter.
 #
-# 2017-11-20: First try to create Texinfo and Info versions of
-# the manual.
+# 2017-11-20: First try to create Texinfo and Info versions of the manual.
 #
 # 2017-11-21: Improve.
 #
 # 2018-12-07: Update requirements.
 #
 # 2018-12-19: Replace htmldoc with asciidoctor-pdf, the PDF is much better.
+#
+# 2020-12-24: Build an online version of the README file for the Fossil
+# repository.
