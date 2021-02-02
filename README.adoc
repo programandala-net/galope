@@ -1,12 +1,25 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2020-12-24
+:revdate: 2021-02-03
 :linkattrs:
+:toc: macro
 
 // This file is part of Galope
 // http://programandala.net/en.program.galope.html
 
 // tag::description[]
+
+ifdef::env-github[]
+
+NOTE: This is the GitHub mirror of the actual
+http://fossil.programandala.net/galope[Galope repository],
+which is powered by http://fossil-scm.org[Fossil].
+
+'''
+
+endif::[]
+
+toc::[]
 
 == Description
 
