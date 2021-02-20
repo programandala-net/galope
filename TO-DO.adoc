@@ -1,6 +1,6 @@
 = To-do list of Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2020-04-14
+:revdate: 2021-02-20
 
 == 2012-09-20
 
@@ -439,3 +439,7 @@ Improve `menu`:
 == 2020-04-14
 
 Benchmark `string-suffix?` with the version included in Gforth.
+
+== 2021-02-20
+
+Rename `unslurp` to `spew` (after Retro Forth's `file:spew`).
