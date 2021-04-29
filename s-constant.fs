@@ -3,9 +3,12 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2017.
+\ Author: Marcos Cruz (programandala.net), 2012, 2014, 2017, 2020,
+\ 2021.
 
 \ ==============================================================
+
+require ./s-comma.fs
 
 : sconstant ( ca len "name" -- )
   create s,
@@ -40,3 +43,5 @@
 \
 \ 2020-04-14: Improve and update documentation after the
 \ implementation of `>sconstant`.
+\
+\ 2021-04-29: Require `s,`, previously provided by Gforth.

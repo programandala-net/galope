@@ -3,11 +3,12 @@
 \ This file is part of Galope
 \ http://programandala.net/en.program.galope.html
 
-\ Author: Marcos Cruz (programandala.net), 2020
+\ Author: Marcos Cruz (programandala.net), 2020, 2021
 
 \ ==============================================================
 
 require ./nup.fs
+require ./s-comma.fs
 
 : >sconstant ( ca len "name" -- )
   nup create s, free throw
@@ -32,3 +33,5 @@ require ./nup.fs
 \ Change log
 
 \ 2020-04-14: Start. A variant of `sconstant`.
+\
+\ 2021-04-29: Require `s,`, previously provided by Gforth.
