@@ -1,6 +1,6 @@
 = Galope
 :author: Marcos Cruz (programandala.net)
-:revdate: 2021-02-03
+:revdate: 2023-04-01
 :linkattrs:
 :toc: macro
 
@@ -8,16 +8,6 @@
 // http://programandala.net/en.program.galope.html
 
 // tag::description[]
-
-ifdef::env-github[]
-
-NOTE: This is the GitHub mirror of the actual
-http://fossil.programandala.net/galope[Galope repository],
-which is powered by http://fossil-scm.org[Fossil].
-
-'''
-
-endif::[]
 
 toc::[]
 
@@ -97,13 +87,17 @@ Galope's sources directory on your system.
 
 // end::installation[]
 
-== The project repository
+== History of the project repository
 
-In order to preserve the evolution of the code and prepare the first
-public release, a Git repository was created on 2016-06-21, out of
+2016-06-21: In order to preserve the evolution of the code and prepare
+the first public release, a Git repository was created out of
 development and ordinary backups created since 2013 (one year after
 the beginning of the project).
 
-On 2020-11-29 the Git repository was converted to a
-http://fossil.programandala.net/galope[Fossil repository], keeping
-http://github.com/programandala-net/galope[GitHub] as a mirror.
+2020-11-29: The Git repository was converted to a
+https://fossil-scm.org[Fossil,role="external"], keeping GitHub as a
+mirror.
+
+2023-04-01: The repository was converted to
+https://mercurial-scm.org[Mercurial,role="external"], which allows
+bidirectional communication with Git.
