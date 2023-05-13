@@ -6,7 +6,7 @@
 \ Author: Krishna Myeni, 1999-2004.
 \
 \ Modified by: Marcos Cruz (programandala.net), 2012, 2013, 2014,
-\ 2017.
+\ 2017, 2023.
 
 \ ==============================================================
 \ Credits
@@ -44,6 +44,10 @@ package galope-xy
   \ keys>#number
   \
   \ XXX TODO -- No final char: finish at the first non-digit instead.
+
+: esc[ ( -- )
+  27 emit '[' emit ;
+  \ Display an ANSI escape code.
 
 public
 
@@ -87,3 +91,5 @@ end-package
 \ backup and restore outside the package. Update source style.
 \
 \ 2017-10-25: Improve documentation.
+\
+\ 2023-05-13: Add `esc[`, which was removed from Gforth.
