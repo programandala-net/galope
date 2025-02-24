@@ -28,7 +28,8 @@ library may be changed before its first public release.
 The documentation is 80% finished. Its main part is a detailed glossary,
 with full descriptions, usage examples and cross references. The manual
 (in EPUB, HTML and PDF) is built from the source code by
-[Glosara](http://programandala.net/en.program.glosara.html).
+[Glosara](http://programandala.net/en.program.glosara.html) ([Glosara in
+SourceHut](https://hg.sr.ht/~programandala_net/glosara)).
 
 ## About the name
 
@@ -58,7 +59,7 @@ the command on a Linux shell would be the following:
 where "YOUR-PATH" must be replaced with the corresponding path to
 Galope’s sources directory on your system.
 
-## History of the project repository
+## History of the repository
 
 2016-06-21: In order to preserve the evolution of the code and prepare
 the first public release, a Git repository was created out of
@@ -71,3 +72,7 @@ beginning of the project).
 2023-04-01: The repository was converted to
 [Mercurial](https://mercurial-scm.org), which allows bidirectional
 communication with Git.
+
+2025-02-23: The repository was uploaded to
+[SourceHut](https://hg.sr.ht/~programandala_net/galope), keeping GitHub
+as a mirror.
